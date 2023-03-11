@@ -1,0 +1,35 @@
+@import url('../../style/CommonStyle.css');
+
+.box,
+.box2 {
+	/*position: fixed;
+	top: 0;*/
+	margin-bottom: 10px;
+	border: 1px solid var(--green);
+	font-size: var(--strong-font);
+	height: 55px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 540px;
+}
+
+.App-logo {
+	width: 100px;
+	height: 35px;
+	margin: 10px 10px 10px 20px;
+}
+
+.login-text {
+	margin: 10px 20px 10px 10px;
+}
+
+.App-btnback {
+	width: 22px;
+	margin: 10px 20px 10px 10px;
+}
+
+.login-text3 {
+	color: white;
+}
