@@ -1,0 +1,22 @@
+@import url('../../style/CommonStyle.css');
+
+
+.notFooter {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.listboxMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+

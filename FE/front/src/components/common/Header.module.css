@@ -12,24 +12,24 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 540px;
+	width: 530px;
 }
 
-.App-logo {
+.AppLogo {
 	width: 100px;
 	height: 35px;
 	margin: 10px 10px 10px 20px;
 }
 
-.login-text {
+.loginText {
 	margin: 10px 20px 10px 10px;
 }
 
-.App-btnback {
+.AppBtnback {
 	width: 22px;
 	margin: 10px 20px 10px 10px;
 }
 
-.login-text3 {
+.loginText3 {
 	color: white;
 }

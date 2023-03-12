@@ -1,13 +1,13 @@
-import './Header.css';
+import style from './Header.module.css';
 import btnBack from '../../assets/btnBack.png';
 
 function Header() {
 	return (
 		<>
-			<div className='box2'>
-				<img src={btnBack} className='App-btnback' alt='btnback' />
-				<span className='login-text2'>로그인</span>
-				<span className='login-text3'>로그인</span>
+			<div className={style.box2}>
+				<img src={btnBack} className={style.AppBtnback} alt='btnback' />
+				<span className={style.loginText2}>로그인</span>
+				<span className={style.loginText3}>로그인</span>
 			</div>
 		</>
 	);

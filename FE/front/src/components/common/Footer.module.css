@@ -1,0 +1,44 @@
+@import url('../../style/CommonStyle.css');
+
+.footerBox{
+    width: 530px;
+    height: 220px;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    
+
+    /*사실 fixed 는 아닌데 보기 편하라고 쓴거임
+    border: 1px solid var(--green);
+    position: fixed;
+    bottom: 0;*/
+}
+
+.footerBox2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoimg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.izonelogo{
+    width: 60px;
+}
+
+.footerText {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    color: var(--light-gray);
+    font-size: 10px;
+    text-align: center;
+    line-height: 10px;
+}
