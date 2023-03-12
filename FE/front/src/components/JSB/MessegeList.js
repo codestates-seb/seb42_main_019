@@ -1,4 +1,4 @@
-import style from './List.module.css';
+import style from '../../components/common/List.module.css';
 import Footer from '../common/Footer';
 import Header from '../common/Header';
 import izone from '../../assets/izonelogo1.jpg';

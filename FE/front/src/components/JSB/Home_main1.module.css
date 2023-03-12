@@ -1,0 +1,43 @@
+
+
+
+.text1 {
+    display: flex;
+    padding-right: 330px;
+    line-height: 1px;
+    color: var(--light-black);
+    justify-content: space-around;
+}
+
+p{
+    display: flex;
+}
+
+.searchIcon {
+	position:absolute;
+    padding: 0px;
+	color:#2F5A2D;
+}
+
+.notFooter {
+    display: flex;
+    justify-content: space-around;
+}
+
+.listboxMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 3px solid var(--green);
+    border-radius: 15px;
+    width: 490px;
+    height: 55px;
+    margin-bottom: 10px;
+    background-image: url(../../assets/searchIcon.png);
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    text-align: center;
+    font-size: var(--normal-font);
+}

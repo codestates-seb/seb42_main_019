@@ -6,11 +6,12 @@
     background-color: var(--black);
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    
+    
+    /*사실 fixed 는 아닌데 보기 편하라고 쓴거임
     position: absolute;
     bottom: 0;
-    
-
-    /*사실 fixed 는 아닌데 보기 편하라고 쓴거임
     border: 1px solid var(--green);
     position: fixed;
     bottom: 0;*/
