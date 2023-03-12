@@ -1,7 +1,8 @@
-import style from './BookList.module.css';
-import bookcover from '../../assets/bookcover.png';
+import style from './BSlist.module.css';
+import bookcover from '../../../assets/bookcover.png';
+import xIcon from '../../../assets/xIcon.png';
 
-function BookList() {
+const BSlist = function () {
 	return (
 		<>
 			<div className={style.box1}>
@@ -19,11 +20,13 @@ function BookList() {
 								1시간 전
 							</p>
 						</div>
+						<img className={style.xicon} src={xIcon} alt='xicon' />
+						<div className={style.grade}>상</div>
 					</div>
 				</div>
 			</div>
 		</>
 	);
-}
+};
 
-export default BookList;
+export default BSlist;

@@ -1,5 +1,10 @@
 import style from './Home_main1.module.css';
 import BookListBox from '../common/BookList.js';
+import AlertList from './Alert/AlertList';
+import AlertListMS from './Alert/AlertListMS';
+import MessageList from './message/MessageList';
+import MsgList from './message/MsgList';
+import BSlist from './BookShelf/BSlist';
 
 const Home_main1 = function () {
 	return (
@@ -11,6 +16,11 @@ const Home_main1 = function () {
 				<input className={style.listboxMessage}></input>
 			</div>
 			<BookListBox />
+			<AlertList />
+			<AlertListMS />
+			<MessageList />
+			<MsgList />
+			<BSlist />
 		</>
 	);
 };

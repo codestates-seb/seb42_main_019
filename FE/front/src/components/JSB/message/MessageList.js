@@ -1,14 +1,11 @@
-import style from '../../components/common/List.module.css';
-import Footer from '../common/Footer';
-import Header from '../common/Header';
-import izone from '../../assets/izonelogo1.jpg';
-import bookcover from '../../assets/bookcover.png';
+import style from './MessageList.module.css';
+import izone from '../../../assets/izonelogo1.jpg';
+import bookcover from '../../../assets/bookcover.png';
 
-function List() {
+function MessageList() {
 	return (
 		<>
 			<div className={style.box1}>
-				<Header />
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.profileMessageBox}>
@@ -29,10 +26,9 @@ function List() {
 						</div>
 					</div>
 				</div>
-				<Footer />
 			</div>
 		</>
 	);
 }
 
-export default List;
+export default MessageList;

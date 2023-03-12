@@ -1,5 +1,4 @@
-@import url('../../style/CommonStyle.css');
-
+@import url('../../../style/CommonStyle.css');
 
 .notFooter {
     min-height: 100%;
@@ -52,4 +51,22 @@
 
 .bookDetail02 {
     color: var(--light-gray)
+}
+
+.xicon {
+    width: 10px;
+    position: absolute;
+    right: 35px;
+    top: 20px;
+}
+
+.grade {
+    background-color: var(--green);
+    padding: 10px ;
+    border-radius: 50%;
+    color: var(--light-gray);
+    font-weight: 700;
+    position: absolute;
+    right: 35px;
+    top: 40px;
 }

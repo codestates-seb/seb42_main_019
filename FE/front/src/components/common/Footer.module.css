@@ -42,4 +42,13 @@
     font-size: 10px;
     text-align: center;
     line-height: 10px;
+    margin: 10px;
+}
+
+.text{
+    justify-content: center;
+}
+
+.footerlogo{
+    color: var(--light-gray);
 }

@@ -1,5 +1,4 @@
-@import url('../../style/CommonStyle.css');
-
+@import url('../../../style/CommonStyle.css');
 
 .notFooter {
     min-height: 100%;
@@ -37,6 +36,7 @@
 
 .profileName {
     display: flex;
+    font-weight: 700;
 }
 
 .message {

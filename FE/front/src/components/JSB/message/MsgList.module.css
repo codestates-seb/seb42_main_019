@@ -1,0 +1,39 @@
+@import url('../../../style/CommonStyle.css');
+
+.notFooter {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.listboxMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.profileContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profileName {
+    margin-left: 20px;    
+    font-weight: 700;
+}
+
+.messageDate{
+    margin-right: 20px;
+    color: var(--green);
+}
+
+.message {
+    margin-left: 20px;
+}
