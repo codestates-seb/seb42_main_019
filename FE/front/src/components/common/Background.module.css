@@ -16,3 +16,9 @@
 	position: relative;
 	left: 0;
 }
+
+@media (max-width: 640px) {
+    .copylist {
+		display: none;
+	}
+}
