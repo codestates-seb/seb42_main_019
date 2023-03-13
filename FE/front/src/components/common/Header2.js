@@ -1,12 +1,12 @@
 import style from './Header.module.css';
 import btnBack from '../../assets/btnBack.png';
 
-function Header() {
+const Header = ({children})=> {
 	return (
 		<>
 			<div className={style.box2}>
 				<img src={btnBack} className={style.AppBtnback} alt='btnback' />
-				<span className={style.loginText2}>로그인</span>
+				<span className={style.loginText2}>{children}</span>
 				<span className={style.loginText3}>로그인</span>
 			</div>
 		</>

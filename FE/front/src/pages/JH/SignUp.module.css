@@ -1,4 +1,4 @@
-input {
+.Main input {
 	height: 32px;
 	min-width: 440px;
 	border-radius: 10px;
@@ -9,7 +9,7 @@ input {
 	margin-bottom: 15px;
 }
 
-label {
+.Main label {
 	display: flex;
 	padding: 0 30px;
 	margin-top: 35px;

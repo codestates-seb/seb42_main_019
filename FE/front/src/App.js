@@ -7,13 +7,15 @@ import Booklist from './pages/SB/MyBookShelf'
 import Mypage from './pages/SB/Mypage'
 import Background from '../src/components/common/Background';
 import Login from '../src/pages/JH/Login';
+import Footer from './components/common/Footer';
 import BookSearch from '../src/pages/HJ/BookSearch';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
 	return (
 		<div className={style.App}>
-			<Background></Background>
+			<Background>
+			</Background>
 			<div className={style.body}>
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
@@ -24,8 +26,9 @@ function App() {
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/booksearch' element={<BookSearch />}></Route>
 				</Routes>
+				<Footer />
 				<Nav />
-			</div>
+				</div>
 		</div>
 	);
 }
