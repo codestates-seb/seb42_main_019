@@ -1,7 +1,4 @@
 import style from './Footer.module.css';
-{
-	/*import izonelogo from '../../assets/izonelogo3.png';*/
-}
 
 const Footer = function () {
 	return (
