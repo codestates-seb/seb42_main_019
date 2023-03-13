@@ -43,8 +43,9 @@
     color: var(--light-gray);
     font-size: 10px;
     text-align: center;
-    line-height: 10px;
+    line-height: 11px;
     margin: 10px;
+    margin-bottom: 50px;
 }
 
 .text{
@@ -55,7 +56,12 @@
     color: var(--light-gray);
 }
 
-.a {
+a {
     color: var(--light-gray);
     text-decoration: none;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
 }

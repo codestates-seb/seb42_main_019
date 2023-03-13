@@ -4,6 +4,7 @@ import Header from '../../components/common/Header';
 import HomeSearch from '../../components/JSB/HomeSearch';
 import Footer from '../../components/common/Footer';
 import BookList from '../../components/common/BookList';
+import Nav from '../../components/common/Nav'
 
 function Home() {
 	return (
@@ -16,6 +17,7 @@ function Home() {
 				<BookList />
 				<BookList />
 				<Footer className={style.footer} />
+				<Nav />
 			</div>
 		</>
 	);
