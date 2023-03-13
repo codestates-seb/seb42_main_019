@@ -1,0 +1,6 @@
+.App {
+    background-color: #FBFAF8;
+    font-family: 'Noto Sans KR';
+    color: var(--black);
+    height: 100%;
+}
