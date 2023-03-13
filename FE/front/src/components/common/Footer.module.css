@@ -43,9 +43,9 @@
     color: var(--light-gray);
     font-size: 10px;
     text-align: center;
-    line-height: 11px;
     margin: 10px;
-    margin-bottom: 50px;
+    line-height: 12px             ;
+    margin-bottom: 60px;
 }
 
 .text{

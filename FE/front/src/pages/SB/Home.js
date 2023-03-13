@@ -9,16 +9,19 @@ import Nav from '../../components/common/Nav'
 function Home() {
 	return (
 		<>
+		<Header />
 			<div className={style.box}>
-				<Header />
 				<img className={style.img} src={homeImg} alt='homeImg' />
 				<HomeSearch />
+				<p className={style.currentp}>최근에 등록된 책</p>
+				<BookList />
+				<BookList />
 				<BookList />
 				<BookList />
 				<BookList />
 				<Footer className={style.footer} />
+				</div>
 				<Nav />
-			</div>
 		</>
 	);
 }
