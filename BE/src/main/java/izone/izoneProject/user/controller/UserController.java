@@ -22,13 +22,13 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class UserController {
     private final String DEFAULT_URI ="/user";
-    private final UserService service;
+    private final UserService userService;
     private final UserMapper mapper;
 
     @PostMapping
     public ResponseEntity postUser(@RequestBody @Valid UserDto.Post post) {
         User postUser = mapper.postDtoToUser(post);
-        User createdUser = service.createUser(postUser);
+        User createdUser = userService.createUser(postUser);
         URI location = Uri.createUri(DEFAULT_URI, Long.toString(createdUser.getUserId()));
         return ResponseEntity.created(location).build();
     }

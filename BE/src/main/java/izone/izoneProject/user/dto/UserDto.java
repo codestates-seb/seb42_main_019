@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 public class UserDto {
     @AllArgsConstructor
     @NoArgsConstructor
-    @Setter
     @Getter
     public static class Post{
         @NotNull
@@ -26,7 +25,6 @@ public class UserDto {
     }
     @AllArgsConstructor
     @NoArgsConstructor
-    @Setter
     @Getter
     public static class Patch{
         @NotBlank
@@ -37,7 +35,6 @@ public class UserDto {
     }
     @AllArgsConstructor
     @NoArgsConstructor
-    @Builder
     @Getter
     public static class Response{
         private String name;

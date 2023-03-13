@@ -13,11 +13,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Transactional
 public class UserService {
-    private UserRepository userRepository;
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
 
-    public User createUser(User user){
-        if (checkEmail(user.getEmail())){
+    public User createUser(User user) {
+        if (checkEmail(user.getEmail())) {
             throw new RuntimeException("email is exist");
         } else if (checkName(user.getName())) {
             throw new RuntimeException("name is exist");
@@ -25,17 +24,17 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User editUser(User user){
-      User foundUser =  findUser(user.getUserId());
+    public User editUser(User user) {
+        User foundUser = findUser(user.getUserId());
         Optional.ofNullable(user.getPassword())
-                .ifPresent(password ->foundUser.setPassword(password));
+                .ifPresent(password -> foundUser.setPassword(password));
         Optional.ofNullable(user.getRegion())
                 .ifPresent(region -> foundUser.setRegion(region));
 
         return foundUser;
     }
 
-    public User getUser(long userId){
+    public User getUser(long userId) {
         User foundUser = findUser(userId);
 
         return foundUser;
@@ -46,15 +45,16 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
-    public boolean checkEmail (String email){
-        return userRepository.existsByEmail(email);
-    }
-    public boolean checkName (String name){
-        return userRepository.existsByName(name);
-    }
     public User findUser(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         User foundUser = optionalUser.orElseThrow(() -> new RuntimeException("user not found"));
         return foundUser;
+    }
+
+    public boolean checkEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+    public boolean checkName(String name) {
+        return userRepository.existsByName(name);
     }
 }

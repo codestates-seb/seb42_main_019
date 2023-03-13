@@ -4,7 +4,7 @@ import izone.izoneProject.user.dto.UserDto;
 import izone.izoneProject.user.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.stereotype.Component;
+
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
