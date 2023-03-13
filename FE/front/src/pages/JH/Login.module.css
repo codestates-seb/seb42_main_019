@@ -1,0 +1,41 @@
+img {
+	width: 200px;
+	height: 200px;
+}
+
+.Contents {
+	height: 300px;
+	padding: 50px 0;
+}
+
+input {
+	height: 32px;
+	min-width: 440px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+button {
+	height: 62px;
+	min-width: 470px;
+	background-color: #2f5a2d;
+	color: #fff;
+	font-size: 18px;
+	border: 0;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+}
+
+.SignUp {
+	margin-top: 20px;
+	font-size: 18px;
+}
+
+.SignUp span {
+	color: #2f5a2d;
+	font-weight: bold;
+}
