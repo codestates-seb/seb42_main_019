@@ -7,6 +7,11 @@
 	padding: 50px 0;
 }
 
+.Contents img {
+	width: 250px;
+	height: 250px;
+}
+
 .LoginInput input {
 	height: 32px;
 	min-width: 440px;
@@ -18,7 +23,7 @@
 	margin-bottom: 15px;
 }
 
-.LoginInput button {
+.Main button {
 	height: 62px;
 	min-width: 470px;
 	background-color: #2f5a2d;
@@ -27,6 +32,7 @@
 	border: 0;
 	border-radius: 10px;
 	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	text-align: center;
 }
 
 .SignUp {
