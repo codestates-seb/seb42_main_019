@@ -19,7 +19,13 @@ const Footer = function () {
 						<p className={style.text}>백엔드 : 안병옥 박의진 김미진 이혜인</p>
 						<p className={style.text}>프론트엔드 : 조수빈 임지현 김현지</p>
 						<p>
-							깃허브 주소 : https://github.com/codestates-seb/seb42_main_019
+							깃허브 주소 :
+							<a
+								className={style.a}
+								href='https://github.com/codestates-seb/seb42_main_019'
+							>
+								https://github.com/codestates-seb/seb42_main_019
+							</a>
 						</p>
 					</div>
 				</div>

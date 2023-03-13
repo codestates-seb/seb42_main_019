@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: absolute;
+    bottom: -30;
     
     
     /*사실 fixed 는 아닌데 보기 편하라고 쓴거임
@@ -15,6 +17,7 @@
     border: 1px solid var(--green);
     position: fixed;
     bottom: 0;*/
+
 }
 
 .footerBox2 {
@@ -51,4 +54,9 @@
 
 .footerlogo{
     color: var(--light-gray);
+}
+
+.a {
+    color: var(--light-gray);
+    text-decoration: none;
 }

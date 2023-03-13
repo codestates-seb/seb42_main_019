@@ -63,10 +63,13 @@
 .grade {
     background-color: var(--green);
     padding: 10px ;
-    border-radius: 50%;
+    border-radius: 50px;
     color: var(--light-gray);
     font-weight: 700;
     position: absolute;
     right: 35px;
     top: 40px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
 }
