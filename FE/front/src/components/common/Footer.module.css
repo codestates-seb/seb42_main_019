@@ -8,8 +8,7 @@
     flex-direction: column;
     justify-content: space-around;
     position: absolute;
-    bottom: -30;
-    
+    margin-top: 90px;    
     
     /*사실 fixed 는 아닌데 보기 편하라고 쓴거임
     position: absolute;
