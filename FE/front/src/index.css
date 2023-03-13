@@ -12,11 +12,8 @@ code {
     monospace;
 }
 
-.html {
-  height: 100%;
-}
-.body {
-  height:100%;
+html {
+  background-color: #ece9e1;
 }
 
 li{list-style: none;}
