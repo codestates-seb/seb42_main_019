@@ -52,6 +52,9 @@ spring:
   #   encoding: UTF-8
   #   check-template-location: true
 
+kakao:
+  Key: d5562ebd8b4981164a833b5f82c80b77
+
 logging:
   level:
     org.hibernate.SQL: trace
