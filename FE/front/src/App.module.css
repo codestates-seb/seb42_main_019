@@ -1,6 +1,16 @@
 .App {
-    background-color: #FBFAF8;
-    font-family: 'Noto Sans KR';
-    color: var(--black);
-    height: 100%;
+	background-color: #ece9e1;
+	font-family: 'Noto Sans KR';
+	color: var(--black);
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.body {
+	min-width: 530px;
+	height: 100vh;
+	background-color: #fbfaf8;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
 }
