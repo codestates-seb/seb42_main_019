@@ -4,12 +4,12 @@ import Header from '../../components/common/Header';
 import HomeSearch from '../../components/JSB/HomeSearch';
 import Footer from '../../components/common/Footer';
 import BookList from '../../components/common/BookList';
-import Nav from '../../components/common/Nav'
+import Nav from '../../components/common/Nav';
 
 function Home() {
 	return (
 		<>
-		<Header />
+			<Header />
 			<div className={style.box}>
 				<img className={style.img} src={homeImg} alt='homeImg' />
 				<HomeSearch />
@@ -19,9 +19,11 @@ function Home() {
 				<BookList />
 				<BookList />
 				<BookList />
+				<BookList />
+				<BookList />
 				<Footer className={style.footer} />
-				</div>
-				<Nav />
+			</div>
+			<Nav />
 		</>
 	);
 }
