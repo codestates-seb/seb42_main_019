@@ -26,7 +26,6 @@ function App() {
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/booksearch' element={<BookSearch />}></Route>
 				</Routes>
-				<Footer />
 				<Nav />
 				</div>
 		</div>
