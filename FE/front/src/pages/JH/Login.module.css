@@ -1,6 +1,5 @@
-img {
-	width: 200px;
-	height: 200px;
+.Main > * {
+	text-align: center;
 }
 
 .Contents {
@@ -8,7 +7,7 @@ img {
 	padding: 50px 0;
 }
 
-input {
+.LoginInput input {
 	height: 32px;
 	min-width: 440px;
 	border-radius: 10px;
@@ -19,7 +18,7 @@ input {
 	margin-bottom: 15px;
 }
 
-button {
+.LoginInput button {
 	height: 62px;
 	min-width: 470px;
 	background-color: #2f5a2d;
