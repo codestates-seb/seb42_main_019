@@ -13,12 +13,11 @@
 }
 
 .img {
-	position: relative;
-	left: 0;
+	position: fixed;
 }
 
 @media (max-width: 640px) {
-    .copylist {
+	.copylist {
 		display: none;
 	}
 }

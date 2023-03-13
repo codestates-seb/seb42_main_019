@@ -8,11 +8,20 @@
 	--box-round: 10px;
 }
 
-li{list-style: none;}
+li {
+	list-style: none;
+}
 
-a{text-decoration: none; color: #333;}
+a {
+	text-decoration: none;
+	color: #333;
+}
 
-*{
-  margin: 0;
-  padding: 0;
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #ece9e1;
 }
