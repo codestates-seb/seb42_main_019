@@ -18,3 +18,12 @@ code {
 .body {
   height:100%;
 }
+
+li{list-style: none;}
+
+a{text-decoration: none; color: #333;}
+
+*{
+  margin: 0;
+  padding: 0;
+}
