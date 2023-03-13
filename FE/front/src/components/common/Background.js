@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "../common/Background.module.css";
+import React from 'react';
+import styles from '../common/Background.module.css';
 
 const Background = () => {
 	return (
@@ -85,7 +85,7 @@ const Background = () => {
 						</defs>
 					</svg>
 				</div>
-				책, 다~ 봤으니 다시 교환하자!
+				책 다 보셨나요? 혹시 저랑 바꾸실?
 			</div>
 		</>
 	);
