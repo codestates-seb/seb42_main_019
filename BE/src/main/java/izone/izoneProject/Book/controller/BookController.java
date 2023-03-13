@@ -1,4 +1,4 @@
-package izone.Book.controller;
+package izone.izoneProject.Book.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.RequiredTypes;
