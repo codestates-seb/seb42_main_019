@@ -25,10 +25,12 @@ public class User extends Auditable {
     List<Dislike> dislikeList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     List<UserComment> UserCommentList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Book> bookList = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
-    @Column
+    @Column(nullable = false, updatable = false, unique = true)
     private String name;
     @Column(nullable = false, updatable = false, unique = true)
     private String email;
@@ -39,26 +41,14 @@ public class User extends Auditable {
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Book> bookList = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    List<Message> messageList = new ArrayList<>();
+    public void setBook(Book book) {
+        this.getBookList().add(book);
+        if (book.getUser() != this) {
+            book.setUser(this);
+        }
+    }
 
-    //    public void setBook(Book book) {
-//        this.getBookList().add(book);
-//        if(book.getUser()!=this){
-//            book.setUser(this);
-//        }
-//    }
-//
-//
-//    public void setMessage(Message message) {
-//        this.getmessageList().add(message);
-//        if(qmessage.getUser()!=this){
-//            message.setUser(this);
-//        }
-//    }
     public void setLike(Like like) {
         this.getLikeList().add(like);
         if (like.getUser() != this) {
