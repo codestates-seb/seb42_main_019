@@ -1,5 +1,6 @@
 package izone.izoneProject.message.controller;
 
+import izone.izoneProject.message.dto.MessageDto;
 import izone.izoneProject.message.service.MessageService;
 import izone.izoneProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +16,13 @@ public class MessageController {
 
     //@ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/messages")
-    public ResponseEntity sendMessage(@RequestBody MessageDtos message) {
+    public ResponseEntity sendMessage(@RequestBody MessageDto message) {
 
        return new  ResponseEntity<>(message.getContent(),HttpStatus.CREATED);
     }
 
     @GetMapping("/messages/received")
-    public ResponseEntity receiverMessage(@RequestBody MessageDtos message) {
+    public ResponseEntity receiverMessage(@RequestBody MessageDto message) {
 
         return ResponseEntity.ok(message.getContent());
     }

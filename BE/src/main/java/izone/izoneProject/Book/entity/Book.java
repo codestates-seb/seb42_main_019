@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "book")
+@Table(name = "BOOK")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,22 +22,25 @@ public class Book {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "TITLE", nullable = false)
     private String title;
 
     @Column(name = "BOOK_URL")
     private String bookUrl;
 
-    @Column(name = "author", nullable = false)
+    @Column(name = "ISBN")
+    private String isbn;
+
+    @Column(name = "AUTHOR", nullable = false)
     private String author;
 
-    @Column(name = "publisher", nullable = false)
+    @Column(name = "PUBLISHER", nullable = false)
     private String publisher;
 
-    @Column(name = "thumbnail")
+    @Column(name = "THUMBNAIL")
     private String thumbnail;
 
-    @Column(name = "content")
+    @Column(name = "CONTENT")
     private String content;
 
     @OneToMany(mappedBy = "book")

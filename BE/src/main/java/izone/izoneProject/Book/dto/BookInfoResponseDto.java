@@ -9,26 +9,22 @@ import lombok.Setter;
 @Setter
 public class BookInfoResponseDto {
     private Long bookId;
-
     private String bookUrl;
-
     private String thumbnail;
-
+    private String isbn;
     private String title;
-
     private String author;
-
     private String publisher;
-
     private String content;
 
 
 //    @QueryProjection
-    public BookInfoResponseDto(Long bookId, String bookUrl, String thumbnail, String title, String author,
+    public BookInfoResponseDto(Long bookId, String bookUrl, String thumbnail, String isbn, String title, String author,
                             String publisher, String content){
         this.bookId = bookId;
         this.bookUrl = bookUrl;
         this.thumbnail = thumbnail;
+        this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -36,7 +32,7 @@ public class BookInfoResponseDto {
     }
 
     public static BookInfoResponseDto of (Book book) {
-        return new BookInfoResponseDto(book.getBookId(), book.getBookUrl(), book.getThumbnail(), book.getTitle(),
+        return new BookInfoResponseDto(book.getBookId(), book.getBookUrl(), book.getThumbnail(), book.getIsbn(), book.getTitle(),
                 book.getAuthor(), book.getPublisher(), book.getContent());
     }
 }

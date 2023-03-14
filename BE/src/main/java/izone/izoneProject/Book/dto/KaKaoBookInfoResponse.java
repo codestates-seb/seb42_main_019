@@ -13,13 +13,15 @@ public class KaKaoBookInfoResponse {
     private List<String> authors;
     private String publisher;
     private String title;
+    private String isbn;
 
 
     @Builder
-    public KaKaoBookInfoResponse(String thumbnail, List<String> authors, String publisher, String title) {
+    public KaKaoBookInfoResponse(String thumbnail, List<String> authors, String url, String publisher, String title, String isbn) {
         this.thumbnail = thumbnail;
         this.authors = authors;
         this.publisher = publisher;
         this.title = title;
+        this.isbn = isbn;
     }
 }
