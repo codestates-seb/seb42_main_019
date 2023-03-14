@@ -1,4 +1,4 @@
-import style from './MessageList1.module.css';
+import style from './MessageList2.module.css';
 import izone from '../../../assets/izonelogo1.jpg';
 import bookcover from '../../../assets/bookcover.png';
 
