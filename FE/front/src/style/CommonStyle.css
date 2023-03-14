@@ -21,9 +21,6 @@ a {
 * {
 	margin: 0;
 	padding: 0;
-	border: 0;
-    outline: 0;
-	background-color:transparent;
 }
 
 html {
@@ -54,4 +51,9 @@ html {
 
 a, button{
 	cursor: pointer;
+}
+button, input{
+	border: 0;
+    outline: 0;
+	background-color: transparent;
 }

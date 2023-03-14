@@ -6,44 +6,59 @@ import { ReactComponent as IconBookplus } from '../../assets/Bookplus.svg';
 import { ReactComponent as IconBooklist } from '../../assets/IconBooklist.svg';
 import { ReactComponent as IconMypage } from '../../assets/IconMypage.svg';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 function Navigation() {
   const cx = classNames.bind(styles);
-  const [currentPage, setCurrentPage] = useState('');
+  const domain = 'http://localhost:3000';
+  const domainLength = domain.length;
   function findUrl(url){
     const pathFind = window.location.href;
     return pathFind.includes(url)
+    // const path = pathFind.slice(domainLength+1, pathFind.length)
+    // if(pathFind.includes(url) && path !== ''){
+    //   return true;
+    // }
+    // if(path === ''){
+    //   return true;
+    // }
+    // return false;
+  }
+  function homeUrlFind(){
+    const pathFind = window.location.href;
+    const path = pathFind.slice(domainLength+1, pathFind.length);
+    if(path === ''){
+      return true;
+    }
   }
   return (
     <>
       <nav>
         <ul className={cx('nav')}>
-          <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(1)}>
-              <IconHome fill={currentPage === 1 ? '#2F5A2D' : '#D9D9D9'} />
+          <li className={homeUrlFind() ? cx('nav--li', 'on') : cx('nav--li')}>
+            <Link to='/'>
+              <IconHome fill={homeUrlFind() ? '#2F5A2D' : '#D9D9D9'} />
               <span>홈</span>
             </Link>
           </li>
-          <li className={!findUrl('alert') ? cx('nav--li') : cx('nav--li', 'on')}>
+          <li className={findUrl('alert') ? cx('nav--li', 'on') : cx('nav--li')}>
             <Link to='/'>
               <IconAlert fill={findUrl('alert') ? '#2F5A2D' : '#D9D9D9'} />
               <span>알림</span>
             </Link>
           </li>
-          <li className={!findUrl('booklist') ? cx('nav--li') : cx('nav--li', 'on')}>
+          <li className={findUrl('booklist') ? cx('nav--li', 'on') : cx('nav--li')}>
             <Link to='/'>
               <IconBookplus fill={findUrl('booklist') ? '#2F5A2D' : '#D9D9D9'} />
               <span>책 등록</span>
             </Link>
           </li>
-          <li className={!findUrl('bookplus') ? cx('nav--li') : cx('nav--li', 'on')}>
+          <li className={findUrl('bookplus') ? cx('nav--li', 'on') : cx('nav--li')}>
             <Link to='/'>
               <IconBooklist fill={findUrl('bookplus') ? '#2F5A2D' : '#D9D9D9'} />
               <span>내 책장</span>
             </Link>
           </li>
-          <li className={!findUrl('mypage') ? cx('nav--li') : cx('nav--li', 'on')}>
+          <li className={findUrl('mypage') ? cx('nav--li', 'on') : cx('nav--li')}>
             <Link to='/'>
               <IconMypage fill={findUrl('mypage') ? '#2F5A2D' : '#D9D9D9'} />
               <span>마이페이지</span>
