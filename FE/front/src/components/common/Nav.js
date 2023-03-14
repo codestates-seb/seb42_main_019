@@ -10,8 +10,11 @@ import { useState } from 'react';
 
 function Navigation() {
   const cx = classNames.bind(styles);
-  const [currentPage, setCurrentPage] = useState(1);
-  console.log(currentPage);
+  const [currentPage, setCurrentPage] = useState('');
+  function findUrl(url){
+    const pathFind = window.location.href;
+    return pathFind.includes(url)
+  }
   return (
     <>
       <nav>
@@ -23,26 +26,26 @@ function Navigation() {
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(2)}>
-              <IconAlert fill={currentPage === 2 ? '#2F5A2D' : '#D9D9D9'} />
+            <Link to='/'>
+              <IconAlert fill={findUrl('alert') ? '#2F5A2D' : '#D9D9D9'} />
               <span>알림</span>
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(3)}>
-              <IconBookplus fill={currentPage === 3 ? '#2F5A2D' : '#D9D9D9'} />
+            <Link to='/'>
+              <IconBookplus fill={findUrl('booklist') ? '#2F5A2D' : '#D9D9D9'} />
               <span>책 등록</span>
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(4)}>
-              <IconBooklist fill={currentPage === 4 ? '#2F5A2D' : '#D9D9D9'} />
+            <Link to='/'>
+              <IconBooklist fill={findUrl('bookplus') ? '#2F5A2D' : '#D9D9D9'} />
               <span>내 책장</span>
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(5)}>
-              <IconMypage fill={currentPage === 5 ? '#2F5A2D' : '#D9D9D9'} />
+            <Link to='/'>
+              <IconMypage fill={findUrl('mypage') ? '#2F5A2D' : '#D9D9D9'} />
               <span>마이페이지</span>
             </Link>
           </li>
