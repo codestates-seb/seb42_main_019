@@ -1,9 +1,12 @@
 package izone.izoneProject.Book.entity;
 
+import izone.izoneProject.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,12 +15,18 @@ import javax.persistence.*;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id", updatable = false)
+    @Column(name = "BOOK_ID", updatable = false)
     private Long bookId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
     @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "BOOK_URL")
+    private String bookUrl;
 
     @Column(name = "author", nullable = false)
     private String author;
@@ -25,13 +34,13 @@ public class Book {
     @Column(name = "publisher", nullable = false)
     private String publisher;
 
-    @Column(name = "img_url")
-    private String imgUrl;
+    @Column(name = "thumbnail")
+    private String thumbnail;
 
-    @Column(name = "body")
-    private String body;
-//
-//    @OnetoMany(mappedBy = "book")
-//    private List<BookLike> bookLikeList = new ArrList<>();
+    @Column(name = "content")
+    private String content;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookLike> bookLikeList = new ArrayList<>();
 
 }

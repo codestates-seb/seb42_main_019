@@ -1,5 +1,6 @@
 package izone.izoneProject.Book.entity;
 
+import izone.izoneProject.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,9 @@ public class BookLike {
     @JoinColumn(name = "BOOK_ID")
     private Book book;
 
-//    @ManyToOne
-//    @JoinColumn(name = "USER_ID")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
 //    public void setBook(Book book) {
 //        this.book = book;

@@ -1,14 +1,18 @@
 package izone.izoneProject.Book.dto;
 
-import izone.izoneProject.Book.entiry.Book;
+import izone.izoneProject.Book.entity.Book;
+import izone.izoneProject.user.entity.User;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-
+@Setter
 public class BookInfoResponseDto {
     private Long bookId;
 
     private String bookUrl;
+
+    private String thumbnail;
 
     private String title;
 
@@ -20,10 +24,11 @@ public class BookInfoResponseDto {
 
 
 //    @QueryProjection
-    public BookInfoResponseDto(Long bookId, String bookUrl, String title, String author,
+    public BookInfoResponseDto(Long bookId, String bookUrl, String thumbnail, String title, String author,
                             String publisher, String content){
         this.bookId = bookId;
         this.bookUrl = bookUrl;
+        this.thumbnail = thumbnail;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -31,7 +36,7 @@ public class BookInfoResponseDto {
     }
 
     public static BookInfoResponseDto of (Book book) {
-        return new BookInfoResponseDto(book.getBookId(), book.getImgUrl(), book.getTitle(),
-                book.getAuthor(), book.getPublisher(), book.getBody());
+        return new BookInfoResponseDto(book.getBookId(), book.getBookUrl(), book.getThumbnail(), book.getTitle(),
+                book.getAuthor(), book.getPublisher(), book.getContent());
     }
 }
