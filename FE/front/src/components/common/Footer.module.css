@@ -1,6 +1,4 @@
 
-
-
 .footerBox {
 	width: 530px;
 	height: 308px;
@@ -60,12 +58,11 @@
 }
 
 a {
-    color: var(--light-gray);
-    text-decoration: none;
+	color: var(--light-gray);
+	text-decoration: none;
 }
 
 h2 {
     margin-top: 0;
     margin-bottom: 15px;
-
 }
