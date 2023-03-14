@@ -1,14 +1,13 @@
-@import url('../../style/CommonStyle.css');
 
 .footerBox {
 	width: 530px;
-	height: 250px;
+	height: 308px;
 	background-color: var(--black);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	position: absolute;
-	margin-top: 90px;
+	margin-top: 50px;
 
 	/*사실 fixed 는 아닌데 보기 편하라고 쓴거임
     position: absolute;
@@ -40,15 +39,18 @@
 	font-style: normal;
 	font-weight: 400;
 	color: var(--light-gray);
-	font-size: 10px;
+	font-size: 12px;
 	text-align: center;
-	line-height: 10px;
-	margin: 10px;
-	padding-bottom: 62px;
+	line-height: 17px;
+	width: 360;
+	height: 104;
+	word-spacing: 5px;
+	margin-bottom: 20px;
 }
 
 .text {
 	justify-content: center;
+	font-size: 12px;
 }
 
 .footerlogo {
@@ -61,6 +63,6 @@ a {
 }
 
 h2 {
-	margin-top: 0;
-	margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
 }

@@ -13,6 +13,7 @@ import SignUp from './pages/JH/SignUp';
 import MessageView from './pages/SB/MessageView';
 import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
+import MessageWrite from './pages/SB/MessageWrite';
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 					></Route>
 					<Route path='/booksearch' element={<BookSearch />}></Route>
 					<Route path='/message' element={<MessageView />}></Route>
+					<Route path='/messages' element={<MessageWrite />}></Route>
 				</Routes>
 			</div>
 		</div>

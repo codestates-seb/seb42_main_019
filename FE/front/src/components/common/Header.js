@@ -1,7 +1,7 @@
 import style from './Header.module.css';
 import smallLogo from '../../assets/smallLogo.png';
 
-function Header() {
+function Header({children}) {
 
 	const handleClick=(e)=>{
 		window.location.href = '/login'
@@ -9,10 +9,10 @@ function Header() {
 
 	return (
 		<>
-			<div className={style.notFooter}>
+			<div className={style.header}>
 				<div className={style.box}>
 					<img src={smallLogo} className={style.AppLogo} alt='logo' />
-					<button className={style.loginText} onClick={handleClick}>로그인</button>
+					<button className={style.loginText} onClick={handleClick}>{children}</button>
 				</div>
 			</div>
 		</>

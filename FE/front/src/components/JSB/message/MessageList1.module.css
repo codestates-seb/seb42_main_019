@@ -48,9 +48,24 @@
 .messageVote {
     display: flex;
     flex-direction: column;
+    display: flex;
 }
 
 .voteUp
-,voteDown {
-    margin-bottom: 10px;
+{   margin-bottom: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--green);
+}
+
+.voteDown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--light-black);
+}
+
+.voteSpan {
+    margin-left: 3px;
 }

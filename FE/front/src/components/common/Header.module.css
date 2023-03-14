@@ -1,11 +1,13 @@
 @import url('../../style/CommonStyle.css');
 
-.notFooter {
-	display: flex;
-	justify-content: space-around;
+
+.header {
+    display: flex;
 }
-.box,
-.box2 {
+
+.box{
+	
+	justify-content: space-between;
 	background-color: white;
 	margin-bottom: 10px;
 	font-size: var(--strong-font);
@@ -13,7 +15,6 @@
 	height: 55px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
 	width: 530px;
 }
@@ -29,19 +30,9 @@
 	font-size: var(--normal-font);
 }
 
-.AppBtnback {
-	padding-left: 5px;
-	width: 17px;
-	height: 25px;
-	margin: 10px 20px 10px 10px;
-}
-
-.loginText3 {
-	color: white;
-}
-
-button {
+.loginText {
 	border: 0;
-	outline: 0;
-	background-color: transparent;
+    outline: 0;
+	background-color:transparent;
 }
+
