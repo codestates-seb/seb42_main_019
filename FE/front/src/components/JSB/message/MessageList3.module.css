@@ -1,0 +1,55 @@
+.messageBtn {
+    display: flex;
+    margin-left: 20px;
+}
+
+
+.notFooter {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.listboxMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 91px;
+    margin-bottom: 10px;
+}
+
+
+
+.profileName {
+    display: flex;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: var(--strong-font);
+}
+
+.profileName {
+    color: var(--light-gray);
+}
+
+.message {
+    text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+width: 440px;
+}
+
+.messageDate {
+    position: absolute;
+    margin-bottom: 40px;
+    color: var(--green);
+    margin-left: 390px;
+}
+
+.profileName:visited {
+    color: var(--light-gray);
+}
