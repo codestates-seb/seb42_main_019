@@ -16,3 +16,11 @@ a{text-decoration: none; color: #333;}
   margin: 0;
   padding: 0;
 }
+
+html{
+	background: #ece9e1;
+}
+
+.ac{
+	text-align: center;
+}

@@ -7,7 +7,6 @@ import Booklist from './pages/SB/MyBookShelf'
 import Mypage from './pages/SB/Mypage'
 import Background from '../src/components/common/Background';
 import Login from '../src/pages/JH/Login';
-import Footer from './components/common/Footer';
 import BookSearch from '../src/pages/HJ/BookSearch';
 import { Route, Routes } from 'react-router-dom';
 
