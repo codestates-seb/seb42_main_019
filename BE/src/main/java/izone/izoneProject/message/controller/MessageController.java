@@ -28,7 +28,7 @@ public class MessageController {
     }
 
     @DeleteMapping("/messages/received/{user-id}")
-    public ResponseEntity deletereceivedMessage(@PathVariable("user-id") long userId) {
+    public ResponseEntity deleteReceivedMessage(@PathVariable("user-id") long userId) {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
