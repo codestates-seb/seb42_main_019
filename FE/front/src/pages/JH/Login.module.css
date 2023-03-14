@@ -23,6 +23,10 @@
 	margin-bottom: 15px;
 }
 
+.LoginInput input:focus {
+	border-color: #2f5a2d;
+}
+
 .Main button {
 	height: 62px;
 	min-width: 470px;
