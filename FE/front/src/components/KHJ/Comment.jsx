@@ -3,14 +3,16 @@ function Comment({ writer }) {
     return (
         <li key={writer.id}>
             <p>{writer.name}</p>
-            <p>{writer.content}</p>
-            {isUser ?
-                (
-                <><button>Edit</button><button>Delete</button></>
-                )
-            :
-            null
-            }
+            <span>
+                {isUser ?
+                    (
+                    <><button>Edit</button><button>Delete</button></>
+                    )
+                    :
+                    null
+                }
+            </span>
+            <b>{writer.content}</b>
         </li>
     );
 }

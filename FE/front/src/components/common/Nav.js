@@ -10,8 +10,11 @@ import { useState } from 'react';
 
 function Navigation() {
   const cx = classNames.bind(styles);
-  const [currentPage, setCurrentPage] = useState(1);
-  console.log(currentPage);
+  const [currentPage, setCurrentPage] = useState('');
+  function findUrl(url){
+    const pathFind = window.location.href;
+    return pathFind.includes(url)
+  }
   return (
     <>
       <nav>
@@ -22,27 +25,27 @@ function Navigation() {
               <span>홈</span>
             </Link>
           </li>
-          <li className={cx('nav--li')}>
-            <Link to='/alert' onClick={() => setCurrentPage(2)}>
-              <IconAlert fill={currentPage === 2 ? '#2F5A2D' : '#D9D9D9'} />
+          <li className={!findUrl('alert') ? cx('nav--li') : cx('nav--li', 'on')}>
+            <Link to='/'>
+              <IconAlert fill={findUrl('alert') ? '#2F5A2D' : '#D9D9D9'} />
               <span>알림</span>
             </Link>
           </li>
-          <li className={cx('nav--li')}>
-            <Link to='/createbook' onClick={() => setCurrentPage(3)}>
-              <IconBookplus fill={currentPage === 3 ? '#2F5A2D' : '#D9D9D9'} />
+          <li className={!findUrl('booklist') ? cx('nav--li') : cx('nav--li', 'on')}>
+            <Link to='/'>
+              <IconBookplus fill={findUrl('booklist') ? '#2F5A2D' : '#D9D9D9'} />
               <span>책 등록</span>
             </Link>
           </li>
-          <li className={cx('nav--li')}>
-            <Link to='/mybookshelf' onClick={() => setCurrentPage(4)}>
-              <IconBooklist fill={currentPage === 4 ? '#2F5A2D' : '#D9D9D9'} />
+          <li className={!findUrl('bookplus') ? cx('nav--li') : cx('nav--li', 'on')}>
+            <Link to='/'>
+              <IconBooklist fill={findUrl('bookplus') ? '#2F5A2D' : '#D9D9D9'} />
               <span>내 책장</span>
             </Link>
           </li>
-          <li className={cx('nav--li')}>
-            <Link to='/mypage' onClick={() => setCurrentPage(5)}>
-              <IconMypage fill={currentPage === 5 ? '#2F5A2D' : '#D9D9D9'} />
+          <li className={!findUrl('mypage') ? cx('nav--li') : cx('nav--li', 'on')}>
+            <Link to='/'>
+              <IconMypage fill={findUrl('mypage') ? '#2F5A2D' : '#D9D9D9'} />
               <span>마이페이지</span>
             </Link>
           </li>
