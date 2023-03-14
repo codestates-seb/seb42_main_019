@@ -1,4 +1,5 @@
 import style from './App.module.css';
+import './style/CommonStyle.css';
 
 import Home from './pages/SB/Home';
 import Alert from './pages/SB/Alert';
