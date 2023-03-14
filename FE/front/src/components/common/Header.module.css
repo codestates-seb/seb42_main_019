@@ -7,8 +7,7 @@
 }
 .box,
 .box2 {
-	/*position: fixed;
-	top: 0;*/
+
 	background-color: white;
 	margin-bottom: 10px;
 	font-size: var(--strong-font);
@@ -33,11 +32,21 @@
 }
 
 .AppBtnback {
-	width: 22px;
-	height: 35px;
+	padding-left: 5px;
+	width: 17px;
+	height: 25px;
 	margin: 10px 20px 10px 10px;
 }
 
 .loginText3 {
 	color: white;
+}
+
+
+
+button {
+
+	border: 0;
+    outline: 0;
+	background-color:transparent;
 }

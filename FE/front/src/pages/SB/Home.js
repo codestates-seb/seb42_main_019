@@ -19,8 +19,6 @@ function Home() {
 				<BookList />
 				<BookList />
 				<BookList />
-				<BookList />
-				<BookList />
 				<Footer className={style.footer} />
 			</div>
 			<Nav />

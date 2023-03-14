@@ -10,6 +10,7 @@ import Login from '../src/pages/JH/Login';
 import BookSearch from '../src/pages/HJ/BookSearch';
 import { Route, Routes } from 'react-router-dom';
 import SignUp from './pages/JH/SignUp';
+import MessageView from './pages/SB/MessageView';
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/signup' element={<SignUp />}></Route>
 					<Route path='/booksearch' element={<BookSearch />}></Route>
+					<Route path='/message' element={<MessageView />}></Route>
 				</Routes>
 			</div>
 		</div>

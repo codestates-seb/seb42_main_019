@@ -30,3 +30,7 @@
     color: var(--light-black);
     margin-left: 20px;
 }
+
+.alertBtnText {
+    font-size: var(--normal-font);
+}
