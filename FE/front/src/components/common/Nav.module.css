@@ -23,4 +23,8 @@
 }
 .nav--li span{
     display: block;
+    color: var(--light-black);
+}
+.on span{
+    color: var(--green);
 }
