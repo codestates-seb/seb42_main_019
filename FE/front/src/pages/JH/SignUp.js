@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../../components/common/Button';
 import Header2 from '../../components/common/Header2';
 import styles from './SignUp.module.css';
-import { CheckIcon } from '../../components/IJH/LoginIcon';
+import { CheckIcon, DownIcon, UpIcon } from '../../components/IJH/LoginIcon';
 import DropDown from '../../components/IJH/DropDown';
 
 const SignUp = () => {
@@ -31,20 +31,26 @@ const SignUp = () => {
 			</div>
 			<div className={styles.City}>
 				<label>사는 곳</label>
-				<input type='text' placeholder='시 선택' />
-				<button onClick={(e) => setDropdownVisibility(!dropdownVisibility)}>
-					{dropdownVisibility ? 'close' : 'open'}
-				</button>
-				<DropDown visibility={dropdownVisibility}>
-					<ul>
-						<li>서울특별시</li>
-						<li>서울특별시</li>
-						<li>서울특별시</li>
-						<li>서울특별시</li>
-						<li>서울특별시</li>
-					</ul>
-				</DropDown>
+				<div className={styles.Value}>
+					<span>시 선택</span>
+					<button onClick={(e) => setDropdownVisibility(!dropdownVisibility)}>
+						{dropdownVisibility ? <DownIcon /> : <UpIcon />}
+					</button>
+				</div>
 			</div>
+			<DropDown visibility={dropdownVisibility}>
+				<ul>
+					<li>서울특별시</li>
+					<li>서울특별시</li>
+					<li>서울특별시</li>
+					<li>서울특별시</li>
+					<li>서울특별시</li>
+					<li>서울특별시</li>
+					<li>서울특별시</li>
+					<li>서울특별시</li>
+				</ul>
+			</DropDown>
+
 			<Button>회원가입</Button>
 		</main>
 	);
