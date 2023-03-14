@@ -3,7 +3,6 @@
     margin-left: 20px;
 }
 
-
 .notFooter {
     min-height: 100%;
     position: relative;
@@ -23,24 +22,19 @@
     margin-bottom: 10px;
 }
 
-
-
-.profileName {
+.profileName{
     display: flex;
     font-weight: 700;
     margin-bottom: 10px;
     font-size: var(--strong-font);
 }
 
-.profileName {
-    color: var(--light-gray);
-}
-
 .message {
     text-overflow: ellipsis;
-overflow: hidden;
-white-space: nowrap;
-width: 440px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 440px;
+    text-align: left;
 }
 
 .messageDate {

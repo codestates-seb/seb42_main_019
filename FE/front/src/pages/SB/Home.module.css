@@ -18,3 +18,17 @@
     color: var(--black);
     justify-content: space-around;
 }
+
+.text1 {
+    display: flex;
+    padding-right: 330px;
+    line-height: 1px;
+    color: var(--light-black);
+    justify-content: space-around;
+}
+
+.homesearchp{
+    display: flex;
+    margin-bottom: 30px;
+
+}
