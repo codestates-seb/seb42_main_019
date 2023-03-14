@@ -19,8 +19,14 @@ function MessageList1() {
 							</div>
 						</div>
 						<div className={style.messageVote}>
+							<div className={style.voteUp}>
 							<button className={style.voteUp} onClick={()=>{console.log(3)}} ><FiThumbsUp size="20" color="#2f5a2d"/></button>
+							<span className={style.voteSpan}>292</span>
+							</div>
+							<div className={style.voteDown}>
 							<button className={style.voteDown} onClick={()=>{console.log(4)}} ><FiThumbsDown size="20" color="#999999"/></button>
+							<span className={style.voteSpan}>4024</span>
+							</div>
 						</div>
 					</div>
 				</div>

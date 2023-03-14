@@ -6,10 +6,10 @@ import Footer from '../../components/common/Footer';
 import BookList from '../../components/common/BookList';
 import Nav from '../../components/common/Nav';
 
-function Home() {
+function Home({children}) {
 	return (
 		<>
-			<Header />
+			<Header>로그인</Header>
 			<div className={style.box}>
 				<img className={style.img} src={homeImg} alt='homeImg' />
 				<HomeSearch />
