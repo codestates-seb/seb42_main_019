@@ -1,0 +1,36 @@
+.Main {
+	position: relative;
+}
+
+.Main > * {
+	text-align: center;
+}
+
+.Main input {
+	height: 32px;
+	min-width: 440px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-top: 10px;
+}
+
+.Main label {
+	display: flex;
+	padding: 0 30px;
+	margin-top: 35px;
+}
+
+.Text textarea {
+	height: 250px;
+	min-width: 440px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-top: 10px;
+	resize: none;
+}

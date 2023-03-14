@@ -11,13 +11,14 @@ import BookSearch from '../src/pages/HJ/BookSearch';
 import { Route, Routes } from 'react-router-dom';
 import SignUp from './pages/JH/SignUp';
 import MessageView from './pages/SB/MessageView';
+import CreateBook from './pages/JH/CreateBook';
+import CustomerDetailView from './pages/JH/CustomerDetailView';
 
 function App() {
 	return (
 		<div className={style.App}>
 			<Background></Background>
 			<div className={style.body}>
-
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
 					<Route path='/alert' element={<Alert />}></Route>
@@ -26,6 +27,11 @@ function App() {
 					<Route path='/mypage' element={<Mypage />}></Route>
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/signup' element={<SignUp />}></Route>
+					<Route path='/createbook' element={<CreateBook />}></Route>
+					<Route
+						path='/customerdetailview'
+						element={<CustomerDetailView />}
+					></Route>
 					<Route path='/booksearch' element={<BookSearch />}></Route>
 					<Route path='/message' element={<MessageView />}></Route>
 				</Routes>
