@@ -1,5 +1,7 @@
 @import url('../../style/CommonStyle.css');
 
+
+
 .footerBox {
 	width: 530px;
 	height: 250px;
@@ -36,6 +38,7 @@
 }
 
 .footerText {
+            ;
 	font-family: 'Noto Sans KR';
 	font-style: normal;
 	font-weight: 400;
@@ -55,7 +58,13 @@
 	color: var(--light-gray);
 }
 
-.a {
-	color: var(--light-gray);
-	text-decoration: none;
+a {
+    color: var(--light-gray);
+    text-decoration: none;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+
 }

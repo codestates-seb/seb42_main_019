@@ -11,9 +11,11 @@ const AlertListMS = function () {
 								권은비님이 책 교환 요청을 신청하였습니다.
 							</p>
 						</div>
+						<button onClick={()=>{console.log(2)}}>
 						<div className={style.alertBtn1}>
 							<div className={style.alertBtnText}>요청사항 보기</div>
 						</div>
+						</button>
 					</div>
 				</div>
 			</div>

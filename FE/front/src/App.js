@@ -1,4 +1,5 @@
 import style from './App.module.css';
+
 import Home from './pages/SB/Home';
 import Alert from './pages/SB/Alert';
 import Bookplus from './pages/JH/CreateBook';
@@ -9,12 +10,14 @@ import Login from '../src/pages/JH/Login';
 import BookSearch from '../src/pages/HJ/BookSearch';
 import { Route, Routes } from 'react-router-dom';
 import SignUp from './pages/JH/SignUp';
+import MessageView from './pages/SB/MessageView';
 
 function App() {
 	return (
 		<div className={style.App}>
 			<Background></Background>
 			<div className={style.body}>
+
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
 					<Route path='/alert' element={<Alert />}></Route>
@@ -24,6 +27,7 @@ function App() {
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/signup' element={<SignUp />}></Route>
 					<Route path='/booksearch' element={<BookSearch />}></Route>
+					<Route path='/message' element={<MessageView />}></Route>
 				</Routes>
 			</div>
 		</div>

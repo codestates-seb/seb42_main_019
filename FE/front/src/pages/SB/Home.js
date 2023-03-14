@@ -13,6 +13,7 @@ function Home() {
 			<div className={style.box}>
 				<img className={style.img} src={homeImg} alt='homeImg' />
 				<HomeSearch />
+				<p className={style.currentp}>최근에 등록된 책</p>
 				<BookList />
 				<BookList />
 				<BookList />

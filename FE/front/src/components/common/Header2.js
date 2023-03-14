@@ -1,11 +1,17 @@
 import style from './Header.module.css';
 import btnBack from '../../assets/btnBack.png';
+import { useNavigate } from 'react-router-dom';
 
-const Header = ({children})=> {
+const Header2 = ({children})=> {
+
+	const navigate = useNavigate();
+
 	return (
 		<>
 			<div className={style.box2}>
+				<button onClick={()=>{navigate(-1)}}>
 				<img src={btnBack} className={style.AppBtnback} alt='btnback' />
+				</button>
 				<span className={style.loginText2}>{children}</span>
 				<span className={style.loginText3}>로그인</span>
 			</div>
@@ -13,4 +19,4 @@ const Header = ({children})=> {
 	);
 }
 
-export default Header;
+export default Header2;
