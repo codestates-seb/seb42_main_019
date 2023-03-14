@@ -1,8 +1,8 @@
-import style from './MessageList.module.css';
+import style from './MessageList1.module.css';
 import izone from '../../../assets/izonelogo1.jpg';
 import bookcover from '../../../assets/bookcover.png';
 
-function MessageList() {
+function MessageList2() {
 	return (
 		<>
 			<div className={style.box1}>
@@ -31,4 +31,4 @@ function MessageList() {
 	);
 }
 
-export default MessageList;
+export default MessageList2;

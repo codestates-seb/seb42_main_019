@@ -9,9 +9,11 @@ const AlertList = function () {
 						<div className={style.alertMessage1}>
 							<p className={style.alertMessage01}>메시지가 도착하였습니다.</p>
 						</div>
+						<button onClick={()=>{console.log(1)}}>
 						<div className={style.alertBtn1}>
 							<div className={style.alertBtnText}>메시지 확인</div>
 						</div>
+						</button>
 					</div>
 				</div>
 			</div>

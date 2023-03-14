@@ -9,8 +9,10 @@
     justify-content: space-around;
 }
 
-p{
+.homesearchp{
     display: flex;
+    margin-bottom: 30px;
+
 }
 
 .searchIcon {
@@ -40,4 +42,5 @@ p{
     background-position: 10px center;
     text-align: center;
     font-size: var(--normal-font);
+    margin-bottom: 30px;
 }

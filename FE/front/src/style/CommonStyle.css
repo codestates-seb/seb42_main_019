@@ -3,24 +3,36 @@
 	--black: #333333;
 	--light-black: #999999;
 	--light-gray: #dddddd;
+	--light-beige: #ece9e1;
 	--strong-font: 22px;
 	--normal-font: 16px;
 	--box-round: 10px;
 }
 
-li{list-style: none;}
-
-a{text-decoration: none; color: #333;}
-
-*{
-  margin: 0;
-  padding: 0;
+li {
+	list-style: none;
 }
 
-html{
-	background: #ece9e1;
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #ece9e1;
 }
 
 .ac{
 	text-align: center;
+}
+
+  
+*:focus {
+	outline: 0;
+  
 }
