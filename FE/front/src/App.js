@@ -16,6 +16,7 @@ import MessageList02 from './pages/SB/MessageList02';
 import MessageList01 from './pages/SB/MessageList01';
 import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
+import BookSearchResult from './pages/HJ/BookSearchResult';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import TradeBookList from './pages/SB/TradeBookList';
 
@@ -37,7 +38,8 @@ function App() {
 						path='/customerdetailview'
 						element={<CustomerDetailView />}
 					></Route>
-					<Route path='/booksearch' element={<BookSearch />}></Route>
+					<Route path='/booksearch' element={<BookSearchResult />}></Route>
+					<Route path='/booksearchDetail' element={<BookSearch />}></Route>
 					<Route path='/message' element={<MessageView />}></Route>
 					<Route path='/messages' element={<MessageList02 />}></Route>
 					<Route path='/mybookshelf' element={<MyBookShelf />}></Route>
