@@ -23,7 +23,7 @@ const Login = () => {
 					<input type='password' placeholder='비밀번호' />
 				</div>
 			</div>
-			<div className={styles.button}>
+			<div className={styles.Button}>
 				<button>
 					<Link to={'/login'}>로그인</Link>
 				</button>
