@@ -39,7 +39,7 @@
 
 .Button button {
 	height: 62px;
-	min-width: 470px;
+	width: 470px;
 	background-color: #2f5a2d;
 	color: #fff;
 	font-size: 18px;
