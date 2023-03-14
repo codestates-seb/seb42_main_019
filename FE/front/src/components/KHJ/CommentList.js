@@ -22,7 +22,8 @@ function CommentList() {
         }
     ]
     return ( 
-        <>
+        <section className="p20">
+            <h2>한줄평</h2>
             <ul className={cx('comment_list')}>
                 {writer.map((el) => <Comment writer={el}/>)}
             </ul>
@@ -30,7 +31,7 @@ function CommentList() {
                 <input type={'textarea'}></input>
                 <button>작성</button>
             </div>
-        </>
+        </section>
     );
 }
 
