@@ -4,13 +4,14 @@ import Nav from '../../components/common/Nav';
 import BookShelf from '../../assets/bookshelf.png'
 import classNames from 'classnames/bind';
 import BSlist from 'src/components/JSB/BookShelf/BSlist';
+import Pagenation from '../../components/common/Pagenation';
 
 const TradeBookList = () => {
 	const cx = classNames.bind(style);
 
     return(
         <>
-        <Header2>내가 교환받은 책</Header2>
+        <Header2>내가 교환한 책</Header2>
         <div className={cx('tblBox')}>
         <div className={cx('tblImgBox')}>
         <img src={BookShelf} className={cx('tblimg')} alt='tblimg' />
@@ -19,6 +20,7 @@ const TradeBookList = () => {
         <p className={cx('tblText')}>내가 받은 책들</p>
         <BSlist />
         </div>
+        <Pagenation />
         </div>
         <Nav />
         </>

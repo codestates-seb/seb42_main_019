@@ -4,6 +4,7 @@ import Nav from '../../components/common/Nav';
 import BookShelf from '../../assets/bookshelf.png'
 import classNames from 'classnames/bind';
 import BSlist from 'src/components/JSB/BookShelf/BSlist';
+import Pagenation from '../../components/common/Pagenation';
 
 const MyBookShelf = () => {
 	const cx = classNames.bind(style);
@@ -19,6 +20,7 @@ const MyBookShelf = () => {
         <p className={cx('mbsText')}>내가 등록한 책</p>
         <BSlist />
         </div>
+        <Pagenation />
         </div>
         <Nav />
         </>
