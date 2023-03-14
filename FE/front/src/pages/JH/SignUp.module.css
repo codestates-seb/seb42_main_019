@@ -1,5 +1,6 @@
 .Main {
 	position: relative;
+	max-width: 530px;
 }
 
 .Main > * {
@@ -15,6 +16,7 @@
 	font-size: 18px;
 	padding: 15px;
 	margin-top: 10px;
+	background-color: #fff;
 }
 
 .NickName input {
@@ -37,6 +39,22 @@
 	display: flex;
 	padding: 0 30px;
 	margin-top: 35px;
+}
+
+.Value {
+	height: 62px;
+	width: calc(100% - 40px);
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	background-color: #fff;
+	color: #999;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 20px 0;
+	box-sizing: border-box;
 }
 
 /* fade in */
@@ -80,11 +98,28 @@
 	animation-fill-mode: forwards;
 }
 
+.components-dropdown {
+	position: relative;
+	top: -5px;
+	height: 260px;
+}
+
 .components-dropdown > ul {
 	position: relative;
-	top: 5px;
+	top: 0px;
 	margin-top: 0;
 	margin-bottom: 5px;
 	padding-left: 0;
 	list-style: none;
+	width: calc(100% - 40px);
+	height: 240px;
+	background-color: #fff;
+	border-radius: 0 0 10px 10px;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	margin: 0 20px;
+	overflow-y: scroll;
+}
+
+.components-dropdown > ul > li {
+	padding: 10px;
 }
