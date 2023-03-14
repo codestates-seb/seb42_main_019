@@ -1,6 +1,7 @@
 package izone.izoneProject.user.entity;
 
 import izone.izoneProject.Book.entity.Book;
+import izone.izoneProject.audit.Auditable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class User extends Auditable {
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user")
@@ -24,10 +25,12 @@ public class User {
     List<Dislike> dislikeList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     List<UserComment> UserCommentList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Book> bookList = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
-    @Column
+    @Column(nullable = false, updatable = false, unique = true)
     private String name;
     @Column(nullable = false, updatable = false, unique = true)
     private String email;
@@ -38,26 +41,14 @@ public class User {
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Book> bookList = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    List<Message> messageList = new ArrayList<>();
+    public void setBook(Book book) {
+        this.getBookList().add(book);
+        if (book.getUser() != this) {
+            book.setUser(this);
+        }
+    }
 
-    //    public void setBook(Book book) {
-//        this.getBookList().add(book);
-//        if(book.getUser()!=this){
-//            book.setUser(this);
-//        }
-//    }
-//
-//
-//    public void setMessage(Message message) {
-//        this.getmessageList().add(message);
-//        if(qmessage.getUser()!=this){
-//            message.setUser(this);
-//        }
-//    }
     public void setLike(Like like) {
         this.getLikeList().add(like);
         if (like.getUser() != this) {

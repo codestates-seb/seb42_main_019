@@ -9,11 +9,11 @@ public class UserCommentDto {
         private String content;
     }
 
-    public static class patch{
+    public static class Patch{
         @NotEmpty(message = "질문 내용을 작성해야 합니다.")
         private String  content;
     }
-    public static class response{
+    public static class Response{
         private String content;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
