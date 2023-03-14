@@ -8,6 +8,7 @@ import {BiMessageEdit} from 'react-icons/bi'
 import {BiMessageCheck} from 'react-icons/bi'
 import {TbMessages} from 'react-icons/tb'
 import adimg from '../../assets/adimg.png';
+import { Link } from 'react-router-dom';
 
 const Mypage = ({children}) => {
     return(
@@ -18,10 +19,10 @@ const Mypage = ({children}) => {
             <p className={style.mptext}>나의 거래</p>
             <div className={style.mypageList}>
             <ul className={style.myPageUl}>
-            <li className={style.mpList}><TbBookUpload size={32}/><button className={style.myPageBtn} >내가 교환한 책</button></li>
-            <li className={style.mpList}><BiMessageEdit size={32} /><button className={style.myPageBtn} >내가 남긴 후기</button></li>
-            <li className={style.mpList}><BiMessageCheck size={32} /><button className={style.myPageBtn} >내게 남긴 후기</button></li>
-            <li className={style.mpList}><TbMessages size={32} /><button className={style.myPageBtn} >메시지함</button></li>
+            <li className={style.mpList}><TbBookUpload size={32}/><Link to='./tradebooklist' className={style.myPageBtn} >내가 교환한 책</Link></li>
+            <li className={style.mpList}><BiMessageEdit size={32} /><Link to='./mycomment' className={style.myPageBtn} >내가 남긴 후기</Link></li>
+            <li className={style.mpList}><BiMessageCheck size={32} /><Link to='./comments' className={style.myPageBtn} >내게 남긴 후기</Link></li>
+            <li className={style.mpList}><TbMessages size={32} /><Link to='./messagebox' className={style.myPageBtn} >메시지함</Link></li>
             </ul>
             <sapn className={style.checkoutT}>회원탈퇴</sapn>
             <div className={style.ADdiv}><button className={style.ADbtn}><img className={style.ADimg} src={adimg} alt='adimg' /></button> </div>

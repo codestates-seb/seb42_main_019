@@ -23,25 +23,25 @@ function Navigation() {
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(2)}>
+            <Link to='/alert' onClick={() => setCurrentPage(2)}>
               <IconAlert fill={currentPage === 2 ? '#2F5A2D' : '#D9D9D9'} />
               <span>알림</span>
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(3)}>
+            <Link to='/createbook' onClick={() => setCurrentPage(3)}>
               <IconBookplus fill={currentPage === 3 ? '#2F5A2D' : '#D9D9D9'} />
               <span>책 등록</span>
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(4)}>
+            <Link to='/mybookshelf' onClick={() => setCurrentPage(4)}>
               <IconBooklist fill={currentPage === 4 ? '#2F5A2D' : '#D9D9D9'} />
               <span>내 책장</span>
             </Link>
           </li>
           <li className={cx('nav--li')}>
-            <Link to='/' onClick={() => setCurrentPage(5)}>
+            <Link to='/mypage' onClick={() => setCurrentPage(5)}>
               <IconMypage fill={currentPage === 5 ? '#2F5A2D' : '#D9D9D9'} />
               <span>마이페이지</span>
             </Link>
