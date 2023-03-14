@@ -1,11 +1,8 @@
-import style from './HomeSearch.module.css';
+import style from './Search.module.css';
 
 const HomeSearch = function () {
 	return (
 		<>
-			<div className={style.text1}>
-				<p className={style.homesearchp}>오늘 읽고 싶은 책?</p>
-			</div>
 			<div className={style.notFooter}>
 				<input className={style.listboxMessage}></input>
 			</div>
