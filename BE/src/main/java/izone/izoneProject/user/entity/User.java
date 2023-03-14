@@ -1,5 +1,6 @@
 package izone.izoneProject.user.entity;
 
+import izone.izoneProject.Book.entity.Book;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,8 +38,9 @@ public class User {
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    List<Book> bookList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Book> bookList = new ArrayList<>();
+
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 //    List<Message> messageList = new ArrayList<>();
 
