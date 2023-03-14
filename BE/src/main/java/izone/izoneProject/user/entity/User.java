@@ -1,6 +1,7 @@
 package izone.izoneProject.user.entity;
 
 import izone.izoneProject.Book.entity.Book;
+import izone.izoneProject.audit.Auditable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class User extends Auditable {
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user")
