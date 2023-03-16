@@ -1,6 +1,6 @@
-package izone.izoneProject.Book.repository;
+package izone.izoneProject.book.repository;
 
-import izone.izoneProject.Book.entity.Book;
+import izone.izoneProject.book.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

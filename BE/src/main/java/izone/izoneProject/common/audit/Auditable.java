@@ -1,4 +1,4 @@
-package izone.izoneProject.audit;
+package izone.izoneProject.common.audit;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
