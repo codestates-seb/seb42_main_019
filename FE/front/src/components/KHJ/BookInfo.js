@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./BookInfo.module.css"
 import img from "../../assets/bookcover.png"
+import Modal from '../../pages/HJ/M_BookInfo'
 
 function BookInfo ({ book }) {
     const cx = classNames.bind(styles)
@@ -23,7 +24,7 @@ function BookInfo ({ book }) {
                     <p>생능출판사</p>
                     <p className={cx('date')}>2018년 06월</p>
                 </div>
-                <button className={cx('btn')}>책 정보 더보기 +</button>
+                <Modal>책 정보 더보기 +</Modal>
             </div>
         </>
     )

@@ -7,6 +7,8 @@
 	--strong-font: 22px;
 	--normal-font: 16px;
 	--box-round: 10px;
+	--box-shadow : 0px 4px 5px 2px #D9D9D955;
+	--flexible-box : calc(100% - 40px)
 }
 
 li {
@@ -15,22 +17,18 @@ li {
 
 a {
 	text-decoration: none;
-	color: #333;
 }
 
 * {
 	margin: 0;
 	padding: 0;
-	border: 0;
-    outline: 0;
-	background-color:transparent;
 }
 
 html {
 	background-color: #ece9e1;
 }
 
-.ac{
+.ac {
 	text-align: center;
 }
 
@@ -38,19 +36,26 @@ html {
 	outline: 0;
 }
 
-.p20{
+.p20 {
 	padding-left: 20px;
 	padding-right: 20px;
 }
 
-.font22{
+.font22 {
 	font-size: 22px;
 }
 
-.font16{
+.font16 {
 	font-size: 16px;
 }
 
-a, button{
+a,
+button {
 	cursor: pointer;
+}
+
+button, input{
+	border: 0;
+    outline: 0;
+	background-color: transparent;
 }
