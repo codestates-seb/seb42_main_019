@@ -8,10 +8,10 @@ function ModalPopUp({ open, onevent }) {
     }
     return (
         <>
-            <div className={open ? cx('modal') : cx('modal', 'open')}>
+            <div className={open ? cx('modal', 'open') : cx('modal')}>
                 <button classNames={cx('close')} onClick={modalToggle}>X</button>
             </div>
-            <div className={styles.modalback} onClick={modalToggle}></div>
+            <div className={open ? cx('modalback', 'on') : cx('modalback')} onClick={modalToggle}></div>
         </>
     );
 }
