@@ -29,7 +29,7 @@ import java.util.List;
 public class UserController {
     private final String DEFAULT_URI = "/user";
     private final UserService userService;
-    private final UserMapper mapper;
+    private final UserMapper mapper;  
 
     @PostMapping
     public ResponseEntity postUser(@RequestBody @Valid UserDto.Post post) {
