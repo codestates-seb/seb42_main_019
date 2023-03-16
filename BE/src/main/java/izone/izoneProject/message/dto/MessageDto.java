@@ -1,36 +1,49 @@
 package izone.izoneProject.message.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import izone.izoneProject.message.entity.Message;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class MessageDto {
 
-    @NotNull
-    private long senderId;
-
-    @NotNull
-    private long receiverId;
-
-    @NotNull
-    @Pattern(regexp = "^(?!\\s+$).+", message = "Fill in the blank.")
-    private String content;
-
-    public MessageDto(long senderId, long receiverId, String content) {
-        this.senderId   = senderId;
-        this.receiverId = receiverId;
-        this.content    = content;
+//    @NotNull
+//    private long senderId;
+//    @NotNull
+//    private long receiverId;
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Post {
+        @NotNull
+        @Pattern(regexp = "^(?!\\s+$).+", message = "Fill in the blank.")
+        private String title;
+        @NotNull
+        @Pattern(regexp = "^(?!\\s+$).+", message = "Fill in the blank.")
+        private String content;
+        private String receiverName;
     }
 
-    private void setContent(String content) {
-        this.content = content;
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Response {
+        private String senderName;
+        private String receiverName;
+        private String title;
+        private String content;
+
+
     }
+
+
+//    private void setContent(String content) {
+//        this.content = content;
+//    }
 
 
     //public static MessageDto toDto(Message message) {

@@ -1,4 +1,4 @@
-package izone.izoneProject.Book.dto;
+package izone.izoneProject.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
@@ -13,13 +13,19 @@ public class KaKaoBookInfoResponse {
     private List<String> authors;
     private String publisher;
     private String title;
+    private String isbn;
+    private String url;
+    private String contents;
 
 
     @Builder
-    public KaKaoBookInfoResponse(String thumbnail, List<String> authors, String publisher, String title) {
+    public KaKaoBookInfoResponse(String thumbnail, List<String> authors, String publisher, String title, String isbn, String url, String contents) {
         this.thumbnail = thumbnail;
         this.authors = authors;
         this.publisher = publisher;
         this.title = title;
+        this.isbn = isbn;
+        this.url = url;
+        this.contents = contents;
     }
 }

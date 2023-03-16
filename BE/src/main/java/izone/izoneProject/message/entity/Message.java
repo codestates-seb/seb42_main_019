@@ -2,6 +2,7 @@ package izone.izoneProject.message.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import izone.izoneProject.audit.Auditable;
 import izone.izoneProject.user.entity.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,15 +26,29 @@ public class Message /*extends Auditable*/ {
     private long messageId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SENDER_ID")
+    @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION) // 발신자 계정 삭제시 쪽지도 함께 삭제
+    private User user;
+
+    //TODO: response상 출력될 sender
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SENDER_ID")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User sender;
 
+    //TODO:
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RECEIVER_ID")
-    @OnDelete(action = OnDeleteAction.NO_ACTION) // 수신자 계정 삭제시 쪽지도 함께 삭제
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User receiver;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "RECEIVER_ID")
+//    @OnDelete(action = OnDeleteAction.NO_ACTION) // 수신자 계정 삭제시 쪽지도 함께 삭제
+//    private User receiver;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private  String title;
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
@@ -59,11 +74,24 @@ public class Message /*extends Auditable*/ {
         return isDeleteBySender() && isDeleteByReceiver();
     }
 
-    @Builder
-    public Message(User sender, User receiver, String content) {
-        this.sender   = sender;
-        this.receiver = receiver;
-        this.content  = content;
+    //@Builder
+    //public Message(User sender, User receiver, String title, String content) {
+    //    this.sender   = sender;
+    //    this.receiver = receiver;
+    //    this.title = title;
+    //    this.content  = content;
+    //}
+    public void setReceiver(User user) {
+        this.user = user;
+        if (!user.getReceivedList().contains(this)) {
+            user.getReceivedList().add(this);
+        }
+    }
+    public void setSender(User user) {
+        this.user = user;
+        if (!user.getSentList().contains(this)) {
+            user.getSentList().add(this);
+        }
     }
 }
 
