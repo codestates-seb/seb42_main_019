@@ -1,3 +1,6 @@
+import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
+import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
+
 function Comment({ comment }) {
     const isUser = true;
     return (
@@ -6,7 +9,7 @@ function Comment({ comment }) {
             <span>
                 {isUser ?
                     (
-                    <><button>Edit</button><button>Delete</button></>
+                    <><button><EditBtn /></button><button><XBtn /></button></>
                     )
                     :
                     null

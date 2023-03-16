@@ -37,7 +37,7 @@ function App() {
 						element={<CustomerDetailView />}
 					></Route>
 					<Route path='/booksearch' element={<BookSearchResult />}></Route>
-					<Route path='/booksearchDetail' element={<BookSearch />}></Route>
+					<Route path='/booksearch/Detail' element={<BookSearch />}></Route>
 					<Route path='/message' element={<MessageView />}></Route>
 					<Route path='/mybookshelf' element={<MyBookShelf />}></Route>
 					<Route path='/mypage/messagebox' element={<MessageList02 />}></Route>

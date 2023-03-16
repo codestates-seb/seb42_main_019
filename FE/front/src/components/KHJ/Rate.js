@@ -3,11 +3,19 @@ import classNames from 'classnames/bind';
 import {FiThumbsDown} from 'react-icons/fi';
 import {FiThumbsUp} from 'react-icons/fi';
 import { useState } from 'react';
+import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
+import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
 
 function Rate({ ratedata }) {
-    const [setIsOpen, isOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(true);
     const cx = classNames.bind(styles);
     const parsedDate = new Date(ratedata.createdAt).toLocaleDateString('ko-KR');
+    function isWidth(width, key) {
+        if(width[key].length > 30){
+            return true
+        }
+        return false
+    }
     function isEdit(user){
         if(ratedata.createdAt){
             return false;
@@ -19,17 +27,12 @@ function Rate({ ratedata }) {
         if(ratedata.rate === 'bad') return (<><FiThumbsDown size="20" color="#999999"/></>);
         return '';
     }
-    // console.log(ratedata.rate)
-    console.log(isGoodBad(ratedata.rate))
-    function ContentLength(text){
-        return true;
-        // text 길이에 따라 리턴값 주자 그냥...
-    }
     function isopenHandler(){
         return setIsOpen(!isOpen)
     }
+
     return (
-        <li className={cx('rate')} key={ratedata.id}>
+        <li className={isOpen ? cx('rate', 'open') : cx('rate')} key={ratedata.id}>
             <p className={cx('top')}>
                 <strong>
                     {ratedata.name}
@@ -38,8 +41,8 @@ function Rate({ ratedata }) {
                 {isEdit() ?
                 (
                 <div>
-                    <button>edit</button>
-                    <button>delete</button>
+                    <button><EditBtn /></button>
+                    <button><XBtn /></button>
                 </div>
                 )
                 :
@@ -47,10 +50,13 @@ function Rate({ ratedata }) {
                 }
             </p>
             <p>{ratedata.content}</p>
-            {ContentLength(ratedata.content)?
-            <button className={cx('plus')}>더보기 +</button>
-            :
-            null}
+            {isWidth(ratedata, 'content') ?
+                <button onClick={isopenHandler} className={cx('plus')}>
+                    {isOpen ? '더보기 +' : '닫기'}
+                </button>
+                :
+                null
+            }
         </li>
     );
 }
