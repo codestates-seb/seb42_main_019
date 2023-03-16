@@ -26,6 +26,7 @@ public class UserDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
+    @Setter
     public static class Patch{
         @NotBlank
         @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "비밀번호는 최소 8자리로, 숫자 1개와 문자 1개 이상을 포함해야 합니다.")

@@ -3,6 +3,7 @@ package izone.izoneProject.message.service;
 import izone.izoneProject.message.entity.Message;
 import izone.izoneProject.message.repository.MessageRepository;
 import izone.izoneProject.user.entity.User;
+import izone.izoneProject.user.repository.UserRepository;
 import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MessageService {
     private final MessageRepository messageRepository;
     private final UserService       userService;
@@ -27,29 +29,30 @@ public class MessageService {
      * <p>즉, 상황에 따라 DB 서버의 부하를 줄일 수 있다.</p>
      */
 
-    @Transactional
-    public Message writeMessage(User user, Message message) {
-        User sender   = userService.verifyUser(message.getSender().getUserId());
-        User receiver = userService.verifyUser(message.getReceiver().getUserId());
 
+    public Message writeMessage(long senderId, long receiverId, Message message) {
+        User sender   = userService.verifyUser(senderId);
+        User receiver = userService.verifyUser(receiverId);
+
+        sender.getSentList().add(message);
+        receiver.getReceivedList().add(message);
 
         message.setSender(sender);
         message.setReceiver(receiver);
-
 
         return messageRepository.save(message);
     }
 
     //TODO: 받은 쪽지 목록 불러오기 (모든 쪽지)
-    @Transactional(readOnly = true)
-    public List<Message> receivedMessage(User user) {
-        List<Message> messages = messageRepository.findAllByReceiver(user);
+    //@Transactional(readOnly = true)
+    //public List<Message> receivedMessage(User user) {
+    //    List<Message> messages = messageRepository.findAllByReceiver(user);
 
-        return messages;
-    }
+    //    return messages;
+    //}
 
     //TODO: 받은 쪽지 삭제
-    @Transactional
+   /* @Transactional
     public Object deleteMessageByReceiver(long messageId, User user) {
         Message message = messageRepository.findById(messageId).orElseThrow(() -> {
 
@@ -66,16 +69,16 @@ public class MessageService {
         } else {
             return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
         }
-    }
+    }*/
 
-    @Transactional(readOnly = true)
-    public List<Message> sentMessage(User user) {
-        List<Message> messages = messageRepository.findAllBySender(user);
+    //@Transactional(readOnly = true)
+    //public List<Message> sentMessage(User user) {
+    //    List<Message> messages = messageRepository.findAllBySender(user);
 
-        return messages;
-    }
+    //    return messages;
+    //}
 
-    @Transactional
+    /*@Transactional
     public Object deleteMessageBySender(long messageId, User user) {
         Message message = messageRepository.findById(messageId).orElseThrow(() -> {
 
@@ -92,5 +95,5 @@ public class MessageService {
         } else {
             return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
         }
-    }
+    }*/
 }
