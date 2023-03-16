@@ -15,6 +15,11 @@
 	font-size: 18px;
 	padding: 15px;
 	margin-top: 10px;
+	background-color: #fff;
+}
+
+.Main input::placeholder {
+	color: #ddd;
 }
 
 .Main label {
@@ -33,4 +38,37 @@
 	padding: 15px;
 	margin-top: 10px;
 	resize: none;
+	background-color: #fff;
+}
+
+.Text textarea::placeholder {
+	color: #ddd;
+}
+
+.BookState {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 490px;
+	margin-top: 35px;
+}
+
+.BookState label {
+	margin-top: 0;
+}
+
+.Buttons > button {
+	width: 62px;
+	height: 62px;
+	background-color: #fff;
+	border: 1px solid var(--green);
+	border-radius: 10px;
+	color: var(--black);
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+.Buttons > button.active {
+	background-color: var(--green);
+	color: #fff;
 }
