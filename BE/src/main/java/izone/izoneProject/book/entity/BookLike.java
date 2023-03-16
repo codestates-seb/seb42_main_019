@@ -1,4 +1,4 @@
-package izone.izoneProject.Book.entity;
+package izone.izoneProject.book.entity;
 
 import izone.izoneProject.user.entity.User;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class BookLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookLikeId;
+    private long bookLikeId;
 
     @ManyToOne
     @JoinColumn(name = "BOOK_ID")

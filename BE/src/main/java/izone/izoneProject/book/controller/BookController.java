@@ -1,23 +1,30 @@
-package izone.izoneProject.Book.controller;
+package izone.izoneProject.book.controller;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import izone.izoneProject.Book.dto.KaKaoBookInfoResponse;
+import izone.izoneProject.book.dto.BookPatchDto;
+import izone.izoneProject.book.dto.BookPostDto;
+import izone.izoneProject.book.dto.BookResponseDto;
+import izone.izoneProject.book.dto.KaKaoBookInfoResponse;
+import izone.izoneProject.book.entity.Book;
+import izone.izoneProject.book.mapper.BookMapper;
+import izone.izoneProject.book.service.BookService;
+import izone.izoneProject.common.utils.Uri;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -28,9 +35,41 @@ import java.util.Objects;
 @RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
+    private final BookService bookService;
+    private final BookMapper mapper;
     public static final String DEFAULT_URI = "/books";
-//    @Value("${kakao.key}")
-    private String KaKaoKey = "d5562ebd8b4981164a833b5f82c80b77";
+
+    @Value("${kakao.key}")
+    private String KaKaoKey;
+
+    @PostMapping
+    public ResponseEntity<?> createBook(@Valid @RequestBody BookPostDto postDto/*, User user*/) {
+//        long bookId = bookService.createBook(postDto/*, user.getUserId()*/);
+        Book book = mapper.postDtotoBook(postDto);
+        Book createBook =bookService.createBook(book);
+        URI location = Uri.createUri(DEFAULT_URI, Long.toString(createBook.getBookId()));
+
+        return ResponseEntity.created(location).build();
+    }
+
+    @PatchMapping("/{bookId}")
+    public ResponseEntity<?> updateBook(@PathVariable("bookId") @Positive long bookId,
+                                        @Valid @RequestBody BookPatchDto patchDto) {
+        Book book = mapper.patchDtoToBook(patchDto);
+        book.setBookId(bookId);
+        Book patchBook = bookService.updateBook(book);
+
+        return ResponseEntity.ok(patchBook);
+    }
+
+    @GetMapping("/{bookId}")
+    public ResponseEntity<?> detailBook(@PathVariable("bookId") @Positive long bookId) {
+        Book book = bookService.findBook(bookId);
+
+        BookResponseDto response = mapper.bookToResponseDto(book);
+
+        return ResponseEntity.ok(response);
+    }
 
     @GetMapping("/bookInfo")
     public ArrayList<KaKaoBookInfoResponse> getBookInfo(@RequestParam String bookTitle) throws IOException {
@@ -67,6 +106,9 @@ public class BookController {
                     .authors(authors)
                     .title(jsonObject.get("title").getAsString())
                     .publisher(jsonObject.get("publisher").getAsString())
+                            .isbn(jsonObject.get("isbn").getAsString())
+                            .contents(jsonObject.get("contents").getAsString())
+                            .url(jsonObject.get("url").getAsString())
                     .build());
         }
 

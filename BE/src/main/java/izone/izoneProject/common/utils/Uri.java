@@ -1,4 +1,4 @@
-package izone.izoneProject.user.utils;
+package izone.izoneProject.common.utils;
 
 import org.springframework.web.util.UriComponentsBuilder;
 

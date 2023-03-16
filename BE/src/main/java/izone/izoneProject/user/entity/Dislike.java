@@ -1,5 +1,5 @@
 package izone.izoneProject.user.entity;
-import izone.izoneProject.audit.Auditable;
+import izone.izoneProject.common.audit.Auditable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
