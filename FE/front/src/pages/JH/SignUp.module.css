@@ -8,8 +8,8 @@
 }
 
 .Main input {
-	height: 32px;
-	min-width: 440px;
+	height: 62px;
+	min-width: 490px;
 	border-radius: 10px;
 	border: 0;
 	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
@@ -17,22 +17,34 @@
 	padding: 15px;
 	margin-top: 10px;
 	background-color: #fff;
+	box-sizing: border-box;
+}
+
+.Main input::placeholder {
+	color: #ddd;
+}
+
+.NickName {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .NickName input {
-	min-width: 370px;
+	min-width: 418px;
 	margin-right: 10px;
 }
 
 .NickName button {
 	height: 62px;
-	min-width: 62px;
+	width: 62px;
 	border-radius: 10px;
 	border: 0;
 	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
 	font-size: 18px;
 	background-color: var(--green);
 	color: #fff;
+	margin-top: 10px;
 }
 
 .Main label {
@@ -50,7 +62,7 @@
 	font-size: 18px;
 	padding: 15px;
 	background-color: #fff;
-	color: #999;
+	color: #ddd;
 	display: flex;
 	justify-content: space-between;
 	margin: 10px 20px 0;

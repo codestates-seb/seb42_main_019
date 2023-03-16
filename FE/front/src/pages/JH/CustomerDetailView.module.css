@@ -1,11 +1,14 @@
-.Text .TextIner {
-	display: flex;
-	justify-content: center;
+.Main {
+	position: relative;
+}
+
+.Text {
+	margin: 0 20px;
 }
 
 .TextIner {
 	height: 250px;
-	width: 440px;
+	width: 460px;
 	background-color: #fff;
 	border-radius: 10px;
 	border: 0;
@@ -13,5 +16,24 @@
 	font-size: 18px;
 	padding: 15px;
 	margin-top: 10px;
-	resize: none;
+}
+
+.BookState {
+	width: 490px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 35px 20px;
+}
+
+.State {
+	width: 62px;
+	height: 62px;
+	background-color: var(--green);
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 15px;
+	border-radius: 10px;
 }
