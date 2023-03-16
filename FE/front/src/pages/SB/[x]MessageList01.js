@@ -1,5 +1,5 @@
 import Header2 from '../../components/common/Header2';
-import style from './MessageList01.module.css'
+import style from './[x]MessageList01.module.css'
 import Nav from '../../components/common/Nav';
 import MessageList2 from '../../components/JSB/message/MessageList2';
 

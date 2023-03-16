@@ -1,16 +1,19 @@
 import style from './MessageList1.module.css';
-import izone from '../../../assets/izonelogo1.jpg';
 import {FiThumbsDown} from 'react-icons/fi';
 import {FiThumbsUp} from 'react-icons/fi';
+import Avatar from './Avatar';
 
 function MessageList1() {
+
+
+
 	return (
 		<>
 			<div className={style.box1}>
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.profileMessageBox}>
-							<img className={style.profileMessage} src={izone} alt='izone' />
+							<Avatar className={style.profileMessage}/>
 						</div>
 						<div className={style.profileContent}>
 							<div className={style.profileName}>우히힛</div>

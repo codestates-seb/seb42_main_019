@@ -24,7 +24,6 @@
 .bookimg1 {
     display: flex;
     justify-content: center;    
-    margin: 15px;
     overflow: hidden;
     width: auto;
     height: 124px;
@@ -32,22 +31,24 @@
 }
 
 .img1 {
-    height: 124px;
     border-radius: 10px;
+    height: 124px;
 }
 
 .bookTitle {
     display: flex;
     margin-bottom: 60px;
-    width: 200px;
+    width: 300px;
     font-size: var(--strong-font);
 }
 
+
 .bookDetail1 {
-    display: flex;
-    align-items: flex-end;
+    text-align: right;
+    position: absolute;
     flex-direction: column;
     margin-top: 80px;
+    margin-left: 366px;
 }
 
 .bookDetail01 {
@@ -68,6 +69,7 @@
 }
 
 .grade {
+    display: flex;
     background-color: var(--green);
     padding: 10px ;
     border-radius: 50px;
@@ -79,4 +81,5 @@
     width: 20px;
     height: 20px;
     text-align: center;
+    justify-content: center;
 }

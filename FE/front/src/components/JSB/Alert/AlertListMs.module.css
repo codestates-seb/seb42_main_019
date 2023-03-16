@@ -5,11 +5,14 @@
     justify-content: space-around;
 }
 
+.messageList1Box {
+    margin-top: 30px;
+}
+
 .listboxMessage {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
     border-radius: 15px;
     width: 490px;
@@ -17,20 +20,46 @@
     margin-bottom: 10px;
 }
 
-.alertBtn1 {
+.alertprofileimg {
+    width: 70px;
+    border-radius: 10px;
+    margin: 15px;
+    position: absolute;
+}
+
+.alertTitle {
+    margin-top: 15px;
+    margin-left: 85px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.alertMessage01 {
+    margin-left: 85px;
+    margin-top: 10px;
+}
+
+/*.alertBtn1 {
     border: 1px solid var(--light-gray);
     border-radius: 15px;
     padding: 20px;
     color: var(--light-black);
     margin-right: 20px;
     width: 90px;
+}*/
+
+.alertTextBox {
+    width: 77px;
+    height: 50px;
+    margin: 15px;
 }
 
+
 .alertMessage1 {
-    color: var(--light-black);
+    color: var(--black);
     margin-left: 20px;
 }
 
-.alertBtnText {
-    font-size: var(--normal-font);
+.alertDateText {
+    color: var(--black);
 }
