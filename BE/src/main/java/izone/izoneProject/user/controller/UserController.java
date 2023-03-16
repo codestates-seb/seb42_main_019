@@ -1,16 +1,15 @@
 package izone.izoneProject.user.controller;
 
-import izone.izoneProject.dto.PageDto;
+import izone.izoneProject.common.dto.PageDto;
 import izone.izoneProject.user.dto.UserCommentDto;
 import izone.izoneProject.user.dto.UserDto;
 import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.entity.UserComment;
 import izone.izoneProject.user.mapper.UserMapper;
 import izone.izoneProject.user.service.UserService;
-import izone.izoneProject.user.utils.Uri;
+import izone.izoneProject.common.utils.Uri;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ import java.util.List;
 public class UserController {
     private final String DEFAULT_URI = "/user";
     private final UserService userService;
-    private final UserMapper mapper;  
+    private final UserMapper mapper;
 
     @PostMapping
     public ResponseEntity postUser(@RequestBody @Valid UserDto.Post post) {

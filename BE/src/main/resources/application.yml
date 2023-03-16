@@ -1,3 +1,5 @@
+kakao:
+  key: d5562ebd8b4981164a833b5f82c80b77
 spring:
   profiles:
     include: common
