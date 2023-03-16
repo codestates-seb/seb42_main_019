@@ -27,17 +27,20 @@ public class UserService {
         } else if (checkName(user.getName())) {
             throw new RuntimeException("name is exist");
         }
+
+
         return userRepository.save(user);
     }
 
     public User editUser(User user) {
         User foundUser = verifyUser(user.getUserId());
+
         Optional.ofNullable(user.getPassword())
                 .ifPresent(password -> foundUser.setPassword(password));
         Optional.ofNullable(user.getRegion())
                 .ifPresent(region -> foundUser.setRegion(region));
 
-        return foundUser;
+        return userRepository.save(foundUser);
     }
 
     public User getUser(long userId) {
@@ -47,7 +50,7 @@ public class UserService {
     }
 
     public Page<User> getUsers(Pageable pageable) {
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize(), pageable.getSort());
         return userRepository.findAll(pageRequest);
     }
 
@@ -85,7 +88,7 @@ public class UserService {
     }
 
     public Page<UserComment> getComments(long userId, Pageable pageable) {
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() , pageable.getPageSize(), pageable.getSort());
         return commentRepository.findByUserId(userId, pageRequest);
     }
 
@@ -125,6 +128,11 @@ public class UserService {
                 optionalUserComment.orElseThrow(() -> new RuntimeException("comment not found"));
 
         return findComment;
+    }
+    public User verifyUser(String email){
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        User foundUser = optionalUser.orElseThrow(() -> new RuntimeException("comment not found"));
+        return foundUser;
     }
 
 }

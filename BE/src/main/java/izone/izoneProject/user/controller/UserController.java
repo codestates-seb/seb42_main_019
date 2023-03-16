@@ -10,11 +10,9 @@ import izone.izoneProject.user.service.UserService;
 import izone.izoneProject.user.utils.Uri;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,10 +22,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@Validated
 @RequiredArgsConstructor
 public class UserController {
-    private final String DEFAULT_URI = "/user";
+    private final String DEFAULT_URI = "/user/";
     private final UserService userService;
     private final UserMapper mapper;
 

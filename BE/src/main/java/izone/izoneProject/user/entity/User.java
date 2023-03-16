@@ -5,10 +5,8 @@ import izone.izoneProject.audit.Auditable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,16 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 public class User extends Auditable {
-    @ElementCollection(fetch = FetchType.EAGER)
-    List<String> roles = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    List<Like> likeList = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    List<Dislike> dislikeList = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    List<UserComment> UserCommentList = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Book> bookList = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
@@ -38,8 +26,16 @@ public class User extends Auditable {
     private String password;
     @Column
     private String region;
-    @LastModifiedDate
-    private LocalDateTime modifiedAt;
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    List<String> roles = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<UserLike> likeList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<UserDislike> dislikeList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<UserComment> UserCommentList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Book> bookList = new ArrayList<>();
 
 
     public void setBook(Book book) {
@@ -49,19 +45,6 @@ public class User extends Auditable {
         }
     }
 
-    public void setLike(Like like) {
-        this.getLikeList().add(like);
-        if (like.getUser() != this) {
-            like.setUser(this);
-        }
-    }
-
-    public void setDislike(Dislike dislike) {
-        this.getDislikeList().add(dislike);
-        if (dislike.getUser() != this) {
-            dislike.setUser(this);
-        }
-    }
 
     public void setComment(UserComment userComment) {
         this.getUserCommentList().add(userComment);
@@ -69,4 +52,17 @@ public class User extends Auditable {
             userComment.setUser(this);
         }
     }
+    public void setUserDislike(UserDislike userDislike) {
+        this.getDislikeList().add(userDislike);
+        if (userDislike.getUser() != this) {
+            userDislike.setUser(this);
+        }
+    }
+    public void setUserLike(UserLike userLike) {
+        this.getLikeList().add(userLike);
+        if (userLike.getUser() != this) {
+            userLike.setUser(this);
+        }
+    }
+
 }

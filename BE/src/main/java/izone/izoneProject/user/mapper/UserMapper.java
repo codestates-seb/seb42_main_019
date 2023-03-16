@@ -9,7 +9,6 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     User postDtoToUser(UserDto.Post post);

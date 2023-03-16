@@ -4,6 +4,8 @@ import izone.izoneProject.audit.Auditable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
@@ -20,12 +22,10 @@ public class UserComment extends Auditable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @OnDelete(action= OnDeleteAction.CASCADE)
     private User user;
-    @Column
+    @Column(nullable = false, columnDefinition="TEXT")
     private String content;
-    @Column
-    @LastModifiedDate
-    private LocalDateTime modifiedAt;
 
     public void setUser(User user) {//User 양방향 매핑 메소드
         this.user = user;
