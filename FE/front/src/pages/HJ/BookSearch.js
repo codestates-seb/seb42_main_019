@@ -9,10 +9,11 @@ import Pagenation from "../../components/common/Pagenation";
 function BookSearch() {
     return(
         <>
-            <Header2>검색결과</Header2>
+            <Header2>상세 정보</Header2>
             <main className='booksearch-main'>
                 <BookInfo book={'book'} />
                 <CommentList />
+                <h2 className="font16 p20">이 책을 다 읽은 사람들</h2>
                 <BooksearchList />
                 <Pagenation />
             </main>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalPopUp from "../../components/KHJ/ModalPopBookInfo";
+import ModalPopUp from "../../components/KHJ/ModalPopCreate";
 
 function Modal({ children }) {
     const [isModalOpen, setModalOpen] = useState(false);

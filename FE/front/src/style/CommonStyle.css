@@ -7,6 +7,8 @@
 	--strong-font: 22px;
 	--normal-font: 16px;
 	--box-round: 10px;
+	--box-shadow : 0px 4px 5px 2px #D9D9D955;
+	--flexible-box : calc(100% - 40px)
 }
 
 li {
@@ -20,9 +22,6 @@ a {
 * {
 	margin: 0;
 	padding: 0;
-	border: 0;
-	outline: 0;
-	background-color: transparent;
 }
 
 html {
@@ -53,4 +52,10 @@ html {
 a,
 button {
 	cursor: pointer;
+}
+
+button, input{
+	border: 0;
+    outline: 0;
+	background-color: transparent;
 }
