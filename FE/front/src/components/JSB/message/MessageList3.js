@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 function MessageList3() {
 	
 	const cx = classNames.bind(style);
-	  
 
 
 	return (

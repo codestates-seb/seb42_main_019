@@ -13,7 +13,6 @@ import { Route, Routes } from 'react-router-dom';
 import SignUp from './pages/JH/SignUp';
 import MessageView from './pages/SB/MessageView';
 import MessageList02 from './pages/SB/MessageList02';
-import MessageList01 from './pages/SB/MessageList01';
 import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import MyBookShelf from './pages/SB/MyBookShelf';
@@ -39,9 +38,8 @@ function App() {
 					></Route>
 					<Route path='/booksearch' element={<BookSearch />}></Route>
 					<Route path='/message' element={<MessageView />}></Route>
-					<Route path='/messages' element={<MessageList02 />}></Route>
 					<Route path='/mybookshelf' element={<MyBookShelf />}></Route>
-					<Route path='/mypage/messagebox' element={<MessageList01 />}></Route>
+					<Route path='/mypage/messagebox' element={<MessageList02 />}></Route>
 					<Route path='/mypage/tradebooklist' element={<TradeBookList />}></Route>
 					{/*<Route path='/mycomment' element
 					<Route path='/comments' element*/}

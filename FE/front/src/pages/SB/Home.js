@@ -5,24 +5,23 @@ import Search from '../../components/JSB/Search';
 import Footer from '../../components/common/Footer';
 import BookList from '../../components/common/BookList';
 import Nav from '../../components/common/Nav';
+import classNames from 'classnames/bind';
 
 function Home({children}) {
+	const cx = classNames.bind(style);
+
 	return (
 		<>
 			<Header>로그인</Header>
-			<div className={style.box}>
-				<img className={style.img} src={homeImg} alt='homeImg' />
-				<div className={style.text1}>
-				<p className={style.homesearchp}>오늘 읽고 싶은 책?</p>
+			<div className={cx('box')}>
+				<img className={cx('img')} src={homeImg} alt='homeImg' />
+				<div className={cx('text1')}>
+				<p className={cx('homeSearchP')}>오늘 읽고 싶은 책?</p>
 				</div>
 				<Search />
-				<p className={style.currentp}>최근에 등록된 책</p>
+				<p className={cx('currentP')}>최근에 등록된 책</p>
 				<BookList />
-				<BookList />
-				<BookList />
-				<BookList />
-				<BookList />
-				<Footer className={style.footer} />
+				<Footer className={cx('footer')} />
 			</div>
 			<Nav />
 		</>

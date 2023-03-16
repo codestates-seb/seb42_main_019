@@ -32,7 +32,7 @@ function Navigation() {
             </Link>
           </li>
           <li className={!findUrl('createbook') ? cx('nav--li') : cx('nav--li', 'on')}>
-            <Link to='createbook/'>
+            <Link to='/createbook'>
               <IconBookplus fill={findUrl('createbook') ? '#2F5A2D' : '#D9D9D9'} />
               <span>책 등록</span>
             </Link>

@@ -10,7 +10,7 @@
 
 }
 
-.currentp {
+.currentP {
 	display: flex;
     padding-right: 340px;
 	margin-top: 50px;
@@ -27,7 +27,7 @@
     justify-content: space-around;
 }
 
-.homesearchp{
+.homeSearchP{
     display: flex;
     margin-bottom: 30px;
 

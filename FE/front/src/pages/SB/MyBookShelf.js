@@ -13,14 +13,14 @@ const MyBookShelf = () => {
         <>
         <Header2>내 책장</Header2>
         <div className={cx('mbsBox')}>
-        <div className={cx('mbsImgBox')}>
-        <img src={BookShelf} className={cx('mbsimg')} alt='mbsimg' />
-        </div>
-        <div className={cx('mbsBody')}>
-        <p className={cx('mbsText')}>내가 등록한 책</p>
-        <BSlist />
-        </div>
-        <Pagenation />
+            <div className={cx('mbsImgBox')}>
+                <img src={BookShelf} className={cx('mbsimg')} alt='mbsimg' />
+            </div>
+            <div className={cx('mbsBody')}>
+                <p className={cx('mbsText')}>내가 등록한 책</p>
+                <BSlist />
+            </div>
+            <Pagenation />
         </div>
         <Nav />
         </>

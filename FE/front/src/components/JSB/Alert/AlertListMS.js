@@ -1,21 +1,26 @@
 import style from './AlertListMs.module.css';
+import alertprofileImg from '../../../assets/izonelogo1.jpg'
+import messageContent from '../../../dummyData/SB/messageContent1'
+import classNames from 'classnames/bind';
 
 const AlertListMS = function () {
+	const cx = classNames.bind(style)
+
 	return (
 		<>
-			<div className={style.box1}>
-				<div className={style.notFooter}>
-					<div className={style.listboxMessage}>
-						<div className={style.alertMessage1}>
-							<p className={style.alertMessage01}>
-								권은비님이 책 교환 요청을 신청하였습니다.
+			<div className={cx('box1')}>
+				<div className={cx('notFooter')}>
+					<div className={cx('listboxMessage')}>
+					<img className={cx('alertprofileimg')} src={alertprofileImg} alt='profileImg'/>
+						<div className={cx('alertMessage1')}>
+						<p className={cx('alertTitle')}>메세지 알림</p>
+							<p className={cx('alertMessage01')}>
+								{messageContent[2].name2}님에게 메세지가 도착했습니다.
 							</p>
 						</div>
-						<button onClick={()=>{console.log(2)}}>
-						<div className={style.alertBtn1}>
-							<div className={style.alertBtnText}>요청사항 보기</div>
+						<div className={cx('alertTextBox')}>
+							<p className={cx('alertDateText')}>{messageContent[1].date}</p>
 						</div>
-						</button>
 					</div>
 				</div>
 			</div>
