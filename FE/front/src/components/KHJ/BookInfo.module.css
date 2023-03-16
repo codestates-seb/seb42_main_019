@@ -30,7 +30,7 @@
 .date{
     color: var(--light-black);
 }
-.btn{
+.bookinfo > button{
     color: var(--green);
     font-size: 16px;
 }

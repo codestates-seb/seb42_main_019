@@ -1,0 +1,9 @@
+/* 404 */
+.wrap div:first-child{
+    box-shadow: none;
+}
+.wrap div span{
+    opacity: 0;
+    z-index: -1;
+}
+/* 404 */

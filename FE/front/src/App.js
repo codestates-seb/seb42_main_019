@@ -3,8 +3,6 @@ import './style/CommonStyle.css';
 
 import Home from './pages/SB/Home';
 import Alert from './pages/SB/Alert';
-import Bookplus from './pages/JH/CreateBook';
-import Booklist from './pages/SB/MyBookShelf';
 import Mypage from './pages/SB/Mypage';
 import Background from '../src/components/common/Background';
 import Login from '../src/pages/JH/Login';
@@ -17,8 +15,11 @@ import MessageList01 from './pages/SB/MessageList01';
 import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
+import UserRateList from './pages/HJ/UserRateList';
+import MyRateList from './pages/HJ/MyRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import TradeBookList from './pages/SB/TradeBookList';
+import ErrorPage from './pages/HJ/404';
 
 function App() {
 	return (
@@ -28,8 +29,6 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
 					<Route path='/alert' element={<Alert />}></Route>
-					<Route path='/bookplus' element={<Bookplus />}></Route>
-					<Route path='/booklist' element={<Booklist />}></Route>
 					<Route path='/mypage' element={<Mypage />}></Route>
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/signup' element={<SignUp />}></Route>
@@ -45,6 +44,9 @@ function App() {
 					<Route path='/mybookshelf' element={<MyBookShelf />}></Route>
 					<Route path='/mypage/messagebox' element={<MessageList01 />}></Route>
 					<Route path='/mypage/tradebooklist' element={<TradeBookList />}></Route>
+					<Route path='/userrate' element={<UserRateList />}></Route>
+					<Route path='/myrate' element={<MyRateList />}></Route>
+					<Route path='/error' element={<ErrorPage />}></Route>
 					{/*<Route path='/mycomment' element
 					<Route path='/comments' element*/}
 				</Routes>
