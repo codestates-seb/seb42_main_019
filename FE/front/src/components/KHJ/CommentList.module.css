@@ -1,5 +1,5 @@
 .comment_list, .comment_plus button, .comment_plus input{
-    box-shadow: 0px 4px 6px 5px #D9D9D93a;
+    box-shadow: var(--box-shadow);
 }
 .comment_list{
     width: 100%;
@@ -11,7 +11,7 @@
     padding-bottom: 0;
     overflow-y: auto;
     box-sizing: border-box;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .comment_list li{
     width: 100%;

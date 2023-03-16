@@ -1,8 +1,8 @@
-function Comment({ writer }) {
+function Comment({ comment }) {
     const isUser = true;
     return (
-        <li key={writer.id}>
-            <p>{writer.name}</p>
+        <li key={comment.id}>
+            <p>{comment.name}</p>
             <span>
                 {isUser ?
                     (
@@ -12,7 +12,7 @@ function Comment({ writer }) {
                     null
                 }
             </span>
-            <b>{writer.content}</b>
+            <b>{comment.content}</b>
         </li>
     );
 }

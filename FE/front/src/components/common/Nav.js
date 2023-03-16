@@ -52,9 +52,9 @@ function Navigation() {
               <span>책 등록</span>
             </Link>
           </li>
-          <li className={findUrl('bookplus') ? cx('nav--li', 'on') : cx('nav--li')}>
+          <li className={findUrl('mybookshelf') ? cx('nav--li', 'on') : cx('nav--li')}>
             <Link to='/mybookshelf'>
-              <IconBooklist fill={findUrl('bookplus') ? '#2F5A2D' : '#D9D9D9'} />
+              <IconBooklist fill={findUrl('mybookshelf') ? '#2F5A2D' : '#D9D9D9'} />
               <span>내 책장</span>
             </Link>
           </li>

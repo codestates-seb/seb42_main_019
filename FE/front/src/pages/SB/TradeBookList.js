@@ -1,9 +1,9 @@
-import Header2 from 'src/components/common/Header2';
+import Header2 from '../../components/common/Header2';
 import style from './TradeBookList.module.css';
 import Nav from '../../components/common/Nav';
 import BookShelf from '../../assets/bookshelf.png'
 import classNames from 'classnames/bind';
-import BSlist from 'src/components/JSB/BookShelf/BSlist';
+import BSlist from '../../components/JSB/BookShelf/BSlist';
 import Pagenation from '../../components/common/Pagenation';
 
 const TradeBookList = () => {
