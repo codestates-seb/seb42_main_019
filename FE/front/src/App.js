@@ -23,6 +23,7 @@ import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
 
+
 function App() {
 	return (
 		<div className={style.App}>
