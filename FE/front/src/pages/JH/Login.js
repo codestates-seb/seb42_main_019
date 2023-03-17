@@ -31,7 +31,7 @@ const Login = () => {
 			<div className={styles.SignUp}>
 				회원이 아니신가요?{' '}
 				<span>
-					<Link className={styles.Link} to={'/signup'}>
+					<Link className={styles.Link} to={'/signUp'}>
 						회원가입
 					</Link>
 				</span>

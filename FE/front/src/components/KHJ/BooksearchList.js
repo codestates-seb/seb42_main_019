@@ -1,12 +1,12 @@
 import BS from "../JSB/BookShelf/BS";
-import bookdata from '../../dummyData/SB/bookData'
+import bookData from '../../dummyData/SB/bookData'
 
-function booksearchList() {
+function bookSearchList() {
     return (
         <>
-            {bookdata.map((el) => <BS bookdata={el}/>)}
+            {bookData.map((el) => <BS bookData={el}/>)}
         </>
     );
 }
 
-export default booksearchList;
+export default bookSearchList;

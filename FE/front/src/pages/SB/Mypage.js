@@ -1,6 +1,6 @@
 import Footer from '../../components/common/Footer';
 import Header from '../../components/common/Header';
-import style from './Mypage.module.css';
+import style from './MyPage.module.css';
 import Nav from '../../components/common/Nav';
 import MessageList1 from '../../components/JSB/message/MessageList1';
 import {TbBookUpload} from 'react-icons/tb'
@@ -25,15 +25,15 @@ const Mypage = ({children}) => {
                 <ul className={cx('myPageUl')}>
                     <li className={cx('mpList')}>
                         <TbBookUpload size={32}/>
-                            <Link to='./tradebooklist' className={cx('myPageBtn')} >내가 교환한 책</Link>
+                            <Link to='./tradeBookList' className={cx('myPageBtn')} >내가 교환한 책</Link>
                     </li>
                     <li className={cx('mpList')}>
                         <BiMessageCheck size={32} />
-                            <Link to='./comments' className={cx('myPageBtn')} >내게 남긴 후기</Link>
+                            <Link to='./myRate' className={cx('myPageBtn')} >내게 남긴 후기</Link>
                     </li>
                     <li className={cx('mpList')}>
                         <TbMessages size={32} />
-                            <Link to='./messagebox' className={cx('myPageBtn')} >메시지함</Link>
+                            <Link to='./messageBox' className={cx('myPageBtn')} >메시지함</Link>
                     </li>
                 </ul>
                 <span className={cx('checkoutT')}>회원탈퇴</span>

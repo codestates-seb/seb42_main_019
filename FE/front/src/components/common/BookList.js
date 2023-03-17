@@ -14,7 +14,7 @@ function BookList() {
 				<div className={cx('notFooter')}>
 					<div className={cx('listBoxMessage')}>
 						<div className={cx('bookImg1')}>
-							<img className={cx('img1')} src={el.imgurl} alt='bookcover' />
+							<img className={cx('img1')} src={el.thumbnail} alt='bookcover' />
 						</div>
 						<div className={cx('bookTitle')}>
 							<p className={cx('bookTitleP')}>{el.title}</p>

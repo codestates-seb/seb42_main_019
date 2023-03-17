@@ -13,7 +13,7 @@ const Alert = ()=>{
         <>
         <Header2>알림</Header2>
         <div className={cx('alertBox')}>
-        <Link to={'/mypage/messagebox'}><MapAlert /></Link>
+        <Link to={'/myPage/messageBox'}><MapAlert /></Link>
         </div>
         <Nav />
         </>

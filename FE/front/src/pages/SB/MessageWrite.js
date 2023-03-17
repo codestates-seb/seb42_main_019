@@ -17,7 +17,7 @@ const MessageWrite=()=>{
             <MessageList1 />
             <p className={cx('mltext')}>메시지 내용</p>
             <Mcontent />
-            <Link to={'/mypage/messagebox/write'}>
+            <Link to={'/myPage/messageBox/messages'}>
             <Button>메시지 보내기</Button>
             </Link>
         </div>
