@@ -7,9 +7,10 @@ import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
 import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
 
 function Rate({ ratedata }) {
-    const [isOpen, setIsOpen] = useState(true);
     const cx = classNames.bind(styles);
     const parsedDate = new Date(ratedata.createdAt).toLocaleDateString('ko-KR');
+    
+    const [isOpen, setIsOpen] = useState(true);
     function isWidth(width, key) {
         if(width[key].length > 30){
             return true
@@ -30,6 +31,8 @@ function Rate({ ratedata }) {
     function isopenHandler(){
         return setIsOpen(!isOpen)
     }
+
+    const [isEditShow, setIsEditShow] = useState(true);
 
     return (
         <li className={isOpen ? cx('rate', 'open') : cx('rate')} key={ratedata.id}>
