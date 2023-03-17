@@ -16,7 +16,7 @@ function MessageList1() {
 							<Avatar className={style.profileMessage}/>
 						</div>
 						<div className={style.profileContent}>
-							<div className={style.profileName}>우히힛</div>
+							<div className={style.profileName}>저녁밥추천받는다ㄱ</div>
 							<div className={style.message}>
 							부산시
 							</div>

@@ -27,13 +27,12 @@
 .profileContent {
     display: flex;
     flex-direction: column;
-    margin-right: 250px;
 }
 
 .profileName {
-    display: flex;
     font-weight: 700;
     margin-bottom: 10px;
+    width: 320px;
     font-size: var(--strong-font);
 }
 
