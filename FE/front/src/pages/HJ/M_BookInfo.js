@@ -9,7 +9,7 @@ function Modal({ children }) {
     function modalToggleProps(boolean) {
         setModalOpen(boolean);
     }
-    console.log(isModalOpen);
+    
     return (
         <>
             <button onClick={modalToggleHandler}>{children}</button>

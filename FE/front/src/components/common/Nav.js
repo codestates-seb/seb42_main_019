@@ -5,38 +5,28 @@ import { ReactComponent as IconAlert } from '../../assets/IconAlert.svg';
 import { ReactComponent as IconBookplus } from '../../assets/Bookplus.svg';
 import { ReactComponent as IconBooklist } from '../../assets/IconBooklist.svg';
 import { ReactComponent as IconMypage } from '../../assets/IconMypage.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Navigation() {
   const cx = classNames.bind(styles);
-  const domain = 'http://localhost:3000';
-  const domainLength = domain.length;
+  const { pathname } = useLocation()
+
+  console.log(pathname)
   function findUrl(url){
-    const pathFind = window.location.href;
-    return pathFind.includes(url)
-    // const path = pathFind.slice(domainLength+1, pathFind.length)
-    // if(pathFind.includes(url) && path !== ''){
-    //   return true;
-    // }
-    // if(path === ''){
-    //   return true;
-    // }
-    // return false;
+    if(url === '' && pathname === '/') return true;
+    
+    if(pathname.includes(url) && url !== '') return true;
+
+    return false
   }
-  function homeUrlFind(){
-    const pathFind = window.location.href;
-    const path = pathFind.slice(domainLength+1, pathFind.length);
-    if(path === ''){
-      return true;
-    }
-  }
+
   return (
     <>
       <nav>
         <ul className={cx('nav')}>
-          <li className={homeUrlFind() ? cx('nav--li', 'on') : cx('nav--li')}>
+          <li className={findUrl('') ? cx('nav--li', 'on') : cx('nav--li')}>
             <Link to='/'>
-              <IconHome fill={homeUrlFind() ? '#2F5A2D' : '#D9D9D9'} />
+              <IconHome fill={findUrl('') ? '#2F5A2D' : '#D9D9D9'} />
               <span>홈</span>
             </Link>
           </li>
@@ -48,7 +38,7 @@ function Navigation() {
           </li>
           <li className={findUrl('booklist') ? cx('nav--li', 'on') : cx('nav--li')}>
             <Link to='/createbook'>
-              <IconBookplus fill={findUrl('booklist') ? '#2F5A2D' : '#D9D9D9'} />
+              <IconBookplus fill={findUrl('boo                                                                                                                                                                                                                                                                                                         klist') ? '#2F5A2D' : '#D9D9D9'} />
               <span>책 등록</span>
             </Link>
           </li>

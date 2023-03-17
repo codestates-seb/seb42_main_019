@@ -1,7 +1,6 @@
 import Rate from "./Rate";
-import ratedata from "../../dummyData/ratedata";
 
-function RateList() {
+function RateList({ ratedata }) {
     return (
         <ul>
             {ratedata.map((el) => <Rate ratedata={el} />)}
