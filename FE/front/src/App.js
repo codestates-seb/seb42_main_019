@@ -19,6 +19,8 @@ import MyRateList from './pages/HJ/MyRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import TradeBookList from './pages/SB/TradeBookList';
 import ErrorPage from './pages/HJ/404';
+import SellerDetailView from './pages/JH/SellerDetailView';
+import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
 
 function App() {
 	return (
@@ -36,12 +38,23 @@ function App() {
 						path='/customerdetailview'
 						element={<CustomerDetailView />}
 					></Route>
+					<Route
+						path='/sellerdetailview'
+						element={<SellerDetailView />}
+					></Route>
+					<Route
+						path='/sellerdetailviewedit'
+						element={<SellerDetailViewEdit />}
+					></Route>
 					<Route path='/booksearch' element={<BookSearchResult />}></Route>
 					<Route path='/booksearchDetail' element={<BookSearch />}></Route>
 					<Route path='/message' element={<MessageView />}></Route>
 					<Route path='/mybookshelf' element={<MyBookShelf />}></Route>
 					<Route path='/mypage/messagebox' element={<MessageList02 />}></Route>
-					<Route path='/mypage/tradebooklist' element={<TradeBookList />}></Route>
+					<Route
+						path='/mypage/tradebooklist'
+						element={<TradeBookList />}
+					></Route>
 					<Route path='/userrate' element={<UserRateList />}></Route>
 					<Route path='/myrate' element={<MyRateList />}></Route>
 					<Route path='/error' element={<ErrorPage />}></Route>
