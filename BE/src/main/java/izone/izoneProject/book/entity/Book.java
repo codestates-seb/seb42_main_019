@@ -62,3 +62,5 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<BookLike> bookLikeList = new ArrayList<>();
 }
+
+//isbn 책을 누를 때?
