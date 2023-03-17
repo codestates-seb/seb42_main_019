@@ -37,3 +37,15 @@
 	padding: 15px;
 	border-radius: 10px;
 }
+
+.SallState {
+	height: 62px;
+	background-color: #fff;
+	color: var(--green);
+	font-size: 18px;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid var(--green);
+}
