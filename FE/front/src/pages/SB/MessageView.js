@@ -1,7 +1,6 @@
 import style from './MessageView.module.css'
 import Header2 from '../../components/common/Header2';
 import MessageList1 from '../../components/JSB/message/MessageList1'
-import BookList from '../../components/common/BookList'
 import Button from '../../components/common/Button';
 import classNames from 'classnames/bind';
 
@@ -12,7 +11,6 @@ const MessageView=()=>{
         <>
         <Header2>수신메시지</Header2>
         <div className={cx('messageBoxV')}>
-            <BookList />
             <p className={cx('mvtext')}>보낸 사람</p>
             <MessageList1 />
             <p className={cx('mvtext')}>메시지 내용</p>

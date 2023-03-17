@@ -19,8 +19,10 @@ import MyRateList from './pages/HJ/MyRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import TradeBookList from './pages/SB/TradeBookList';
 import ErrorPage from './pages/HJ/404';
+import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
+
 
 function App() {
 	return (
@@ -48,7 +50,7 @@ function App() {
 					></Route>
 					<Route path='/booksearch' element={<BookSearchResult />}></Route>
 					<Route path='/booksearchDetail' element={<BookSearch />}></Route>
-					<Route path='/message' element={<MessageView />}></Route>
+					<Route path='/mypage/messagebox/view' element={<MessageView />}></Route>
 					<Route path='/mybookshelf' element={<MyBookShelf />}></Route>
 					<Route path='/mypage/messagebox' element={<MessageList02 />}></Route>
 					<Route
@@ -58,6 +60,7 @@ function App() {
 					<Route path='/userrate' element={<UserRateList />}></Route>
 					<Route path='/myrate' element={<MyRateList />}></Route>
 					<Route path='/error' element={<ErrorPage />}></Route>
+					<Route path='/mypage/write' element={<MessageWrite />}></Route>
 					{/*<Route path='/mycomment' element
 					<Route path='/comments' element*/}
 				</Routes>

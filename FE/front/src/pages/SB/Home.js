@@ -7,8 +7,9 @@ import BookList from '../../components/common/BookList';
 import Nav from '../../components/common/Nav';
 import classNames from 'classnames/bind';
 
-function Home({children}) {
+function Home() {
 	const cx = classNames.bind(style);
+
 
 	return (
 		<>
