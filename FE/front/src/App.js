@@ -19,6 +19,7 @@ import MyRateList from './pages/HJ/MyRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import TradeBookList from './pages/SB/TradeBookList';
 import ErrorPage from './pages/HJ/404';
+import Missing from './pages/HJ/Missing';
 import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
@@ -64,6 +65,8 @@ function App() {
 					<Route path='/mypage/write' element={<MessageWrite />}></Route>
 					{/*<Route path='/mycomment' element
 					<Route path='/comments' element*/}
+					<Route path='/*' element={<ErrorPage />}></Route>
+					<Route path='/missing' element={<Missing />}></Route>
 				</Routes>
 			</div>
 		</div>
