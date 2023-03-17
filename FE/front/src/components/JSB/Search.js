@@ -21,8 +21,8 @@ const HomeSearch = function () {
           type="text"
           placeholder="지금 당신이 읽고 싶은 책은 바로!..."
           onChange={(e)=>setSearchQuery(e.target.value)}
-		  onKeyDown={handleSearch}
-		  value={searchQuery}
+		      onKeyDown={handleSearch}
+		      value={searchQuery}
         />
       </div>
     </>

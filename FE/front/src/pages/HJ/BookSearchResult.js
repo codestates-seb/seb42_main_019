@@ -6,7 +6,7 @@ import Search from "../../components/JSB/Search";
 import styles from "./BookSearchResult.module.css"
 import classNames from "classnames/bind";
 import BS from "../../components/JSB/BookShelf/BS";
-import bookdata from "../../dummyData/SB/bookData";
+import bookData from "../../dummyData/SB/bookData";
 
 function BookSearchResult() {
     const cx = classNames.bind(styles)
@@ -17,7 +17,7 @@ function BookSearchResult() {
                 <div className={cx('search')}>
                     <Search />
                 </div>
-                {bookdata.map((el) => <BS bookdata={el}/>)}
+                {bookData.map((el) => <BS bookData={el}/>)}
                 <Pagenation />
             </main>
             <Footer />
