@@ -6,6 +6,11 @@ import classNames from 'classnames/bind';
 const MapAlert = function () {
     const cx = classNames.bind(style)
 
+    const getRandomNumber = (min, max)=>{
+        return parseInt(Math.random()*(Number(max)-Number(min) + 2));
+    }
+
+
 	return (
 		<>
             {messageContent.map((el)=>{
@@ -14,7 +19,7 @@ const MapAlert = function () {
                     <div className={cx('box1')}>
                     <div className={cx('notFooter')}>
                         <div className={cx('listboxMessage')}>
-                        <img className={cx('alertprofileimg')} src={el.profileImg} alt={el.name}/>
+                        <img className={cx('alertprofileimg')} src={`https://randomuser.me/api/portraits/women/${getRandomNumber(1, 98)}.jpg`} alt={el.name}/>
                             <div className={cx('alertMessage1')}>
                             <p className={cx('alertTitle')}>⚡️ 메세지 알림</p>
                                 <p className={cx('alertMessage01')}>

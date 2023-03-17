@@ -4,7 +4,7 @@ let data = [
         name : '이진기',
         name2 : '샤이니월드',
         profileImg : 'https://url.kr/up1r6t',
-        content : '숨어사는 겁쟁이엄마와 딸 덫에 걸린 채 혼자 숨겠지만 또 나갈 길 찾겠지',
+        content : '이건 마치 like breathing 한 숨같던 네 숨 속에 마치 상상하던 그 꿈 속에 빠진 듯',
         date : '2023.03.14'
     },
     {
@@ -12,7 +12,7 @@ let data = [
         name : '이태민',
         name2 : '김종현',
         profileImg : 'https://mblogthumb-phinf.pstatic.net/MjAxOTA4MDJfMjMg/MDAxNTY0Njc2NjgxMTg3._ijNAQncmRw1T6W8EjGH9ptCIhLES8bMkV_RUddJcXEg.5xKJ_yqSCaiqR1GBC1tb7GVFSUIez_iHOKdXuhfrSrEg.JPEG.ugdtejg/52319414_138261997220200_1099750469202040389_n.jpg?type=w800',
-        content : '날 잘도 처분하셨군 난 다시 무덤안, 좋을 땐 나도 싹다 지우시나봐 뭘 잊고 뭐가 남았나 아무도 모를 일',
+        content : '그냥 해봐 like breathing 어두웠던 네 숲 속이 마치 새하얗던 거품 속에 잠긴 듯',
         date : '2023.03.01'
     },
     {
@@ -20,7 +20,7 @@ let data = [
         name : '김기범',
         name2 : '최민호',
         profileImg : 'https://cdn.sisamagazine.co.kr/news/photo/202204/439439_443728_1827.jpg',
-        content : '평범같은건 안 바래 그건 너무 멀어. 평범함 그 어딘가 거긴 가보고 싶어 그 근처 어디라면 견딜게',
+        content : '작은 머리를 돌려가며 마른 햇살 내음을 즐기고 초록빛 바람이 내 머릿결 사이를 파고들어 지나가',
         date : '2023.02.28'
     },
     {
@@ -28,7 +28,7 @@ let data = [
         name : '김종현',
         name2 : '이태민',
         profileImg : 'https://dimg.donga.com/wps/SPORTS/IMAGE/2017/05/22/84499439.2.jpg',
-        content : '야 너 넌 별을 품은 푸른 하늘 같아 진짜야 야 왔네 네가 미쳐가면 나도 같이 미칠게',
+        content : '♚♚히어로즈 오브 더 스☆톰♚♚가입시$$전원 카드팩☜☜뒷면100%증정※ ♜월드오브 워크래프트♜펫 무료증정￥ 특정조건 §§디아블로3§§★공허의유산★초상화♜오버워치♜겐지스킨￥획득기회@@@ 즉시이동',
         date : '2023.03.14'
     },
     {
@@ -36,7 +36,7 @@ let data = [
         name : '최민호',
         name2 : '김기범',
         profileImg : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2YApOSdBGFTONFcLp3TSNp7Zk90eNRwq-qQ&usqp=CAU',
-        content : '너무나도 완벽한 우리집 가족 너무나도 매일 행복한 날들 골칫거리 아들과 따분한 남편 딸은 천재지만 완전 또라이 그래도 사랑은 넘쳐',
+        content : '누가 옳으냐가 아닌 무엇이 옳은가에 대해 이야기하는 것이 토론의 주 목적이 아닌가 생각합니다만? 문제라도?',
         date : '2023.03.01'
     },
     {
