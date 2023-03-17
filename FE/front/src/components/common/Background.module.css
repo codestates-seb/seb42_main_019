@@ -16,8 +16,21 @@
 	position: fixed;
 	top: 40%;
 }
-
-@media (max-width: 640px) {
+@media (max-width: 1080px) {
+	.copylist p {
+		width: 250px;
+		word-break: keep-all;
+	}
+	.img{
+		left: 20px;
+	}
+}
+@media (max-width: 810px) {
+	.copylist p {
+		width: 200px;
+	}
+}
+@media screen and (max-width: 640px) {
 	.copylist {
 		display: none;
 	}
