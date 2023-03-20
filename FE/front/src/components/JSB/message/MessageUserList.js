@@ -1,10 +1,9 @@
 import style from './MessageList1.module.css';
 import {FiThumbsDown} from 'react-icons/fi';
 import {FiThumbsUp} from 'react-icons/fi';
-import user from '../../../dummyData/SB/user'
 
-function MessageList1() {
-	const userData = user;
+
+function MessageUserList({profile}) {
 
 
 
@@ -14,22 +13,22 @@ function MessageList1() {
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.profileMessageBox}>
-							<img src={userData[0].thumbnail} className={style.profileMessage} alt="key"/>
+							<img src={profile.thumbnail} className={style.profileMessage} alt="key"/>
 						</div>
 						<div className={style.profileContent}>
-							<div className={style.profileName}>{userData[0].name}</div>
+							<div className={style.profileName}>{profile.name}</div>
 							<div className={style.message}>
-							{userData[0].region}
+							{profile.region}
 							</div>
 						</div>
 						<div className={style.messageVote}>
 							<div className={style.voteUp}>
 							<FiThumbsUp className={style.voteUp} size="20" color="#2f5a2d"/>
-							<span className={style.voteSpan}>{userData[0].voteUp}</span>
+							<span className={style.voteSpan}>{profile.voteUp}</span>
 							</div>
 							<div className={style.voteDown}>
 							<FiThumbsDown className={style.voteDown} size="20" color="#999999"/>
-							<span className={style.voteSpan}>{userData[0].voteDown}</span>
+							<span className={style.voteSpan}>{profile.voteDown}</span>
 							</div>
 						</div>
 					</div>
@@ -39,4 +38,4 @@ function MessageList1() {
 	);
 }
 
-export default MessageList1;
+export default MessageUserList;

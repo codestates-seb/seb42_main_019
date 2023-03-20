@@ -57,7 +57,7 @@
 	color: var(--light-gray);
 }
 
-a {
+.a {
 	color: var(--light-gray);
 	text-decoration: none;
 }

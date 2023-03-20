@@ -27,10 +27,22 @@ function Alert(){
         history('/myPage/messageBox')
     }
 
+    const handleClick2 = (id)=>{
+        const updatedList = []
+        setNoti(updatedList);
+        localStorage.setItem('noti',JSON.stringify(updatedList));
+        history('/alert');
+    }
+
 
     return(
         <>
             <Header2>메세지 알림</Header2>
+            <div onClick={()=>{handleClick2(noti.id)}} className={style.box1}>
+                <div className={style.notFooter}>
+                    <div className={style.listboxMessage}> Delete All Message! </div>
+                </div>
+            </div>  
             <ul className={cx('map')} >
             {noti.map((el) => <MapAlertMini handleClick={handleClick}  key = {el.id} message={el}/>)}
             </ul>
