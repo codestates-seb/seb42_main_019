@@ -15,7 +15,8 @@ public interface MessageMapper {
     @Mapping(source = "receiverName", target = "user.name")
     Message postDtoToMessage(MessagePostDto messagePostDto);
 
-    @Mapping(source = "user.name", target = "senderName")
+    @Mapping(source = "sender.name", target = "senderName") //TODO: mapping 추가
+    @Mapping(source = "user.name", target = "receiverName") //TODO: receiver.name -> user.name으로 변경
     MessageResponseDto messageToResponseDto(Message message);
 
     List<MessageResponseDto> messageToResponseDto(List<Message> messages);

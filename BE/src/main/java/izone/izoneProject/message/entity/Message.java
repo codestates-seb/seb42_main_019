@@ -1,6 +1,8 @@
 package izone.izoneProject.message.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import izone.izoneProject.audit.Auditable;
 import izone.izoneProject.user.entity.User;
@@ -10,16 +12,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-
+import java.time.LocalDateTime;
 
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Message /*extends Auditable*/ {
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,27 +33,28 @@ public class Message /*extends Auditable*/ {
     @OnDelete(action = OnDeleteAction.NO_ACTION) // 발신자 계정 삭제시 쪽지도 함께 삭제
     private User user;
 
-    //TODO: response상 출력될 sender
+    //TODO: response -> 출력될 sender
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SENDER_ID")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @OnDelete(action = OnDeleteAction.NO_ACTION) // 수신자 계정 삭제시 쪽지도 함께 삭제
     private User sender;
 
-    //TODO:
+    //TODO: response -> 출력될 receiver
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RECEIVER_ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User receiver;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "RECEIVER_ID")
-//    @OnDelete(action = OnDeleteAction.NO_ACTION) // 수신자 계정 삭제시 쪽지도 함께 삭제
-//    private User receiver;
-
     @Column(columnDefinition = "TEXT", nullable = false)
     private  String title;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
+
+    //TODO: localdatetime 생성
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private LocalDateTime time;
+
 
     @Column(nullable = false)
     private boolean deleteBySender;
@@ -58,40 +62,45 @@ public class Message /*extends Auditable*/ {
     @Column(nullable = false)
     private boolean deleteByReceiver;
 
-    //TODO: 보낸이가 쪽지 삭제시 해당 필드값을 true로 바꿔준다.
+    // 보낸이가 쪽지 삭제시 해당 필드값을 true로 바꿔준다.
     public void deleteBySender() {
         this.deleteByReceiver = true;
     }
 
-    //TODO: 받는이가 쪽지 삭제시 해당 필드값을 true로 바꿔준다.
+    // 받는이가 쪽지 삭제시 해당 필드값을 true로 바꿔준다.
     public void deleteByReceiver() {
         this.deleteByReceiver = true;
     }
 
-    //TODO: 보낸이와 받는이의 값 둘다 true일 경우 true를 반환한다.
-    //      해당 메서드 호출시 결과값 true => DB에서 쪽지 삭제
+    // 보낸이와 받는이의 값 둘다 true일 경우 true를 반환한다.
+    // 해당 메서드 호출시 결과값 true => DB에서 쪽지 삭제
     public boolean isDeleted() {
         return isDeleteBySender() && isDeleteByReceiver();
     }
 
-    //@Builder
-    //public Message(User sender, User receiver, String title, String content) {
-    //    this.sender   = sender;
-    //    this.receiver = receiver;
-    //    this.title = title;
-    //    this.content  = content;
-    //}
-    public void setReceiver(User user) {
-        this.user = user;
+
+    //TODO: User user -> User receiver 변경
+    public void setReceiver(User receiver) {
+        this.user = receiver;   //TODO: 메세지 전달시 받을 User 정보를 첨부하기 위해 this.user = receiver 정보를 끌어온다.
         if (!user.getReceivedList().contains(this)) {
             user.getReceivedList().add(this);
         }
     }
-    public void setSender(User user) {
-        this.user = user;
-        if (!user.getSentList().contains(this)) {
-            user.getSentList().add(this);
+
+    //TODO: User user -> User sender 변경
+    public void setSender(User sender) {
+        this.sender = sender;   //TODO:
+        if (!sender.getSentList().contains(this)) {
+            sender.getSentList().add(this);
         }
     }
 }
+
+//@Builder
+//public Message(User sender, User receiver, String title, String content) {
+//    this.sender   = sender;
+//    this.receiver = receiver;
+//    this.title = title;
+//    this.content  = content;
+//}
 
