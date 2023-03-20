@@ -5,6 +5,7 @@ import izone.izoneProject.book.dto.BookPostDto;
 import izone.izoneProject.book.dto.BookResponseDto;
 import izone.izoneProject.book.entity.Book;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface BookMapper {
