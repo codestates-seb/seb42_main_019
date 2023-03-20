@@ -3,13 +3,20 @@ package izone.izoneProject.message.service;
 import izone.izoneProject.message.entity.Message;
 import izone.izoneProject.message.repository.MessageRepository;
 import izone.izoneProject.user.entity.User;
+import izone.izoneProject.user.entity.UserComment;
 import izone.izoneProject.user.repository.UserRepository;
 import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.crypto.spec.OAEPParameterSpec;
+import javax.sound.midi.Receiver;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +47,9 @@ public class MessageService {
         message.setSender(sender);
         message.setReceiver(receiver);
 
+        User getSender = message.getSender();   //TODO: message에 저장될 sender 정보
+        User getReceiver = message.getReceiver();   //TODO: receiver 정보
+
         return messageRepository.save(message);
     }
 
@@ -52,48 +62,67 @@ public class MessageService {
     //}
 
     //TODO: 받은 쪽지 삭제
-   /* @Transactional
-    public Object deleteMessageByReceiver(long messageId, User user) {
-        Message message = messageRepository.findById(messageId).orElseThrow(() -> {
+//    @Transactional
+//    public Object deleteMessageByReceiver(long messageId, User user) {
+//        Message message = messageRepository.findById(messageId).orElseThrow(() -> {
+//
+//            return new IllegalArgumentException("메세지를 찾을 수 없습니다.");
+//        });
+//
+//        if (user == message.getSender()) {
+//            message.deleteByReceiver();
+//            if (message.isDeleted()) {
+//                messageRepository.delete(message);
+//                return "모두에게 삭제";
+//            }
+//            return "해당 유저에게만 삭제";
+//        } else {
+//            return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
+//        }
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public List<Message> sentMessage(User user) {
+//        List<Message> messages = messageRepository.findAllBySender(user);
+//
+//        return messages;
+//    }
 
-            return new IllegalArgumentException("쪽지를 찾을 수 없습니다.");
-        });
+//    @Transactional
+//    public Object deleteMessageBySender(long messageId, User user) {
+//        Message message = messageRepository.findById(messageId).orElseThrow(() -> {
+//
+//            return new IllegalArgumentException("쪽지를 찾을 수 없습니다.");
+//        });
+//
+//        if (user == message.getSender()) {
+//            message.deleteBySender();
+//            if (message.isDeleted()) {
+//                messageRepository.delete(message);
+//                return "모두에게 삭제";
+//            }
+//            return "해당 유저에게만 삭제";
+//        } else {
+//            return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
+//        }
+//    }
 
-        if (user == message.getSender()) {
-            message.deleteByReceiver();     // 받은 사람에게 쪽지 삭제
-            if (message.isDeleted()) {      // 받은 사람과 보낸 사람 모두 삭제시, DB에 삭제요청
-                messageRepository.delete(message);
-                return "모두에게 삭제";
-            }
-            return "해당 유저에게만 삭제";
-        } else {
-            return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
-        }
-    }*/
+    public Message findMessage(long messageId) {
+        return findVerifiedMessage(messageId);
+    }
 
-    //@Transactional(readOnly = true)
-    //public List<Message> sentMessage(User user) {
-    //    List<Message> messages = messageRepository.findAllBySender(user);
+    public Message findVerifiedMessage(long messageId) {
+        Optional<Message> optionalMessage = messageRepository.findById(messageId);
+        Message findMessage = optionalMessage.orElseThrow(() ->
+                new RuntimeException("Message Not Found"));
 
-    //    return messages;
-    //}
+        return findMessage;
+    }
 
-    /*@Transactional
-    public Object deleteMessageBySender(long messageId, User user) {
-        Message message = messageRepository.findById(messageId).orElseThrow(() -> {
+    public Page<Message> findMessages(long messageId, Pageable pageable) {
 
-            return new IllegalArgumentException("쪽지를 찾을 수 없습니다.");
-        });
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), pageable.getSort());
 
-        if (user == message.getSender()) {
-            message.deleteBySender();
-            if (message.isDeleted()) {
-                messageRepository.delete(message);
-                return "모두에게 삭제";
-            }
-            return "해당 유저에게만 삭제";
-        } else {
-            return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
-        }
-    }*/
+        return messageRepository.findByMessageId(messageId, pageRequest);
+    }
 }

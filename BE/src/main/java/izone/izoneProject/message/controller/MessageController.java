@@ -38,21 +38,21 @@ public class MessageController {
         return new ResponseEntity<>(mapper.messageToResponseDto(sendMessage), HttpStatus.CREATED);
     }
 
-//    @GetMapping("/messages/received")
-//    public ResponseEntity receiverMessage(@RequestBody MessageDto message) {
+//    @GetMapping("/messages/{sender-id}")
+//    public ResponseEntity sentMessage(@PathVariable("sender-id") long senderId) {
 //
-//        return ResponseEntity.ok(message.getContent());
-//    }
+//        Message message = messageService.findMessage()
 //
-//    @DeleteMapping("/messages/received/{user-id}")
-//    public ResponseEntity deleteReceivedMessage(@PathVariable("user-id") long userId) {
 //
-//        return new ResponseEntity<>(HttpStatus.OK);
+//        return new ResponseEntity<>(mapper.messageToResponseDto(), HttpStatus.OK);
 //    }
 
-    @DeleteMapping("/message/{receiver-id}")
-    public ResponseEntity deleteReceivedMessage (@PathVariable("receiver-id") @Positive long receiverId) {
+    @GetMapping("")
 
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+
+    @DeleteMapping("/messages/received/{user-id}")
+    public ResponseEntity deleteReceivedMessage(@PathVariable("user-id") long userId) {
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
