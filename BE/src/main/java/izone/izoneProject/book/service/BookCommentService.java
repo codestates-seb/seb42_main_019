@@ -5,6 +5,9 @@ import izone.izoneProject.book.entity.BookComment;
 import izone.izoneProject.book.repository.BookCommentRepository;
 import izone.izoneProject.book.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,29 +30,37 @@ public class BookCommentService {
     public BookComment editBookComment(long bookId, BookComment bookComment){
         Book book = findBook(bookId);
         BookComment foundComment = findComment(bookComment.getBookCommentId());
-
         foundComment.setContent(bookComment.getContent());
-
-        return commentRepository.save(bookComment);
+        return commentRepository.save(foundComment);
     }
     /*
      * bookComment 데이터를 가져오는 메서드
      * */
     public BookComment getBookComment(long commentId){
-        return findComment(commentId); //이걸 왜써야지?
+        return findComment(commentId);
+    }
+    public Page<BookComment> getBookComments(long bookId, Pageable pageable){
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() -1 , pageable.getPageSize(), pageable.getSort());
+        return commentRepository.findByBookId(bookId, pageRequest);
     }
 
 
-    public void deleteComment(long bookId, long commentId) {
-        Book foundBook = findBook(bookId);
-        BookComment foundComment = findComment(commentId);
+//    public void deleteComment(long bookId, long commentId) {
+//        Book foundBook = findBook(bookId);
+//        BookComment foundComment = findComment(commentId);
+//
+//        BookComment verifiedComment = foundBook.getBookCommentList().stream()
+//                .filter(c -> c.getBookCommentId() == commentId)
+//                .findFirst()
+//                .orElseThrow(() -> new RuntimeException("comment is not the same"));
+//
+//        commentRepository.deleteById(verifiedComment.getBookCommentId());
+//    }
 
-        BookComment verifiedComment = foundBook.getBookCommentList().stream()
-                .filter(c -> c.getBookCommentId() == commentId)
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("comment is not the same"));
+    public void deleteComment(long commentId) {
+        BookComment comment = findComment(commentId);
 
-        commentRepository.deleteById(verifiedComment.getBookCommentId());
+        commentRepository.delete(comment);
     }
 
     public static String test(int num) {
