@@ -38,17 +38,23 @@ public class MessageController {
         return new ResponseEntity<>(mapper.messageToResponseDto(sendMessage), HttpStatus.CREATED);
     }
 
-//    @GetMapping("/messages/received")
-//    public ResponseEntity receiverMessage(@RequestBody MessageDto message) {
-//
-//        return ResponseEntity.ok(message.getContent());
-//    }
-//
-//    @DeleteMapping("/messages/received/{user-id}")
-//    public ResponseEntity deleteReceivedMessage(@PathVariable("user-id") long userId) {
-//
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @GetMapping("/messages/{sender-id}")
+    public ResponseEntity sentMessage(@PathVariable("sender-id") long senderId) {
+
+        Message message = messageService.find
+
+
+        return ResponseEntity<>(mapper.messageToResponseDto(), HttpStatus.OK);
+    }
+
+    @GetMapping("")
+
+
+    @DeleteMapping("/messages/received/{user-id}")
+    public ResponseEntity deleteReceivedMessage(@PathVariable("user-id") long userId) {
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @DeleteMapping("/message/{receiver-id}")
     public ResponseEntity deleteReceivedMessage (@PathVariable("receiver-id") @Positive long receiverId) {
