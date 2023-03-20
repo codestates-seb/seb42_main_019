@@ -19,7 +19,6 @@ public class UserComment extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentId;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     @OnDelete(action= OnDeleteAction.CASCADE)
