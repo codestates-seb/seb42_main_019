@@ -3,10 +3,14 @@ import Header2 from '../../components/common/Header2';
 import MessageList1 from '../../components/JSB/message/MessageList1'
 import Button from '../../components/common/Button';
 import classNames from 'classnames/bind';
-import message from '../../dummyData/SB/messageContent1';
+import messageContent1 from '../../dummyData/SB/messageContent1';
+import { useParams } from 'react-router-dom';
 
 const MessageView=()=>{
     const cx = classNames.bind(style);
+    const {id} = useParams();
+	const message = messageContent1.find((message)=>message.id === id);
+
 
     return(
         <>
@@ -16,11 +20,17 @@ const MessageView=()=>{
             <MessageList1 />
             <p className={cx('mvtext')}>메시지 내용</p>
             <div className={cx('viewContent')}>
-            <div className={cx('viewContent2')}>
-            {message[1].content}
+                {message.map((el)=>{
+                    return(
+                        <>
+                            <div key={el.id} className={cx('viewContent2')}>
+                            {el[id].content}
+                            </div>
+                        </>
+                    )
+                })}
             </div>
-        </div>
-        <Button>메시지 답장하기</Button>
+            <Button>메시지 답장하기</Button>
         </div>
         </>
     )

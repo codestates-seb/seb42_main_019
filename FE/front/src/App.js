@@ -22,6 +22,7 @@ import ErrorPage from './pages/HJ/404';
 import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
+import Profile from './components/JSB/message/Message4';
 
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
 					<Route path='/search/detail' element={<BookSearch />}></Route>
 
 					<Route path='/myPage/messageBox' element={<MessageList02 />}></Route>
-					<Route path='/myPage/messageBox/messages' element={<MessageView />}></Route>
+					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
 
 					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
@@ -61,9 +62,9 @@ function App() {
 					<Route path='/error' element={<ErrorPage />}></Route>
 					{/*<Route path='/mycomment' element
 					<Route path='/comments' element*/}
-				</Routes>
 
-				
+					<Route path='/profiles/:id' element={<Profile />}></Route></Routes>
+
 			</div>
 		</div>
 	);

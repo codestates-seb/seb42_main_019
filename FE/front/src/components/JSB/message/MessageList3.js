@@ -1,36 +1,34 @@
 import style from './MessageList3.module.css';
-import data from '../../../dummyData/SB/messageContent1'
 import classNames from 'classnames/bind';
+import {useState } from 'react';
 
-function MessageList3() {
-	
+function MessageList3({messageContent1}) {
 	const cx = classNames.bind(style);
+	const [isOn, setIsOn] = useState(false);
+
+	const handleToggle = ()=>{
+		setIsOn(!isOn);
+	};
+
+
 
 
 	return (
-		<>
-			{data.map((el)=>{
-                return(
-                    <>
-                    <button className={cx('messageBtn')}>
-				<div className={cx('notFooter')}>
-					<div className={cx('listboxMessage')}>
-						<div className={cx('profileContent')}>
-							<div key={el.id} className={cx('profileName')}>{el.name}</div>
-							<div className={cx('message')}>
-								{el.content}
-							</div>
-						</div>
-                        <span className={cx('messageDate')}>{el.date}</span>
-					</div>
-				</div>
-			</button>
-                    </>
-                )
-            })}
-            
-		</>
-	);
-}
-
-export default MessageList3;
+		
+		
+<>
+<div className={cx('all')} onClick={handleToggle} key={messageContent1.id}>
+	<div className={cx('box1')}>
+		<p className={cx('name', { 'clicked': isOn })}>{messageContent1.name}</p>
+		<p className={cx('content', { 'clicked': isOn })}> {messageContent1.content}</p>
+	</div>
+	<p className={cx('date', { 'clicked': isOn })} >{messageContent1.date}</p>
+</div>
+</>
+		
+		
+		
+		);
+	}
+	
+	export default MessageList3;

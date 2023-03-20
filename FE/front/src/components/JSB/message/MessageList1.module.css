@@ -22,7 +22,11 @@
     display: flex;
 }
 
-
+.profileMessage {
+    width: 62px;
+    height: 62px;
+    border-radius: 10px;
+}
 
 .profileContent {
     display: flex;

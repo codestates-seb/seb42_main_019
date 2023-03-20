@@ -1,7 +1,7 @@
 import style from './MessageList1.module.css';
 import {FiThumbsDown} from 'react-icons/fi';
 import {FiThumbsUp} from 'react-icons/fi';
-import Avatar from './Avatar';
+import key from '../../../assets/key.jpg'
 
 function MessageList1() {
 
@@ -13,7 +13,7 @@ function MessageList1() {
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.profileMessageBox}>
-							<Avatar className={style.profileMessage}/>
+							<img src={key} className={style.profileMessage} alt="key"/>
 						</div>
 						<div className={style.profileContent}>
 							<div className={style.profileName}>저녁밥추천받는다ㄱ</div>
@@ -23,11 +23,11 @@ function MessageList1() {
 						</div>
 						<div className={style.messageVote}>
 							<div className={style.voteUp}>
-							<button className={style.voteUp} onClick={()=>{console.log(3)}} ><FiThumbsUp size="20" color="#2f5a2d"/></button>
+							<FiThumbsUp className={style.voteUp} size="20" color="#2f5a2d"/>
 							<span className={style.voteSpan}>292</span>
 							</div>
 							<div className={style.voteDown}>
-							<button className={style.voteDown} onClick={()=>{console.log(4)}} ><FiThumbsDown size="20" color="#999999"/></button>
+							<FiThumbsDown className={style.voteDown} size="20" color="#999999"/>
 							<span className={style.voteSpan}>4024</span>
 							</div>
 						</div>
