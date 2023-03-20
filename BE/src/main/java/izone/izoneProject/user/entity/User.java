@@ -1,7 +1,8 @@
 package izone.izoneProject.user.entity;
 
+import izone.izoneProject.audit.Auditable;
 import izone.izoneProject.book.entity.Book;
-import izone.izoneProject.common.audit.Auditable;
+import izone.izoneProject.message.entity.Message;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,13 +27,17 @@ public class User extends Auditable {
     private String password;
     @Column
     private String region;
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    List<String> roles = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ElementCollection(fetch = FetchType.EAGER)
+    List<String> roles = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    List<Message> receivedList = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    List<Message> sentList = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
     List<UserLike> likeList = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     List<UserDislike> dislikeList = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     List<UserComment> UserCommentList = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Book> bookList = new ArrayList<>();
@@ -45,19 +50,6 @@ public class User extends Auditable {
         }
     }
 
-
-    public void setComment(UserComment userComment) {
-        this.getUserCommentList().add(userComment);
-        if (userComment.getUser() != this) {
-            userComment.setUser(this);
-        }
-    }
-    public void setUserDislike(UserDislike userDislike) {
-        this.getDislikeList().add(userDislike);
-        if (userDislike.getUser() != this) {
-            userDislike.setUser(this);
-        }
-    }
     public void setUserLike(UserLike userLike) {
         this.getLikeList().add(userLike);
         if (userLike.getUser() != this) {
@@ -65,4 +57,31 @@ public class User extends Auditable {
         }
     }
 
+    public void setUserDislike(UserDislike userDislike) {
+        this.getDislikeList().add(userDislike);
+        if (userDislike.getUser() != this) {
+            userDislike.setUser(this);
+        }
+    }
+
+    public void setComment(UserComment userComment) {
+        this.getUserCommentList().add(userComment);
+        if (userComment.getUser() != this) {
+            userComment.setUser(this);
+        }
+    }
+
+    public void setSentMessage(Message message) {
+        this.getSentList().add(message);
+        if (message.getUser() != this) {
+            message.setUser(this);
+        }
+    }
+
+    public void setReceivedMessage(Message message) {
+        this.getReceivedList().add(message);
+        if (message.getUser() != this) {
+            message.setUser(this);
+        }
+    }
 }

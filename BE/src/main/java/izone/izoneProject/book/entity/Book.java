@@ -1,8 +1,7 @@
 package izone.izoneProject.book.entity;
 
-import izone.izoneProject.book.dto.BookPostDto;
+import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.user.entity.User;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Table(name = "BOOK")
-public class Book {
+public class Book extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOOK_ID", updatable = false)
@@ -61,4 +60,9 @@ public class Book {
 
     @OneToMany(mappedBy = "book")
     private List<BookLike> bookLikeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "book")
+    private List<BookComment> bookCommentList = new ArrayList<>();
 }
+
+//isbn 책을 누를 때?
