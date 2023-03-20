@@ -3,16 +3,13 @@ import ModalPopUp from "../../components/KHJ/ModalPopView";
 
 function Modal({ children }) {
     const [isModalOpen, setModalOpen] = useState(false);
-    function modalToggleHandler() {
-        setModalOpen(!isModalOpen);
-    }
     function modalToggleProps(boolean) {
         setModalOpen(boolean);
     }
     
     return (
         <>
-            <button onClick={modalToggleHandler}>{children}</button>
+            <button onClick={() => modalToggleProps(!isModalOpen)}>{children}</button>
             <ModalPopUp onevent={modalToggleProps} open={isModalOpen}/>
         </>
     )

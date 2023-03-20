@@ -59,3 +59,7 @@ button, input{
     outline: 0;
 	background-color: transparent;
 }
+
+main{
+	width: 530px;
+}
