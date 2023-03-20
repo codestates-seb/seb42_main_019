@@ -1,10 +1,7 @@
 package izone.izoneProject.message.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import izone.izoneProject.audit.Auditable;
 import izone.izoneProject.user.entity.User;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,11 +38,6 @@ public class Message /*extends Auditable*/ {
     @JoinColumn(name = "RECEIVER_ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User receiver;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "RECEIVER_ID")
-//    @OnDelete(action = OnDeleteAction.NO_ACTION) // 수신자 계정 삭제시 쪽지도 함께 삭제
-//    private User receiver;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private  String title;

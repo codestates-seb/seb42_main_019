@@ -23,13 +23,23 @@ public class UserComment extends Auditable {
     @JoinColumn(name = "user_id")
     @OnDelete(action= OnDeleteAction.CASCADE)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "recipient_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private User recipient;
     @Column(nullable = false, columnDefinition="TEXT")
     private String content;
 
-    public void setUser(User user) {//User 양방향 매핑 메소드
+    public void setUser(User user) {
         this.user = user;
         if (!user.getUserCommentList().contains(this)) {
             user.getUserCommentList().add(this);
+        }
+    }
+    public void setRecipient(User recipient) {
+        this.recipient = recipient;
+        if (!recipient.getUserCommentList().contains(this)) {
+            recipient.getUserCommentList().add(this);
         }
     }
 }

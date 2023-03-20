@@ -1,6 +1,6 @@
 package izone.izoneProject.user.entity;
 
-import izone.izoneProject.audit.Auditable;
+import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.book.entity.Book;
 import izone.izoneProject.message.entity.Message;
 import lombok.Getter;
