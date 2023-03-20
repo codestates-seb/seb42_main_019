@@ -23,7 +23,6 @@ import Missing from './pages/HJ/Missing';
 import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
-import Profile from './components/JSB/message/Message4';
 
 
 function App() {
@@ -53,17 +52,17 @@ function App() {
 					<Route path='/myPage/messageBox' element={<MessageList02 />}></Route>
 					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
-
+					
 					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
 					<Route path='/myPage/tradeBookList'	element={<TradeBookList />}></Route>
-
+					
 					<Route path='/myPage/userRate' element={<UserRateList />}></Route>
+
 					<Route path='/myRate' element={<MyRateList />}></Route>
 
 					<Route path='/*' element={<ErrorPage />}></Route>
 					<Route path='/missing' element={<Missing />}></Route>
 
-					<Route path='/profiles/:id' element={<Profile />}></Route>
         </Routes>
 
 			</div>

@@ -8,8 +8,8 @@ import { useParams } from 'react-router-dom';
 
 const MessageView=()=>{
     const cx = classNames.bind(style);
-    const {id} = useParams();
-	const message = messageContent1.find((message)=>message.id === id);
+    const params = useParams();
+    const profile = messageContent1[params.id];
 
 
     return(
@@ -20,15 +20,9 @@ const MessageView=()=>{
             <MessageList1 />
             <p className={cx('mvtext')}>메시지 내용</p>
             <div className={cx('viewContent')}>
-                {message.map((el)=>{
-                    return(
-                        <>
-                            <div key={el.id} className={cx('viewContent2')}>
-                            {el[id].content}
+                            <div key={profile.id} className={cx('viewContent2')}>
+                            {profile.content}
                             </div>
-                        </>
-                    )
-                })}
             </div>
             <Button>메시지 답장하기</Button>
         </div>

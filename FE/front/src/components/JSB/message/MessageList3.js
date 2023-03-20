@@ -8,6 +8,7 @@ function MessageList3({messageContent1}) {
 
 	const handleToggle = ()=>{
 		setIsOn(!isOn);
+		localStorage.setItem('isOn', JSON.stringify(setIsOn));
 	};
 
 

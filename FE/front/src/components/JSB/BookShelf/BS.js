@@ -1,5 +1,4 @@
 import style from './BSlist.module.css';
-import xIcon from '../../../assets/xIcon.png';
 
 const BS = function ({ bookData }) {
 	return (
@@ -19,9 +18,6 @@ const BS = function ({ bookData }) {
 								{bookData.time}시간 전
 							</p>
 						</div>
-						<button className={style.xIconbox}>
-                        <img className={style.xicon} src={xIcon} alt='xicon' />
-                        </button>
 						<div className={style.grade}>{bookData.condition}</div>
 					</div>
 				</div>

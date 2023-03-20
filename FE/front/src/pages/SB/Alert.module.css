@@ -1,3 +1,27 @@
 .map {
     min-height: 640px;
 }
+
+.notFooter {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.listboxMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 60px;
+    background-color: var(--green);
+    color: var(--light-gray);
+}
+
+.map  {
+    cursor: pointer;
+}
