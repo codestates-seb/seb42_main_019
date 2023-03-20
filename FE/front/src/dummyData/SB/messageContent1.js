@@ -1,4 +1,4 @@
-let data = [
+let messageContent1 = [
     {
         id : 1,
         name : '이진기',
@@ -84,4 +84,4 @@ let data = [
     
 ]
 
-export default data;
+export default messageContent1;
