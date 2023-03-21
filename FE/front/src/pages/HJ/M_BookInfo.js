@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalPopUp from "../../components/KHJ/ModalPopBookInfo";
 
-function Modal({ children }) {
+function Modal({ children, bookData }) {
     const [isModalOpen, setModalOpen] = useState(false);
     function modalToggleProps(boolean) {
         setModalOpen(boolean);
@@ -11,7 +11,7 @@ function Modal({ children }) {
     return (
         <>
             <button onClick={() => modalToggleProps(!isModalOpen)}>{children}</button>
-            <ModalPopUp onevent={modalToggleProps} open={isModalOpen}/>
+            <ModalPopUp bookData={bookData} onevent={modalToggleProps} open={isModalOpen}/>
         </>
     )
 }
