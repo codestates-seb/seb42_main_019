@@ -15,7 +15,6 @@ import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
 import UserRateList from './pages/HJ/UserRateList';
-import MyRateList from './pages/HJ/MyRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import TradeBookList from './pages/SB/TradeBookList';
 import ErrorPage from './pages/HJ/404';
@@ -40,7 +39,6 @@ function App() {
 					<Route path='/alert' element={<Alert />}></Route>
 
 					<Route path='/createBook' element={<CreateBook />}></Route>
-					<Route path='/myPage' element={<MyPage />}></Route>
 
 					<Route path='/customerDetailView' element={<CustomerDetailView />}></Route>
 					<Route path='/sellerDetailView' element={<SellerDetailView />}></Route>
@@ -48,7 +46,9 @@ function App() {
 
 					<Route path='/search' element={<BookSearchResult />}></Route>
 					<Route path='/search/detail' element={<BookSearch />}></Route>
+					<Route path='/search/detail/:isbn' element={<BookSearch />}></Route>
 
+					<Route path='/myPage' element={<MyPage />}></Route>
 					<Route path='/myPage/messageBox' element={<MessageList02 />}></Route>
 					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
@@ -56,9 +56,7 @@ function App() {
 					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
 					<Route path='/myPage/tradeBookList'	element={<TradeBookList />}></Route>
 					
-					<Route path='/myPage/userRate' element={<UserRateList />}></Route>
-
-					<Route path='/myRate' element={<MyRateList />}></Route>
+					<Route path='/myPage/myRate' element={<UserRateList />}></Route>
 
 					<Route path='/*' element={<ErrorPage />}></Route>
 					<Route path='/missing' element={<Missing />}></Route>

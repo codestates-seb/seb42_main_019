@@ -15,6 +15,7 @@ function CommentList() {
     const [isUsername, setUsername] = useState('현재유저네임');
     const onChange = (e) => setContent(e.target.value);
     function addComment(){
+        if(isContent === '') return
         const content ={
             id : commentList.length +1,
             name : isUsername,

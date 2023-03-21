@@ -6,7 +6,7 @@ import ratedata from "../../dummyData/ratedata";
 function BookSearchResult() {
     return (
         <>
-            <Header2>나에게 남긴 후기</Header2>
+            <Header2>내게 남긴 후기</Header2>
             <main>
                 <RateList ratedata={ratedata}/>
             </main>

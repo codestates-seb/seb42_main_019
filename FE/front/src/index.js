@@ -5,13 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollTop from './components/KHJ/ScrollTop';
+import {
+	RecoilRoot,
+	atom,
+	selector,
+	useRecoilState,
+	useRecoilValue
+} from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<App />
-			<ScrollTop />
+			<RecoilRoot>
+				<App />
+				<ScrollTop />
+			</RecoilRoot>
 		</BrowserRouter>
 	</React.StrictMode>,
 );
