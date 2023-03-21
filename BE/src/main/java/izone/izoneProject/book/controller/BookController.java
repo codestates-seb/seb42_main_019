@@ -4,14 +4,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import izone.izoneProject.book.dto.BookPatchDto;
-import izone.izoneProject.book.dto.BookPostDto;
-import izone.izoneProject.book.dto.BookResponseDto;
-import izone.izoneProject.book.dto.KaKaoBookInfoResponse;
+import izone.izoneProject.book.dto.*;
 import izone.izoneProject.book.entity.Book;
 import izone.izoneProject.book.mapper.BookMapper;
+import izone.izoneProject.book.service.BookLikeService;
 import izone.izoneProject.book.service.BookService;
 import izone.izoneProject.common.utils.Uri;
+import izone.izoneProject.user.entity.User;
+import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,8 +31,10 @@ import java.util.*;
 @RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
+    private final UserService userService;
     private final BookService bookService;
     private final BookMapper mapper;
+    private final BookLikeService bookLikeService;
     public static final String DEFAULT_URI = "/books";
 
     @Value("${kakao.key}")
@@ -78,6 +80,28 @@ public class BookController {
     public ResponseEntity<?> detailBook(@PathVariable("bookId") @Positive long bookId) {
         Book book = bookService.findBook(bookId);
         BookResponseDto response = mapper.bookToResponseDto(book);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{bookId}/like")
+    public ResponseEntity<?> bookLike(/*long userId,*/
+                                        @PathVariable("bookId") @Positive long bookId) {
+//        User user = userService.verifyUser(userId);
+        Book book = bookService.findBook(bookId);
+        bookLikeService.likeCount(/*user, */book);
+        BookLikeResponseDto response = mapper.bookToBookLikeResponseDto(book);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{bookId}/dislike")
+    public ResponseEntity<?> bookDislike(/*long userId,*/
+                                          @PathVariable("bookId") @Positive long bookId) {
+//        User user = userService.verifyUser(userId);
+        Book book = bookService.findBook(bookId);
+        bookLikeService.dislikeCount(/*user, */book);
+        BookDislikeResponseDto response = mapper.bookToBookDislikeResponseDto(book);
 
         return ResponseEntity.ok(response);
     }

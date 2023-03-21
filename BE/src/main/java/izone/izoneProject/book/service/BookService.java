@@ -73,7 +73,7 @@ public class BookService {
         bookRepository.delete(book);
     }
 
-    private Book findVerifiedBookById(long bookId) {
+    public Book findVerifiedBookById(long bookId) {
         Optional<Book> optionalBook = bookRepository.findById(bookId);
         Book foundBook = optionalBook.orElseThrow(RuntimeException::new);
 

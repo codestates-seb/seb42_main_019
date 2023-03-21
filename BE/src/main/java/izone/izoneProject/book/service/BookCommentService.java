@@ -40,7 +40,7 @@ public class BookCommentService {
         return findComment(commentId);
     }
     public Page<BookComment> getBookComments(long bookId, Pageable pageable){
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() -1 , pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() /*-1*/ , pageable.getPageSize(), pageable.getSort());
         return commentRepository.findByBookId(bookId, pageRequest);
     }
 

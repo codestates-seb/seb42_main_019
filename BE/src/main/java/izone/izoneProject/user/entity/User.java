@@ -31,36 +31,22 @@ public class User extends Auditable {
     List<String> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Book> bookList = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<UserLike> likeList = new ArrayList<>();
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<UserDislike> dislikeList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     List<UserComment> UserCommentList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     List<Message> sentList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     List<Message> receivedList = new ArrayList<>();
+    @Column(columnDefinition = "integer default 0")
+    private int likeCount;
+    @Column(columnDefinition = "integer default 0")
+    private int dislikeCount;
 
 
     public void setBook(Book book) {
         this.getBookList().add(book);
         if (book.getUser() != this) {
             book.setUser(this);
-        }
-    }
-
-    public void setUserLike(UserLike userLike) {
-        this.getLikeList().add(userLike);
-        if (userLike.getUser() != this) {
-            userLike.setUser(this);
-        }
-    }
-
-    public void setUserDislike(UserDislike userDislike) {
-        this.getDislikeList().add(userDislike);
-        if (userDislike.getUser() != this) {
-            userDislike.setUser(this);
         }
     }
 
@@ -83,5 +69,13 @@ public class User extends Auditable {
         if (message.getUser() != this) {
             message.setUser(this);
         }
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public void setDislikeCount(int dislikeCount) {
+        this.dislikeCount = dislikeCount;
     }
 }

@@ -1,33 +1,30 @@
 package izone.izoneProject.user.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import izone.izoneProject.common.enums.LikeStatus;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userDislikeId;
+    private long userLikeId;
+    @Enumerated(EnumType.STRING)
+    private LikeStatus status;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
     @ManyToOne
-    @JoinColumn(name = "like_user_id")
-    private User likedUser;
+    @JoinColumn(name = "liker_id")
+    private User liker;
 
-    public void setLikedUser(User likedUser) {//User 양방향 매핑 메소드
-        this.likedUser = likedUser;
-        if (!likedUser.getLikeList().contains(this)) {
-            likedUser.getLikeList().add(this);
-        }
+    public void setLiker(User liker) {
+        this.liker = liker;
     }
 }

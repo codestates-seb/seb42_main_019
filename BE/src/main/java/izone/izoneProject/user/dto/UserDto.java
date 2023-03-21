@@ -50,4 +50,25 @@ public class UserDto {
         private int disLikeCount;
         private LocalDateTime createdAt;
     }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    @Builder
+    public static class UserLikeResponse {
+        private long likerId;
+        private int likeCount;
+
+    }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    @Builder
+    public static class UserDislikeResponse {
+        private long likerId;
+        private int dislikeCount;
+    }
 }

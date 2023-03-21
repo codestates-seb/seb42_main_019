@@ -1,10 +1,13 @@
 package izone.izoneProject.user.service;
 
+import izone.izoneProject.common.enums.LikeStatus;
+import izone.izoneProject.common.exception.BusinessLogicException;
+import izone.izoneProject.common.exception.ExceptionCode;
 import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.entity.UserComment;
-import izone.izoneProject.user.entity.UserDislike;
 import izone.izoneProject.user.entity.UserLike;
 import izone.izoneProject.user.repository.CommentRepository;
+import izone.izoneProject.user.repository.UserLikeRepository;
 import izone.izoneProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,6 +26,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
+    private final UserLikeRepository userLikeRepository;
 
     public User createUser(User user) {
         if (checkEmail(user.getEmail())) {
@@ -53,7 +57,7 @@ public class UserService {
     }
 
     public Page<User> getUsers(Pageable pageable) {
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber()- 1, pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
         return userRepository.findAll(pageRequest);
     }
 
@@ -85,7 +89,7 @@ public class UserService {
     }
 
     public Page<UserComment> getComments(long userId, Pageable pageable) {
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber()- 1, pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
         return commentRepository.findByUserId(userId, pageRequest);
     }
 
@@ -124,6 +128,55 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByEmail(email);
         User foundUser = optionalUser.orElseThrow(() -> new RuntimeException("comment not found"));
         return foundUser;
+    }
+
+    public void likeCount(/*User user, */User liker) {
+//        UserLike userLike = findUserLike(user, liker);
+        UserLike userLike = findUserLike(/*user, */liker);
+
+        if (userLike.getStatus().toString().equals("LIKE")) {
+            throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
+        } else if (userLike.getStatus().toString().equals("NONE")) {
+            userLike.setStatus(LikeStatus.LIKE);
+        } else if (userLike.getStatus().toString().equals("DISLIKE")) {
+            userLike.setStatus(LikeStatus.LIKE);
+            liker.setDislikeCount(liker.getDislikeCount() + 1);
+        }
+        liker.setLikeCount(liker.getLikeCount() + 1);
+    }
+
+    public void dislikeCount(/*User user, */User liker) {
+//        UserLike userLike = findUserLike(user, liker);
+        UserLike userLike = findUserLike(/*user, */liker);
+
+        if (userLike.getStatus().toString().equals("DISLIKE")) {
+            throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
+        } else if (userLike.getStatus().toString().equals("NONE")) {
+            userLike.setStatus(LikeStatus.DISLIKE);
+        } else if (userLike.getStatus().toString().equals("LIKE")) {
+            userLike.setStatus(LikeStatus.DISLIKE);
+            liker.setLikeCount(liker.getLikeCount() - 1);
+        }
+
+        liker.setDislikeCount(liker.getDislikeCount() - 1);
+    }
+
+    public UserLike findUserLike(/*User user, */User liker) {
+//        Optional<UserLike> findUserLike = userLikeRepository.findByLikerAndUser(user, liker);
+//        return findUserLike.orElseGet(() -> createLike(user, liker));
+
+        Optional<UserLike> findUserLike = userLikeRepository.findByLiker(/*user, */liker);
+        return findUserLike.orElseGet(() -> createLike(/*user, */liker));
+    }
+
+    public UserLike createLike(/*User user, */User liker) {
+        UserLike userLike = UserLike.builder()
+                .status(LikeStatus.NONE)
+//                .liker(user)
+                .user(liker)
+                .build();
+
+        return userLikeRepository.save(userLike);
     }
 
 }
