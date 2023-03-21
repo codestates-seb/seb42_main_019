@@ -11,5 +11,4 @@ public class IzoneProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IzoneProjectApplication.class, args);
 	}
-
 }

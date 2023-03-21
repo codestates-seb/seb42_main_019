@@ -59,11 +59,11 @@ logging:
     org.hibernate.SQL: trace
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
-# jwt:
-#   secret: ${secret_key}
-#   access-token-expiration-minutes: 1800000
-#   refresh-token-expiration-minutes: 604800000
+jwt:
+  key: ${JWT_SECRET_KEY}
+  access-token-expiration-minutes: 1800000
+  refresh-token-expiration-minutes: 604800000
+mail:
+  address:
+    admin: ${MAIL_ADDRESS_ADMIN}
 
-# mail:
-#   address:
-#     admin: ${admin_mail}

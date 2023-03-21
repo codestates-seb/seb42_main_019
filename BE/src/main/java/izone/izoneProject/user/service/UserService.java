@@ -1,5 +1,6 @@
 package izone.izoneProject.user.service;
 
+import izone.izoneProject.security.utils.CustomAuthorityUtils;
 import izone.izoneProject.common.enums.LikeStatus;
 import izone.izoneProject.common.exception.BusinessLogicException;
 import izone.izoneProject.common.exception.ExceptionCode;
@@ -13,27 +14,34 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
     private final UserLikeRepository userLikeRepository;
+    private final PasswordEncoder encoder;
+    private final CustomAuthorityUtils authorityUtils;
 
     public User createUser(User user) {
-        if (checkEmail(user.getEmail())) {
-            throw new RuntimeException("email is exist");
-        } else if (checkName(user.getName())) {
+        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
+        optionalUser.ifPresent(u-> new RuntimeException("user already exist"));
+        if (checkName(user.getName())) {
             throw new RuntimeException("name is exist");
         }
+        user.setPassword(encoder.encode(user.getPassword()));
+        List<String> roles = authorityUtils.createRoles(user.getEmail());
+        user.setRoles(roles);
 
 
         return userRepository.save(user);
@@ -57,7 +65,7 @@ public class UserService {
     }
 
     public Page<User> getUsers(Pageable pageable) {
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         return userRepository.findAll(pageRequest);
     }
 
@@ -89,7 +97,7 @@ public class UserService {
     }
 
     public Page<UserComment> getComments(long userId, Pageable pageable) {
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
         return commentRepository.findByUserId(userId, pageRequest);
     }
 
@@ -101,12 +109,15 @@ public class UserService {
         return commentRepository.findByUserId(foundUser.getUserId());
     }
 
-    public boolean checkEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
-
     public boolean checkName(String name) {
         return userRepository.existsByName(name);
+    }
+
+    public UserComment verifyComment(long commentId) {
+
+        Optional<UserComment> optionalUserComment = commentRepository.findById(commentId);
+        UserComment findComment = optionalUserComment.orElseThrow(() -> new RuntimeException("comment not found"));
+        return findComment;
     }
 
     public User verifyUser(long userId) {
@@ -115,18 +126,9 @@ public class UserService {
         return foundUser;
     }
 
-    public UserComment verifyComment(long commentId) {
-
-        Optional<UserComment> optionalUserComment = commentRepository.findById(commentId);
-        UserComment findComment =
-                optionalUserComment.orElseThrow(() -> new RuntimeException("comment not found"));
-
-        return findComment;
-    }
-
-    public User verifyUser(String email) {
+    public User verifyEmail(String email) {
         Optional<User> optionalUser = userRepository.findByEmail(email);
-        User foundUser = optionalUser.orElseThrow(() -> new RuntimeException("comment not found"));
+        User foundUser = optionalUser.orElseThrow(() -> new RuntimeException("user not found"));
         return foundUser;
     }
 
