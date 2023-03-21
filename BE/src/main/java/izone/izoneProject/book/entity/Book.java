@@ -1,5 +1,6 @@
 package izone.izoneProject.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.user.entity.User;
 import lombok.Getter;
@@ -58,11 +59,22 @@ public class Book extends Auditable {
     @Column(name = "EXCHANGE")
     private String exchange;
 
-    @OneToMany(mappedBy = "book")
-    private List<BookLike> bookLikeList = new ArrayList<>();
+    @Column(columnDefinition = "integer default 0")
+    private int likeCount;
+
+    @Column(columnDefinition = "integer default 0")
+    private int dislikeCount;
 
     @OneToMany(mappedBy = "book")
     private List<BookComment> bookCommentList = new ArrayList<>();
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public void setDislikeCount(int dislikeCount) {
+        this.dislikeCount = dislikeCount;
+    }
 }
 
 //isbn 책을 누를 때?

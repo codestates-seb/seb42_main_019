@@ -1,22 +1,24 @@
 package izone.izoneProject.book.entity;
 
+import izone.izoneProject.common.enums.LikeStatus;
 import izone.izoneProject.user.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookLikeId;
+
+    @Enumerated(EnumType.STRING)
+    private LikeStatus status;
 
     @ManyToOne
     @JoinColumn(name = "BOOK_ID")
@@ -25,20 +27,6 @@ public class BookLike {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
-
-//    public void setBook(Book book) {
-//        this.book = book;
-//        if (!book.getBookLikeList().contains(this)) {
-//            book.getBookLikeList().add(this);
-//        }
-//    }
-
-//    public void setUser(User user) {
-//        this.user = user;
-//        if (!book.getUserLikeList().contains(this)) {
-//            book.getUserLikeList().add(this);
-//        }
-//    }
 }
 
 
