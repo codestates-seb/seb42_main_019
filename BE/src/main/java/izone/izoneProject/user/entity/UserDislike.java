@@ -21,20 +21,12 @@ public class UserDislike {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "disliked_user")
+    @JoinColumn(name = "dislike_user_id")
     private User dislikedUser;
-
-    public void setUser(User user) {//User 양방향 매핑 메소드
-        this.user = user;
-        if (!user.getDislikeList().contains(this)) {
-            user.getDislikeList().add(this);
-        }
-    }
     public void setDisLikedUser(User dislikedUser) {//User 양방향 매핑 메소드
         this.dislikedUser = dislikedUser;
         if (!user.getDislikeList().contains(this)) {
             user.getDislikeList().add(this);
         }
     }
-
 }

@@ -1,13 +1,13 @@
 package izone.izoneProject.user.controller;
 
 import izone.izoneProject.common.dto.PageDto;
+import izone.izoneProject.common.utils.Uri;
 import izone.izoneProject.user.dto.UserCommentDto;
 import izone.izoneProject.user.dto.UserDto;
 import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.entity.UserComment;
 import izone.izoneProject.user.mapper.UserMapper;
 import izone.izoneProject.user.service.UserService;
-import izone.izoneProject.common.utils.Uri;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -60,45 +60,48 @@ public class UserController {
 
         return new ResponseEntity<>(new PageDto<>(mapper.usersToResponse(userList), userPage), HttpStatus.OK);
     }
+
     @DeleteMapping("/{user-id}")
-    public ResponseEntity deleteUser(@PathVariable("user-id") @Positive long userId){
+    public ResponseEntity deleteUser(@PathVariable("user-id") @Positive long userId) {
         userService.deleteUser(userId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/{user-id}/comment")
-    public ResponseEntity postUserComment(@PathVariable("user-id")@Positive long userId,
-                                          @RequestBody @Valid UserCommentDto.Post post){
+    public ResponseEntity postComment(@PathVariable("user-id") @Positive long userId,
+                                          @RequestBody @Valid UserCommentDto.Post post) {
         UserComment userComment = mapper.postToComment(post);
         List<UserComment> userComments = userService.createComment(userId, userComment);
-
-        return new ResponseEntity<>(mapper.commentsToResponse(userComments), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.commentsToResponse(userComments), HttpStatus.CREATED);
     }
 
     @PatchMapping("/{user-id}/comment/{comment-id}")
-    public ResponseEntity patchUserComment(@PathVariable("user-id")@Positive long userId,
-                                           @PathVariable("comment-id")@Positive long commentId,
-                                           @RequestBody @Valid UserCommentDto.Patch patch){
+    public ResponseEntity patchComment(@PathVariable("user-id") @Positive long userId,
+                                           @PathVariable("comment-id") @Positive long commentId,
+                                           @RequestBody @Valid UserCommentDto.Patch patch) {
         UserComment userComment = mapper.patchToComment(patch);
-        List<UserComment> userComments = userService.editComment(userComment, userId, commentId);
+        userComment.setCommentId(commentId);
+        List<UserComment> userComments = userService.editComment(userComment, userId);
 
         return new ResponseEntity<>(mapper.commentsToResponse(userComments), HttpStatus.OK);
     }
 
     @GetMapping("/{user-id}/comment")
-    public ResponseEntity getComments(@PathVariable("user-id")@Positive long userId,
-                                      Pageable pageable){
+    public ResponseEntity getComments(@PathVariable("user-id") @Positive long userId,
+                                      Pageable pageable) {
         Page<UserComment> commentPage = userService.getComments(userId, pageable);
         List<UserComment> commentList = commentPage.getContent();
 
         return new ResponseEntity<>(new PageDto<>(mapper.commentsToResponse(commentList), commentPage), HttpStatus.OK);
     }
-    @DeleteMapping("/{user-id}/comment/{comment-id}")
-    public ResponseEntity deleteComment(@PathVariable("user-id")@Positive long userId,
-                                        @PathVariable("comment-id")@Positive long commentId){
-        userService.deleteComment(userId, commentId);
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @DeleteMapping("/{user-id}/comment/{comment-id}")
+    public ResponseEntity deleteComment(@PathVariable("user-id") @Positive long userId,
+                                        @PathVariable("comment-id") @Positive long commentId) {
+        List<UserComment> userComments = userService.deleteComment(userId, commentId);
+
+        return new ResponseEntity<>(mapper.commentsToResponse(userComments), HttpStatus.OK);
     }
+
 }

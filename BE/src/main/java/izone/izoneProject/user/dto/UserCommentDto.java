@@ -31,7 +31,8 @@ public class UserCommentDto {
     @Setter
     public static class Response{
         private long commentId;
-        private long userId;
+        private String senderName;
+        private String recipientName;
         private String content;
         private LocalDateTime createdAt;
 

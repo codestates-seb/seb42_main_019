@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CommentRepository extends JpaRepository<UserComment, Long> {
-    @Query(value = "SELECT * FROM user_comment WHERE user_id = :userId", nativeQuery = true)
-    List<UserComment> findByUserId(long userId);
-    @Query(value = "SELECT * FROM user_comment WHERE user_id = :userId", nativeQuery = true)
-    Page<UserComment> findByUserId(long userId, Pageable pageable);
+    @Query(value = "SELECT * FROM user_comment WHERE recipient_id = :recipientId", nativeQuery = true)
+    List<UserComment> findByUserId(long recipientId);
+    @Query(value = "SELECT * FROM user_comment WHERE recipient_id = :recipientId", nativeQuery = true)
+    Page<UserComment> findByUserId(long recipientId, Pageable pageable);
 }

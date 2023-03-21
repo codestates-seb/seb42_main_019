@@ -21,6 +21,8 @@ public interface UserMapper {
 
     UserComment postToComment(UserCommentDto.Post post);
     UserComment patchToComment(UserCommentDto.Patch patch);
+    @Mapping(source =  "recipient.name", target = "recipientName")
+    @Mapping(source = "user.name", target = "senderName")
     UserCommentDto.Response commentToResponse(UserComment userComment);
     List<UserCommentDto.Response> commentsToResponse(List<UserComment> commentList);
 }

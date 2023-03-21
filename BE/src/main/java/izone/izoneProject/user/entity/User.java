@@ -29,18 +29,18 @@ public class User extends Auditable {
     private String region;
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> roles = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    List<Message> receivedList = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    List<Message> sentList = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Book> bookList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<UserLike> likeList = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<UserDislike> dislikeList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     List<UserComment> UserCommentList = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Book> bookList = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    List<Message> sentList = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    List<Message> receivedList = new ArrayList<>();
 
 
     public void setBook(Book book) {

@@ -30,12 +30,12 @@ public class UserComment extends Auditable {
     @Column(nullable = false, columnDefinition="TEXT")
     private String content;
 
-    public void setUser(User user) {
-        this.user = user;
-        if (!user.getUserCommentList().contains(this)) {
-            user.getUserCommentList().add(this);
-        }
-    }
+//    public void setSender(User user) {
+//        this.user = user;
+//        if (!user.getUserCommentList().contains(this)) {
+//            user.getUserCommentList().add(this);
+//        }
+//    }
     public void setRecipient(User recipient) {
         this.recipient = recipient;
         if (!recipient.getUserCommentList().contains(this)) {

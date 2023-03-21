@@ -21,20 +21,13 @@ public class UserLike {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "disliked_user")
-    private User dislikedUser;
+    @JoinColumn(name = "like_user_id")
+    private User likedUser;
 
-    public void setUser(User user) {//User 양방향 매핑 메소드
-        this.user = user;
-        if (!user.getLikeList().contains(this)) {
-            user.getLikeList().add(this);
+    public void setLikedUser(User likedUser) {//User 양방향 매핑 메소드
+        this.likedUser = likedUser;
+        if (!likedUser.getLikeList().contains(this)) {
+            likedUser.getLikeList().add(this);
         }
     }
-    public void setLikedUser(User user) {//User 양방향 매핑 메소드
-        this.user = user;
-        if (!user.getLikeList().contains(this)) {
-            user.getLikeList().add(this);
-        }
-    }
-
 }
