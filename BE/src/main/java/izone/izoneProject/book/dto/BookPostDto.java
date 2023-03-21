@@ -19,7 +19,6 @@ public class BookPostDto {
     private String isbn;
     @NotEmpty
     private String url;
-    @NotEmpty
     private String contents;
     @NotEmpty
     private String description;

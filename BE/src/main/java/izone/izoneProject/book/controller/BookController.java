@@ -15,10 +15,7 @@ import izone.izoneProject.common.utils.Uri;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,8 +24,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -46,7 +42,7 @@ public class BookController {
     public ResponseEntity<?> createBook(@Valid @RequestBody BookPostDto postDto/*, User user*/) {
 //        long bookId = bookService.createBook(postDto/*, user.getUserId()*/);
         Book book = mapper.postDtotoBook(postDto);
-        Book createBook =bookService.createBook(book);
+        Book createBook = bookService.createBook(book);
         URI location = Uri.createUri(DEFAULT_URI, Long.toString(createBook.getBookId()));
 
         return ResponseEntity.created(location).build();
@@ -62,23 +58,45 @@ public class BookController {
         return ResponseEntity.ok(patchBook);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchBooks(@RequestParam("keyword") String keyword) {
+        List<Book> books = bookService.searchByKeyword(keyword);
+        List<Book> result = BookService.deduplication(books, Book::getTitle);
+
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/search/isbn")
+    public ResponseEntity<?> findBookByIsbn(@RequestParam(required = false, value = "isbn") String isbn) {
+        List<Book> books = bookService.findByIsbn(isbn);
+        List<BookResponseDto> response = mapper.bookToResponseDtos(books);
+
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/{bookId}")
     public ResponseEntity<?> detailBook(@PathVariable("bookId") @Positive long bookId) {
         Book book = bookService.findBook(bookId);
-
         BookResponseDto response = mapper.bookToResponseDto(book);
 
         return ResponseEntity.ok(response);
     }
 
+    @DeleteMapping("/{bookId}")
+    public ResponseEntity<?> deleteBook(@PathVariable("bookId") @Positive long bookId) {
+        bookService.deleteBook(bookId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/bookInfo")
     public ArrayList<KaKaoBookInfoResponse> getBookInfo(@RequestParam String bookTitle) throws IOException {
-        String testurl = "https://dapi.kakao.com/v3/search/book";
+        String testUrl = "https://dapi.kakao.com/v3/search/book";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", "KakaoAK " + KaKaoKey);
 
         log.info("bookTitle = {}", bookTitle);
-        URI uri = UriComponentsBuilder.fromHttpUrl(testurl)
+        URI uri = UriComponentsBuilder.fromHttpUrl(testUrl)
                 .queryParam("query", bookTitle)
                 .queryParam("target", "title")
                 .queryParam("size", 50)
