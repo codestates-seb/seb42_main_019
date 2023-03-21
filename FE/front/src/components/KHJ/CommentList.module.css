@@ -30,6 +30,19 @@
 .comment_list b{
     font-weight: normal;
 }
+.comment_list input{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    color: var(--black);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--box-round);
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+.comment_list input:focus{
+    border: 2px solid var(--green);
+}
 .comment_list span{
     position: absolute;
     right: 0;
