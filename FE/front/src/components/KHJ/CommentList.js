@@ -44,7 +44,7 @@ function CommentList() {
                 }
             </ul>
             <div className={cx('comment_plus')}>
-                <input value={isContent} onChange={onChange} type={'text'} placeholder={'댓글 작성하기'} maxLength={'20'}></input>
+                <input value={isContent} onChange={onChange} type={'text'} placeholder={'댓글 작성하기'} maxLength={'40'}></input>
                 <button onClick={addComment}>작성</button>
             </div>
         </section>

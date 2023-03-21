@@ -57,7 +57,7 @@ function Comment({ comment, idx, setCommentList, commentList}) {
                 {editerble()}
             </span>
             {isEdit ?
-                <input value={isContent} onChange={contentEdit}></input>
+                <input value={isContent} onChange={contentEdit} maxLength='40'></input>
             :
                 <b>{comment.content}</b>
             }
