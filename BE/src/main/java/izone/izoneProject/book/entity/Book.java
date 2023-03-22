@@ -60,9 +60,16 @@ public class Book extends Auditable {
     private String exchange;
 
     @Column(columnDefinition = "integer default 0")
+    private int totalLikeCount;
+
+    @Column(columnDefinition = "integer default 0")
+    private int totalDislikeCount;
+
+    @Column(columnDefinition = "integer default 0")
     private int likeCount;
 
     @Column(columnDefinition = "integer default 0")
+    @JsonIgnore
     private int dislikeCount;
 
     @OneToMany(mappedBy = "book")
@@ -74,6 +81,14 @@ public class Book extends Auditable {
 
     public void setDislikeCount(int dislikeCount) {
         this.dislikeCount = dislikeCount;
+    }
+
+    public void setTotalLikeCount(int totalLikeCount) {
+        this.totalLikeCount = totalLikeCount;
+    }
+
+    public void setTotalDislikeCount(int totalDislikeCount) {
+        this.totalDislikeCount = totalDislikeCount;
     }
 }
 

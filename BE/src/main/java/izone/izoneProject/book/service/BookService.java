@@ -16,6 +16,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -63,6 +64,15 @@ public class BookService {
 
     public List<Book> findByIsbn(String isbn) {
         List<Book> books = bookRepository.findByIsbn(isbn);
+        int totalLike = books.stream()
+                .map(Book::getLikeCount)
+                .mapToInt(Integer::intValue).sum();
+        books.stream().forEach(h->h.setTotalLikeCount(totalLike));
+
+        int totalDislike = books.stream()
+                .map(Book::getDislikeCount)
+                .mapToInt(Integer::intValue).sum();
+        books.stream().forEach(h->h.setTotalDislikeCount(totalDislike));
 
         return books;
     }

@@ -21,7 +21,7 @@ public class BookResponseDto {
     private String description;
     private String condition;
     private String exchange;
-    private int likeCount;
-    private int dislikeCount;
+    private int totalLikeCount;
+    private int totalDislikeCount;
     private LocalDateTime createdAt;
 }
