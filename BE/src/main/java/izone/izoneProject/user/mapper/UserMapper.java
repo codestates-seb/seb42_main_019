@@ -6,6 +6,7 @@ import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.entity.UserComment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.jmx.export.annotation.ManagedOperationParameter;
 
 import java.util.List;
 

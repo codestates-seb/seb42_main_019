@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,18 +32,20 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
         optionalUser.ifPresent(u-> new RuntimeException("user already exist"));
         if (checkName(user.getName())) {
-            throw new RuntimeException("name is exist");
+            throw new RuntimeException("name already exist");
         }
         user.setPassword(encoder.encode(user.getPassword()));
         List<String> roles = authorityUtils.createRoles(user.getEmail());
         user.setRoles(roles);
-
 
         return userRepository.save(user);
     }
 
     public User editUser(User user) {
         User foundUser = verifyUser(user.getUserId());
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!foundUser.getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
 
         Optional.ofNullable(user.getPassword())
                 .ifPresent(password -> foundUser.setPassword(password));
@@ -53,6 +56,10 @@ public class UserService {
     }
 
     public User getUser(long userId) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!verifyUser(userId).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
+
         User foundUser = verifyUser(userId);
 
         return foundUser;
@@ -64,13 +71,19 @@ public class UserService {
     }
 
     public void deleteUser(long userId) {
-        verifyUser(userId);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!verifyUser(userId).getEmail().equals(principal))
+            throw new RuntimeException();
         userRepository.deleteById(userId);
     }
 
     public List<UserComment> createComment(long userId, UserComment comment) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
         User foundUser = verifyUser(userId);
 
+        comment.setUser(user);
         comment.setRecipient(foundUser);
         foundUser.getUserCommentList().add(comment);
         commentRepository.save(comment);
@@ -78,16 +91,16 @@ public class UserService {
     }
 
     public List<UserComment> editComment(UserComment comment, long userId) {
-        User foundUser = verifyUser(userId);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!verifyUser(comment.getUser().getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
+        User recipient = verifyUser(userId);
         UserComment foundComment = verifyComment(comment.getCommentId());
-//        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-//        if (!verifiedComment.getUser().getEmail().equals(principal)) {
-//            throw new BusinessLogicException(ExceptionCode.NO_PERMISSION_EDITING_POST);
-//        }
+
         foundComment.setContent(comment.getContent());
         commentRepository.save(foundComment);
 
-        return commentRepository.findByUserId(foundUser.getUserId());
+        return commentRepository.findByUserId(recipient.getUserId());
     }
 
     public Page<UserComment> getComments(long userId, Pageable pageable) {
@@ -96,11 +109,15 @@ public class UserService {
     }
 
     public List<UserComment> deleteComment(long userId, long commentId) {
-        User foundUser = verifyUser(userId);
-        UserComment userComment = verifyComment(commentId);
+        UserComment comment = verifyComment(commentId);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!verifyUser(comment.getUser().getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
 
-        commentRepository.deleteAllByIdInBatch(Collections.singleton(userComment.getCommentId()));
-        return commentRepository.findByUserId(foundUser.getUserId());
+        User recipient = verifyUser(userId);
+
+        commentRepository.deleteAllByIdInBatch(Collections.singleton(comment.getCommentId()));
+        return commentRepository.findByUserId(recipient.getUserId());
     }
 
     public boolean checkName(String name) {

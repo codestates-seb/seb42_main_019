@@ -27,6 +27,8 @@ public class User extends Auditable {
     private String password;
     @Column
     private String region;
+    @Column
+    private int receivedMessageCount;
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
