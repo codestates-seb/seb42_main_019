@@ -48,6 +48,7 @@ public class UserDto {
         private int commentCount;
         private int likeCount;
         private int disLikeCount;
+        private int receivedMessageCount;
         private LocalDateTime createdAt;
     }
 
