@@ -1,5 +1,8 @@
 package izone.izoneProject.user.controller;
 
+import izone.izoneProject.book.dto.BookDislikeResponseDto;
+import izone.izoneProject.book.dto.BookLikeResponseDto;
+import izone.izoneProject.book.entity.Book;
 import izone.izoneProject.common.dto.PageDto;
 import izone.izoneProject.common.utils.Uri;
 import izone.izoneProject.user.dto.UserCommentDto;
@@ -104,4 +107,27 @@ public class UserController {
         return new ResponseEntity<>(mapper.commentsToResponse(userComments), HttpStatus.OK);
     }
 
+    @PostMapping("/{liker-id}/like")
+    public ResponseEntity<?> userLike (/*long userId,*/
+                                       @PathVariable("liker-id") @Positive long likerId) {
+//        User user = userService.verifyUser(userId);
+        User liker = userService.verifyUser(likerId);
+//        userService.likeCount(user, liker);
+        userService.likeCount(/*user, */liker);
+        UserDto.UserLikeResponse response = mapper.userToUserLikeResponse(liker);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{liker-id}/dislike")
+    public ResponseEntity<?> userDislike (/*long userId,*/
+                                         @PathVariable("liker-id") @Positive long likerId) {
+//        User user = userService.verifyUser(userId);
+        User liker = userService.verifyUser(likerId);
+//        userService.dislikeCount(user, liker);
+        userService.dislikeCount(/*user, */liker);
+        UserDto.UserDislikeResponse response = mapper.userToUserDislikeResponse(liker);
+
+        return ResponseEntity.ok(response);
+    }
 }
