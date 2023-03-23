@@ -10,7 +10,6 @@ import izone.izoneProject.book.mapper.BookMapper;
 import izone.izoneProject.book.service.BookLikeService;
 import izone.izoneProject.book.service.BookService;
 import izone.izoneProject.common.utils.Uri;
-import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,14 +24,12 @@ import javax.validation.constraints.Positive;
 import java.io.IOException;
 import java.net.URI;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
 @RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
-    private final UserService userService;
     private final BookService bookService;
     private final BookMapper mapper;
     private final BookLikeService bookLikeService;
@@ -42,9 +39,10 @@ public class BookController {
     private String KaKaoKey;
 
     @PostMapping
-    public ResponseEntity<?> createBook(@Valid @RequestBody BookPostDto postDto/*, User user*/) {
-//        long bookId = bookService.createBook(postDto/*, user.getUserId()*/);
+//    @PreAuthorize("isAuthorized")
+    public ResponseEntity<?> createBook(@Valid @RequestBody BookPostDto postDto) {
         Book book = mapper.postDtotoBook(postDto);
+
         Book createBook = bookService.createBook(book);
         URI location = Uri.createUri(DEFAULT_URI, Long.toString(createBook.getBookId()));
 

@@ -24,6 +24,7 @@ public class Book extends Auditable {
     private long bookId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "USER_ID")
     private User user;
 

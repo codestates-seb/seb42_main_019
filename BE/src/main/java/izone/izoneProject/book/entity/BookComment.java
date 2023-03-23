@@ -1,5 +1,6 @@
 package izone.izoneProject.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.user.entity.User;
 import lombok.AllArgsConstructor;
@@ -19,9 +20,11 @@ public class BookComment extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookCommentId;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "book_id")
     private Book book;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
     @Column(nullable = false)

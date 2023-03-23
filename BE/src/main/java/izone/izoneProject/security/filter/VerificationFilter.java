@@ -44,6 +44,7 @@ public class VerificationFilter extends OncePerRequestFilter {
         } catch (SignatureException se) {
             request.setAttribute("exception", se);
         } catch (ExpiredJwtException ee) {
+            verifyRefreshJws(request, response);
             request.setAttribute("exception", ee);
         } catch (Exception e) {
             request.setAttribute("exception", e);
