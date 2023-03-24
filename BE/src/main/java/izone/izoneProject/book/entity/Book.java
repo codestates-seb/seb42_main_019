@@ -1,5 +1,6 @@
 package izone.izoneProject.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.user.entity.User;
 import lombok.Getter;
@@ -68,7 +69,6 @@ public class Book extends Auditable {
     private int likeCount;
 
     @Column(columnDefinition = "integer default 0")
-    @JsonIgnore
     private int dislikeCount;
 
     @OneToMany(mappedBy = "book")
