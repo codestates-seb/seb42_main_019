@@ -1,6 +1,5 @@
 package izone.izoneProject.message.mapper;
 
-import izone.izoneProject.message.dto.MessageDto;
 import izone.izoneProject.message.dto.MessagePostDto;
 import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
