@@ -13,7 +13,6 @@ import java.util.List;
 public interface UserMapper {
     User postDtoToUser(UserDto.Post post);
     User patchDtoToUser(UserDto.Patch patch);
-    @Mapping(target = "commentCount", expression = "java(user.getUserCommentList()!= null ? user.getUserCommentList().size():0)")
     UserDto.Response userToResponseDto(User user);
     List<UserDto.Response> usersToResponse (List<User> userList);
 
@@ -24,8 +23,8 @@ public interface UserMapper {
     UserCommentDto.Response commentToResponse(UserComment userComment);
     List<UserCommentDto.Response> commentsToResponse(List<UserComment> commentList);
 
-    @Mapping(source = "userId", target = "likerId")
+    @Mapping(target = "likerId", source = "liker.userId")
     UserDto.UserLikeResponse userToUserLikeResponse(User liker);
-    @Mapping(source = "userId", target = "likerId")
+    @Mapping(target = "likerId", source = "liker.userId")
     UserDto.UserDislikeResponse userToUserDislikeResponse(User liker);
 }

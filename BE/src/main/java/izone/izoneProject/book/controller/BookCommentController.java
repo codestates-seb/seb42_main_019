@@ -4,7 +4,7 @@ import izone.izoneProject.book.dto.BookCommentDto;
 import izone.izoneProject.book.entity.BookComment;
 import izone.izoneProject.book.mapper.BookCommentMapper;
 import izone.izoneProject.book.service.BookCommentService;
-import izone.izoneProject.dto.PageDto;
+import izone.izoneProject.common.dto.PageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

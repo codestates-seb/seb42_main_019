@@ -1,7 +1,7 @@
 package izone.izoneProject.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import izone.izoneProject.dto.LoginDto;
+import izone.izoneProject.common.dto.LoginDto;
 import izone.izoneProject.security.jwt.JwtTokenizer;
 import izone.izoneProject.user.entity.User;
 import lombok.RequiredArgsConstructor;

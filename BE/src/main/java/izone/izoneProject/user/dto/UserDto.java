@@ -43,12 +43,9 @@ public class UserDto {
         private long userId;
         private String name;
         private String email;
-        private String password;
         private String region;
-        private int commentCount;
         private int likeCount;
-        private int disLikeCount;
-        private int receivedMessageCount;
+        private int dislikeCount;
         private LocalDateTime createdAt;
     }
 
