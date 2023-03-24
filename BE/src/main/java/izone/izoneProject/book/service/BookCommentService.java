@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,7 @@ import java.util.Optional;
 public class BookCommentService {
     private final BookCommentRepository commentRepository;
     private final BookRepository bookRepository;
+    private final BookService bookService;
     private final UserService userService;
     private final UserRepository userRepository;
 
@@ -34,6 +36,7 @@ public class BookCommentService {
         User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
         bookComment.setUser(user);
         bookComment.setBook(book);
+        bookComment.setIsbn(book.getIsbn());
 
         return commentRepository.save(bookComment);//create는 save만 있으면 됨
     }
@@ -55,7 +58,10 @@ public class BookCommentService {
     }
     public Page<BookComment> getBookComments(long bookId, Pageable pageable){
         Pageable pageRequest = PageRequest.of(pageable.getPageNumber() /*-1*/ , pageable.getPageSize(), pageable.getSort());
-        return commentRepository.findByBookId(bookId, pageRequest);
+        Book foundBook = bookService.findBook(bookId);
+        String isbn = foundBook.getIsbn();
+
+        return commentRepository.findByIsbn(isbn, pageRequest);
     }
 
 
