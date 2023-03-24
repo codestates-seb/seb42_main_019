@@ -1,6 +1,8 @@
 package izone.izoneProject.book.service;
 
 import izone.izoneProject.book.entity.Book;
+import izone.izoneProject.book.entity.BookComment;
+import izone.izoneProject.book.repository.BookCommentRepository;
 import izone.izoneProject.book.repository.BookRepository;
 import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.repository.UserRepository;
@@ -23,6 +25,7 @@ public class BookService {
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
     private final UserService userService;
+    private final BookCommentRepository bookCommentRepository;
 
     public Book createBook(Book book) {
         String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
@@ -52,6 +55,8 @@ public class BookService {
     @Transactional(readOnly = true)
     public Book findBook(long bookId) {
         Book foundBook = findVerifiedBookById(bookId);
+        List<BookComment> totalComments = bookCommentRepository.findByIsbn(foundBook.getIsbn());
+        foundBook.setBookCommentList(totalComments);
 
         return foundBook;
     }

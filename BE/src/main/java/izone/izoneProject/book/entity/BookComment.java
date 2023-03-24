@@ -23,6 +23,8 @@ public class BookComment extends Auditable {
     @JsonIgnore
     @JoinColumn(name = "book_id")
     private Book book;
+    @Column
+    private String isbn;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "user_id")
@@ -35,5 +37,9 @@ public class BookComment extends Auditable {
         if (!book.getBookCommentList().contains(this)) {
             book.getBookCommentList().add(this);
         }
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }
