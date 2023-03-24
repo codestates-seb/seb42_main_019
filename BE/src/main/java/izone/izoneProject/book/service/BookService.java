@@ -1,11 +1,12 @@
 package izone.izoneProject.book.service;
 
 import izone.izoneProject.book.entity.Book;
-import izone.izoneProject.book.mapper.BookMapper;
 import izone.izoneProject.book.repository.BookRepository;
 import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.repository.UserRepository;
+import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,17 +24,22 @@ import java.util.stream.Collectors;
 public class BookService {
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
-    private final BookMapper mapper;
+    private final UserService userService;
 
     public Book createBook(Book book) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
+        book.setUser(user);
 
-        Book saveBook =bookRepository.save(book);
-        return saveBook;
+        return bookRepository.save(book);
     }
 
     public Book updateBook(Book book) {
         Book foundBook = findBook(book.getBookId());
-//        user 정보
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!userService.verifyUser(foundBook.getUser().getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
 
         Optional.ofNullable(book.getDescription())
                 .ifPresent(foundBook::setDescription);
@@ -55,17 +61,29 @@ public class BookService {
     public List<Book> searchByKeyword(String keyword) {
         List<Book> books = bookRepository.findByKeywordContaining(keyword);
 
-        return  books;
+        return books;
     }
 
     public List<Book> findByIsbn(String isbn) {
         List<Book> books = bookRepository.findByIsbn(isbn);
+        int totalLike = books.stream()
+                .map(Book::getLikeCount)
+                .mapToInt(Integer::intValue).sum();
+        books.stream().forEach(h -> h.setTotalLikeCount(totalLike));
+
+        int totalDislike = books.stream()
+                .map(Book::getDislikeCount)
+                .mapToInt(Integer::intValue).sum();
+        books.stream().forEach(h -> h.setTotalDislikeCount(totalDislike));
 
         return books;
     }
 
     public void deleteBook(long bookId) {
         Book book = findVerifiedBookById(bookId);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!userService.verifyUser(book.getUser().getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
 
         bookRepository.delete(book);
     }
@@ -77,17 +95,14 @@ public class BookService {
         return foundBook;
     }
 
-    public static <T> List<T> deduplication(final List<T> list, Function<? super T, ?> key){
+    public static <T> List<T> deduplication(final List<T> list, Function<? super T, ?> key) {
         return list.stream().filter(deduplication(key))
                 .collect(Collectors.toList());
     }
-    private static <T> Predicate<T> deduplication(Function<? super T, ?>key){
+
+    private static <T> Predicate<T> deduplication(Function<? super T, ?> key) {
         final Set<Object> set = ConcurrentHashMap.newKeySet();
         return predicate -> set.add(key.apply(predicate));
-    }
-
-    private User getUser(long userId) {
-        return userRepository.findById(userId).orElseThrow(RuntimeException::new);
     }
 }
 

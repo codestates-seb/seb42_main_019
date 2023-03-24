@@ -6,7 +6,9 @@ import izone.izoneProject.book.repository.BookLikeRepository;
 import izone.izoneProject.common.enums.LikeStatus;
 import izone.izoneProject.common.exception.BusinessLogicException;
 import izone.izoneProject.common.exception.ExceptionCode;
+import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +19,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookLikeService {
     private final BookLikeRepository bookLikeRepository;
+    private final BookService bookService;
+    private final UserService userService;
 
-    public void likeCount(/*User user, */Book book) {
-        BookLike bookLike = findBookLike(/*user, */book);
+    public void likeCount(Book book) {
+        Book foundBook = bookService.findBook(book.getBookId());
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!userService.verifyUser(foundBook.getUser().getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
+        BookLike bookLike = findBookLike(book);
 
         if (bookLike.getStatus().toString().equals("LIKE")) {
             throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
@@ -33,8 +41,12 @@ public class BookLikeService {
         book.setLikeCount(book.getLikeCount() + 1);
     }
 
-    public void dislikeCount(/*User user, */Book book) {
-        BookLike bookLike = findBookLike(/*user, */book);
+    public void dislikeCount(Book book) {
+        Book foundBook = bookService.findBook(book.getBookId());
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!userService.verifyUser(foundBook.getUser().getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
+        BookLike bookLike = findBookLike(book);
 
         if (bookLike.getStatus().toString().equals("DISLIKE")) {
             throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
@@ -48,16 +60,14 @@ public class BookLikeService {
         book.setDislikeCount(book.getDislikeCount() - 1);
     }
 
-    public BookLike findBookLike(/*User user, */Book book) {
-//        Optional<BookLike> findBookLike = bookLikeRepository.findByUserAndBook(user, book);
+    public BookLike findBookLike(Book book) {
         Optional<BookLike> findBookLike = bookLikeRepository.findByBook(book);
-        return findBookLike.orElseGet(() -> createLike(/*user, */book));
+        return findBookLike.orElseGet(() -> createLike(book));
     }
 
-    public BookLike createLike(/*User user, */Book book) {
+    public BookLike createLike(Book book) {
         BookLike bookLike = BookLike.builder()
                 .status(LikeStatus.NONE)
-//                .user(user)
                 .book(book)
                 .build();
 

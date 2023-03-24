@@ -32,7 +32,6 @@ import java.util.Objects;
 @RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
-    private final UserService userService;
     private final BookService bookService;
     private final BookMapper mapper;
     private final BookLikeService bookLikeService;
@@ -42,9 +41,10 @@ public class BookController {
     private String KaKaoKey;
 
     @PostMapping
-    public ResponseEntity<?> createBook(@Valid @RequestBody BookPostDto postDto/*, User user*/) {
-//        long bookId = bookService.createBook(postDto/*, user.getUserId()*/);
+//    @PreAuthorize("isAuthorized")
+    public ResponseEntity<?> createBook(@Valid @RequestBody BookPostDto postDto) {
         Book book = mapper.postDtotoBook(postDto);
+
         Book createBook = bookService.createBook(book);
         URI location = Uri.createUri(DEFAULT_URI, Long.toString(createBook.getBookId()));
 

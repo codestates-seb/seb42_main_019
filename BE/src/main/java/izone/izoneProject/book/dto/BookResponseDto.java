@@ -1,5 +1,7 @@
 package izone.izoneProject.book.dto;
 
+import izone.izoneProject.book.entity.BookComment;
+import izone.izoneProject.user.dto.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +12,7 @@ import java.util.List;
 @Setter
 public class BookResponseDto {
     private long bookId;
-//    private User user;
+    private UserDto.Response user;
     private String url;
     private String thumbnail;
     private String title;
@@ -21,7 +23,8 @@ public class BookResponseDto {
     private String description;
     private String condition;
     private String exchange;
-    private int likeCount;
-    private int dislikeCount;
+    private int totalLikeCount;
+    private int totalDislikeCount;
+    private List<BookComment> bookCommentList;
     private LocalDateTime createdAt;
 }

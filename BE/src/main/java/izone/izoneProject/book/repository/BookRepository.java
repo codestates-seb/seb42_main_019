@@ -12,6 +12,8 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book, Long> {
     @Query(value = "SELECT b FROM Book b WHERE b.isbn = :isbn")
     List<Book> findByIsbn(@Param("isbn") String isbn);
+    @Query(value = "SELECT b FROM Book b WHERE b.isbn = :isbn")
+    Book findBookByIsbn(String isbn);
     @Query(value = "SELECT b FROM Book b WHERE b.title LIKE %:keyword%")
     List<Book> findByKeywordContaining(@Param("keyword") String keyword);
 }

@@ -5,7 +5,6 @@ import izone.izoneProject.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ public class Book extends Auditable {
     private long bookId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "USER_ID")
     private User user;
 
@@ -59,9 +59,16 @@ public class Book extends Auditable {
     private String exchange;
 
     @Column(columnDefinition = "integer default 0")
+    private int totalLikeCount;
+
+    @Column(columnDefinition = "integer default 0")
+    private int totalDislikeCount;
+
+    @Column(columnDefinition = "integer default 0")
     private int likeCount;
 
     @Column(columnDefinition = "integer default 0")
+    @JsonIgnore
     private int dislikeCount;
 
     @OneToMany(mappedBy = "book")
@@ -75,12 +82,12 @@ public class Book extends Auditable {
         this.dislikeCount = dislikeCount;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-        if (!user.getBookList().contains(this)) {
-            user.getBookList().add(this);
-        }
+    public void setTotalLikeCount(int totalLikeCount) {
+        this.totalLikeCount = totalLikeCount;
+    }
+
+    public void setTotalDislikeCount(int totalDislikeCount) {
+        this.totalDislikeCount = totalDislikeCount;
+
     }
 }
-
-//isbn 책을 누를 때?
