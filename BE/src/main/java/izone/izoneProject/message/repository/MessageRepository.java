@@ -18,6 +18,8 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query(value = "SELECT * FROM message WHERE receiver_id = :receiverId", nativeQuery = true)
     Page<Message> findByUserId(long receiverId, Pageable pageable);
 
+    Message findByMessageId(long messgaeId);
+
 
     //TODO: delete 구현
     @Query(value = "SELECT * FROM message WHERE sender_id = :senderId", nativeQuery = true)
@@ -26,5 +28,5 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query(value = "SELECT * FROM message WHERE receiver_id = :receiverId", nativeQuery = true)
     List<Message> findAllByUserId(long receiverId);
 
-
+    long countByReadAtIsNull();
 }

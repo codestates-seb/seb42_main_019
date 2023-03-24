@@ -1,6 +1,7 @@
 package izone.izoneProject.message.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import izone.izoneProject.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,12 +28,14 @@ public class Message { //extends Auditable
     //TODO: response -> 출력될 receiver
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
+    @JsonIgnore
     @OnDelete(action = OnDeleteAction.NO_ACTION) // 발신자 계정 삭제시 쪽지도 함께 삭제
     private User user;
 
     //TODO: response -> 출력될 sender
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id")
+    @JsonIgnore
     @OnDelete(action = OnDeleteAction.NO_ACTION) // 수신자 계정 삭제시 쪽지도 함께 삭제
     private User sender;
 
@@ -49,6 +53,10 @@ public class Message { //extends Auditable
     @CreatedDate
     @Column(name = "create_date_time", nullable = false)
     private LocalDateTime time;
+
+    @Column(updatable = false)
+    @LastModifiedDate
+    private LocalDateTime readAt;
 
     @PrePersist
     public void createdAt() {
@@ -94,11 +102,4 @@ public class Message { //extends Auditable
             sender.getSentList().add(this);
         }
     }
-
-//    public void setReadAt(ReadAt readAt) {
-//        this.readAt = readAt;
-//        if (readAt.getMessage() != this) {
-//            readAt.setMessage(this);
-//        }
-//    }
 }
