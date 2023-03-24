@@ -1,6 +1,5 @@
 package izone.izoneProject.book.service;
 
-import izone.izoneProject.book.dto.BookResponseDto;
 import izone.izoneProject.book.entity.Book;
 import izone.izoneProject.book.mapper.BookMapper;
 import izone.izoneProject.book.repository.BookRepository;
@@ -10,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -24,13 +25,9 @@ public class BookService {
     private final BookRepository bookRepository;
     private final BookMapper mapper;
 
-    public Book createBook(Book book/*BookPostDto postDto*//*, long userId*/) {
-//        User user = getUser(userId);
-//        Book book = Book.post(postDto/*, user*/);
+    public Book createBook(Book book) {
 
-//        return bookRepository.save(book).getBookId();
         Book saveBook =bookRepository.save(book);
-
         return saveBook;
     }
 

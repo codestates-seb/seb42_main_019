@@ -6,7 +6,6 @@ import izone.izoneProject.book.repository.BookLikeRepository;
 import izone.izoneProject.common.enums.LikeStatus;
 import izone.izoneProject.common.exception.BusinessLogicException;
 import izone.izoneProject.common.exception.ExceptionCode;
-import izone.izoneProject.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

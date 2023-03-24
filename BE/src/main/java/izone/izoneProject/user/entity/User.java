@@ -1,7 +1,7 @@
 package izone.izoneProject.user.entity;
 
-import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.book.entity.Book;
+import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.message.entity.Message;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +34,7 @@ public class User extends Auditable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Book> bookList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
-    List<UserComment> UserCommentList = new ArrayList<>();
+    List<UserComment> userCommentList = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     List<Message> sentList = new ArrayList<>();
     @OneToMany(mappedBy = "user")

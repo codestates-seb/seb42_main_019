@@ -10,7 +10,6 @@ import izone.izoneProject.book.mapper.BookMapper;
 import izone.izoneProject.book.service.BookLikeService;
 import izone.izoneProject.book.service.BookService;
 import izone.izoneProject.common.utils.Uri;
-import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.io.IOException;
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @RestController

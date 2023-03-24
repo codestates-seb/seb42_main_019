@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class BookResponseDto {
     private long bookId;
-//    private UserDto.Response user;
+//    private User user;
     private String url;
     private String thumbnail;
     private String title;

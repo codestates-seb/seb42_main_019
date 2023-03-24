@@ -1,7 +1,7 @@
 package izone.izoneProject.security.utils;
 
 import com.google.gson.Gson;
-import izone.izoneProject.exception.ErrorResponse;
+import izone.izoneProject.common.exception.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
