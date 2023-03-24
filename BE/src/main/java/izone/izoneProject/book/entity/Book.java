@@ -1,6 +1,5 @@
 package izone.izoneProject.book.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.user.entity.User;
 import lombok.Getter;
@@ -74,6 +73,13 @@ public class Book extends Auditable {
 
     public void setDislikeCount(int dislikeCount) {
         this.dislikeCount = dislikeCount;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        if (!user.getBookList().contains(this)) {
+            user.getBookList().add(this);
+        }
     }
 }
 

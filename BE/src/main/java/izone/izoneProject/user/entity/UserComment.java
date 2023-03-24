@@ -6,10 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -30,12 +28,6 @@ public class UserComment extends Auditable {
     @Column(nullable = false, columnDefinition="TEXT")
     private String content;
 
-//    public void setSender(User user) {
-//        this.user = user;
-//        if (!user.getUserCommentList().contains(this)) {
-//            user.getUserCommentList().add(this);
-//        }
-//    }
     public void setRecipient(User recipient) {
         this.recipient = recipient;
         if (!recipient.getUserCommentList().contains(this)) {
