@@ -1,4 +1,4 @@
-package izone.izoneProject.exception;
+package izone.izoneProject.common.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

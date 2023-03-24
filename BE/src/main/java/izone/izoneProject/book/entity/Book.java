@@ -1,12 +1,10 @@
 package izone.izoneProject.book.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -90,7 +88,6 @@ public class Book extends Auditable {
 
     public void setTotalDislikeCount(int totalDislikeCount) {
         this.totalDislikeCount = totalDislikeCount;
+
     }
 }
-
-//isbn 책을 누를 때?

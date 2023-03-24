@@ -1,4 +1,4 @@
-package izone.izoneProject.dto;
+package izone.izoneProject.common.dto;
 
 import lombok.Getter;
 
