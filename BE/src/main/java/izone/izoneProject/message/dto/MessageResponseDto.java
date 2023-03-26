@@ -1,6 +1,6 @@
 package izone.izoneProject.message.dto;
 
-import izone.izoneProject.message.entity.Message;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,15 +17,7 @@ public class MessageResponseDto {
      private String receiverName;
      private String title;
      private String content;
+     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
      private LocalDateTime time;
-
-     public static MessageResponseDto toDto(Message message) {
-         return new MessageResponseDto(
-                 message.getTitle(),
-                 message.getContent(),
-                 message.getSender().getName(),
-                 message.getReceiver().getName(),
-                 message.getTime()
-         );
-     }
+     private LocalDateTime readAt;
 }

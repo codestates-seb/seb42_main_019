@@ -1,20 +1,23 @@
 package izone.izoneProject.message.service;
 
+import izone.izoneProject.book.entity.Book;
+import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
+//import izone.izoneProject.message.repository.MessageReadRepository;
+import izone.izoneProject.message.mapper.MessageMapper;
 import izone.izoneProject.message.repository.MessageRepository;
 import izone.izoneProject.user.entity.User;
-import izone.izoneProject.user.entity.UserComment;
 import izone.izoneProject.user.repository.UserRepository;
 import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.crypto.spec.OAEPParameterSpec;
-import javax.sound.midi.Receiver;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +26,11 @@ import java.util.Optional;
 @Transactional
 public class MessageService {
     private final MessageRepository messageRepository;
-    private final UserService       userService;
+
+//    private final MessageReadRepository messageReadRepository;
+    private final UserService           userService;
+    private final MessageMapper mapper;
+    private final UserRepository userRepository;
 
 
     /**
@@ -37,92 +44,99 @@ public class MessageService {
      */
 
 
-    public Message writeMessage(long senderId, long receiverId, Message message) {
-        User sender   = userService.verifyUser(senderId);
+    public Message writeMessage(long receiverId, Message message) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User sender   = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
         User receiver = userService.verifyUser(receiverId);
 
         sender.getSentList().add(message);
         receiver.getReceivedList().add(message);
 
         message.setSender(sender);
-        message.setReceiver(receiver);
+        message.setUser(receiver);
 
-        User getSender = message.getSender();   //TODO: message에 저장될 sender 정보
-        User getReceiver = message.getReceiver();   //TODO: receiver 정보
+        User getSender   = message.getSender();   //TODO: message에 저장될 sender 정보
+        User getReceiver = message.getUser();   //TODO: receiver 정보
 
         return messageRepository.save(message);
     }
 
-    //TODO: 받은 쪽지 목록 불러오기 (모든 쪽지)
-    //@Transactional(readOnly = true)
-    //public List<Message> receivedMessage(User user) {
-    //    List<Message> messages = messageRepository.findAllByReceiver(user);
+    @Transactional(readOnly = true)
+    public Page<Message> findReceivedMessages(Pageable pageable) {
 
-    //    return messages;
-    //}
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
 
-    //TODO: 받은 쪽지 삭제
-//    @Transactional
-//    public Object deleteMessageByReceiver(long messageId, User user) {
-//        Message message = messageRepository.findById(messageId).orElseThrow(() -> {
-//
-//            return new IllegalArgumentException("메세지를 찾을 수 없습니다.");
-//        });
-//
-//        if (user == message.getSender()) {
-//            message.deleteByReceiver();
-//            if (message.isDeleted()) {
-//                messageRepository.delete(message);
-//                return "모두에게 삭제";
-//            }
-//            return "해당 유저에게만 삭제";
-//        } else {
-//            return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
-//        }
-//    }
-//
-//    @Transactional(readOnly = true)
-//    public List<Message> sentMessage(User user) {
-//        List<Message> messages = messageRepository.findAllBySender(user);
-//
-//        return messages;
-//    }
+        return messageRepository.findByUserId(user.getUserId(), pageRequest);
 
-//    @Transactional
-//    public Object deleteMessageBySender(long messageId, User user) {
-//        Message message = messageRepository.findById(messageId).orElseThrow(() -> {
-//
-//            return new IllegalArgumentException("쪽지를 찾을 수 없습니다.");
-//        });
-//
-//        if (user == message.getSender()) {
-//            message.deleteBySender();
-//            if (message.isDeleted()) {
-//                messageRepository.delete(message);
-//                return "모두에게 삭제";
-//            }
-//            return "해당 유저에게만 삭제";
-//        } else {
-//            return new IllegalArgumentException("유저 정보가 일치하지 않습니다.");
-//        }
-//    }
-
-    public Message findMessage(long messageId) {
-        return findVerifiedMessage(messageId);
     }
 
-    public Message findVerifiedMessage(long messageId) {
-        Optional<Message> optionalMessage = messageRepository.findById(messageId);
-        Message findMessage = optionalMessage.orElseThrow(() ->
+    @Transactional(readOnly = true)
+    public Page<Message> findSentMessages(Pageable pageable) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+
+
+        return messageRepository.findBySenderId(user.getUserId(), pageRequest);
+    }
+
+    public Message findVerifiedSender(long senderId) {
+        Optional<Message> optionalSender = messageRepository.findById(senderId);
+        Message findSender = optionalSender.orElseThrow(() ->
                 new RuntimeException("Message Not Found"));
 
-        return findMessage;
+        return findSender;
     }
 
-    public Page<Message> findMessages(long messageId, Pageable pageable) {
+    public Message findVerifiedReceiver(long receiverId) {
+        Optional<Message> optionalReceiver = messageRepository.findById(receiverId);
+        Message findReceiver = optionalReceiver.orElseThrow(() ->
+                new RuntimeException("Message Not Found"));
 
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() -1, pageable.getPageSize(), pageable.getSort());
+        return findReceiver;
+    }
 
-        return messageRepository.findByMessageId(messageId, pageRequest);
+    //TODO: readAt을 기본 null로 생성하여 count 조회
+    // 생성 시, null로 된 message의 갯수를 조회하여 숫자로 조회
+    // 하지만, readAt을 setReadAt하여 messageId를 통해 메세지 단일 조회 후, readAt이 갱신되도록 하였지만,
+    // messageRepository.save(message)를 사용하여도 데이터가 저장되지 않았음.
+    // 왜.....why....?
+    public MessageResponseDto markAsRead(long messageId) {
+        Message message = messageRepository.findByMessageId(messageId);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!userService.verifyUser(message.getUser().getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
+        if (message.getReadAt() == null) {
+            message.setReadAt(LocalDateTime.now());
+            messageRepository.save(message);
+        }
+
+        return mapper.messageToResponseDto(message);
+    }
+
+    public long countUnreadMessages() {
+        return messageRepository.countByReadAtIsNull();
+    }
+
+    //TODO: list.remove(messageId)
+    // messageId와 receiverId를 일치시켜서 해당 receiver에 일치하는 메세지를 삭제하는게 복잡하다
+    // 사용자 화면상에서만 삭제되는 걸로 표현 -> receivedList에 receiverId를 담아왔음 -> 여기서 해당되는 messageId를 삭제한다.
+    // messageId 들어오는 기준 => senderId 보낸 순서 기준이다. senderId 3번이 첫번째로 보내면 messageId 3 = senderId 3과 같다.
+    // 삭제하려면 remove에 mesaageId == senderId (?)
+    public List<Message> deleteMessage(long messageId) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(() -> new RuntimeException("permission denied"));
+
+        messageRepository.deleteById(messageId);
+        return messageRepository.findAllByUserId(user.getUserId());
     }
 }
+
+
+
