@@ -84,6 +84,15 @@ public class BookService {
         return books;
     }
 
+    @Transactional(readOnly = true)
+    public List<Book> findBookByUser(User user) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        if (!userService.verifyUser(user.getUserId()).getEmail().equals(principal))
+            throw new RuntimeException("permission denied");
+
+        return bookRepository.findByUser(user);
+    }
+
     public void deleteBook(long bookId) {
         Book book = findVerifiedBookById(bookId);
         String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();

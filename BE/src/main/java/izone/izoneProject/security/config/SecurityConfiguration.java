@@ -41,7 +41,9 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-                .cors(withDefaults())
+//                .cors(withDefaults())
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
@@ -57,6 +59,7 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/user").permitAll()
+                        .antMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .antMatchers(HttpMethod.POST, "/user/**").authenticated()
                         .antMatchers(HttpMethod.PATCH,"/user/**").authenticated()
                         .antMatchers(HttpMethod.GET,"/user").permitAll()

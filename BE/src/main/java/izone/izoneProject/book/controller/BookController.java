@@ -10,6 +10,7 @@ import izone.izoneProject.book.mapper.BookMapper;
 import izone.izoneProject.book.service.BookLikeService;
 import izone.izoneProject.book.service.BookService;
 import izone.izoneProject.common.utils.Uri;
+import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -77,6 +78,14 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping
+    public ResponseEntity<?> findBookByUser(@RequestParam User user) {
+        List<Book> books = bookService.findBookByUser(user);
+        List<BookResponseDto> response = mapper.bookToResponseDtos(books);
+
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/{bookId}")
     public ResponseEntity<?> detailBook(@PathVariable("bookId") @Positive long bookId) {
         Book book = bookService.findBook(bookId);
@@ -86,8 +95,7 @@ public class BookController {
     }
 
     @PostMapping("/{bookId}/like")
-    public ResponseEntity<?> bookLike(/*long userId,*/
-                                        @PathVariable("bookId") @Positive long bookId) {
+    public ResponseEntity<?> bookLike(@PathVariable("bookId") @Positive long bookId) {
 //        User user = userService.verifyUser(userId);
         Book book = bookService.findBook(bookId);
         bookLikeService.likeCount(/*user, */book);
@@ -97,9 +105,7 @@ public class BookController {
     }
 
     @PostMapping("/{bookId}/dislike")
-    public ResponseEntity<?> bookDislike(/*long userId,*/
-                                          @PathVariable("bookId") @Positive long bookId) {
-//        User user = userService.verifyUser(userId);
+    public ResponseEntity<?> bookDislike(@PathVariable("bookId") @Positive long bookId) {
         Book book = bookService.findBook(bookId);
         bookLikeService.dislikeCount(/*user, */book);
         BookDislikeResponseDto response = mapper.bookToBookDislikeResponseDto(book);
