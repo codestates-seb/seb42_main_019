@@ -10,13 +10,13 @@ import Login from '../src/pages/JH/Login';
 import BookSearch from '../src/pages/HJ/BookSearch';
 import SignUp from './pages/JH/SignUp';
 import MessageView from './pages/SB/MessageView';
-import MessageList01 from './pages/SB/MessageList01';
 import MessageList02 from './pages/SB/MessageList02';
 import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
 import UserRateList from './pages/HJ/UserRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
+import TradeBookList from './pages/SB/TradeBookList';
 import ErrorPage from './pages/HJ/404';
 import Missing from './pages/HJ/Missing';
 import MessageWrite from './pages/SB/MessageWrite';
@@ -50,11 +50,11 @@ function App() {
 
 					<Route path='/myPage' element={<MyPage />}></Route>
 					<Route path='/myPage/messageBox' element={<MessageList02 />}></Route>
-					<Route path='/myPage/messageBox1' element={<MessageList01 />}></Route>
-					<Route path='/myPage/messageBox/view/:id' element={<MessageView />}></Route>
-					<Route path='/myPage/messageBox/write/:id' element={<MessageWrite />}></Route>
+					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
+					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
 					
 					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
+					<Route path='/myPage/tradeBookList'	element={<TradeBookList />}></Route>
 					
 					<Route path='/myPage/myRate' element={<UserRateList />}></Route>
 

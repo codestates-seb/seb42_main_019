@@ -12,20 +12,20 @@ function MessageList3({messageContent1}) {
 	};
 
 
-		
+
 
 	return (
 		
 		
-			<>
-			<div className={cx('all')} onClick={handleToggle} key={messageContent1.id}>
-				<div className={cx('box1')}>
-					<p className={cx('name', { 'clicked': isOn })}>{messageContent1.name}</p>
-					<p className={cx('content', { 'clicked': isOn })}> {messageContent1.content}</p>
-				</div>
-				<p className={cx('date', { 'clicked': isOn })} >{messageContent1.date}</p>
-			</div>
-			</>
+<>
+<div className={cx('all')} onClick={handleToggle} key={messageContent1.id}>
+	<div className={cx('box1')}>
+		<p className={cx('name', { 'clicked': isOn })}>{messageContent1.name}</p>
+		<p className={cx('content', { 'clicked': isOn })}> {messageContent1.content}</p>
+	</div>
+	<p className={cx('date', { 'clicked': isOn })} >{messageContent1.date}</p>
+</div>
+</>
 		
 		
 		

@@ -7,7 +7,7 @@ function Pagenation() {
             <button>2</button>
             <button>3</button>
             <button>4</button>
-            <button className={styles.pagenation_active}>5</button>
+            <button>5</button>
             <span>...</span>
             <button>6</button>
         </div>

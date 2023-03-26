@@ -14,7 +14,7 @@ function MessageList1() {
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.profileMessageBox}>
-							<img src={`https://api.dicebear.com/5.x/bottts-neutral/svg`}className={style.profileMessage} alt="avatar"/>
+							<img src={userData[0].thumbnail} className={style.profileMessage} alt="key"/>
 						</div>
 						<div className={style.profileContent}>
 							<div className={style.profileName}>{userData[0].name}</div>

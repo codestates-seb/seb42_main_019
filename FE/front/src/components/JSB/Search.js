@@ -30,6 +30,3 @@ const HomeSearch = function () {
 };
 
 export default HomeSearch;
-
-
-

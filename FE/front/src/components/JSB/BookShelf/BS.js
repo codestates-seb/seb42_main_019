@@ -1,9 +1,6 @@
 import style from './BSlist.module.css';
 
 const BS = function ({ bookData }) {
-
-	
-
 	return (
 		<>
         <div className={style.box1}>
