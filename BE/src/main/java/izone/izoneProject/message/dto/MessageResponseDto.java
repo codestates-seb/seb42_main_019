@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 public class MessageResponseDto {
      private String senderName;
      private String receiverName;
-     private String title;
      private String content;
      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
      private LocalDateTime time;

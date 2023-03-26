@@ -39,13 +39,6 @@ public class Message { //extends Auditable
     @OnDelete(action = OnDeleteAction.NO_ACTION) // 수신자 계정 삭제시 쪽지도 함께 삭제
     private User sender;
 
-      //TODO: UnReadMessage Count
-//    @OneToMany(mappedBy = "message", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-//    private ReadAt readAt;
-
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private  String title;
-
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
@@ -61,29 +54,6 @@ public class Message { //extends Auditable
     @PrePersist
     public void createdAt() {
         this.time = LocalDateTime.now();
-    }
-
-    @Column(nullable = false)
-    private boolean deleteBySender;
-
-    @Column(nullable = false)
-    private boolean deleteByReceiver;
-
-
-    // 보낸이가 쪽지 삭제시 해당 필드값을 true로 바꿔준다.
-    public void deleteBySender() {
-        this.deleteByReceiver = true;
-    }
-
-    // 받는이가 쪽지 삭제시 해당 필드값을 true로 바꿔준다.
-    public void deleteByReceiver() {
-        this.deleteByReceiver = true;
-    }
-
-    // 보낸이와 받는이의 값 둘다 true일 경우 true를 반환한다.
-    // 해당 메서드 호출시 결과값 true => DB에서 쪽지 삭제
-    public boolean isDeleted() {
-        return isDeleteBySender() && isDeleteByReceiver();
     }
 
 

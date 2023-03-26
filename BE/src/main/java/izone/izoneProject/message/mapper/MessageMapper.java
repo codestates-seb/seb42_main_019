@@ -11,7 +11,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface MessageMapper {
 
-    @Mapping(source = "receiverName", target = "user.name")
     Message postDtoToMessage(MessagePostDto messagePostDto);
 
     @Mapping(source = "sender.name", target = "senderName") //TODO: mapping 추가

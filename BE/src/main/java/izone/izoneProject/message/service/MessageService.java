@@ -56,8 +56,6 @@ public class MessageService {
         message.setSender(sender);
         message.setUser(receiver);
 
-        User getSender   = message.getSender();   //TODO: message에 저장될 sender 정보
-        User getReceiver = message.getUser();   //TODO: receiver 정보
 
         return messageRepository.save(message);
     }
