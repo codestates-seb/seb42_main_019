@@ -79,8 +79,8 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<?> findBookByUser(@RequestParam User user) {
-        List<Book> books = bookService.findBookByUser(user);
+    public ResponseEntity<?> findBookByUser() {
+        List<Book> books = bookService.findBookByUser();
         List<BookResponseDto> response = mapper.bookToResponseDtos(books);
 
         return ResponseEntity.ok(response);

@@ -1,58 +1,88 @@
 package izone.izoneProject.message.controller;
 
-import izone.izoneProject.message.dto.MessageDto;
+import izone.izoneProject.common.dto.PageDto;
 import izone.izoneProject.message.dto.MessagePostDto;
+import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
 import izone.izoneProject.message.mapper.MessageMapper;
 import izone.izoneProject.message.service.MessageService;
-import izone.izoneProject.user.entity.User;
-import izone.izoneProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
+@RequestMapping("/messages")
+@Validated
 @RequiredArgsConstructor
 public class MessageController {
     private final MessageService messageService;
-    private final MessageMapper mapper;
-    //@ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/message/{sender-id}/{receiver-id}")
-    public ResponseEntity sendMessage(@PathVariable("sender-id") @Positive long senderId,
-                                      @PathVariable("receiver-id")@Positive long receiverId,
-                                      @RequestBody @Valid MessagePostDto messagePostDto) {
-        //User user = userRepository.findById(1L).orElseThrow(() -> {
-        //    return new IllegalArgumentException("유저를 찾을 수 없습니다.");
-        //});
+    private final MessageMapper  mapper;
 
+
+    @PostMapping("/{receiver-id}")
+    public ResponseEntity sendMessage(@PathVariable("receiver-id") @Positive long receiverId,
+                                      @RequestBody @Valid MessagePostDto messagePostDto) {
         Message message = mapper.postDtoToMessage(messagePostDto);
 
-        Message sendMessage = messageService.writeMessage(senderId,receiverId,message);
+        Message sendMessage = messageService.writeMessage(receiverId, message);
 
 
         return new ResponseEntity<>(mapper.messageToResponseDto(sendMessage), HttpStatus.CREATED);
     }
 
-//    @GetMapping("/messages/{sender-id}")
-//    public ResponseEntity sentMessage(@PathVariable("sender-id") long senderId) {
-//
-//        Message message = messageService.findMessage()
-//
-//
-//        return new ResponseEntity<>(mapper.messageToResponseDto(), HttpStatus.OK);
-//    }
+    @PutMapping("/messages/{message-id}")
+    public ResponseEntity<?> getMessage(@PathVariable("message-id") long messageId) {
+        MessageResponseDto responseDto = messageService.markAsRead(messageId);
 
-    @GetMapping("")
+        return ResponseEntity.ok(responseDto);
+    }
+
+    @GetMapping("/messages/unread")
+    public ResponseEntity<?> unreadCount() {
+        long count = messageService.countUnreadMessages();
+        return ResponseEntity.ok(count);
+    }
 
 
-    @DeleteMapping("/messages/received/{user-id}")
-    public ResponseEntity deleteReceivedMessage(@PathVariable("user-id") long userId) {
+    @GetMapping("/sent")
+    public ResponseEntity getSentMessages (Pageable pageable) {
+        Page<Message> pageMessages = messageService.findSentMessages(pageable);
+        List<Message> sentList = pageMessages.getContent();
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(
+                new PageDto<>(mapper.messageToResponseDto(sentList), pageMessages), HttpStatus.OK);
+
+    }
+
+
+    @GetMapping("/received")
+        public ResponseEntity<?> getReceivedMessages (Pageable pageable) {
+        Page<Message> messageList = messageService.findReceivedMessages( pageable);
+        List<Message> contents = messageList.getContent();
+
+        return new ResponseEntity<>(
+                new PageDto<>(mapper.messageToResponseDto(contents),messageList), HttpStatus.OK);
+    }
+
+    @GetMapping("/unread")
+    public ResponseEntity<?> countUnreadCount() {
+        long count = messageService.countUnreadMessages();
+        return ResponseEntity.ok(count);
+    }
+
+
+    @DeleteMapping("/{message-id}")
+    public ResponseEntity<?> deleteReceivedMessage (@PathVariable("message-id") @Positive long messageId) {
+        List<Message> messageList = messageService.deleteMessage(messageId);
+
+        return new ResponseEntity<>(mapper.messageToResponseDto(messageList), HttpStatus.OK);
     }
 }
