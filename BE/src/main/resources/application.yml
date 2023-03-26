@@ -1,5 +1,9 @@
 kakao:
   key: d5562ebd8b4981164a833b5f82c80b77
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
 spring:
   profiles:
     include: common
