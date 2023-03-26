@@ -47,14 +47,14 @@ public class Message { //extends Auditable
     @Column(name = "create_date_time", nullable = false)
     private LocalDateTime time;
 
-    @Column(updatable = false)
+    @Column
     @LastModifiedDate
     private LocalDateTime readAt;
 
     @PrePersist
     public void createdAt() {
         this.time = LocalDateTime.now();
-
+    }
 
     //TODO: User user -> User receiver 변경
     public void setUser(User receiver) {
