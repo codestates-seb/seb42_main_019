@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import styles from "./BookInfo.module.css"
-import img from "../../assets/bookcover.png"
 import Modal from '../../pages/HJ/M_BookInfo'
 
 function BookInfo ({ book }) {

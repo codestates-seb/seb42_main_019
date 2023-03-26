@@ -17,31 +17,33 @@ function Rate({ ratedata }) {
         }
         return false
     }
+    // 내가 남긴 후기 수정, 삭제 용
+    const [isEditShow, setIsEditShow] = useState(false);
     function isEdit(user){
         if(ratedata.createdAt){
-            return false;
+            setIsEditShow(false)
         }
-        return false;
+        return;
     }
+    // 내가 남긴 후기 수정, 삭제 용
     function isGoodBad(rate){
         if(ratedata.rate === 'good') return (<><FiThumbsUp size="20" color="#2f5a2d"/></>);
         if(ratedata.rate === 'bad') return (<><FiThumbsDown size="20" color="#999999"/></>);
         return '';
     }
+
     function isopenHandler(){
         return setIsOpen(!isOpen)
     }
 
-    const [isEditShow, setIsEditShow] = useState(true);
-
     return (
-        <li className={isOpen ? cx('rate', 'open') : cx('rate')} key={ratedata.id}>
+        <li className={cx('rate', {open : isOpen})} key={ratedata.id}>
             <p className={cx('top')}>
                 <strong>
-                    {ratedata.name}
+                    {ratedata.from}
                     <span className={cx('goodbad')}>{isGoodBad(ratedata.rate)}</span>
                 </strong>
-                {isEdit() ?
+                {isEditShow ?
                 (
                 <div>
                     <button><EditBtn /></button>

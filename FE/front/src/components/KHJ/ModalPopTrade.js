@@ -9,15 +9,30 @@ import { ReactComponent as Dropdownarrow } from '../../assets/dropdownarrow.svg'
 function ModalPopUp({ open, onevent }) {
     const cx = classNames.bind(styles)
     function modalToggle(){
-        return onevent(!open)
+        setDrop(false);
+        onevent(!open)
+        setBook('상대방의 책장');
     }
-    const [isDrop, setDrop] = useState(true);
+    const [isDrop, setDrop] = useState(false);
     function dropdownToggle(){
         return setDrop(!isDrop);
     }
-    const [isBook, setBook] = useState('');
-    function BookName(e) {
-        return setBook(isBook)
+    const [isBook, setBook] = useState('상대방의 책장');
+    function bookChange(book) {
+        return setBook(book);
+    }
+
+    const isBookNameOn = () => {
+        if(isBook === '상대방의 책장'){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    const isBookNameNone = () => {
+        if(isBook === '상대방의 책장'){
+            alert('책을 선택해주세요');
+        }
     }
 
     return (
@@ -28,24 +43,24 @@ function ModalPopUp({ open, onevent }) {
                     <button className={cx('close')} onClick={modalToggle}><ModalXBtn /></button>
                 </header>
                 <h2 className={cx('gray_font', 'h2')}>교환할 책 선택</h2>
-                <div className={isDrop? cx('dropdown', 'on') : cx('dropdown')}>
+                <div className={cx('dropdown', {on : isDrop})}>
                     <button
                         onClick={dropdownToggle}
-                        className={cx('select')}
+                        className={cx('select', {opton : isBookNameOn()})}
                     >
-                        유저의 책장
+                        {isBook}
                         <span className={cx('arrow')}><Dropdownarrow /></span>
                     </button>
                     <ul className={cx('option')} onClick={dropdownToggle}>
-                        {tradeShelfdata.map((el) => <DropdownOpt onClick={BookName} book={el} />)}
+                        {tradeShelfdata.map((el) => <DropdownOpt bookChange={bookChange} book={el} />)}
                     </ul>
                 </div>
                 <div className={cx('btn_wrap')}>
                     <button className={cx('modalBtn')}>거절하기</button>
-                    <button className={cx('modalBtn', 'green')}>수락하기</button>
+                    <button className={cx('modalBtn', 'green')} onClick={() => isBookNameNone()}>수락하기</button>
                 </div>
             </article>
-            <div className={open ? cx('modalback', 'on') : cx('modalback')} onClick={modalToggle}></div>
+            <div className={cx('modalback', {on : open})} onClick={modalToggle}></div>
         </>
     );
 }

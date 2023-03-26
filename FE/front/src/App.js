@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import style from './App.module.css';
 import './style/CommonStyle.css';
-
 import Home from './pages/SB/Home';
 import Alert from './pages/SB/Alert';
 import MyPage from './pages/SB/MyPage';
@@ -23,13 +22,11 @@ import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
 
-
 function App() {
 	return (
 		<div className={style.App}>
 			<Background></Background>
 			<div className={style.body}>
-
 
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
@@ -61,8 +58,7 @@ function App() {
 					<Route path='/*' element={<ErrorPage />}></Route>
 					<Route path='/missing' element={<Missing />}></Route>
 
-        </Routes>
-
+        		</Routes>
 			</div>
 		</div>
 	);

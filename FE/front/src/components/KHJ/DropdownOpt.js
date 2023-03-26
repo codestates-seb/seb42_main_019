@@ -1,7 +1,7 @@
-function DropdownOpt( { onclick, book } ) {
+function DropdownOpt( { bookChange, book } ) {
     return (
         <>
-            <li key={book.id}>
+            <li onClick={() => bookChange(book.name)} key={book.id}>
                 <strong>{book.name}</strong>
                 <span>{book.writer}</span>
             </li>
