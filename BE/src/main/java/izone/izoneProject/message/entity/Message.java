@@ -54,7 +54,6 @@ public class Message { //extends Auditable
     @PrePersist
     public void createdAt() {
         this.time = LocalDateTime.now();
-    }
 
 
     //TODO: User user -> User receiver 변경
