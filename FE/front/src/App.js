@@ -16,7 +16,6 @@ import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
 import UserRateList from './pages/HJ/UserRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
-import TradeBookList from './pages/SB/TradeBookList';
 import ErrorPage from './pages/HJ/404';
 import Missing from './pages/HJ/Missing';
 import MessageWrite from './pages/SB/MessageWrite';
@@ -54,7 +53,6 @@ function App() {
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
 					
 					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
-					<Route path='/myPage/tradeBookList'	element={<TradeBookList />}></Route>
 					
 					<Route path='/myPage/myRate' element={<UserRateList />}></Route>
 
