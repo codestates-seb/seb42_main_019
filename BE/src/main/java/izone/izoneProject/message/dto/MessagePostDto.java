@@ -15,9 +15,5 @@ import javax.validation.constraints.Pattern;
 public class MessagePostDto {
     @NotNull
     @Pattern(regexp = "^(?!\\s+$).+", message = "Fill in the blank.")
-    private String title;
-    @NotNull
-    @Pattern(regexp = "^(?!\\s+$).+", message = "Fill in the blank.")
     private String content;
-    private String receiverName;
 }

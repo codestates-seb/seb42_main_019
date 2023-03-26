@@ -27,11 +27,10 @@ public class MessageController {
     private final MessageMapper  mapper;
 
 
-    @PostMapping("/{sender-id}/{receiver-id}")
-    public ResponseEntity sendMessage(@PathVariable("sender-id") @Positive long senderId,
-                                      @PathVariable("receiver-id") @Positive long receiverId,
+    @PostMapping("/{receiver-id}")
+    public ResponseEntity sendMessage(@PathVariable("receiver-id") @Positive long receiverId,
                                       @RequestBody @Valid MessagePostDto messagePostDto) {
-           Message message = mapper.postDtoToMessage(messagePostDto);
+        Message message = mapper.postDtoToMessage(messagePostDto);
 
         Message sendMessage = messageService.writeMessage(receiverId, message);
 
