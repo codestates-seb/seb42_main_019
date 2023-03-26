@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import style from './App.module.css';
 import './style/CommonStyle.css';
-
 import Home from './pages/SB/Home';
 import Alert from './pages/SB/Alert';
 import MyPage from './pages/SB/MyPage';
@@ -16,19 +15,18 @@ import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
 import UserRateList from './pages/HJ/UserRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
+import TradeBookList from './pages/SB/TradeBookList';
 import ErrorPage from './pages/HJ/404';
 import Missing from './pages/HJ/Missing';
 import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
 
-
 function App() {
 	return (
 		<div className={style.App}>
 			<Background></Background>
 			<div className={style.body}>
-
 
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
@@ -53,14 +51,14 @@ function App() {
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
 					
 					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
+					<Route path='/myPage/tradeBookList'	element={<TradeBookList />}></Route>
 					
 					<Route path='/myPage/myRate' element={<UserRateList />}></Route>
 
 					<Route path='/*' element={<ErrorPage />}></Route>
 					<Route path='/missing' element={<Missing />}></Route>
 
-        </Routes>
-
+        		</Routes>
 			</div>
 		</div>
 	);

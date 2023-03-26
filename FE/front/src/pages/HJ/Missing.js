@@ -12,7 +12,7 @@ function ErrorPage() {
             <Header2 />
                 <div className={cx('error')}>
                     <ErrorImg />
-                    <h1>
+                    <h1 className={styles.h1}>
                         꽝입니다!
                         <br />
                         다음 기회에!

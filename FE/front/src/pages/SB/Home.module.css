@@ -1,17 +1,12 @@
-.boxAll{   
-    margin-top: 120px;
-}
-
 .box {
 	width: 530px;
 	/* height: 100vh;*/
 	margin-bottom: 90px;
-    
 }
 
 .img {
 	width: 250px;
-	margin: 50px 150px 25px 150px;
+	margin: 50px 150px 50px 150px;
 
 }
 

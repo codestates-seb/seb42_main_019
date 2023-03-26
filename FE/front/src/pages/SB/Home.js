@@ -14,14 +14,15 @@ function Home() {
 	return (
 		<>
 			<Header>로그인</Header>
-			<div className={cx('boxAll')}>
 			<div className={cx('box')}>
 				<img className={cx('img')} src={homeImg} alt='homeImg' />
 				<div className={cx('text1')}>
 				<p className={cx('homeSearchP')}>오늘 읽고 싶은 책?</p>
 				</div>
 				<Search />
-			</div>
+				<p className={cx('currentP')}>최근에 등록된 책</p>
+				<BookList />
+				<Footer className={cx('footer')} />
 			</div>
 			<Nav />
 		</>
