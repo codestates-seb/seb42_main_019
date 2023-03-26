@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { useState, useEffect } from 'react';
-import style from './MessageWrite.module.css'
+
 import classNames from 'classnames';
 import axios from 'axios';
 import Button from '../../components/common/Button';
