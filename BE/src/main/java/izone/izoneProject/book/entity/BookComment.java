@@ -1,5 +1,6 @@
 package izone.izoneProject.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import izone.izoneProject.common.audit.Auditable;
 import izone.izoneProject.user.entity.User;
 import lombok.AllArgsConstructor;
@@ -19,9 +20,13 @@ public class BookComment extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookCommentId;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "book_id")
     private Book book;
+    @Column
+    private String isbn;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
     @Column(nullable = false)
@@ -32,5 +37,9 @@ public class BookComment extends Auditable {
         if (!book.getBookCommentList().contains(this)) {
             book.getBookCommentList().add(this);
         }
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }

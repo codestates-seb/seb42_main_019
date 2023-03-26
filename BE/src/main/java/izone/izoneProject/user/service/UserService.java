@@ -1,9 +1,9 @@
 package izone.izoneProject.user.service;
 
-import izone.izoneProject.security.utils.CustomAuthorityUtils;
 import izone.izoneProject.common.enums.LikeStatus;
 import izone.izoneProject.common.exception.BusinessLogicException;
 import izone.izoneProject.common.exception.ExceptionCode;
+import izone.izoneProject.security.utils.CustomAuthorityUtils;
 import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.entity.UserComment;
 import izone.izoneProject.user.entity.UserLike;
@@ -18,7 +18,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
@@ -36,7 +35,7 @@ public class UserService {
 
     public User createUser(User user) {
         Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
-        optionalUser.ifPresent(u-> new RuntimeException("user already exist"));
+        optionalUser.ifPresent(u -> new RuntimeException("user already exist"));
         if (checkName(user.getName())) {
             throw new RuntimeException("name already exist");
         }
@@ -66,6 +65,7 @@ public class UserService {
         if (!verifyUser(userId).getEmail().equals(principal))
             throw new RuntimeException("permission denied");
 
+
         User foundUser = verifyUser(userId);
 
         return foundUser;
@@ -86,14 +86,15 @@ public class UserService {
     public List<UserComment> createComment(long userId, UserComment comment) {
         String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         Optional<User> optionalUser = userRepository.findByEmail(principal);
-        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
-        User foundUser = verifyUser(userId);
+        User user = optionalUser.orElseThrow(() -> new RuntimeException("permission denied"));
+        User recipient = verifyUser(userId);
 
         comment.setUser(user);
-        comment.setRecipient(foundUser);
-        foundUser.getUserCommentList().add(comment);
+        comment.setRecipient(recipient);
         commentRepository.save(comment);
-        return commentRepository.findByUserId(foundUser.getUserId());
+
+
+        return commentRepository.findByUserId(recipient.getUserId());
     }
 
     public List<UserComment> editComment(UserComment comment, long userId) {
@@ -126,6 +127,48 @@ public class UserService {
         return commentRepository.findByUserId(recipient.getUserId());
     }
 
+    public void likeCount(User liker) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(() -> new RuntimeException("permission denied"));
+
+        UserLike userLike = findUserLike(user, liker);
+
+        if (userLike.getStatus().toString().equals("LIKE")) {
+            throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
+        } else if (userLike.getStatus().toString().equals("NONE")) {
+            userLike.setStatus(LikeStatus.LIKE);
+        } else if (userLike.getStatus().toString().equals("DISLIKE")) {
+            userLike.setStatus(LikeStatus.LIKE);
+            liker.setDislikeCount(liker.getDislikeCount() + 1);
+        }
+        liker.setLikeCount(liker.getLikeCount() + 1);
+
+        userRepository.save(liker);
+    }
+
+    public void dislikeCount(User liker) {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(() -> new RuntimeException("permission denied"));
+
+        UserLike userLike = findUserLike(user, liker);
+        userLike.setLiker(liker);
+
+        if (userLike.getStatus().toString().equals("DISLIKE")) {
+            throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
+        } else if (userLike.getStatus().toString().equals("NONE")) {
+            userLike.setStatus(LikeStatus.DISLIKE);
+        } else if (userLike.getStatus().toString().equals("LIKE")) {
+            userLike.setStatus(LikeStatus.DISLIKE);
+            liker.setLikeCount(liker.getLikeCount() - 1);
+        }
+        liker.setDislikeCount(liker.getDislikeCount() - 1);
+
+
+        userRepository.save(liker);
+    }
+
     public boolean checkName(String name) {
         return userRepository.existsByName(name);
     }
@@ -149,49 +192,15 @@ public class UserService {
         return foundUser;
     }
 
-    public void likeCount(/*User user, */User liker) {
-//        UserLike userLike = findUserLike(user, liker);
-        UserLike userLike = findUserLike(/*user, */liker);
-
-        if (userLike.getStatus().toString().equals("LIKE")) {
-            throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
-        } else if (userLike.getStatus().toString().equals("NONE")) {
-            userLike.setStatus(LikeStatus.LIKE);
-        } else if (userLike.getStatus().toString().equals("DISLIKE")) {
-            userLike.setStatus(LikeStatus.LIKE);
-            liker.setDislikeCount(liker.getDislikeCount() + 1);
-        }
-        liker.setLikeCount(liker.getLikeCount() + 1);
+    public UserLike findUserLike(User user, User liker) {
+        Optional<UserLike> findUserLike = userLikeRepository.findByLikerAndUser(user, liker);
+        return findUserLike.orElseGet(() -> createLike(user, liker));
     }
 
-    public void dislikeCount(/*User user, */User liker) {
-//        UserLike userLike = findUserLike(user, liker);
-        UserLike userLike = findUserLike(/*user, */liker);
-
-        if (userLike.getStatus().toString().equals("DISLIKE")) {
-            throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
-        } else if (userLike.getStatus().toString().equals("NONE")) {
-            userLike.setStatus(LikeStatus.DISLIKE);
-        } else if (userLike.getStatus().toString().equals("LIKE")) {
-            userLike.setStatus(LikeStatus.DISLIKE);
-            liker.setLikeCount(liker.getLikeCount() - 1);
-        }
-
-        liker.setDislikeCount(liker.getDislikeCount() - 1);
-    }
-
-    public UserLike findUserLike(/*User user, */User liker) {
-//        Optional<UserLike> findUserLike = userLikeRepository.findByLikerAndUser(user, liker);
-//        return findUserLike.orElseGet(() -> createLike(user, liker));
-
-        Optional<UserLike> findUserLike = userLikeRepository.findByLiker(/*user, */liker);
-        return findUserLike.orElseGet(() -> createLike(/*user, */liker));
-    }
-
-    public UserLike createLike(/*User user, */User liker) {
+    public UserLike createLike(User user, User liker) {
         UserLike userLike = UserLike.builder()
                 .status(LikeStatus.NONE)
-//                .liker(user)
+                .liker(user)
                 .user(liker)
                 .build();
 

@@ -3,7 +3,6 @@ package izone.izoneProject.book.mapper;
 import izone.izoneProject.book.dto.*;
 import izone.izoneProject.book.entity.Book;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 
