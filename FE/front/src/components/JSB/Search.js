@@ -1,16 +1,39 @@
 import style from './Search.module.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from '../../api/api';
+import { useRecoilState } from 'recoil';
+import bookSearchList from '../../pages/HJ/atom';
 
-const HomeSearch = function ( { currentQuery, setCurrentQuery, searchBook } ) {
+const HomeSearch = function () {
 
-	// const [searchQuery, setSearchQuery] = useState('');
+  const params = useLocation();
+  const urlSearch = params.search;
+  const [currentQuery, setCurrentQuery] = useState(new URLSearchParams(urlSearch).get('q'));
+
+  const [bookData, setBookdata] = useRecoilState(bookSearchList);
+
+  const searchBook = async () => {
+      const url = `/books/search?keyword=${currentQuery}`;
+      try {
+          const res = await axios.get(url);
+          const books = res.data;
+          setBookdata(books);
+      } catch (error) {
+          console.log(error);
+      }
+  }
+
+  useEffect(() => {
+      setCurrentQuery(currentQuery);
+  }, [currentQuery, params])
+
   const navigate = useNavigate()
 
 	const handleSearch = (event) => {
 		if (event.key === 'Enter') {
 		  navigate(`/search?q=${currentQuery}`);
-      searchBook()
+      searchBook();
 		}
 	}
 
