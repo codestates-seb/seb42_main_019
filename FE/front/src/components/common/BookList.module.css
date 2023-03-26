@@ -1,0 +1,54 @@
+@import url('../../style/CommonStyle.css');
+
+
+.notFooter {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.listBoxMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 155px;
+    margin-bottom: 10px;
+}
+
+.bookImg1 {
+    display: flex;
+}
+
+.img1 {
+    height: 140px;    
+    border-radius: 10px;
+}
+
+.bookTitle {
+    display: flex;
+    margin-bottom: 60px;
+    width: 320px;
+    font-size: var(--strong-font);
+}
+
+.bookDetail1 {
+    position: absolute;
+    margin-left: 350px;
+    margin-top: 80px;
+}
+
+.bookDetail01 {
+    margin: 0;
+    padding: 0;
+    color: var(--black);
+}
+
+.bookDetail02 {
+    color: var(--light-gray);
+    text-align: right;
+}

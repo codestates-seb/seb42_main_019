@@ -1,0 +1,25 @@
+/* 404 */
+.wrap div:first-child{
+    box-shadow: none;
+}
+.wrap div span{
+    opacity: 0;
+    z-index: -1;
+}
+.error{
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.error h1{
+    font-size: 22px;
+    position: relative;
+    top: -25px;
+    text-align: center;
+}
+/* 404 */

@@ -1,0 +1,150 @@
+.modal{
+    top: 100px;
+    left: 20px;
+    background: #fff;
+    border-radius: var(--box-round);
+    z-index: 99;
+    display: none;
+    position: absolute;
+    width: 490px;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    box-shadow: 0px 4px 5px 2px #33333325;
+}
+.modal.open{
+    display: block;
+}
+.modalback{
+    background: #333;
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    display: none;
+    z-index: 2;
+}
+.modalback.on{
+    display: block;
+}
+.header{
+    text-align: center;
+    position: relative;
+}
+.h1{
+    font-size: var(--strong-font);
+    display: inline-block;
+    font-weight: normal;
+}
+button.close{
+    position: absolute;
+    right: 0;
+}
+.gray_font{
+    color: var(--light-black);
+    font-size: var(--normal-font);
+    font-weight: normal;
+}
+.h2{
+    margin-top: 12px;
+    padding: 15px 0;
+    margin-bottom: 0;
+}
+.btn_wrap{
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+.modalBtn.green{
+    background: var(--green);
+}
+.modalBtn{
+    width: calc(50% - 7px);
+    height: 62px;
+    background: var(--black);
+    color: #fff;
+    border-radius: var(--box-round);
+}
+/* 책 소개 */
+.info_h2{
+    margin-top: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+.no_data{
+    margin-bottom: 15px;
+}
+.modal div{
+    box-shadow: none;
+}
+/* 교환요청 */
+.dropdown{
+    background: #eaeeea;
+    border-radius: var(--box-round);
+    position: relative;
+}
+.dropdown.on{
+    border-radius: 10px 10px 0 0;
+}
+.dropdown.on .select span{
+    transform: rotate(-180deg);
+}
+.select{
+    width: 100%;
+    height: 62px;
+    box-sizing: border-box;
+    padding: 0 24px;
+    font-size: 16px;
+    border-radius: var(--box-round);
+    background: #eaeeea;
+    text-align: left;
+    position: relative;
+}
+.select span{
+    transition: 1s;
+}
+.option li{
+    background: #eaeeea;
+    height: 62px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    overflow: hidden;
+}
+.option li:last-child{
+    border-radius: 0 0 10px 10px;
+}
+.arrow{
+    position: absolute;
+    right: 24px;
+}
+.dropdown .option{
+    position: absolute;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    z-index: 999;
+}
+.dropdown.on .option{
+    height: auto;
+}
+/* 한줄평 작성하기 */
+.input{
+    width: 100%;
+    height: 62px;
+    background-color: #eaeeea;
+    font-size: 16px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-radius: var(--box-round);
+    border: 2px solid #eaeeea;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+}
+.input:focus{
+    border: 2px solid var(--green);
+}

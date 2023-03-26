@@ -1,0 +1,44 @@
+.mptext {
+    color: var(--black);
+    margin-left: 20px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.mypageBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mpList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 490px;
+    height: 62px;
+    margin-left: 20px; 
+}
+
+.myPageBtn {
+    margin-left: 10px;
+    font-size: var(--normal-font);
+    color: var(--black);
+}
+
+.checkoutT{
+    color: var(--light-black);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 30px;
+    font-size: 12px;
+}
+
+.ADimg {
+    width: 490px;
+    height: 127px;
+    margin: 50px 0px 40px 20px;
+    
+}

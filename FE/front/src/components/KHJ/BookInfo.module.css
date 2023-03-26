@@ -1,0 +1,36 @@
+.img {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: calc(100% - 30px);
+}
+.img img{
+    height: 287px;
+    border: 1px solid var(--light-black);
+}
+.bookinfo{
+    margin-top: 20px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.left h1{
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.left p{
+    line-height: 21px;
+}
+.left span{
+    margin: 0 6px;
+    color: var(--light-black);
+}
+.date{
+    color: var(--light-black);
+}
+.bookinfo > button{
+    color: var(--green);
+    font-size: 16px;
+}
