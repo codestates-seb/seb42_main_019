@@ -22,6 +22,10 @@
 	color: #ddd;
 }
 
+.Main input:focus-within {
+	border: 2px solid var(--green);
+}
+
 .Main label {
 	display: flex;
 	padding: 0 30px;
@@ -43,6 +47,10 @@
 
 .Text textarea::placeholder {
 	color: #ddd;
+}
+
+.Text textarea:focus-within {
+	border: 2px solid var(--green);
 }
 
 .BookState {

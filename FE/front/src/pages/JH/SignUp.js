@@ -4,26 +4,28 @@ import Header2 from '../../components/common/Header2';
 import styles from './SignUp.module.css';
 import { DownIcon, UpIcon } from '../../components/IJH/LoginIcon';
 import DropDown from '../../components/IJH/DropDown';
+import api from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
 	const [dropdownVisibility, setDropdownVisibility] = useState(false);
 
 	const [email, setEmail] = useState('');
-	const [pw, setPw] = useState('');
-	const [nickname, setNickname] = useState('');
+	const [password, setpassword] = useState('');
+	const [name, setName] = useState('');
 	const [emailValid, setEmailValid] = useState(false);
-	const [pwValid, setPwValid] = useState(false);
+	const [passwordValid, setpasswordValid] = useState(false);
 	const [nickValid, setNickValid] = useState(false);
 
 	const [showClear, setShowClear] = useState(false);
 
-	const [currentValue, setCurrentValue] = useState('시 선택');
+	const [region, setRegion] = useState('시 선택');
+	// const [isOn, setIsOn] = useState(false);
 
 	useEffect(() => {
-		setCurrentValue(currentValue);
-		setDropdownVisibility(!dropdownVisibility);
-		console.log('ho');
-	}, [currentValue]);
+		setRegion(region);
+		setDropdownVisibility((dropdownVisibility) => !dropdownVisibility);
+	}, [region]);
 
 	const handleEmail = (event) => {
 		setEmail(event.target.value);
@@ -37,18 +39,18 @@ const SignUp = () => {
 	};
 
 	const handlePassword = (event) => {
-		setPw(event.target.value);
+		setpassword(event.target.value);
 		const regex =
-			/^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+			/^(?=.*[a-zA-z])(?=.*[0-9])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
 		if (regex.test(event.target.value)) {
-			setPwValid(true);
+			setpasswordValid(true);
 		} else {
-			setPwValid(false);
+			setpasswordValid(false);
 		}
 	};
 
-	const handleNickname = (event) => {
-		setNickname(event.target.value);
+	const handlename = (event) => {
+		setName(event.target.value);
 		const regex = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
 		if (regex.test(event.target.value)) {
 			setNickValid(true);
@@ -62,7 +64,7 @@ const SignUp = () => {
 	};
 
 	const handleReset = () => {
-		setPw('');
+		setpassword('');
 	};
 
 	const handleFocus = () => {
@@ -71,7 +73,84 @@ const SignUp = () => {
 
 	const handleOnChangeSelectValue = (e) => {
 		const { innerText } = e.target;
-		setCurrentValue(innerText);
+		setRegion(innerText);
+	};
+
+	const handleChange = () => {
+		if (region !== '시 선택') {
+			return true;
+		}
+		return false;
+	};
+
+	const handleValue = () => {
+		if (email === '') {
+			alert('이메일을 입력하세요.');
+		} else if (password === '') {
+			alert('비밀번호를 입력하세요.');
+		} else if (name === '') {
+			alert('닉네임을 입력하세요.');
+		} else if (region === '시 선택') {
+			alert('지역을 선택하세요.');
+		}
+		return false;
+	};
+
+	const navigate = useNavigate();
+
+	const handleApi = () => {
+		console.log({ email, password, name, region });
+
+		// api
+		// 	.post(`/user`, {
+		// 		name: name,
+		// 		password: password,
+		// 		region: region,
+		// 		email: email,
+		// 	})
+		// 	.then((response) => {
+		// 		if (response.data.code === 0) {
+		// 			console.log(response);
+		// 			alert('회원가입이 완료되었습니다.');
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 		alert('정보를 확인해주세요.');
+		// 	});
+
+		const memberData = {
+			name: name,
+			password: password,
+			region: region,
+			email: email,
+		};
+
+		api
+			.post(`${process.env.REACT_APP_API_URL}/user`, memberData, {
+				validateStatus: false,
+			})
+			.then((response) => {
+				console.log(response);
+				alert('회원가입이 완료되었습니다.');
+				navigate('/login');
+			})
+			.catch((error) => {
+				alert('정보를 확인해주세요.');
+				console.log(error.response);
+			});
+
+		// try {
+		// 	const response = await axios.post(
+		// 		`${process.env.REACT_APP_API_URL}/user`,
+		// 		memberData,
+		// 	);
+		// 	console.log(response.data);
+		// 	alert('회원가입이 완료되었습니다.');
+		// } catch (error) {
+		// 	alert('정보를 확인해주세요.');
+		// 	console.error(error);
+		// }
 	};
 
 	return (
@@ -86,7 +165,7 @@ const SignUp = () => {
 						onChange={handleEmail}
 						required
 						onFocus={handleFocus}
-						placeholder='example@gamil.com'
+						placeholder='example@example.com'
 					/>
 					{email && showClear && (
 						<button className={styles.Reset} onClick={handleClear}>
@@ -103,32 +182,32 @@ const SignUp = () => {
 				<div className={styles.PassWord}>
 					<input
 						type='password'
-						value={pw}
+						value={password}
 						onChange={handlePassword}
-						placeholder='영문,숫자,특수문자 조합 6~20자'
+						placeholder='영문,숫자 조합 8~20자'
 					></input>
-					{pw && showClear && (
-						<button className={styles.PwReset} onClick={handleReset}>
+					{password && showClear && (
+						<button className={styles.passwordReset} onClick={handleReset}>
 							X
 						</button>
 					)}
 				</div>
 				<div className={styles.errorMessage}>
-					{!pwValid && pw.length > 0 && (
+					{!passwordValid && password.length > 0 && (
 						<div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
 					)}
 				</div>
 				<label>닉네임</label>
-				<div className={styles.NickName}>
+				<div className={styles.name}>
 					<input
 						type='text'
-						value={nickname}
-						onChange={handleNickname}
+						value={name}
+						onChange={handlename}
 						placeholder='한글 또는 영문 2~12자'
 					/>
 				</div>
 				<div className={styles.errorMessage}>
-					{!nickValid && nickname.length > 0 && (
+					{!nickValid && name.length > 0 && (
 						<div>2자 이상 16자 이하로 입력해주세요.(영문 또는 한글)</div>
 					)}
 				</div>
@@ -136,12 +215,16 @@ const SignUp = () => {
 			</div>
 			<div className={styles.City}>
 				<div
-					className={styles.Value}
+					className={
+						handleChange()
+							? `${styles.Value} ${styles.clicked}`
+							: `${styles.Value}`
+					}
 					onClick={() => {
 						setDropdownVisibility(!dropdownVisibility);
 					}}
 				>
-					<span>{currentValue}</span>
+					<span>{region}</span>
 					<button>{dropdownVisibility ? <UpIcon /> : <DownIcon />}</button>
 				</div>
 			</div>
@@ -166,7 +249,14 @@ const SignUp = () => {
 					<li onClick={handleOnChangeSelectValue}>제주특별자치도</li>
 				</ul>
 			</DropDown>
-			<Button>회원가입</Button>
+			<Button
+				onClick={() => {
+					handleValue();
+					handleApi();
+				}}
+			>
+				회원가입
+			</Button>
 		</main>
 	);
 };

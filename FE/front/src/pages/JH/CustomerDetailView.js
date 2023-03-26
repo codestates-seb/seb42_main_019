@@ -3,11 +3,14 @@ import styles from './CustomerDetailView.module.css';
 import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
 import MessageList1 from '../../components/JSB/message/MessageList1';
+import BookInfo from '../../components/KHJ/BookInfo';
+import book from '../../dummyData/searchBookList';
 
 const CustomerDetailView = () => {
 	return (
 		<div className={styles.Main}>
 			<Header2>등록된 책</Header2>
+			<BookInfo book={book[0]} />
 			<MessageList1 />
 			<div className={styles.Text}>
 				<label>책 설명</label>

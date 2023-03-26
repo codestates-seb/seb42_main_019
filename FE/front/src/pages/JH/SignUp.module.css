@@ -28,7 +28,7 @@
 
 .Email,
 .PassWord,
-.NickName {
+.name {
 	height: 62px;
 	width: 490px;
 	border-radius: 10px;
@@ -55,12 +55,12 @@
 	margin: 10px 0 -10px 10px;
 }
 
-.NickName {
+.name {
 	display: flex;
 	align-items: center;
 }
 
-.NickName button {
+.name button {
 	height: 62px;
 	width: 62px;
 	border-radius: 10px;
@@ -96,7 +96,7 @@
 	border-radius: 50%;
 }
 
-.PwReset {
+.passwordReset {
 	width: 20px;
 	height: 20px;
 	background-color: #ddd;
@@ -169,4 +169,8 @@
 
 .components-dropdown > ul > li {
 	padding: 10px;
+}
+
+.clicked {
+	color: var(--black);
 }
