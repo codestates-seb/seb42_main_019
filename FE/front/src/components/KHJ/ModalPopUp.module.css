@@ -48,8 +48,9 @@ button.close{
 }
 .h2{
     margin-top: 12px;
-    padding: 15px 0;
+    padding: 15px 0 10px;
     margin-bottom: 0;
+    text-align: left;
 }
 .btn_wrap{
     margin-top: 24px;
@@ -64,6 +65,7 @@ button.close{
     height: 62px;
     background: var(--black);
     color: #fff;
+    font-size: 16px;
     border-radius: var(--box-round);
 }
 /* 책 소개 */
@@ -100,9 +102,10 @@ button.close{
     background: #eaeeea;
     text-align: left;
     position: relative;
+    color: var(--light-black);
 }
 .select span{
-    transition: 1s;
+    transition: .5s;
 }
 .option li{
     background: #eaeeea;
@@ -113,6 +116,12 @@ button.close{
     align-items: center;
     padding: 0 24px;
     overflow: hidden;
+}
+.option li strong{
+    font-weight: normal;
+}
+.opton{
+    color: var(--black);
 }
 .option li:last-child{
     border-radius: 0 0 10px 10px;
@@ -127,9 +136,11 @@ button.close{
     height: 0;
     overflow: hidden;
     z-index: 999;
+    display: none;
 }
 .dropdown.on .option{
     height: auto;
+    display: block;
 }
 /* 한줄평 작성하기 */
 .input{

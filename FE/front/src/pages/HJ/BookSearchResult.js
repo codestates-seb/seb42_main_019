@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 function BookSearchResult() {
     const cx = classNames.bind(styles)
-    const isbnJoin = (isbn) => isbn.split(' ').join('');
+
     return (
         <>
             <Header2>검색결과</Header2>
@@ -20,7 +20,7 @@ function BookSearchResult() {
                     <Search />
                 </div>
                 {bookData.map((el) =>
-                <Link to={`/search/detail/${isbnJoin(el.isbn)}`}>
+                <Link to={`/search/detail/${el.isbn}`}>
                     <BS bookData={el}/>
                 </Link>
                 )}
@@ -33,3 +33,4 @@ function BookSearchResult() {
 }
 
 export default BookSearchResult;
+

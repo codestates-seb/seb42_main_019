@@ -3,7 +3,7 @@ import style from './BSlist.module.css';
 const BS = function ({ bookData }) {
 	return (
 		<>
-        	<div className={style.box1}>
+        <div className={style.box1}>
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.bookimg1}>
