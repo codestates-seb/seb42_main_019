@@ -75,6 +75,7 @@ public class MessageController {
     @GetMapping("/unread")
     public ResponseEntity<?> countUnreadCount() {
         long count = messageService.countUnreadMessages();
+
         return ResponseEntity.ok(count);
     }
 
