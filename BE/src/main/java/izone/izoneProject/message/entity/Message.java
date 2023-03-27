@@ -45,7 +45,7 @@ public class Message { //extends Auditable
     //TODO: localdatetime 생성
     @CreatedDate
     @Column(name = "create_date_time", nullable = false)
-    private LocalDateTime time;
+    private LocalDateTime date;
 
     @Column(name = "read_date_time")
     @LastModifiedDate
@@ -53,7 +53,7 @@ public class Message { //extends Auditable
 
     @PrePersist
     public void createdAt() {
-        this.time = LocalDateTime.now();
+        this.date = LocalDateTime.now();
     }
 
     //TODO: User user -> User receiver 변경
