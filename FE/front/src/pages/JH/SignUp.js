@@ -9,16 +9,13 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
 	const [dropdownVisibility, setDropdownVisibility] = useState(false);
-
 	const [email, setEmail] = useState('');
 	const [password, setpassword] = useState('');
 	const [name, setName] = useState('');
 	const [emailValid, setEmailValid] = useState(false);
 	const [passwordValid, setpasswordValid] = useState(false);
 	const [nickValid, setNickValid] = useState(false);
-
 	const [showClear, setShowClear] = useState(false);
-
 	const [region, setRegion] = useState('시 선택');
 	// const [isOn, setIsOn] = useState(false);
 
