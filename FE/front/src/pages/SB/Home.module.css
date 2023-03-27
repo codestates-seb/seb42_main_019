@@ -1,7 +1,11 @@
+.boxAll {
+    margin-top: 120px;
+}
+
 .box {
 	width: 530px;
 	/* height: 100vh;*/
-	margin-bottom: 90px;
+    margin-bottom: 90px;
 }
 
 .img {

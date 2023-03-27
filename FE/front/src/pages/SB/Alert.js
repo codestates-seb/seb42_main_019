@@ -1,36 +1,60 @@
-import classNames from "classnames/bind";
-import messageContent1 from '../../dummyData/SB/messageContent1';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import api from "../../api/api";
+
 import style from './Alert.module.css';
+import classNames from "classnames/bind";
+
 import MapAlertMini from "../../components/JSB/Alert/MapAlertMini";
 import Header2 from "../../components/common/Header2";
 import Nav from '../../components/common/Nav';
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+
+//1. 메세지가 시간 순서대로 정렬된다 (오름차순)( )
+//2. 메세지 리스트 하나를클릭하면 해당 리스트가 삭제되며 해당 메세지로 이동된다 ( )
+//3. 'Delete All Message!' 버튼을 누르면 모든 메세지리스트가 삭제된다 ( )
+//4. 1분마다 메세지 get 요청을 보낸다 ( )
 
 function Alert(){
     const cx=classNames.bind(style);
     const history = useNavigate();
-    const [noti, setNoti] = useState(messageContent1);
+    const [messageData, setMessageData] = useState([]);
 
     useEffect(()=>{
-        const savedNoties = localStorage.getItem('noti');
-        if(savedNoties){
-            setNoti(JSON.parse(savedNoties));
+        const savedMessageData = localStorage.getItem('messageData');
+        if(savedMessageData){
+            setMessageData(JSON.parse(savedMessageData));
         }
-    }, []);
+        
+        const fetchData = async () => {
+            try {
+            const response = await axios.get(`${api}/messages/received/1?pageNumber=1&size=10&sort=create_date_time,DESC`);
+            setMessageData(response.data);
+            } catch (error) {
+            console.error(error);
+            }
+        };
+        
+        const intervalId = setInterval(fetchData, 60000);
+        
+        return () => {
+            clearInterval(intervalId);
+        };
+        }, []);
+        
 
     const handleClick = (id) =>{
-        const updatedList = noti.filter(noti => noti.id !== id)
-        setNoti(updatedList);
-        localStorage.setItem('noti', JSON.stringify(updatedList));
-        console.log(noti)
+        const updatedList = messageData.filter(messageData => messageData.id !== id)
+        setMessageData(updatedList);
+        localStorage.setItem('messageData', JSON.stringify(updatedList));
+        console.log(messageData)
         history('/myPage/messageBox')
     }
 
-    const handleClick2 = (id)=>{
+    const handleClick2 = ()=>{
         const updatedList = []
-        setNoti(updatedList);
-        localStorage.setItem('noti',JSON.stringify(updatedList));
+        setMessageData(updatedList);
+        localStorage.setItem('messageData',JSON.stringify(updatedList));
         history('/alert');
     }
 
@@ -38,13 +62,13 @@ function Alert(){
     return(
         <>
             <Header2>메세지 알림</Header2>
-            <div onClick={()=>{handleClick2(noti.id)}} className={style.box1}>
+            <div onClick={()=>{handleClick2(messageData.id)}} className={style.box1}>
                 <div className={style.notFooter}>
                     <div className={style.listboxMessage}> Delete All Message! </div>
                 </div>
             </div>  
             <ul className={cx('map')} >
-            {noti.map((el) => <MapAlertMini handleClick={handleClick}  key = {el.id} message={el}/>)}
+            {messageData.map((message) => <MapAlertMini handleClick={handleClick}  key = {message.id} message={message}/>)}
             </ul>
             <Nav />
         </>

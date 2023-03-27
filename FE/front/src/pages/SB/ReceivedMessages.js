@@ -1,13 +1,16 @@
-import Header2 from '../../components/common/Header2';
-import style from './MessageList02.module.css'
-import Nav from '../../components/common/Nav';
-import MessageList3 from '../../components/JSB/message/MessageList3';
-import classNames from 'classnames';
-import messageContent1 from '../../dummyData/SB/messageContent1';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const MessageList02 = () => {
+import style from './ReceivedMessages.module.css'
+import classNames from 'classnames';
+
+import Nav from '../../components/common/Nav';
+import Header2 from '../../components/common/Header2';
+import MessageList3 from '../../components/JSB/message/MessageList3';
+
+import messageContent1 from '../../dummyData/SB/messageContent1';
+
+const ReceivedMessages = () => {
     const cx = classNames.bind(style)
 	const [isOn, setIsOn] = useState(false);
 	const handleToggle = ()=>{
@@ -31,4 +34,4 @@ const MessageList02 = () => {
     )
 }
 
-export default MessageList02;
+export default ReceivedMessages;

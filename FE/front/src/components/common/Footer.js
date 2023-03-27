@@ -5,8 +5,7 @@ const Footer = function () {
 		<>
 			<div className={style.footerBox}>
 				<div className={style.footerBox2}>
-					{/*<img src={izonelogo} className='izonelogo' alt={izonelogo} />*/}
-					<h2 className={style.footerlogo}>LOGO</h2>
+					<h2 className={style.footerlogo}>IZONE</h2>
 					<div className={style.footerText}>
 						<h2>아이즈원</h2>
 						<p className={style.text}>© 2023 · All Rights Reserved</p>
