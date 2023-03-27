@@ -101,6 +101,9 @@ const Login = () => {
 			});
 			console.log(response.data);
 			localStorage.setItem('accessToken', response.data.token);
+
+			
+
 			alert('로그인 성공');
 			navigate('/');
 		} catch (error) {
