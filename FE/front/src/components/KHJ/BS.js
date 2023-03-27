@@ -21,12 +21,21 @@ const BS = function ({ bookData }) {
 							<p className={cx('bookTitlep')}><b>{bookData.title}</b></p>
 						</div>
 						<div className={cx('bookDetail1')}>
-							<p className={cx('bookDetail01')}>{bookData.name}{userOn() ? `${bookData.user.name}(${bookData.user.region})` : authors}</p>
+							<p className={cx('bookDetail01')}>
+								{userOn() ?
+									`${bookData.user.name}(${bookData.user.region})`
+									: authors
+								}
+							</p>
 							<p className={cx('bookDetail01', 'bookDetail02')}>
 								{bookData.time}시간 전
 							</p>
 						</div>
-						<div className={style.grade}>{bookData.condition}</div>
+						{userOn() ?
+							<div className={style.grade}>{bookData.condition}</div>
+							:
+							null
+						}
 					</div>
 				</div>
 			</div>

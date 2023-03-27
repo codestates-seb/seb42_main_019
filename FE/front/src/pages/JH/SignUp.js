@@ -127,7 +127,7 @@ const SignUp = () => {
 		};
 
 		api
-			.post(`${process.env.REACT_APP_API_URL}/user`, memberData, {
+			.post(`/user`, memberData, {
 				validateStatus: false,
 			})
 			.then((response) => {
