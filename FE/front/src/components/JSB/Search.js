@@ -1,9 +1,10 @@
-import style from './Search.module.css';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from '../../api/api';
 import { useRecoilState } from 'recoil';
 import bookSearchList from '../../pages/HJ/atom';
+import axios from '../../api/api';
+
+import style from './Search.module.css';
 
 const HomeSearch = function () {
 
@@ -32,7 +33,7 @@ const HomeSearch = function () {
 
 	const handleSearch = (event) => {
 		if (event.key === 'Enter') {
-		  navigate(`/search?q=${currentQuery}`);
+		navigate(`/search?q=${currentQuery}`);
       searchBook();
 		}
 	}

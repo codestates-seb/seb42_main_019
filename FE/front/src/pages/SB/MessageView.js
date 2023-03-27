@@ -1,10 +1,13 @@
-import style from './MessageView.module.css'
-import Header2 from '../../components/common/Header2';
-import MessageList1 from '../../components/JSB/message/MessageList1'
-import Button from '../../components/common/Button';
-import classNames from 'classnames/bind';
-import messageContent1 from '../../dummyData/SB/messageContent1';
 import { useParams } from 'react-router-dom';
+
+import style from './MessageView.module.css'
+import classNames from 'classnames/bind';
+
+import Header2 from '../../components/common/Header2';
+import Button from '../../components/common/Button';
+import MessageList1 from '../../components/JSB/message/MessageList1'
+
+import messageContent1 from '../../dummyData/SB/messageContent1';
 
 const MessageView=()=>{
     const cx = classNames.bind(style);
