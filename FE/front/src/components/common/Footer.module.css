@@ -6,20 +6,13 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	position: absolute;
-	margin-top: 50px;
-
-	/*사실 fixed 는 아닌데 보기 편하라고 쓴거임
-    position: absolute;
-    bottom: 0;
-    border: 1px solid var(--green);
-    position: fixed;
-    bottom: 0;*/
+	position: relative;
 }
 
 .footerBox2 {
 	display: flex;
 	flex-direction: column;
+	padding-bottom: 30px;
 	align-items: center;
 	justify-content: center;
 }
