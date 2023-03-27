@@ -44,8 +44,8 @@ public class BookController {
     @Value("${kakao.key}")
     private String KaKaoKey;
 
+    //책 등록
     @PostMapping
-//    @PreAuthorize("isAuthorized")
     public ResponseEntity<?> createBook(@Valid @RequestBody BookPostDto postDto) {
         Book book = mapper.postDtotoBook(postDto);
 
@@ -55,6 +55,7 @@ public class BookController {
         return ResponseEntity.created(location).build();
     }
 
+    //등록된 책 수정
     @PatchMapping("/{bookId}")
     public ResponseEntity<?> updateBook(@PathVariable("bookId") @Positive long bookId,
                                         @Valid @RequestBody BookPatchDto patchDto) {
@@ -65,6 +66,7 @@ public class BookController {
         return ResponseEntity.ok(patchBook);
     }
 
+    //keyword 포함한 책 리스트 검색
     @GetMapping("/search")
     public ResponseEntity<?> searchBooks(@RequestParam("keyword") String keyword) throws UnsupportedEncodingException {
         String decodedKeyword = URLDecoder.decode(keyword, StandardCharsets.UTF_8.toString());
@@ -74,6 +76,7 @@ public class BookController {
         return ResponseEntity.ok(result);
     }
 
+    //isbn이 동일한 등록된 책 검색
     @GetMapping("/search/isbn")
     public ResponseEntity<?> findBookByIsbn(@RequestParam(required = false, value = "isbn") String isbn) {
         List<Book> books = bookService.findByIsbn(isbn);
@@ -82,6 +85,7 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
+    //본인 등록 책 리스트 검색
     @GetMapping
     public ResponseEntity<?> findBookByUser() {
         List<Book> books = bookService.findBookByUser();
@@ -90,6 +94,16 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
+    //다른 유저 등록 책 리스트 검색
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> findBookByOther(@PathVariable @Positive long userId) {
+        List<Book> books = bookService.findBookListByUser(userId);
+        List<BookResponseDto> response = mapper.bookToResponseDtos(books);
+
+        return ResponseEntity.ok(response);
+    }
+
+    //특정 책 검색
     @GetMapping("/{bookId}")
     public ResponseEntity<?> detailBook(@PathVariable("bookId") @Positive long bookId) {
         Book book = bookService.findBook(bookId);
@@ -98,9 +112,10 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
+
+    //책 좋아요 선택
     @PostMapping("/{bookId}/like")
     public ResponseEntity<?> bookLike(@PathVariable("bookId") @Positive long bookId) {
-//        User user = userService.verifyUser(userId);
         Book book = bookService.findBook(bookId);
         bookLikeService.likeCount(/*user, */book);
         BookLikeResponseDto response = mapper.bookToBookLikeResponseDto(book);
@@ -108,6 +123,7 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
+    //책 싫어요 선택
     @PostMapping("/{bookId}/dislike")
     public ResponseEntity<?> bookDislike(@PathVariable("bookId") @Positive long bookId) {
         Book book = bookService.findBook(bookId);
@@ -117,6 +133,7 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
+    // 등록 책 삭제
     @DeleteMapping("/{bookId}")
     public ResponseEntity<?> deleteBook(@PathVariable("bookId") @Positive long bookId) {
         bookService.deleteBook(bookId);
@@ -124,6 +141,7 @@ public class BookController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    //카카오 책 검색 api
     @GetMapping("/bookInfo")
     public ArrayList<KaKaoBookInfoResponse> getBookInfo(@RequestParam String bookTitle) throws IOException {
         String testUrl = "https://dapi.kakao.com/v3/search/book";
@@ -167,5 +185,4 @@ public class BookController {
 
         return list;
     }
-
 }

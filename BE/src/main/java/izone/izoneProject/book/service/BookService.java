@@ -93,6 +93,14 @@ public class BookService {
         return bookRepository.findByUser(user);
     }
 
+    @Transactional(readOnly = true)
+    public List<Book> findBookListByUser(long userId) {
+        User user = userService.verifyUser(userId);
+        List<Book> books = bookRepository.findByUser(user);
+
+        return books;
+    }
+
     public void deleteBook(long bookId) {
         Book book = findVerifiedBookById(bookId);
         String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
