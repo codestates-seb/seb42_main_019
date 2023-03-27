@@ -16,10 +16,10 @@ function ModalPopUp({ bookData, open, onevent }) {
                 </header>
                 <h2 className={cx('gray_font', 'info_h2')}>책 소개</h2>
                 <p>
-                    {bookData.content}
+                    {bookData.contents}
                 </p>
-                {/* <h2 className={cx('gray_font', 'info_h2')}>목차</h2>
-                <p className={cx('gray_font', 'no_data')}>제공된 데이터가 없습니다.</p> */}
+                <h2 className={cx('gray_font', 'info_h2')}>링크</h2>
+                <a href={bookData.url} target='_blank' className={cx('gray_font', 'no_data')} rel="noreferrer">{bookData.url}</a>
 
             </article>
             <div className={open ? cx('modalback', 'on') : cx('modalback')} onClick={modalToggle}></div>
