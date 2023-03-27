@@ -9,7 +9,6 @@ import Login from '../src/pages/JH/Login';
 import BookSearch from '../src/pages/HJ/BookSearch';
 import SignUp from './pages/JH/SignUp';
 import MessageView from './pages/SB/MessageView';
-import MessageList02 from './pages/SB/MessageList02';
 import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
@@ -20,6 +19,8 @@ import Missing from './pages/HJ/Missing';
 import MessageWrite from './pages/SB/MessageWrite';
 import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
+import SendMessages from './pages/SB/SendMessages';
+import ReceivedMessages from './pages/SB/ReceivedMessages';
 
 function App() {
 	return (
@@ -45,7 +46,8 @@ function App() {
 					<Route path='/search/detail/:isbn' element={<BookSearch />}></Route>
 
 					<Route path='/myPage' element={<MyPage />}></Route>
-					<Route path='/myPage/messageBox' element={<MessageList02 />}></Route>
+					<Route path='/myPage/messageBox' element={<ReceivedMessages />}></Route>
+					<Route path='/myPage/messageBox1' element={<SendMessages />}></Route>
 					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
 					
