@@ -48,6 +48,7 @@ public class Book extends Auditable {
     private String thumbnail;
 
     @Column(name = "CONTENTS")
+    @Size(max = 1000000)
     private String contents;
 
     @Column(name = "DESCRIPTION")

@@ -1,6 +1,7 @@
 package izone.izoneProject.message.repository;
 
 import izone.izoneProject.message.entity.Message;
+import izone.izoneProject.user.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,5 +31,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query(value = "SELECT * FROM message WHERE receiver_id = :receiverId", nativeQuery = true)
     List<Message> findAllByUserId(long receiverId);
 
-    long countByReadAtIsNull();
+    @Query(value = "SELECT COUNT(*) FROM message WHERE receiver_id = :receiverId AND read_date_time is NULL", nativeQuery = true)
+    int countByReadAtIsNull(long receiverId);
 }

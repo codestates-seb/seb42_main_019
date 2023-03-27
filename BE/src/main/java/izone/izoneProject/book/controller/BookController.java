@@ -23,7 +23,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -63,8 +66,9 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> searchBooks(@RequestParam("keyword") String keyword) {
-        List<Book> books = bookService.searchByKeyword(keyword);
+    public ResponseEntity<?> searchBooks(@RequestParam("keyword") String keyword) throws UnsupportedEncodingException {
+        String decodedKeyword = URLDecoder.decode(keyword, StandardCharsets.UTF_8.toString());
+        List<Book> books = bookService.searchByKeyword(decodedKeyword);
         List<Book> result = BookService.deduplication(books, Book::getTitle);
 
         return ResponseEntity.ok(result);

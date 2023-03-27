@@ -47,7 +47,7 @@ public class Message { //extends Auditable
     @Column(name = "create_date_time", nullable = false)
     private LocalDateTime time;
 
-    @Column
+    @Column(name = "read_date_time")
     @LastModifiedDate
     private LocalDateTime readAt;
 

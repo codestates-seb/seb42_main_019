@@ -117,8 +117,12 @@ public class MessageService {
         return mapper.messageToResponseDto(message);
     }
 
-    public long countUnreadMessages() {
-        return messageRepository.countByReadAtIsNull();
+    public int countUnreadMessages() {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
+
+        return messageRepository.countByReadAtIsNull(user.getUserId());
     }
 
     //TODO: list.remove(messageId)
