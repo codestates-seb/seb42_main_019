@@ -24,7 +24,6 @@ const HomeSearch = function () {
           console.log(error);
       }
   }
-  console.log(bookData)
   useEffect(() => {
       setCurrentQuery(currentQuery);
   }, [currentQuery, params])
