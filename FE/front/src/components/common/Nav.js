@@ -6,6 +6,7 @@ import { ReactComponent as IconBookplus } from '../../assets/Bookplus.svg';
 import { ReactComponent as IconBooklist } from '../../assets/IconBooklist.svg';
 import { ReactComponent as IconMypage } from '../../assets/IconMypage.svg';
 import { Link, useLocation } from 'react-router-dom';
+import isLogin from './isLogin';
 
 function Navigation() {
 	const cx = classNames.bind(styles);
@@ -23,54 +24,32 @@ function Navigation() {
 		<>
 			<nav>
 				<ul className={cx('nav')}>
-					<li className={findUrl('') ? cx('nav--li', 'on') : cx('nav--li')}>
+					<li className={cx('nav--li', {on : findUrl('')})}>
 						<Link to='/'>
 							<IconHome fill={findUrl('') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>홈</span>
 						</Link>
 					</li>
-					<li
-						className={findUrl('alert') ? cx('nav--li', 'on') : cx('nav--li')}
-					>
-						<Link to='/alert'>
+					<li className={cx('nav--li', {on : findUrl('alert')})}>
+						<Link to={isLogin() ? '/alert' : '/login'}>
 							<IconAlert fill={findUrl('alert') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>알림</span>
 						</Link>
 					</li>
-					<li
-						className={
-							findUrl('createBook') ? cx('nav--li', 'on') : cx('nav--li')
-						}
-					>
-						<Link to='/createBook'>
-							<IconBookplus
-								fill={
-									findUrl(
-										'boo                                                                                                                                                                                                                                                                                                         klist',
-									)
-										? '#2F5A2D'
-										: '#D9D9D9'
-								}
-							/>
+					<li className={cx('nav--li', {on : findUrl('createBook')})}>
+						<Link to={isLogin() ? '/createBook' : '/login'}>
+							<IconBookplus fill={findUrl('booklist') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>책 등록</span>
 						</Link>
 					</li>
-					<li
-						className={
-							findUrl('myBookShelf') ? cx('nav--li', 'on') : cx('nav--li')
-						}
-					>
-						<Link to='/myBookShelf'>
-							<IconBooklist
-								fill={findUrl('myBookShelf') ? '#2F5A2D' : '#D9D9D9'}
-							/>
+					<li className={cx('nav--li', {on : findUrl('myBookShelf') })}>
+						<Link to={isLogin() ? '/myBookShelf' : '/login'}>
+							<IconBooklist fill={findUrl('myBookShelf') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>내 책장</span>
 						</Link>
 					</li>
-					<li
-						className={findUrl('myPage') ? cx('nav--li', 'on') : cx('nav--li')}
-					>
-						<Link to='/myPage'>
+					<li className={cx('nav--li', {on : findUrl('myPage')})} >
+						<Link to={isLogin() ? '/myPage' : '/login'}>
 							<IconMypage fill={findUrl('myPage') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>마이페이지</span>
 						</Link>

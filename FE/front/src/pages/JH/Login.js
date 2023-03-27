@@ -91,7 +91,7 @@ const Login = () => {
 				method: 'post',
 				url: '/login',
 				headers: {
-					Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+					Authorization: `Bearer ${localStorage.getItem('accessToken')}` ,
 					'Content-Type': 'application/json',
 					withCredentials : true
 				},
@@ -100,12 +100,8 @@ const Login = () => {
 					password: password,
 				},
 			});
-			console.log(response.data);
-			console.log(response);
-			console.log(response.headers.Authorization);
-			console.log(response.data.userId)
-			localStorage.setItem('accessToken', response.headers.Authorization);
-			localStorage.setItem('userId', response.data.userId);
+			localStorage.setItem('accessToken', response.headers.authorization);
+			localStorage.setItem('userId', response.data[0].slice(8));
 
 			alert('로그인 성공');
 			navigate('/');

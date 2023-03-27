@@ -24,7 +24,6 @@ const HomeSearch = function () {
           console.log(error);
       }
   }
-
   useEffect(() => {
       setCurrentQuery(currentQuery);
   }, [currentQuery, params])
