@@ -12,10 +12,9 @@ const Header2 = ({children})=> {
 		<>
 			<div className={style.box2}>
 				<button className={style.backBtn} onClick={()=>{navigate(-1)}}>
-				<img src={btnBack} className={style.AppBtnback} alt='btnback' />
+					<img src={btnBack} className={style.AppBtnback} alt='btnback' />
 				</button>
 				<span className={style.loginText2}>{children}</span>
-				<span className={style.loginText3}>로그인</span>
 			</div>
 		</>
 	);

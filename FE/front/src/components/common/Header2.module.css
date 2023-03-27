@@ -8,7 +8,7 @@
 	flex-direction: row;
 	align-items: center;
 	width: 530px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .AppBtnback {
@@ -23,6 +23,8 @@
 }
 
 .backBtn {
+	position: absolute;
+	left: 0px;
     border: 0;
     outline: 0;
 	background-color:transparent;
