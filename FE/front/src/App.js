@@ -43,20 +43,20 @@ function App() {
 					<Route path='/missing' element={<Missing />}></Route>
 					
 					<Route element={<PrivateRoutes />}>
-					<Route path='/seller/detailView' element={<SellerDetailView />}></Route>
-					<Route path='/seller/detailView/edit' element={<SellerDetailViewEdit />}></Route>
+						<Route path='/seller/detailView' element={<SellerDetailView />}></Route>
+						<Route path='/seller/detailView/edit' element={<SellerDetailViewEdit />}></Route>
 
-					<Route path='/myPage' element={<MyPage />}></Route>
-					<Route path='/myPage/messageBox' element={<ReceivedMessages />}></Route>
-					<Route path='/myPage/messageBox1' element={<SendMessages />}></Route>
-					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
-					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
+						<Route path='/myPage' element={<MyPage />}></Route>
+						<Route path='/myPage/messageBox' element={<ReceivedMessages />}></Route>
+						<Route path='/myPage/messageBox1' element={<SendMessages />}></Route>
+						<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
+						<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
 
-					<Route path='/alert' element={<Alert />}></Route>
-					<Route path='/createBook' element={<CreateBook />}></Route>
-					
-					<Route path='/myPage/myRate' element={<UserRateList />}></Route>
-					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
+						<Route path='/alert' element={<Alert />}></Route>
+						<Route path='/createBook' element={<CreateBook />}></Route>
+						
+						<Route path='/myPage/myRate' element={<UserRateList />}></Route>
+						<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
 					</Route>
 
           	    </Routes>
