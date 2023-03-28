@@ -45,12 +45,12 @@ function App() {
 					<Route element={<PrivateRoutes />}>
 					<Route path='/seller/detailView' element={<SellerDetailView />}></Route>
 					<Route path='/seller/detailView/edit' element={<SellerDetailViewEdit />}></Route>
-
-					<Route path='/myPage' element={<MyPage />}></Route>
+					
 					<Route path='/myPage/messageBox' element={<ReceivedMessages />}></Route>
 					<Route path='/myPage/messageBox1' element={<SendMessages />}></Route>
 					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
+					<Route path='/myPage' element={<MyPage />}></Route>
 
 					<Route path='/alert' element={<Alert />}></Route>
 					<Route path='/createBook' element={<CreateBook />}></Route>
