@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from '../JH/Login.module.css';
 import HomeImg from '../../assets/homeImg.png';
 import Header2 from '../../components/common/Header2';
@@ -91,9 +91,9 @@ const Login = () => {
 				method: 'post',
 				url: '/login',
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem('accessToken')}` ,
+					Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
 					'Content-Type': 'application/json',
-					withCredentials : true
+					withCredentials: true,
 				},
 				data: {
 					username: email,
@@ -110,7 +110,6 @@ const Login = () => {
 			alert('정보를 확인해주세요');
 		}
 	}
-
 
 	return (
 		<main className={styles.Main}>
