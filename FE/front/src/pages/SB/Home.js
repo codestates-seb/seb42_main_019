@@ -1,6 +1,5 @@
 import style from './Home.module.css';
 import classNames from 'classnames/bind';
-
 import Header from '../../components/common/Header';
 import Nav from '../../components/common/Nav';
 import Search from '../../components/JSB/Search';

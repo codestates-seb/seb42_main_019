@@ -31,13 +31,13 @@ function Navigation() {
 						</Link>
 					</li>
 					<li className={cx('nav--li', {on : findUrl('alert')})}>
-						<Link to={isLogin() ? '/alert' : '/login'}>
+						<Link to='/alert'>
 							<IconAlert fill={findUrl('alert') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>알림</span>
 						</Link>
 					</li>
 					<li className={cx('nav--li', {on : findUrl('createBook')})}>
-						<Link to={isLogin() ? '/createBook' : '/login'}>
+						<Link to='/createBook'>
 							<IconBookplus fill={findUrl('booklist') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>책 등록</span>
 						</Link>

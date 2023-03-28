@@ -2,6 +2,7 @@
 .footerBox {
 	width: 530px;
 	height: 308px;
+	margin-top: 80px;
 	background-color: var(--black);
 	display: flex;
 	flex-direction: column;

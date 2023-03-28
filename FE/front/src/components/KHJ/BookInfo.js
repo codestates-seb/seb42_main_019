@@ -10,21 +10,13 @@ function BookInfo ({ book }) {
             <div className={cx('img')}>
                 <img src={book.thumbnail} alt={book.title}></img>
             </div>
+            <h1 className={cx('h1')}>{book.title}</h1>
             <div className={cx('bookinfo')}>
-                <h1>{book.title}</h1>
                 <div className={cx('left')}>
-                    {/* <p>
-                        852p
-                        <span>|</span>
-                        1,786g
-                        <span>|</span>
-                        200*250*40mm
-                    </p> */}
-                    <p>{book.name}</p>
                     <p>{authors}</p>
                     <p className={cx('date')}>{book.publisher}</p>
                 </div>
-                {/* <Modal bookData={book}>책 정보 더보기 +</Modal> */}
+                <Modal bookData={book}>책 정보 더보기 +</Modal>
             </div>
         </>
     )
