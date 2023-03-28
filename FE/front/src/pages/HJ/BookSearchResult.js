@@ -15,12 +15,12 @@ function BookSearchResult() {
     
     const params = useLocation();
     const urlSearch = params.search;
-    const searchQuery = new URLSearchParams(urlSearch).get('q')
+    const searchQuery = new URLSearchParams(urlSearch).get('q');
     const [currentQuery, setCurrentQuery] = useState(searchQuery);
 
     const [bookData, setBookdata] = useState([]);
   
-    const searchBook = async () => {
+    const searchBook = async (currentQuery) => {
         const url = `/books/search?keyword=${currentQuery}`;
         try {
             const res = await axios.get(url);
@@ -32,22 +32,28 @@ function BookSearchResult() {
     };
     
     useEffect(() => {
-        searchBook();
+        searchBook(currentQuery);
         setCurrentQuery(searchQuery);
     }, []);
-
+    
     return (
         <>
             <Header2>검색결과</Header2>
             <main className={cx('main')}>
                 <div className={cx('search')}>
-                    <Search />
+                    <Search searchBook={searchBook}/>
                 </div>
-                {bookData.map((el) =>
-                <Link to={`/search/detail/${el.isbn}`} key={el.bookId}>
-                    <BS bookData={el}/>
-                </Link>
-                )}
+                {bookData.length === 0 ?
+                    <div className={cx('no-data')}>
+                        <p>검색 결과가 없습니다.</p>
+                    </div>
+                    :
+                    bookData.map((el) =>
+                    <Link to={`/search/detail/${el.isbn}`} key={el.bookId}>
+                        <BS bookData={el}/>
+                    </Link>
+                    )
+                }
                 <Pagenation />
             </main>
             <Footer />

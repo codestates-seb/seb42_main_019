@@ -8,8 +8,6 @@ const PrivateRoutes =()=>{
     const loginState = () => {
         return token && user
     }
-
-
     return loginState() ? (
         
         <div>
