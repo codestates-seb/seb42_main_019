@@ -1,12 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom"
-import isLogin from "../components/common/isLogin"
 import MyPage from "../pages/SB/MyPage";
 
 
 const PrivateRoutes =()=>{
-    const loginState = isLogin();
-
-    return loginState ? (
+    const token = localStorage.getItem('accessToken');
+    const user = localStorage.getItem('userId');
+    const loginState = () => {
+        return token && user
+    }
+    return loginState() ? (
         
         <div>
         <Outlet>

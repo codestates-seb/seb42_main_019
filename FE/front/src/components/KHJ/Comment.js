@@ -1,12 +1,11 @@
+import axios from '../../api/api';
 import { useEffect, useState } from 'react';
 import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
 import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
+import userIsCheck from '../common/userIsCheck';
 
-function Comment({ comment, idx, setCommentList, commentList}) {
-    useEffect(() => {
-        setContent(comment.content)
-    }, [comment.content])
-    const isUser = true;
+function Comment({ comment, key, basicUrl, commentList, setCommentList }) {
+
     const [isContent, setContent] = useState(comment.content)
     const [isEdit, setEdit] = useState(false)
 
@@ -14,48 +13,62 @@ function Comment({ comment, idx, setCommentList, commentList}) {
         setContent(e.target.value);
     }
 
-    const edithandler = () => setEdit(!isEdit)
-    const contentEditSave = (id, name, content) => {
-        const editCom = {
-            id,
-            name,
-            content
-        };
-        const editComList = [...commentList.slice(0,id), editCom, ...commentList.slice(id+1)];
-        setCommentList(editComList);
-        setEdit(!isEdit)
-    }
-    const editerble = () => {
-        if(isUser){
-            if(isEdit){
-                return <>
-                    <button><EditBtn onClick={() => contentEditSave(idx, comment.name, isContent)} /></button>
-                    <button><XBtn onClick={() => {removeComment(idx)}} /></button>
-                </>
-            }else{
-                return <>
-                    <button><EditBtn onClick={edithandler}/></button>
-                    <button><XBtn onClick={() => {removeComment(idx)}} /></button>
-                </>
-            }
+    // PATCH
+    const editComment = async () => {
+        const url = `${basicUrl}/${key}`;
+        try{
+            const response = await axios({
+                method: 'patch',
+                url,
+                content: isContent
+            })
+        } catch (err) {
+            console.log(err);
         }
-        return
+        setEdit(!isEdit);
     }
 
-    const removeComment = (value) => {
-        if(isEdit){
-            return
+    // DELETE
+    const removeComment = async () => {
+        const url = `${basicUrl}/${key}`
+        try {
+            await axios({
+                method: 'delete',
+                url
+            })
+        } catch (err) {
+            console.log(err)
+        };
+    };
+
+    const handleDelete = () => {
+        const result = window.confirm("삭제하시겠습니까?");
+        if(result) {
+            removeComment();
+            setCommentList(commentList.filter((el) => el.bookCommentId !== key))
         }
-        const restComment = commentList.filter((comment, idx) => idx !== value);
-        setCommentList(restComment)
     }
+
+    const editerble = () => {
+        if(userIsCheck()){
+            if(isEdit){
+                return <span>
+                    <button><EditBtn onClick={() => setEdit(!isEdit)} /></button>
+                    <button><XBtn onClick={() => {removeComment(key)}} /></button>
+                </span>
+            }else{
+                return <span>
+                    <button><EditBtn onClick={editComment}/></button>
+                    <button><XBtn onClick={() => {handleDelete(key)}} /></button>
+                </span>
+            };
+        };
+    };
 
     return (
-        <li key={comment.id}>
-            <p>{comment.name}</p>
-            <span>
-                {editerble()}
-            </span>
+        <li key={key}>
+            <p>{comment.userName}</p>
+            {editerble()}
             {isEdit ?
                 <input value={isContent} onChange={contentEdit} maxLength='40'></input>
             :

@@ -45,6 +45,7 @@ function App() {
 					<Route path='/missing' element={<Missing />}></Route>
 
 					<Route element={<PrivateRoutes />}>
+
 						<Route
 							path='/seller/detailView'
 							element={<SellerDetailView />}
@@ -73,7 +74,6 @@ function App() {
 						></Route>
 
 						<Route path='/alert' element={<Alert />}></Route>
-
 						<Route path='/myPage/myRate' element={<UserRateList />}></Route>
 						<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
 					</Route>
