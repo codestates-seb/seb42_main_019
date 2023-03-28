@@ -5,13 +5,21 @@ import Button from '../../components/common/Button';
 import MessageList1 from '../../components/JSB/message/MessageList1';
 import BookInfo from '../../components/KHJ/BookInfo';
 import bookinfo from '../../dummyData/bookinfo';
+import { Link, useParams } from 'react-router-dom';
 
 const CustomerDetailView = () => {
+	const bookId = useParams();
+	// console.log(bookId)
+	// console.log(bookId.bookId)
+	const user = bookinfo.user;
+
 	return (
 		<div className={styles.Main}>
 			<Header2>등록된 책</Header2>
-			<BookInfo book={bookinfo[0]} />
-			<MessageList1 />
+			<BookInfo book={bookinfo} />
+			<Link to={`/userRate/${user.userId}`}>
+				<MessageList1 />
+			</Link>
 			<div className={styles.Text}>
 				<label>책 설명</label>
 				<div className={styles.TextIner}>

@@ -3,10 +3,10 @@ import Nav from '../../components/common/Nav';
 import RateList from "../../components/KHJ/RataList";
 import ratedata from "../../dummyData/ratedata";
 
-function BookSearchResult() {
+function MyRate() {
     return (
         <>
-            <Header2>내가 남긴 후기</Header2>
+            <Header2>내게 남긴 후기</Header2>
             <main>
                 <RateList ratedata={ratedata}/>
             </main>
@@ -15,4 +15,4 @@ function BookSearchResult() {
     );
 }
 
-export default BookSearchResult;
+export default MyRate;

@@ -13,6 +13,7 @@ import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
 import UserRateList from './pages/HJ/UserRateList';
+import MyRateList from './pages/HJ/MyRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import ErrorPage from './pages/HJ/404';
 import Missing from './pages/HJ/Missing';
@@ -36,6 +37,7 @@ function App() {
 					
 					<Route path='/customer/detailView/:bookId' element={<CustomerDetailView />}></Route>
 					
+					<Route path='/userRate/:userid' element={<UserRateList />}></Route>
 					<Route path='/search' element={<BookSearchResult />}></Route>
 					<Route path='/search/detail/:isbn' element={<BookSearch />}></Route>
 					
@@ -55,7 +57,7 @@ function App() {
 						<Route path='/alert' element={<Alert />}></Route>
 						<Route path='/createBook' element={<CreateBook />}></Route>
 						
-						<Route path='/myPage/myRate' element={<UserRateList />}></Route>
+						<Route path='/myPage/myRate' element={<MyRateList />}></Route>
 						<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
 					</Route>
 

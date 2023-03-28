@@ -57,7 +57,7 @@ const BS = function ({ bookData }) {
 							</p>
 						</div>
 						{userOn() ?
-							<div className={style.grade}>{bookData.condition}</div>
+							<div className={style.grade}>{bookData.conditions}</div>
 							:
 							null
 						}
