@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../JH/Login.module.css';
 import HomeImg from '../../assets/homeImg.png';
 import Header2 from '../../components/common/Header2';
 import Nav from '../../components/common/Nav';
 import { UserIcon, PasswordIcon } from '../../components/IJH/LoginIcon';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -89,20 +89,19 @@ const Login = () => {
 		try {
 			const response = await axios({
 				method: 'post',
-				url: 'http://ec2-3-35-22-107.ap-northeast-2.compute.amazonaws.com:8080/login',
+				url: '/login',
 				headers: {
-					Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+					Authorization: `Bearer ${localStorage.getItem('accessToken')}` ,
 					'Content-Type': 'application/json',
+					withCredentials : true
 				},
 				data: {
 					username: email,
 					password: password,
 				},
 			});
-			console.log(response.data);
-			localStorage.setItem('accessToken', response.data.token);
-
-			
+			localStorage.setItem('accessToken', response.headers.authorization);
+			localStorage.setItem('userId', response.data[0].slice(8));
 
 			alert('로그인 성공');
 			navigate('/');
@@ -111,6 +110,7 @@ const Login = () => {
 			alert('정보를 확인해주세요');
 		}
 	}
+
 
 	return (
 		<main className={styles.Main}>

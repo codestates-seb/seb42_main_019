@@ -1,7 +1,6 @@
-import BS from "../JSB/BookShelf/BS";
-import bookData from '../../dummyData/SB/bookData'
+import BS from "../KHJ/BS";
 
-function bookSearchList() {
+function bookSearchList( { bookData } ) {
     return (
         <>
             {bookData.map((el) => <BS bookData={el}/>)}

@@ -1,6 +1,7 @@
+import {useState } from 'react';
+
 import style from './MessageList3.module.css';
 import classNames from 'classnames/bind';
-import {useState } from 'react';
 
 function MessageList3({messageContent1}) {
 	const cx = classNames.bind(style);

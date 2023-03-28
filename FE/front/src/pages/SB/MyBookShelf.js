@@ -1,20 +1,22 @@
-import Header2 from '../../components/common/Header2';
-import style from './MyBookShelf.module.css';
-import Nav from '../../components/common/Nav';
-import BookShelf from '../../assets/bookshelf.png'
-import classNames from 'classnames/bind';
-import BSlist from '../../components/JSB/BookShelf/BSlist';
-import Pagenation from '../../components/common/Pagenation';
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import bookData from '../../dummyData/SB/bookData'
+import api from '../../api/api';
 
-//1. 책을 하나씩 삭제할 수 있다.
-//2. 내가 등록한 책을 확인할 수 있다.
-//3. 내가 등록한 책을 누르면 해당 책 상세페이지로 이동할 수 있다.
-//4. 내가 등록한 책을 전체 삭제할 수 있다.
-//5. 책 상세페이지에서 상태가 변하면 내 책장에서 책이 삭제처리된다.
+import style from './MyBookShelf.module.css';
+import classNames from 'classnames/bind';
+
+import Header2 from '../../components/common/Header2';
+import Nav from '../../components/common/Nav';
+import Pagenation from '../../components/common/Pagenation';
+import BSlist from '../../components/JSB/BookShelf/BSlist';
+import BookShelf from '../../assets/bookshelf.png'
+
+//1. 책을 하나씩 삭제할 수 있다. ( )
+//2. 내가 등록한 책을 확인할 수 있다. ( )
+//3. 내가 등록한 책을 누르면 해당 책 상세페이지로 이동할 수 있다. ( )
+//4. 내가 등록한 책을 전체 삭제할 수 있다. ( )
+//5. 책 상세페이지에서 상태가 변하면 내 책장에서 책이 삭제처리된다. ( )
 
 const MyBookShelf = () => {
 	const cx = classNames.bind(style);
@@ -24,7 +26,7 @@ const MyBookShelf = () => {
     useEffect(()=>{
         const fetchBooks = async () => {
             try {
-                const response = await axios.get('http://ec2-3-35-22-107.ap-northeast-2.compute.amazonaws.com:8080/books');
+                const response = await axios.get(`${api}/books`);
                 const bookData = response.data;
                 const filteredData = bookData.filter((book) => book.exchanged !== '교환 완료')
                 setBook(bookData);
@@ -43,14 +45,13 @@ const MyBookShelf = () => {
     }, []);
 
 
-    const handleClick2 = (id) =>{
-        const updatedList = book.filter(book => book.id !== id)
+    const handleDeleteBook = (id) =>{
+        const updatedList = book.filter((book) => book.bookId !== id)
         setBook(updatedList);
         localStorage.setItem('book', JSON.stringify(updatedList));
-        console.log(book)
         history('/myBookShelf')}
 
-    const handleClick3 = () =>{
+    const handleDeleteAllBooks = () =>{
         const nullList = [];
         setBook(nullList);
         localStorage.setItem('book', JSON.stringify(nullList));
@@ -62,12 +63,12 @@ const MyBookShelf = () => {
         <Header2>내 책장</Header2>
         <div className={cx('mbsBox')}>
             <div className={cx('mbsImgBox')}>
-                <img onClick={handleClick3} src={BookShelf} className={cx('mbsimg')} alt='mbsimg' />
+                <img onClick={handleDeleteAllBooks} src={BookShelf} className={cx('mbsimg')} alt='mbsimg' />
             </div>
             <div className={cx('mbsBody')}>
                 <p className={cx('mbsText')}>내가 등록한 책</p>
                 <div className={cx('map')}>
-                    {book.map((el)=><BSlist handleClick2={handleClick2} key={el.id} book={el} />)}
+                    {book.map((book)=><BSlist handleClick2={handleDeleteBook} key={book.id} book={book} />)}
                 </div>
             </div>
             <Pagenation />
