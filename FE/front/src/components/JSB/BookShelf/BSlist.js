@@ -7,7 +7,7 @@ const BSlist = function ({book, handleClick2}) {
 	const dateText = new Date(book.createdAt);
 	
 	function getDate() {
-	  const betweenTime = (Math.round(date.getTime() - dateText.getTime())/1000/60);
+	  const betweenTime = Math.round(Math.round(date.getTime() - dateText.getTime())/1000/60);
 	  if (betweenTime < 1) return '방금전';
 	  if (betweenTime < 60) {
 		return `${betweenTime}분전`;
@@ -45,10 +45,10 @@ const BSlist = function ({book, handleClick2}) {
 								{getDate()}
 							</p>
 						</div>
-						<button onClick={()=>{handleClick2(book.id)}} className={style.xIconbox}>
+						<button onClick={handleClick2} className={style.xIconbox}>
                         <img className={style.xicon} src={xIcon} alt='xicon' />
                         </button>
-						<div className={style.grade}>{book.condition}</div>
+						<div className={style.grade}>{book.conditions}</div>
 					</div>
 				</div>
 			</div>
