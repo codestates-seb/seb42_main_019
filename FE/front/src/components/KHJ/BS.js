@@ -14,7 +14,7 @@ const BS = function ({ bookData }) {
 	const dateText = new Date(bookData.createdAt);
 	
 	function getDate() {
-	  const betweenTime = (Math.round((date.getTime() - dateText.getTime() - 32400000)/1000/60));
+	  const betweenTime = (Math.round((date.getTime() - dateText.getTime())/1000/60));
 	  if (betweenTime < 1) return '방금 전';
 	  if (betweenTime < 60) {
 		return `${betweenTime}분전`;
@@ -35,7 +35,7 @@ const BS = function ({ bookData }) {
 	}
 
 	return (
-		<Link to ={`/customer/detailView/${bookData.bookId}`} key={bookData.bookId}>
+		<>
         	<div className={cx('box1')}>
 				<div className={cx('notFooter')}>
 					<div className={cx('listboxMessage')}>
@@ -64,7 +64,7 @@ const BS = function ({ bookData }) {
 					</div>
 				</div>
 			</div>
-		</Link>
+		</>
 	);
 };
 

@@ -6,7 +6,7 @@ import CommentList from "../../components/KHJ/CommentList";
 import Pagenation from "../../components/common/Pagenation";
 import { useEffect, useState } from "react";
 import axios from "../../api/api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BS from "../../components/KHJ/BS";
 
 function BookSearch() {
@@ -32,7 +32,7 @@ function BookSearch() {
 
     useEffect(() => {
         bookInfo();
-    }, [params]);
+    }, []);
 
 
     if(bookData === null){
@@ -43,9 +43,13 @@ function BookSearch() {
                 <Header2>상세 정보</Header2>
                 <main className='booksearch-main'>
                     <BookInfo book={bookData[0]} />
-                    <CommentList />
+                    <CommentList bookId={bookData[0].bookId}/>
                     <h2 className="font16 p20">거래대기 중</h2>
-                    {bookData.map((el) => <BS bookData={el}/>)}
+                    {bookData.map((el) => 
+                        <Link to ={`/customer/detailView/${el.bookId}`} key={el.bookId}>
+                            <BS bookData={el}/>
+                        </Link>
+                    )}
                     <Pagenation />
                 </main>
                 <Footer />

@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import style from './Search.module.css';
 
-const HomeSearch = function () {
-
+const HomeSearch = function ({ searchBook }) {
   const navigate = useNavigate()
 
 	const handleSearch = (event) => {
 		if (event.key === 'Enter') {
 		  navigate(`/search?q=${event.target.value}`);
+      searchBook(event.target.value);
 		}
 	}
 
@@ -19,7 +19,10 @@ const HomeSearch = function () {
           type="text"
           placeholder="지금 당신이 읽고 싶은 책은 바로!..."
           onChange={(e) => {e.preventDefault();}}
-		      onKeyUp={handleSearch}
+		      onKeyUp={(e) => {
+              handleSearch(e);
+            }
+          }
         />
       </div>
     </>
