@@ -6,13 +6,35 @@ import Search from "../../components/JSB/Search";
 import styles from "./BookSearchResult.module.css"
 import classNames from "classnames/bind";
 import BS from "../../components/KHJ/BS";
-import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import bookSearchList from "./atom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "../../api/api";
 
 function BookSearchResult() {
     const cx = classNames.bind(styles);
-    const bookData = useRecoilValue(bookSearchList)
+    
+    const params = useLocation();
+    const urlSearch = params.search;
+    const searchQuery = new URLSearchParams(urlSearch).get('q')
+    const [currentQuery, setCurrentQuery] = useState(searchQuery);
+
+    const [bookData, setBookdata] = useState([]);
+  
+    const searchBook = async () => {
+        const url = `/books/search?keyword=${currentQuery}`;
+        try {
+            const res = await axios.get(url);
+            const books = res.data;
+            setBookdata(books);
+        } catch (error) {
+            console.log(error);
+        };
+    };
+    
+    useEffect(() => {
+        searchBook();
+        setCurrentQuery(searchQuery);
+    }, []);
 
     return (
         <>

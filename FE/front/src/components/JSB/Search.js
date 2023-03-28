@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import bookSearchList from '../../pages/HJ/atom';
-import axios from '../../api/api';
-
+import { useNavigate } from 'react-router-dom';
 import style from './Search.module.css';
 
+<<<<<<< HEAD
+const HomeSearch = function ({ currentQuery, setCurrentQuery, searchBook }) {
+=======
 const HomeSearch = function () {
 
   const params = useLocation();
@@ -24,17 +22,16 @@ const HomeSearch = function () {
           console.log(error);
       }
   }
-
   useEffect(() => {
       setCurrentQuery(currentQuery);
   }, [currentQuery, params])
+>>>>>>> feat/FE
 
   const navigate = useNavigate()
 
 	const handleSearch = (event) => {
 		if (event.key === 'Enter') {
-		navigate(`/search?q=${currentQuery}`);
-      searchBook();
+		  navigate(`/search?q=${event.target.value}`);
 		}
 	}
 
@@ -45,12 +42,7 @@ const HomeSearch = function () {
           className={style.listboxMessage}
           type="text"
           placeholder="지금 당신이 읽고 싶은 책은 바로!..."
-          onChange={(e)=>
-            {
-              setCurrentQuery(e.target.value)
-              e.preventDefault();
-            }
-          }
+          onChange={(e) => {e.preventDefault();}}
 		      onKeyUp={handleSearch}
         />
       </div>
