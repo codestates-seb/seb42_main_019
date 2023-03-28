@@ -20,7 +20,7 @@ import adimg from '../../assets/adimg.png';
 //5. 메세지함으로 이동할 수 있다.
 //6. 회원탈퇴를 할 수있다.
 
-const Mypage = () => {
+const MyPage = () => {
     const cx = classNames.bind(style)
     const { name, region, likeCount, disLikeCount } = useRecoilValue(authStateSelector);    
 
@@ -61,4 +61,4 @@ const Mypage = () => {
     )
 }
 
-export default Mypage;
+export default MyPage;

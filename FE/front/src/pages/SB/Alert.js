@@ -9,6 +9,7 @@ import classNames from "classnames/bind";
 import MapAlertMini from "../../components/JSB/Alert/MapAlertMini";
 import Header2 from "../../components/common/Header2";
 import Nav from '../../components/common/Nav';
+import isLogin from "../../components/common/isLogin";
 
 //1. 메세지가 시간 순서대로 정렬된다 (오름차순)( )
 //2. 메세지 리스트 하나를클릭하면 해당 리스트가 삭제되며 해당 메세지로 이동된다 ( )
@@ -17,8 +18,10 @@ import Nav from '../../components/common/Nav';
 
 function Alert(){
     const cx=classNames.bind(style);
+    const loginState = isLogin();
     const history = useNavigate();
     const [messageData, setMessageData] = useState([]);
+
 
     useEffect(()=>{
         const savedMessageData = localStorage.getItem('messageData');

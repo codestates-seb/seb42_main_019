@@ -21,6 +21,7 @@ import SellerDetailView from './pages/JH/SellerDetailView';
 import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
 import SendMessages from './pages/SB/SendMessages';
 import ReceivedMessages from './pages/SB/ReceivedMessages';
+import PrivateRoutes from './States/PrivateRoutes';
 
 function App() {
 	return (
@@ -33,32 +34,38 @@ function App() {
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/signUp' element={<SignUp />}></Route>
 					
-					<Route path='/alert' element={<Alert />}></Route>
-
-					<Route path='/createBook' element={<CreateBook />}></Route>
-
+					
 					<Route path='/customerDetailView' element={<CustomerDetailView />}></Route>
-					<Route path='/sellerDetailView' element={<SellerDetailView />}></Route>
-					<Route path='/sellerDetailView/edit' element={<SellerDetailViewEdit />}></Route>
-
+					
 					<Route path='/search' element={<BookSearchResult />}></Route>
 					<Route path='/search/detail' element={<BookSearch />}></Route>
 					<Route path='/search/detail/:isbn' element={<BookSearch />}></Route>
+					
+					
+					<Route path='/*' element={<ErrorPage />}></Route>
+					<Route path='/missing' element={<Missing />}></Route>
+					
+					
+					<Route element={<PrivateRoutes />}>
+					<Route path='/sellerDetailView' element={<SellerDetailView />}></Route>
+					<Route path='/sellerDetailView/edit' element={<SellerDetailViewEdit />}></Route>
 
 					<Route path='/myPage' element={<MyPage />}></Route>
 					<Route path='/myPage/messageBox' element={<ReceivedMessages />}></Route>
 					<Route path='/myPage/messageBox1' element={<SendMessages />}></Route>
 					<Route path='/myPage/messageBox/:id' element={<MessageView />}></Route>
 					<Route path='/myPage/messageBox/write' element={<MessageWrite />}></Route>
-					
-					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
+
+					<Route path='/alert' element={<Alert />}></Route>
+					<Route path='/createBook' element={<CreateBook />}></Route>
 					
 					<Route path='/myPage/myRate' element={<UserRateList />}></Route>
+					<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
+					</Route>
 
-					<Route path='/*' element={<ErrorPage />}></Route>
-					<Route path='/missing' element={<Missing />}></Route>
 
-        		</Routes>
+
+          	    </Routes>
 			</div>
 		</div>
 	);
