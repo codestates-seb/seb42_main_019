@@ -5,6 +5,11 @@ import Button from '../../components/common/Button';
 
 const CreateBook = () => {
 	const [activeButton, setActiveButton] = useState(false);
+	const [keyword, setKeyword] = useState('');
+
+	const onChangeData = (e) => {
+		setKeyword(e.currentTarget.value);
+	};
 
 	const handleClick = (buttonName) => {
 		setActiveButton(buttonName);
@@ -16,6 +21,7 @@ const CreateBook = () => {
 			<div className={styles.Title}>
 				<label>책 제목</label>
 				<input type='text' placeholder='책 제목을 입력하세요.' />
+				<div></div>
 			</div>
 			<div className={styles.Writer}>
 				<label>책 저자</label>

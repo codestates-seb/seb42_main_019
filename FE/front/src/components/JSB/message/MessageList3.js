@@ -3,7 +3,7 @@ import {useState } from 'react';
 import style from './MessageList3.module.css';
 import classNames from 'classnames/bind';
 
-function MessageList3({messageContent1}) {
+function MessageList3({messages}) {
 	const cx = classNames.bind(style);
 	const [isOn, setIsOn] = useState(false);
 
@@ -19,12 +19,12 @@ function MessageList3({messageContent1}) {
 		
 		
 <>
-<div className={cx('all')} onClick={handleToggle} key={messageContent1.id}>
+<div className={cx('all')} onClick={handleToggle} key={messages.id}>
 	<div className={cx('box1')}>
-		<p className={cx('name', { 'clicked': isOn })}>{messageContent1.name}</p>
-		<p className={cx('content', { 'clicked': isOn })}> {messageContent1.content}</p>
+		<p className={cx('name', { 'clicked': isOn })}>{messages.name}</p>
+		<p className={cx('content', { 'clicked': isOn })}> {messages.content}</p>
 	</div>
-	<p className={cx('date', { 'clicked': isOn })} >{messageContent1.date}</p>
+	<p className={cx('date', { 'clicked': isOn })} >{messages.date}</p>
 </div>
 </>
 		

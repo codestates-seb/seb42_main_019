@@ -19,4 +19,8 @@ const PrivateRoutes =()=>{
     ) : <Navigate to="/login" />
 }
 
+// function PrivateRoute({ authenticated, component: Component }) {
+//     return <>{authenticated ? Component : <Navigate to="/login"/>}</>;
+//   }
+
 export default PrivateRoutes
