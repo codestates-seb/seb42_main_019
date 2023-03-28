@@ -1,10 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import style from './Header.module.css';
+
 import smallLogo from '../../assets/smallLogo.png';
+import isLogin from './isLogin';
+import LogoutBtn from './LogoutBtn';
 
-function Header({children}) {
+function Header() {
+	const loginState = isLogin();
+	const navigate = useNavigate();
 
-	const handleClick=(e)=>{
-		window.location.href = '/login'
+	const handleClick=()=>{
+		navigate('/login')
 	}
 
 	return (
@@ -12,7 +18,9 @@ function Header({children}) {
 			<div className={style.header}>
 				<div className={style.box}>
 					<img src={smallLogo} className={style.AppLogo} alt='logo' />
-					<button className={style.loginText} onClick={handleClick}>{children}</button>
+					{loginState ? (<LogoutBtn />) : 
+					<button className={style.loginText} onClick={handleClick}>로그인</button>
+					}
 				</div>
 			</div>
 		</>

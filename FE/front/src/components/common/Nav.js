@@ -43,13 +43,13 @@ function Navigation() {
 						</Link>
 					</li>
 					<li className={cx('nav--li', {on : findUrl('myBookShelf') })}>
-						<Link to={isLogin() ? '/myBookShelf' : '/login'}>
+						<Link to='/myBookShelf'>
 							<IconBooklist fill={findUrl('myBookShelf') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>내 책장</span>
 						</Link>
 					</li>
 					<li className={cx('nav--li', {on : findUrl('myPage')})} >
-						<Link to={isLogin() ? '/myPage' : '/login'}>
+						<Link to='/myPage'>
 							<IconMypage fill={findUrl('myPage') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>마이페이지</span>
 						</Link>
