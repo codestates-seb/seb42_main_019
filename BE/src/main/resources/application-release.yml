@@ -1,11 +1,11 @@
-running: dev
+running: release
 domain: http://ec2-43-200-172-178.ap-northeast-2.compute.amazonaws.com:8080
 S3domain: http://izonestorage.s3-website.ap-northeast-2.amazonaws.com:80
 
 spring:
   profiles:
     include: common
-    active: dev
+    active: release
 kakao:
   key: ${KAKAO_KEY}
 server:
@@ -21,7 +21,7 @@ server:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
 
 logging:

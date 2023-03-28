@@ -25,8 +25,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @RequiredArgsConstructor
 @Configuration
 public class SecurityConfiguration {
@@ -80,7 +78,8 @@ public class SecurityConfiguration {
         corsConfiguration.setAllowedOriginPatterns(Arrays.asList("*"));
         corsConfiguration.setAllowedMethods(Arrays.asList("GET","POST","PATCH","DELETE"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
-        corsConfiguration.setExposedHeaders(Arrays.asList("*"));
+//        corsConfiguration.setExposedHeaders(Arrays.asList("*"));
+        corsConfiguration.setExposedHeaders(Arrays.asList("Authorization"));
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);
 
