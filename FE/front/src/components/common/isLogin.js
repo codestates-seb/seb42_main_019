@@ -10,14 +10,14 @@ const isLogin = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
-        const token = localStorage.getItem('accessToken');
-        const user = localStorage.getItem('userId');
+        const token = localStorage.getItem('accessToken')
+        const user = localStorage.getItem('userId')
         if(token && user) {
             setIsLogin(true);
         }else {
-            setIsLogin(false);
+            setIsLogin(false)
         }
-    }, [token, user]);
+    }, [token, user])
     return isLogin;
 }
 export default isLogin;
