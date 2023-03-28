@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import style from './Search.module.css';
 
 const HomeSearch = function () {
-
   const navigate = useNavigate()
 
 	const handleSearch = (event) => {
