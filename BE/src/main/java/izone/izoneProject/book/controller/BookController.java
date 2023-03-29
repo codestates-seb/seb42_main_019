@@ -10,8 +10,6 @@ import izone.izoneProject.book.mapper.BookMapper;
 import izone.izoneProject.book.service.BookLikeService;
 import izone.izoneProject.book.service.BookService;
 import izone.izoneProject.common.utils.Uri;
-import izone.izoneProject.user.entity.User;
-import izone.izoneProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -117,7 +115,7 @@ public class BookController {
     @PostMapping("/{bookId}/like")
     public ResponseEntity<?> bookLike(@PathVariable("bookId") @Positive long bookId) {
         Book book = bookService.findBook(bookId);
-        bookLikeService.likeCount(/*user, */book);
+        bookLikeService.likeCount(book);
         BookLikeResponseDto response = mapper.bookToBookLikeResponseDto(book);
 
         return ResponseEntity.ok(response);

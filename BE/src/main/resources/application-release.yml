@@ -6,30 +6,41 @@ spring:
   config:
     activate:
       on-profile: release
-kakao:
-  key: ${KAKAO_KEY}
-server:
-  servlet:
-    encoding:
-      charset: UTF-8
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${datasource_url}/izone?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://${datasource_url}/izone?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: ${datasource_username}
     password: ${datasource_password}
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: true
     hibernate:
       ddl-auto: none
     show-sql: true
+    properties:
+      hibernate:
+        highlight_sql: true
+        format_sql: true
+  output:
+    ansi:
+      enabled: always
 
-logging:
-  level:
-    org.hibernate.SQL: trace
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+          type:
+            descriptor:
+              sql:
+                BasicBinder: TRACE
+        springframework:
+          orm:
+            jpa: DEBUG
 
 jwt:
-  secret: ${secret_key}
+  key: ${jwt_secret_key}
   access-token-expiration-minutes: 60
   refresh-token-expiration-minutes: 70
 
@@ -37,3 +48,9 @@ mail:
   address:
     admin: ${admin_mail}
 
+kakao:
+  key: ${KAKAO_KEY}
+server:
+  servlet:
+    encoding:
+      charset: UTF-8

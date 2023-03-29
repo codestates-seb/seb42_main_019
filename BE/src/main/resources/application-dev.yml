@@ -6,15 +6,9 @@ spring:
   config:
     activate:
       on-profile: dev
-kakao:
-  key: ${KAKAO_KEY}
-server:
-  servlet:
-    encoding:
-      charset: UTF-8
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${datasource_url}/izone?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://${datasource_url}/izone?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: ${datasource_username}
     password: ${datasource_password}
   jpa:
@@ -29,11 +23,18 @@ logging:
     org.hibernate.SQL: trace
 
 jwt:
-  secret: ${secret_key}
+  secret: ${jwt_secret_key}
   access-token-expiration-minutes: 60
   refresh-token-expiration-minutes: 70
 
 mail:
   address:
     admin: ${admin_mail}
+
+kakao:
+  key: ${KAKAO_KEY}
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
 

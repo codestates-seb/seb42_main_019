@@ -46,8 +46,8 @@ public class BookService {
 
         Optional.ofNullable(book.getDescription())
                 .ifPresent(foundBook::setDescription);
-        Optional.ofNullable(book.getCondition())
-                .ifPresent(foundBook::setCondition);
+        Optional.ofNullable(book.getConditions())
+                .ifPresent(foundBook::setConditions);
         Optional.ofNullable(book.getExchange())
                 .ifPresent(foundBook::setExchange);
 

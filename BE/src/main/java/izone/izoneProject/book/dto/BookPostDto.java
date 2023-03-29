@@ -23,7 +23,7 @@ public class BookPostDto {
     @NotEmpty
     private String description;
     @NotEmpty
-    private String condition;
+    private String conditions;
 
     private String exchange;
 
