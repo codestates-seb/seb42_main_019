@@ -6,7 +6,7 @@ server:
       charset: UTF-8
 spring:
   profiles:
-    include:
+    include: common
     active: local
   h2:
     console:

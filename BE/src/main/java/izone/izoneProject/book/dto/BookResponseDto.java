@@ -21,7 +21,7 @@ public class BookResponseDto {
     private String publisher;
     private String contents;
     private String description;
-    private String condition;
+    private String conditions;
     private String exchange;
     private int totalLikeCount;
     private int totalDislikeCount;

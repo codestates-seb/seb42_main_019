@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "BOOK")
+@Table(name = "BOOKS")
 public class Book extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,8 +54,8 @@ public class Book extends Auditable {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CONDITION")
-    private String condition;
+    @Column(name = "CONDITIONS")
+    private String conditions;
 
     @Column(name = "EXCHANGE")
     private String exchange;

@@ -65,7 +65,6 @@ public class UserService {
         if (!verifyUser(userId).getEmail().equals(principal))
             throw new RuntimeException("permission denied");
 
-
         User foundUser = verifyUser(userId);
 
         return foundUser;
@@ -93,25 +92,23 @@ public class UserService {
         comment.setRecipient(recipient);
         commentRepository.save(comment);
 
-
         return commentRepository.findByUserId(recipient.getUserId());
     }
 
-    public List<UserComment> editComment(UserComment comment, long userId) {
+    public UserComment editComment(UserComment comment) {
         String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-        if (!verifyUser(comment.getUser().getUserId()).getEmail().equals(principal))
-            throw new RuntimeException("permission denied");
-        User recipient = verifyUser(userId);
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
+
         UserComment foundComment = verifyComment(comment.getCommentId());
-
+        foundComment.setUser(user);
         foundComment.setContent(comment.getContent());
-        commentRepository.save(foundComment);
 
-        return commentRepository.findByUserId(recipient.getUserId());
+        return commentRepository.save(foundComment);
     }
 
     public Page<UserComment> getComments(long userId, Pageable pageable) {
-        Pageable pageRequest = PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
+        Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
         return commentRepository.findByUserId(userId, pageRequest);
     }
 
@@ -122,8 +119,8 @@ public class UserService {
             throw new RuntimeException("permission denied");
 
         User recipient = verifyUser(userId);
-
         commentRepository.deleteAllByIdInBatch(Collections.singleton(comment.getCommentId()));
+
         return commentRepository.findByUserId(recipient.getUserId());
     }
 
@@ -206,5 +203,4 @@ public class UserService {
 
         return userLikeRepository.save(userLike);
     }
-
 }

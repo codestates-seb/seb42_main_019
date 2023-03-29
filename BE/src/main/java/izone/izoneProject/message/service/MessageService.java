@@ -1,9 +1,7 @@
 package izone.izoneProject.message.service;
 
-import izone.izoneProject.book.entity.Book;
 import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
-//import izone.izoneProject.message.repository.MessageReadRepository;
 import izone.izoneProject.message.mapper.MessageMapper;
 import izone.izoneProject.message.repository.MessageRepository;
 import izone.izoneProject.user.entity.User;
@@ -26,9 +24,7 @@ import java.util.Optional;
 @Transactional
 public class MessageService {
     private final MessageRepository messageRepository;
-
-//    private final MessageReadRepository messageReadRepository;
-    private final UserService           userService;
+    private final UserService userService;
     private final MessageMapper mapper;
     private final UserRepository userRepository;
 
