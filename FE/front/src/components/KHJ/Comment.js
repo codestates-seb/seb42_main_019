@@ -40,7 +40,7 @@ function Comment({ comment, basicUrl, commentList, setCommentList }) {
 
     // PATCH
     const editComment = async () => {
-        const url = `/books/${comment.bookId}/comment/${key}`;
+        const url = `/books/comment/${key}`;
         const content = {
             content : `${isContent}`
         }

@@ -15,7 +15,7 @@ function CommentList( { bookId } ) {
         return comment.length === 0
     };
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
     
     const getCommentList = async () => {
         const url = `${basicUrl}?pageNumber=${currentPage}&size=20&sort=book_comment_id,desc`

@@ -9,11 +9,11 @@ function CreateBookComment ({ commentList, setCommentList, basicUrl }) {
     // CREATE
     const [isContent, setContent] = useState('');
 
-    const onSubmit = (e) => {
-        if(e.key === 'Enter'){
-            addComment();
-        };
-    };
+    // const onSubmit = (e) => {
+    //     if(e.key === 'Enter'){
+    //         addComment();
+    //     };
+    // };
     
     const addComment = async () => {
         const url = `${basicUrl}`;
@@ -26,12 +26,14 @@ function CreateBookComment ({ commentList, setCommentList, basicUrl }) {
                 url,
                 data : content
             });
-            setContent('');
+            console.log(response)
             setCommentList([response.data, ...commentList]);
         } catch (err) {
             console.log(err);
         };
+        setContent('');
     };
+    console.log(commentList);
 
 
     return(
@@ -41,9 +43,9 @@ function CreateBookComment ({ commentList, setCommentList, basicUrl }) {
                     setContent(e.target.value);
                 }}
                 value={isContent}
-                onKeyUp={(e) => {
-                    onSubmit(e)
-                }}
+                // onKeyUp={(e) => {
+                //     onSubmit(e)
+                // }}
                 type={'text'}
                 placeholder={'댓글 작성하기'}
                 maxLength={'40'}
