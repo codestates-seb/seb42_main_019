@@ -5,24 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollTop from './components/KHJ/ScrollTop';
-import {
-	RecoilRoot,
-	atom,
-	selector,
-	useRecoilState,
-	useRecoilValue
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<RecoilRoot>
-				<App />
-				<ScrollTop />
-			</RecoilRoot>
-		</BrowserRouter>
-	</React.StrictMode>,
+	<BrowserRouter>
+		<RecoilRoot>
+			<App />
+			<ScrollTop />
+		</RecoilRoot>
+	</BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

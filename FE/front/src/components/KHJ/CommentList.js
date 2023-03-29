@@ -3,10 +3,11 @@ import Comment from "./Comment";
 import styles from "./CommentList.module.css"
 import { useEffect, useState } from "react";
 import axios from "../../api/api";
+import CreateBookComment from "./CreateBookComment";
 
 function CommentList( { bookId } ) {
     const cx = classNames.bind(styles);
-    const basicUrl = `/books/${bookId}/commnet`
+    const basicUrl = `/books/${bookId}/comment`
 
     // GET
     const [commentList, setCommentList] = useState([]);
@@ -18,56 +19,26 @@ function CommentList( { bookId } ) {
     
     const getCommentList = async () => {
         const url = `${basicUrl}?pageNumber=${currentPage}&size=20&sort=book_comment_id,desc`
-        try {
-            const response = await axios({
-                method: 'get',
-                url
-            })
-            const { data } = response;
-            const { pageInfo } = response;
-            setCommentList(data);
-            setCurrentPage(pageInfo.totalPages);
-        } catch(err) {
-            console.log(err);
-        };
+        if(commentList.length === 0){
+            try {
+                const response = await axios({
+                    method: 'get',
+                    url
+                })
+                const { data } = response.data;
+                const { pageInfo } = response.data;
+                setCommentList(data);
+                setCurrentPage(pageInfo.totalPages);
+            } catch(err) {
+                console.log(err);
+            };
+        }
     };
 
     useEffect(() => {
         getCommentList();
     },[]);
 
-    // CREATE
-    const [isContent, setContent] = useState('');
-
-    const onSubmit = (e) => {
-        e.preventDefalut()
-        setContent(e.target.value);
-        if(e.key === 'Enter'){
-            addComment();
-        };
-    };
-    
-    const addComment = async () => {
-        const url = `${basicUrl}`;
-        const content = {
-            "content" : isContent.content
-        }
-        try {
-            const response = await axios({
-                method: 'post',
-                url,
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('accessToken')}` ,
-                    'Content-Type': 'application/json',
-                    withCredentials : true
-                },
-                data : content
-            });
-            setCommentList([response.data ,commentList])
-        } catch (err) {
-            console.log(err);
-        }
-    };
 
     return ( 
         <section className={cx('section')}>
@@ -79,7 +50,6 @@ function CommentList( { bookId } ) {
                     commentList.map((el) =>
                         <Comment
                             comment={el}
-                            key={el.bookCommentId}
                             basicUrl={basicUrl}
                             commentList={commentList}
                             setCommentList={setCommentList}
@@ -87,12 +57,13 @@ function CommentList( { bookId } ) {
                     )
                 }
             </ul>
-            <div className={cx('comment_plus')}>
-                <input value={isContent} onKeyUp={onSubmit} type={'text'} placeholder={'댓글 작성하기'} maxLength={'40'}></input>
-                <button onClick={addComment}>작성</button>
-            </div>
+            <CreateBookComment
+                basicUrl={basicUrl}
+                commentList={commentList}
+                setCommentList={setCommentList}
+            />
         </section>
     );
-}
+};
 
 export default CommentList;

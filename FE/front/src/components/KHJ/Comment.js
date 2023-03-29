@@ -1,27 +1,57 @@
-import axios from '../../api/api';
+
 import { useEffect, useState } from 'react';
 import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
 import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
-import userIsCheck from '../common/userIsCheck';
+import axios from '../../api/api';
 
-function Comment({ comment, key, basicUrl, commentList, setCommentList }) {
+function Comment({ comment, basicUrl, commentList, setCommentList }) {
+    const key = comment.bookCommentId;
 
-    const [isContent, setContent] = useState(comment.content)
-    const [isEdit, setEdit] = useState(false)
+    const [isContent, setContent] = useState(comment.content);
+    const [isEdit, setEdit] = useState(false);
+    
+    const userId = localStorage.getItem('userId')
+    const isUser = () => Number(userId) === Number(comment.userId);
+
+    // 보안용 유저체크 구현 실패
+    // {/*const [isUser, setIsUser] = useState(false);*/}
+
+    // const userChk = async () => {
+    //     const url = `/user/${userId}`
+    //     try{
+    //         const response = await axios({
+    //             method: 'get',
+    //             url
+    //         })
+    //         console.log(response);
+    //         setIsUser(true);
+    //     } catch(err) {
+    //         console.log(err)
+    //     };
+    // };
+
+    // useEffect(() => {
+    //     userChk();
+    // }, [])
 
     const contentEdit = (e) => {
         setContent(e.target.value);
-    }
+    };
 
     // PATCH
     const editComment = async () => {
-        const url = `${basicUrl}/${key}`;
+        const url = `/books/${comment.bookId}/comment/${key}`;
+        const content = {
+            content : `${isContent}`
+        }
+        console.log(content)
         try{
             const response = await axios({
                 method: 'patch',
                 url,
-                content: isContent
+                data: content
             })
+            console.log(response);
         } catch (err) {
             console.log(err);
         }
@@ -50,11 +80,11 @@ function Comment({ comment, key, basicUrl, commentList, setCommentList }) {
     }
 
     const editerble = () => {
-        if(userIsCheck()){
-            if(isEdit){
+        if(isUser()){
+            if(!isEdit){
                 return <span>
                     <button><EditBtn onClick={() => setEdit(!isEdit)} /></button>
-                    <button><XBtn onClick={() => {removeComment(key)}} /></button>
+                    <button><XBtn onClick={() => {handleDelete(key)}} /></button>
                 </span>
             }else{
                 return <span>
@@ -70,9 +100,9 @@ function Comment({ comment, key, basicUrl, commentList, setCommentList }) {
             <p>{comment.userName}</p>
             {editerble()}
             {isEdit ?
-                <input value={isContent} onChange={contentEdit} maxLength='40'></input>
+                <input value={isContent} onChange={(e) => contentEdit(e)} maxLength='40'></input>
             :
-                <b>{comment.content}</b>
+                <b>{isContent}</b>
             }
         </li>
     );
