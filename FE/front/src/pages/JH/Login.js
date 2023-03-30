@@ -91,7 +91,6 @@ const Login = () => {
 				method: 'post',
 				url: '/login',
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
 					'Content-Type': 'application/json',
 					withCredentials: true,
 				},

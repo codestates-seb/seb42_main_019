@@ -55,9 +55,8 @@
 	border-radius: 0 0 10px 10px;
 	box-sizing: border-box;
 	height: 0;
-	padding-top: 10px;
-	transition: height 0.5s, padding-top 0.5s;
-	border: 2px solid #fff;
+	padding-top: 0;
+	transition: height 0.5s;
 }
 
 .Main input:focus-within ~ .search {
@@ -78,6 +77,10 @@
 .search li:hover {
 	background-color: #eaeeea;
 	color: #333;
+}
+
+.displayNone {
+	display: none;
 }
 
 .Main label {

@@ -38,7 +38,7 @@ function App() {
           path='/userRate/:userid'
           element={<UserRateList
           />}></Route>
-          
+					
 					<Route
 						path='/customer/detailView/:bookId'
 						element={<CustomerDetailView />}
@@ -52,6 +52,8 @@ function App() {
 
 					<Route element={<PrivateRoutes />}>
 
+						<Route path='/createBook' element={<CreateBook />}></Route>
+						
 						<Route
 							path='/seller/detailView'
 							element={<SellerDetailView />}
@@ -85,7 +87,6 @@ function App() {
             
 						<Route path='/myBookShelf' element={<MyBookShelf />}></Route>
 					</Route>
-					<Route path='/createBook' element={<CreateBook />}></Route>
 				</Routes>
 			</div>
 		</div>
