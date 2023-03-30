@@ -35,9 +35,9 @@ function App() {
 					<Route path='/signUp' element={<SignUp />}></Route>
           
 					<Route
-          path='/userRate/:userid'
-          element={<UserRateList
-          />}></Route>
+						path='/userRate/:userid'
+						element={<UserRateList
+					/>}></Route>
 					
 					<Route
 						path='/customer/detailView/:bookId'

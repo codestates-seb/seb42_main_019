@@ -3,7 +3,7 @@ import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
 import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
 import axios from '../../api/api';
 
-function Comment({ comment, basicUrl, commentList, setCommentList, getCommentList }) {
+function Comment({ comment, basicUrl, getCommentList }) {
     const key = comment.bookCommentId;
 
     const [isContent, setContent] = useState(comment.content);
@@ -29,10 +29,6 @@ function Comment({ comment, basicUrl, commentList, setCommentList, getCommentLis
     //     };
     // };
 
-    // useEffect(() => {
-    //     userChk();
-    // }, [])
-
     const contentEdit = (e) => {
         setContent(e.target.value);
     };
@@ -53,6 +49,8 @@ function Comment({ comment, basicUrl, commentList, setCommentList, getCommentLis
             console.log(err);
         }
         setEdit(!isEdit);
+        setContent(comment.comment);
+        await getCommentList();
     }
 
     // DELETE
@@ -66,13 +64,13 @@ function Comment({ comment, basicUrl, commentList, setCommentList, getCommentLis
         } catch (err) {
             console.log(err)
         };
+        await getCommentList();
     };
 
     const handleDelete = () => {
         const result = window.confirm("삭제하시겠습니까?");
         if(result) {
             removeComment();
-            setCommentList(commentList.filter((el) => el.bookCommentId !== key))
         }
     }
 
@@ -81,12 +79,12 @@ function Comment({ comment, basicUrl, commentList, setCommentList, getCommentLis
             if(!isEdit){
                 return <span>
                     <button><EditBtn onClick={() => setEdit(!isEdit)} /></button>
-                    <button><XBtn onClick={() => {handleDelete(key)}} /></button>
+                    <button><XBtn onClick={() => {handleDelete()}} /></button>
                 </span>
             }else{
                 return <span>
                     <button><EditBtn onClick={editComment}/></button>
-                    <button><XBtn onClick={() => {handleDelete(key)}} /></button>
+                    <button><XBtn onClick={() => {handleDelete()}} /></button>
                 </span>
             };
         };
