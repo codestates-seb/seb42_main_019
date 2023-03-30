@@ -5,8 +5,7 @@ import axios from '../../api/api';
 
 function Comment({ comment, basicUrl, getCommentList }) {
     const key = comment.bookCommentId;
-
-    const [isContent, setContent] = useState(comment.content);
+    const [isContent, setContent] = useState(comment.content || '');
     const [isEdit, setEdit] = useState(false);
     
     const userId = localStorage.getItem('userId')
@@ -29,10 +28,6 @@ function Comment({ comment, basicUrl, getCommentList }) {
     //     };
     // };
 
-    const contentEdit = (e) => {
-        setContent(e.target.value);
-    };
-
     // PATCH
     const editComment = async () => {
         const url = `/books/comment/${key}`;
@@ -49,7 +44,6 @@ function Comment({ comment, basicUrl, getCommentList }) {
             console.log(err);
         }
         setEdit(!isEdit);
-        setContent(comment.comment);
         await getCommentList();
     }
 
@@ -84,7 +78,7 @@ function Comment({ comment, basicUrl, getCommentList }) {
             }else{
                 return <span>
                     <button><EditBtn onClick={editComment}/></button>
-                    <button><XBtn onClick={() => {handleDelete()}} /></button>
+                    <button><XBtn onClick={() => {setEdit(!isEdit)}} /></button>
                 </span>
             };
         };
@@ -95,7 +89,18 @@ function Comment({ comment, basicUrl, getCommentList }) {
             <p>{comment.userName}</p>
             {editerble()}
             {isEdit ?
-                <input value={isContent} onChange={(e) => contentEdit(e)} maxLength='40'></input>
+                <input
+                    value={isContent}
+                    onChange={(e) => setContent(e.target.value)}
+                    defaultValue={comment.content}
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter' && isContent !== '') {
+                            if (e.nativeEvent.isComposing === false) {
+                                editComment();
+                            }
+                        }
+                    }}
+                     maxLength='40'></input>
             :
                 <b>{comment.content}</b>
             }

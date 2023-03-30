@@ -1,14 +1,14 @@
 import styles from './Rate.module.css';
 import classNames from 'classnames/bind';
-import {FiThumbsDown} from 'react-icons/fi';
-import {FiThumbsUp} from 'react-icons/fi';
 import { useState } from 'react';
 import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
 import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
+import api from '../../api/api';
 
-function Rate({ ratedata }) {
+function Rate({ ratedata, getRate }) {
     const cx = classNames.bind(styles);
     const parsedDate = new Date(ratedata.createdAt).toLocaleDateString('ko-KR');
+
     
     const [isOpen, setIsOpen] = useState(true);
     function isWidth(width, key) {
@@ -17,19 +17,29 @@ function Rate({ ratedata }) {
         }
         return false
     }
+
     // 내가 남긴 후기 수정, 삭제 용
-    const [isEditShow, setIsEditShow] = useState(false);
-    function isEdit(user){
-        if(ratedata.createdAt){
-            setIsEditShow(false)
+    const userIdNum = localStorage.getItem('userId')
+    const user = localStorage.getItem('userName')
+    const isUser = () => user === ratedata.senderName;
+
+    const delRate = async() => {
+        const url = `/user/${userIdNum}/comment/${ratedata.commentId}`;
+        try{
+            await api({
+                method:'del',
+                url
+            });
+            await getRate();
+        } catch (err) {
+            console.log(err);
+        };
+    };
+    const delRatehandler = () => {
+        const result = window.confirm("삭제하시겠습니까?");
+        if(result) {
+            delRate()
         }
-        return;
-    }
-    // 내가 남긴 후기 수정, 삭제 용
-    function isGoodBad(rate){
-        if(ratedata.rate === 'good') return (<><FiThumbsUp size="20" color="#2f5a2d"/></>);
-        if(ratedata.rate === 'bad') return (<><FiThumbsDown size="20" color="#999999"/></>);
-        return '';
     }
 
     function isopenHandler(){
@@ -40,14 +50,13 @@ function Rate({ ratedata }) {
         <li className={cx('rate', {open : isOpen})} key={ratedata.id}>
             <p className={cx('top')}>
                 <strong>
-                    {ratedata.from}
-                    <span className={cx('goodbad')}>{isGoodBad(ratedata.rate)}</span>
+                    {ratedata.recipientName}
                 </strong>
-                {isEditShow ?
+                {isUser() ?
                 (
-                <div>
+                <div className={cx('edit')}>
                     <button><EditBtn /></button>
-                    <button><XBtn /></button>
+                    <button onClick={delRatehandler}><XBtn /></button>
                 </div>
                 )
                 :

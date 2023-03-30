@@ -5,7 +5,7 @@ import Header2 from '../../components/common/Header2';
 import Nav from '../../components/common/Nav';
 import { UserIcon, PasswordIcon } from '../../components/IJH/LoginIcon';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -89,11 +89,10 @@ const Login = () => {
 		try {
 			const response = await axios({
 				method: 'post',
-				url: 'http://localhost:8080/login',
+				url: '/login',
 				headers: {
 					'Content-Type': 'application/json',
 					withCredentials: true,
-					Authorization: localStorage.getItem('accessToken')
 				},
 				data: {
 					username: email,
@@ -102,6 +101,7 @@ const Login = () => {
 			});
 			localStorage.setItem('accessToken', response.headers.authorization);
 			localStorage.setItem('userId', response.data[0].slice(8));
+			localStorage.setItem('userName', response.data[2].slice(6));
 
 			alert('로그인 성공');
 			navigate('/');

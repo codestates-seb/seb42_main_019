@@ -160,3 +160,6 @@ button.close{
 .input:focus{
     border: 2px solid var(--green);
 }
+.exp{
+    margin: 22px 0 6px;
+}

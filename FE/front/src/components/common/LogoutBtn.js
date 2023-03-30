@@ -13,6 +13,7 @@ function LogoutBtn() {
   function handleLogoutClick(){
       localStorage.removeItem('userId');
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('userName');
       navigate('/')
   }
 

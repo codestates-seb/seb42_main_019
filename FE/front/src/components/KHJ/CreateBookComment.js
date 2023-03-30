@@ -30,9 +30,8 @@ function CreateBookComment ({ commentList, basicUrl, getCommentList }) {
             console.log(err);
         };
         await getCommentList()
-        await setContent('');
+        setContent('');
     };
-    console.log(commentList);
 
     return(
         <div className={cx('comment_plus')}>
@@ -44,7 +43,6 @@ function CreateBookComment ({ commentList, basicUrl, getCommentList }) {
                 onKeyPress={(e) => {
                     if (e.key === 'Enter') {
                         if (e.nativeEvent.isComposing === false) {
-                            console.log('here');
                             addComment();
                         }
                     }
