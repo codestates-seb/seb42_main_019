@@ -3,7 +3,7 @@ import styles from "./CommentList.module.css";
 import axios from "../../api/api";
 import { useState } from "react";
 
-function CreateBookComment ({ commentList, setCommentList, basicUrl }) {
+function CreateBookComment ({ commentList, setCommentList, basicUrl, getCommentList }) {
     const cx = classNames.bind(styles);
 
     // CREATE
@@ -26,15 +26,13 @@ function CreateBookComment ({ commentList, setCommentList, basicUrl }) {
                 url,
                 data : content
             });
-            console.log(response)
-            setCommentList([response.data, ...commentList]);
         } catch (err) {
             console.log(err);
         };
+        getCommentList()
         setContent('');
     };
     console.log(commentList);
-
 
     return(
         <div className={cx('comment_plus')}>
@@ -43,9 +41,7 @@ function CreateBookComment ({ commentList, setCommentList, basicUrl }) {
                     setContent(e.target.value);
                 }}
                 value={isContent}
-                // onKeyUp={(e) => {
-                //     onSubmit(e)
-                // }}
+                onKeyUp={(e) => {}}
                 type={'text'}
                 placeholder={'댓글 작성하기'}
                 maxLength={'40'}

@@ -33,39 +33,43 @@ const BS = function ({ bookData }) {
 	  }
 	  return `${Math.round(betweenTimeDay / 365)}년 전`;
 	}
-
-	return (
-		<>
-        	<div className={cx('box1')}>
-				<div className={cx('notFooter')}>
-					<div className={cx('listboxMessage')}>
-						<div className={cx('bookimg1')}>
-							<img key={bookData.id} className={cx('img1')} src={bookData.thumbnail} alt='bookcover' />
+	if(bookData){
+		return (
+			<>
+				<div className={cx('box1')}>
+					<div className={cx('notFooter')}>
+						<div className={cx('listboxMessage')}>
+							<div className={cx('bookimg1')}>
+								<img key={bookData.id} className={cx('img1')} src={bookData.thumbnail} alt='bookcover' />
+							</div>
+							<div className={cx('bookTitle')}>
+								<p className={cx('bookTitlep')}><b>{bookData.title}</b></p>
+							</div>
+							<div className={cx('bookDetail1')}>
+								<p className={cx('bookDetail01')}>
+									{userOn() ?
+										`${bookData.user.name}(${bookData.user.region})`
+										: authors
+									}
+								</p>
+								<p className={cx('bookDetail01', 'bookDetail02')}>
+								{getDate()}
+								</p>
+							</div>
+							{userOn() ?
+								<div className={style.grade}>{bookData.conditions}</div>
+								:
+								null
+							}
 						</div>
-						<div className={cx('bookTitle')}>
-							<p className={cx('bookTitlep')}><b>{bookData.title}</b></p>
-						</div>
-						<div className={cx('bookDetail1')}>
-							<p className={cx('bookDetail01')}>
-								{userOn() ?
-									`${bookData.user.name}(${bookData.user.region})`
-									: authors
-								}
-							</p>
-							<p className={cx('bookDetail01', 'bookDetail02')}>
-							{getDate()}
-							</p>
-						</div>
-						{userOn() ?
-							<div className={style.grade}>{bookData.conditions}</div>
-							:
-							null
-						}
 					</div>
 				</div>
-			</div>
-		</>
-	);
+			</>
+		);
+	} else {
+		<div>Loding</div>
+	}
+
 };
 
 export default BS;

@@ -1,10 +1,9 @@
-
 import { useEffect, useState } from 'react';
 import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
 import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
 import axios from '../../api/api';
 
-function Comment({ comment, basicUrl, commentList, setCommentList }) {
+function Comment({ comment, basicUrl, commentList, setCommentList, getCommentList }) {
     const key = comment.bookCommentId;
 
     const [isContent, setContent] = useState(comment.content);
@@ -44,14 +43,12 @@ function Comment({ comment, basicUrl, commentList, setCommentList }) {
         const content = {
             content : `${isContent}`
         }
-        console.log(content)
         try{
             const response = await axios({
                 method: 'patch',
                 url,
                 data: content
             })
-            console.log(response);
         } catch (err) {
             console.log(err);
         }
@@ -102,7 +99,7 @@ function Comment({ comment, basicUrl, commentList, setCommentList }) {
             {isEdit ?
                 <input value={isContent} onChange={(e) => contentEdit(e)} maxLength='40'></input>
             :
-                <b>{isContent}</b>
+                <b>{comment.content}</b>
             }
         </li>
     );
