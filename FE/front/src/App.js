@@ -73,7 +73,7 @@ function App() {
 							element={<SendMessages />}
 						></Route>
 						<Route
-							path='/myPage/messageBox/:id'
+							path='/myPage/messageBox/myView/:id'
 							element={<MessageView />}
 						></Route>
 						<Route

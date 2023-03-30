@@ -1,15 +1,13 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
-import api from '../../api/api';
+import axios from '../../api/api';
 
 import style from './MessageWrite.module.css'
 import classNames from 'classnames';
 
 import Button from '../../components/common/Button';
 import Header2 from '../../components/common/Header2';
-import BS2 from '../../components/JSB/BookShelf/BS2';
 import MessageList_write from '../../components/JSB/message/MessageList_write';
 
 //1. 로그인한 사람 유저 본인만 접근 가능 ( )
@@ -23,7 +21,7 @@ function MessageWrite() {
     const cx = classNames.bind(style)
     const params = useParams();
     const [sendMessage, setSendMessage] = useState({});
-    const book = sendMessage[params.id]
+    const book = sendMessage
     const [formData, setFormData] = useState({
     content: ""
     });
@@ -31,9 +29,8 @@ function MessageWrite() {
     const handleMessageSubmit = async (event) => {
     event.preventDefault();
     
-    // const response = await axios.post(`${api}/message/${받는사람id}`
     try {
-        const response = await axios.post(`${api}/message`, {
+        const response = await axios.post(`/message/${book.id}`, {
         content: ""
         });
         alert('메세지가 전송되었습니다!');
@@ -44,14 +41,14 @@ function MessageWrite() {
     }
     };
     
+    console.log(book)
     return (
         <div>
             <Header2>발신메세지</Header2>
-            <BS2 book={book}/>
             <p className={cx('mvtext')}>받는 사람</p>
             <MessageList_write sendMessage={sendMessage} />
             <div>
-                <textarea onChange={(e) => setFormData({...formData, content: e.target.value})} />
+                <textarea className={cx('mltext')} onChange={(e) => setFormData({...formData, content: e.target.value})} />
                 <Link to={'/myPage/messageBox/messages'}>
                     <Button type="submit" onClick={handleMessageSubmit}>메세지 보내기</Button>
                 </Link>

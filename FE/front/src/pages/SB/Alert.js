@@ -39,9 +39,9 @@ function Alert(){
     }, []);
     
 
-    const handleClick = async (id) => {
+    const handleClick = async (messageId) => {
         try {
-        await axios.delete(`/messages/${id}`);
+        await axios.delete(`/messages/${messageId}`);
         history('/myPage/messageBox');
         } catch (error) {
         console.error(error);
@@ -54,7 +54,7 @@ function Alert(){
         <>
             <Header2>메세지 알림</Header2>
             <ul className={cx('map')} >
-            {messageData.length===0 ? <p>No Data</p> 
+            {messageData.length===0 ? <p style={{textAlign:'center', lineHeight:'200px'}}  >당신이 받은 메세지 수는 0개 입니다.</p> 
             :
             messageData.map((message) => <MapAlertMini handleClick={handleClick} key = {message.id} message={message}/>)
             }

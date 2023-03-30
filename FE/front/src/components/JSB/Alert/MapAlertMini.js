@@ -30,9 +30,7 @@ import style from './MapAlert.module.css';
     
         return (
         <li
-            onClick={() => {
-            handleClick(message.id);
-            }}
+            onClick={()=>{handleClick(message.messageId)}}
             className={cx('all')}
             key={message}
         >

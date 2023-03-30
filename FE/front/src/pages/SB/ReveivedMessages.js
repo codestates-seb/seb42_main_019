@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+/* eslint-disable no-undef */
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from '../../api/api';
 
 import style from './ReceivedMessages.module.css'
 import classNames from 'classnames';
@@ -8,30 +10,62 @@ import Nav from '../../components/common/Nav';
 import Header2 from '../../components/common/Header2';
 import MessageList3 from '../../components/JSB/message/MessageList3';
 
-import messageContent1 from '../../dummyData/SB/messageContent1';
 
 const ReceivedMessages = () => {
     const cx = classNames.bind(style)
-	const [isOn, setIsOn] = useState(false);
-	const handleToggle = ()=>{
-		setIsOn(!isOn);
-		localStorage.setItem('isOn', JSON.stringify(setIsOn));
-	};
- 
+    const [received, setReceived] = useState([])
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const ReceivedMessage = async () => {
+            try {
+            const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
+            const received = response.data.data;
+            setReceived(received);
+            console.log('Messages received successfully', received);
+            console.log(response)
+            } catch (error) {
+            console.error('Error getting messages', error);
+            }
+        };
+    
+        ReceivedMessage()
+        }, []);
+
+        
+        const handleClick = function(){
+            navigate('/myPage/messageBox')
+        }
+        const receiver = function(){
+            if(messages.length === 0){
+                return true
+            }else {
+                return false
+            }
+        }
+
+
+if(received.length === 0){
+    return <div></div>
+}else {
     return(
         <>
-        <Header2>메세지</Header2>
+        <Header2>받은 메세지</Header2>
         
-            <div onClick={handleToggle}  className={cx('map', { 'clicked': isOn })}>
-            {messageContent1.map((el)=> 
+            <div onClick={()=>{handleClick()}}  className={cx('map')}>
+            {receiver()? <p>No Data</p>
+            :
+            received.map((el)=> 
                 <Link to={`/myPage/messageBox/${el.id-1}`}>
-                <MessageList3 key={el.id} messageContent1={el}/>
-                </Link>)}
+                <MessageList3 key={el.id} el={el}/>
+                </Link>)
+            }
             </div>
-        
         <Nav />
         </>
     )
+    }
 }
 
 export default ReceivedMessages;

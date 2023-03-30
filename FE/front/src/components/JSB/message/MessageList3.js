@@ -1,35 +1,19 @@
-import {useState } from 'react';
-
 import style from './MessageList3.module.css';
 import classNames from 'classnames/bind';
 
-function MessageList3({messages}) {
+function MessageList3({received}) {
 	const cx = classNames.bind(style);
-	const [isOn, setIsOn] = useState(false);
 
-	const handleToggle = ()=>{
-		setIsOn(!isOn);
-		localStorage.setItem('isOn', JSON.stringify(setIsOn));
-	};
-
-
-
-
-	return (
-		
-		
-<>
-<div className={cx('all')} onClick={handleToggle} key={messages.id}>
-	<div className={cx('box1')}>
-		<p className={cx('name', { 'clicked': isOn })}>{messages.name}</p>
-		<p className={cx('content', { 'clicked': isOn })}> {messages.content}</p>
-	</div>
-	<p className={cx('date', { 'clicked': isOn })} >{messages.date}</p>
-</div>
-</>
-		
-		
-		
+	return (	
+			<>
+			<div className={cx('all')} key={received.messageId}>
+				<div className={cx('box1')}>
+					<p className={cx('name')}>{received.sender.name}</p>
+					<p className={cx('content')}> {received.sender.content}</p>
+				</div>
+				<p className={cx('date')} >{received.sender.date}</p>
+			</div>
+			</>
 		);
 	}
 	
