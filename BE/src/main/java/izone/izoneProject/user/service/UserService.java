@@ -3,6 +3,7 @@ package izone.izoneProject.user.service;
 import izone.izoneProject.common.enums.LikeStatus;
 import izone.izoneProject.common.exception.BusinessLogicException;
 import izone.izoneProject.common.exception.ExceptionCode;
+import izone.izoneProject.message.repository.MessageRepository;
 import izone.izoneProject.security.utils.CustomAuthorityUtils;
 import izone.izoneProject.user.entity.User;
 import izone.izoneProject.user.entity.UserComment;
@@ -32,6 +33,7 @@ public class UserService {
     private final UserLikeRepository userLikeRepository;
     private final PasswordEncoder encoder;
     private final CustomAuthorityUtils authorityUtils;
+    private final MessageRepository messageRepository;
 
     public User createUser(User user) {
         Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());

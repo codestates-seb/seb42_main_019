@@ -35,9 +35,9 @@ public class User extends Auditable {
     List<Book> bookList = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<UserComment> userCommentList = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Message> sentList = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Message> receivedList = new ArrayList<>();
     @Column(columnDefinition = "integer default 0")
     private int likeCount;
