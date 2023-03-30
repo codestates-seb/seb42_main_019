@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity //기본데이터,테이블 명
+@Entity
 public class BookComment extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

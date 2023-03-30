@@ -72,7 +72,7 @@ public class Book extends Auditable {
     @Column(columnDefinition = "integer default 0")
     private int dislikeCount;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<BookComment> bookCommentList = new ArrayList<>();
 
     public void setLikeCount(int likeCount) {
