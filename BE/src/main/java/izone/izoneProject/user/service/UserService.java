@@ -150,7 +150,6 @@ public class UserService {
         User user = optionalUser.orElseThrow(() -> new RuntimeException("permission denied"));
 
         UserLike userLike = findUserLike(user, liker);
-        userLike.setLiker(liker);
 
         if (userLike.getStatus().toString().equals("DISLIKE")) {
             throw new BusinessLogicException(ExceptionCode.VOTE_ALLOW_NOT);
