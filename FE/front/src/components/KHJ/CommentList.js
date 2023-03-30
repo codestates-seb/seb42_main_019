@@ -20,20 +20,18 @@ function CommentList( { bookId } ) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const getCommentList = async () => {
         const url = `${basicUrl}?pageNumber=${currentPage}&size=20&sort=book_comment_id,desc`
-        if(commentList.length === 0){
-            try {
-                const response = await axios({
-                    method: 'get',
-                    url
-                })
-                const { data } = response.data;
-                const { pageInfo } = response.data;
-                setCommentList(data);
-                setCurrentPage(pageInfo.totalPages);
-            } catch(err) {
-                console.log(err);
-            };
-        }
+        try {
+            const response = await axios({
+                method: 'get',
+                url
+            })
+            const { data } = response.data;
+            const { pageInfo } = response.data;
+            setCommentList(data);
+            setCurrentPage(pageInfo.totalPages);
+        } catch(err) {
+            console.log(err);
+        };
     };
 
     useEffect(() => {
@@ -63,6 +61,7 @@ function CommentList( { bookId } ) {
                 basicUrl={basicUrl}
                 commentList={commentList}
                 setCommentList={setCommentList}
+                getCommentList={getCommentList}
             />
         </section>
     );

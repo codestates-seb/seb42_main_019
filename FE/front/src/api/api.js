@@ -7,4 +7,9 @@ const api = axios.create({
 	}
 });
 
+api.interceptors.request.use(function (config) {
+    config.headers.Authorization = localStorage.getItem('accessToken');
+    return config;
+});
+
 export default api;

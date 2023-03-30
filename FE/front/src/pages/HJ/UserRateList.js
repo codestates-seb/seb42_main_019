@@ -9,15 +9,15 @@ function UserRate() {
     const params = useParams()
     const userId = params.userid
     const [ratedata, setRatedata] = useState([])
+    const [pageNum, setPageNum] = useState(1)
     const getRate = async () => {
         try{
-            const url = `/user/${userId}/comment?page={pageNum}&size={sizeNum}&sort=comment_id,desc`
+            const url = `/user/${userId}/comment?page=${pageNum}&size=20&sort=comment_id,desc`
             const response = await api({
                 method:'get',
                 url
             })
-            console.log(response);
-            setRatedata(response.data);
+            setRatedata(response.data.data);
         } catch(err) {
             console.log(err);
         }
@@ -26,11 +26,16 @@ function UserRate() {
         getRate();
     }, [])
 
+    function isData() {
+        if(ratedata.length === 0) return true;
+        return false;
+    }
+
     return (
         <>
             <Header2>이 유저에게 남긴 후기</Header2>
             <main>
-                {ratedata.length === 0 ?
+                {isData() ?
                     <p style={{textAlign:'center', lineHeight:'200px'}}>후기가 없습니다.</p>
                     :
                     <RateList ratedata={ratedata}/>
