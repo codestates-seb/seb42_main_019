@@ -18,7 +18,7 @@ const CustomerDetailView = () => {
 			<Header2>등록된 책</Header2>
 			<BookInfo book={bookinfo} />
 			<Link to={`/userRate/${user.userId}`}>
-				<MessageList1 />
+				<MessageList1 profile={bookinfo.user}/>
 			</Link>
 			<div className={styles.Text}>
 				<label>책 설명</label>

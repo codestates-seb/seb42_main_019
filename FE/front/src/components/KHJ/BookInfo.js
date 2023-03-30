@@ -19,7 +19,7 @@ function BookInfo ({ book }) {
                 <Modal bookData={book}>책 정보 더보기 +</Modal>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default BookInfo;

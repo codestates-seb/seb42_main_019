@@ -15,8 +15,9 @@ function CommentList( { bookId } ) {
         return comment.length === 0
     };
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
     
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const getCommentList = async () => {
         const url = `${basicUrl}?pageNumber=${currentPage}&size=20&sort=book_comment_id,desc`
         if(commentList.length === 0){
@@ -53,6 +54,7 @@ function CommentList( { bookId } ) {
                             basicUrl={basicUrl}
                             commentList={commentList}
                             setCommentList={setCommentList}
+                            getCommentList={getCommentList}
                         />
                     )
                 }
