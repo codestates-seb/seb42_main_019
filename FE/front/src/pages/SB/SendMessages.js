@@ -10,20 +10,20 @@ import Nav from '../../components/common/Nav'
 const SendMessages = () =>{
     const [messages, setMessages] = useState([]);
 
-    useEffect(() => {
-    const getMessages = async () => {
-        try {
-        const response = await axios.get(`/messages/sent/?pageNumber=1&size=10&sort=create_date_time,DESC`);
-        const messagesData = response.data.data;
-        setMessages(messagesData);
-        console.log('Messages received successfully', messagesData);
-        } catch (error) {
-        console.error('Error getting messages', error);
-        }
-    };
+    // useEffect(() => {
+    // const getMessages = async () => {
+    //     try {
+    //     const response = await axios.get(`/messages/sent/?pageNumber=1&size=10&sort=create_date_time,DESC`);
+    //     const messagesData = response.data.data;
+    //     setMessages(messagesData);
+    //     console.log('Messages received successfully', messagesData);
+    //     } catch (error) {
+    //     console.error('Error getting messages', error);
+    //     }
+    // };
 
-    getMessages();
-    }, []);
+    // getMessages();
+    // }, []);
 
     console.log(messages);
 

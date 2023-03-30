@@ -17,21 +17,21 @@ const ReceivedMessages = () => {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-        const ReceivedMessage = async () => {
-            try {
-            const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
-            const received = response.data.data;
-            setReceived(received);
-            console.log('Messages received successfully', received);
-            console.log(response)
-            } catch (error) {
-            console.error('Error getting messages', error);
-            }
-        };
+    // useEffect(() => {
+    //     const ReceivedMessage = async () => {
+    //         try {
+    //         const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
+    //         const received = response.data.data;
+    //         setReceived(received);
+    //         console.log('Messages received successfully', received);
+    //         console.log(response)
+    //         } catch (error) {
+    //         console.error('Error getting messages', error);
+    //         }
+    //     };
     
-        ReceivedMessage()
-        }, []);
+    //     ReceivedMessage()
+    //     }, []);
 
         
         const handleClick = function(){
