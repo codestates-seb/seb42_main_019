@@ -1,42 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CustomerDetailView.module.css';
 import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
 import MessageList1 from '../../components/JSB/message/MessageList1';
 import BookInfo from '../../components/KHJ/BookInfo';
-import bookinfo from '../../dummyData/bookinfo';
 import { Link, useParams } from 'react-router-dom';
+import api from '../../api/api';
 
 const CustomerDetailView = () => {
 	const bookId = useParams();
 	// console.log(bookId)
 	// console.log(bookId.bookId)
-	const user = bookinfo.user;
+	const [bookData, setBookData] = useState([]);
+	const user = bookData.user;
 
-	return (
-		<div className={styles.Main}>
-			<Header2>등록된 책</Header2>
-			<BookInfo book={bookinfo} />
-			<Link to={`/userRate/${user.userId}`}>
-				<MessageList1 profile={bookinfo.user}/>
-			</Link>
-			<div className={styles.Text}>
-				<label>책 설명</label>
-				<div className={styles.TextIner}>
-					또 읽으려고 가지고 있었는데, 다른책이 더 읽고 싶어졌어요.
+	useEffect(() => {
+		const fetchBookData = async () => {
+			try {
+				const response = await api.get(`/books/${bookId.bookId}`);
+				const { data } = response;
+				setBookData(data);
+				if(data) {
+					console.log(data);
+				}
+			} catch(error) {
+				console.error(error);
+			}
+		};
+		fetchBookData();
+	},[]);
+
+	console.log(bookData);
+
+	if(bookData.length === 0){
+		return <div className={styles.loading}>로딩중...</div>
+	} else {
+		return (
+			<div className={styles.Main}>
+				<Header2>등록된 책</Header2>
+				<BookInfo book={bookData} />
+				<Link to={`/userRate/${user.userId}`}>
+					<div className={styles.profile}>
+						<MessageList1 profile={bookData.user}/>
+					</div>
+				</Link>
+				<div className={styles.Text}>
+					<label>책 설명</label>
+					<div className={styles.TextIner}>
+						{bookData.description}
+					</div>
 				</div>
+				<div className={styles.BookState}>
+					<label>책 상태</label>
+					<div className={styles.State}>
+						{bookData.conditions}
+					</div>
+				</div>
+				<div className={styles.exchangeState}>
+					<label>거래 상태</label>
+					<div className={styles.SallState}>
+						{bookData.exchange ?? '교환 가능'}
+					</div>
+				</div>
+				<Link to={`/myPage/messageBox/write/${user.userId}`}>
+					<Button>교환 신청하기</Button>
+				</Link>
 			</div>
-			<div className={styles.BookState}>
-				<label>책 상태</label>
-				<div className={styles.State}>상</div>
-			</div>
-			<div className={styles.BookState}>
-				<label>거래 상태</label>
-				<div className={styles.SallState}>교환가능</div>
-			</div>
-			<Button>교환 신청하기</Button>
-		</div>
-	);
+		);
+	}
 };
 
 export default CustomerDetailView;

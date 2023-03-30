@@ -10,7 +10,7 @@ function MyRate() {
     const [ratedata, setRatedata] = useState([])
     const getRate = async () => {
         try{
-            const url = `/user/${userId}/comment?page=${pageNum}&size=20&sort=comment_id,desc`
+            const url = `/user/${userId}/comment?pageNumber=${pageNum}&size=20&sort=comment_id,desc`
             const response = await api({
                 method:'get',
                 url

@@ -2,6 +2,18 @@
 	position: relative;
 }
 
+.loading {
+	color: #999;
+	font-size: 32px;
+	text-align: center;
+	line-height: 200px;
+}
+
+.profile {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
 .Text {
 	margin: 0 20px;
 }
@@ -15,7 +27,8 @@
 	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
 	font-size: 18px;
 	padding: 15px;
-	margin-top: 10px;
+	margin-top: 15px;
+	overflow-y: scroll;
 }
 
 .BookState {
@@ -24,6 +37,14 @@
 	justify-content: space-between;
 	align-items: center;
 	margin: 35px 20px;
+}
+
+.exchangeState {
+	width: 490px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 35px 20px 100px;
 }
 
 .State {

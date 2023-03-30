@@ -88,6 +88,10 @@
 	box-sizing: border-box;
 }
 
+.clicked {
+	color: var(--black);
+}
+
 .Reset {
 	width: 20px;
 	height: 20px;
@@ -171,6 +175,4 @@
 	padding: 10px;
 }
 
-.clicked {
-	color: var(--black);
-}
+
