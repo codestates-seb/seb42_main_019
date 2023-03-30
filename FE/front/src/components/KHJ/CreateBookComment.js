@@ -32,7 +32,6 @@ function CreateBookComment ({ commentList, setCommentList, basicUrl, getCommentL
         getCommentList()
         setContent('');
     };
-    console.log(commentList);
 
     return(
         <div className={cx('comment_plus')}>
