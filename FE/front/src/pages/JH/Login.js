@@ -5,7 +5,7 @@ import Header2 from '../../components/common/Header2';
 import Nav from '../../components/common/Nav';
 import { UserIcon, PasswordIcon } from '../../components/IJH/LoginIcon';
 import { Link } from 'react-router-dom';
-import axios from '../../api/api';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -89,10 +89,11 @@ const Login = () => {
 		try {
 			const response = await axios({
 				method: 'post',
-				url: '/login',
+				url: 'http://localhost:8080/login',
 				headers: {
 					'Content-Type': 'application/json',
 					withCredentials: true,
+					Authorization: localStorage.getItem('accessToken')
 				},
 				data: {
 					username: email,
