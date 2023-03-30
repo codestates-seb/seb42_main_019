@@ -34,9 +34,9 @@ const CreateBook = () => {
 		console.log(response)
 	};
 
-	const onChangeHandler = (Text) => {
-		setTitle(Text);
-	};
+	// const onChangeHandler = (Text) => {
+	// 	setTitle(Text);
+	// };
 
 	const handleClick = (buttonName) => {
 		setConditions(buttonName);
@@ -51,34 +51,6 @@ const CreateBook = () => {
 		setUrl(keyword[idx].url);
 		setContents(keyword[idx].contents);
 	}
-
-	// const navigate = useNavigate();
-
-	// const handleApi = () => {
-		
-		// const createBookData = {
-		// 	thumbnail: thumbnail,
-		// 	authors: authors.split(',').map((author) => author.trim()),
-		// 	publisher: publisher,
-		// 	title: title,
-		// 	isbn: isbn,
-		// 	url: url,
-		// 	contents: contents,
-		// 	description: description,
-		// 	conditions: conditions,
-		// }
-
-		// api
-		// 	.post(`/books`, createBookData)
-		// 	.then((response) => {
-		// 		console.log(response);
-		// 		alert('책 등록이 완료되었습니다.');
-		// 		navigate('/seller/detailView');
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error.response);
-		// 	})
-	// }
 
 	const navigate = useNavigate();
 
@@ -115,10 +87,15 @@ const CreateBook = () => {
 				url: '/books',
 				data: createBookData,
 			});
-			localStorage.setItem('accessToken', response.headers.authorization);
+
+			const token = response.headers.authorization; // extract token from headers
+
+			if (token) {
+				localStorage.setItem('accessToken', token); // save token to local storage
+			}
 
 			alert('책 등록 완료');
-			navigate('/seller/detailView');
+			navigate('/myBookShelf');
 		} catch (error) {
 			console.error(error);
 			alert('내용을 확인해주세요.');

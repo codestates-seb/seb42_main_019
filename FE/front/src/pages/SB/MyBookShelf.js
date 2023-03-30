@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../api/api';
+import { Link } from 'react-router-dom';
 
 import style from './MyBookShelf.module.css';
 import classNames from 'classnames/bind';
@@ -20,6 +21,7 @@ const MyBookShelf = () => {
 	const cx = classNames.bind(style);
     const [book, setBook] = useState([]);
     const [books, setBooks] = useState([]);
+
 
     useEffect(()=>{
         const fetchBooks = async () => {
@@ -62,7 +64,11 @@ const MyBookShelf = () => {
             <div className={cx('mbsBody')}>
                 <p className={cx('mbsText')}>내가 등록한 책</p>
                 <div className={cx('map')}>
-                    {book.map((book)=><BSlist handleClick2={()=>handleDeleteBook(book.id)} key={book.id} book={book} />)}
+                    {book.map((book)=>
+                        <Link to ={`/seller/detailView/${book.bookId}`} key={book.bookId}>
+                            <BSlist handleClick2={()=>handleDeleteBook(book.id)} key={book.id} book={book} />
+                        </Link>
+                    )}
                 </div>
             </div>
             <Pagenation />

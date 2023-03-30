@@ -53,9 +53,9 @@ function App() {
 					<Route element={<PrivateRoutes />}>
 
 						<Route path='/createBook' element={<CreateBook />}></Route>
-						
+
 						<Route
-							path='/seller/detailView'
+							path='/seller/detailView/:sellerId'
 							element={<SellerDetailView />}
 						></Route>
 						<Route

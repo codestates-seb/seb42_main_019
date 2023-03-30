@@ -22,6 +22,7 @@ const SignUp = () => {
 	useEffect(() => {
 		setRegion(region);
 		setDropdownVisibility((dropdownVisibility) => !dropdownVisibility);
+		console.log('i fire once');
 	}, [region]);
 
 	const handleEmail = (event) => {
@@ -98,24 +99,6 @@ const SignUp = () => {
 	const handleApi = () => {
 		console.log({ email, password, name, region });
 
-		// api
-		// 	.post(`/user`, {
-		// 		name: name,
-		// 		password: password,
-		// 		region: region,
-		// 		email: email,
-		// 	})
-		// 	.then((response) => {
-		// 		if (response.data.code === 0) {
-		// 			console.log(response);
-		// 			alert('회원가입이 완료되었습니다.');
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error);
-		// 		alert('정보를 확인해주세요.');
-		// 	});
-
 		const memberData = {
 			name: name,
 			password: password,
@@ -136,18 +119,6 @@ const SignUp = () => {
 				alert('정보를 확인해주세요.');
 				console.log(error.response);
 			});
-
-		// try {
-		// 	const response = await axios.post(
-		// 		`${process.env.REACT_APP_API_URL}/user`,
-		// 		memberData,
-		// 	);
-		// 	console.log(response.data);
-		// 	alert('회원가입이 완료되었습니다.');
-		// } catch (error) {
-		// 	alert('정보를 확인해주세요.');
-		// 	console.error(error);
-		// }
 	};
 
 	return (
