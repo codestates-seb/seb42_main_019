@@ -8,7 +8,11 @@ function MyRate() {
         <>
             <Header2>내게 남긴 후기</Header2>
             <main>
-                <RateList ratedata={ratedata}/>
+            {ratedata.length === 0 ?
+                    <p style={{textAlign:'center', lineHeight:'200px'}}>후기가 없습니다.</p>
+                    :
+                    <RateList ratedata={ratedata}/>
+                }
             </main>
             <Nav />
         </>

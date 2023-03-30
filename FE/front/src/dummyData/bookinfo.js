@@ -1,7 +1,7 @@
 const bookinfo ={
     "bookId": 1,
     "user": {
-        "userId": 3,
+        "userId": 1,
         "name": "낮밤",
         "email": "stayup@gmail.com",
         "region": "서울특별시",
