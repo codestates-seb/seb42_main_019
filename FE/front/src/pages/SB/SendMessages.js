@@ -30,8 +30,8 @@ const SendMessages = () =>{
         <Header2>보낸 메세지</Header2>
         <div className={style.map}>
         {sendMessages.map((item)=>
-            <Link key={item.id} to={`/myPage/sendMessageBox/${item.messageId}`}>
-                <SendMessage item={item} />
+            <Link to={`/myPage/sendMessageBox/${item.messageId}`}>
+                <SendMessage key={item.id} item={item} />
             </Link>
             )}
         </div>
