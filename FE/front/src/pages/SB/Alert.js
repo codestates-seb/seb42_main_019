@@ -17,13 +17,13 @@ function Alert(){
     const cx=classNames.bind(style);
     const history = useNavigate();
     const [messageData, setMessageData] = useState([]);
-
+    
 
     useEffect(()=>{
         
         const fetchData = async () => {
             try {
-            const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
+            const response = await axios.get(`/messages/received/?pageNumber=1&size=7&sort=create_date_time,DESC`);
             setMessageData(response.data.data);
             } catch (error) {
             console.error(error);
@@ -41,24 +41,24 @@ function Alert(){
 
     const handleClick = async (id) => {
         try {
-        await axios.delete(`/messages/${id}`);
-        history('/myPage/messageBox');
+        await axios.put(`/messages/messages/${id}`)
+        
         } catch (error) {
         console.error(error);
         }
     }
-
+    console.log(messageData)
 
     return(
         <>
             <Header2>메세지 알림</Header2>
             <ul className={cx('map')} >
-            {messageData.length===0 ? <p>No Data</p> 
+            {messageData.length===0 ? <p>당신의 메세지는 0개!</p> 
             :
-            messageData.map((message) => 
-            <Link to={`/myPage/messageBox/${message.id}`} key={message.id}>
-<MapAlertMini handleClick={handleClick} message={message}/>
-</Link>
+            messageData.map((message,index) => 
+            <Link to={`/myPage/receiveMessageBox/${index}`} onClick={() => handleClick(message.messageId)} key={message.messageId}>
+                <MapAlertMini message={message}/>
+            </Link>
             )
             }
             </ul>
