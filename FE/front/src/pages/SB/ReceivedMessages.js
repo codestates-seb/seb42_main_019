@@ -34,8 +34,8 @@ const ReceivedMessages = () => {
         <Header2>받은 메세지</Header2>
         
             <div className={cx('map')}>
-            {messages.map((el)=> 
-                <Link to={`/myPage/receiveMessageBox/${el.messageId}`}>
+            {messages.map((el,index)=> 
+                <Link to={`/myPage/receiveMessageBox/${index}`}>
                 <MessageList3 key={el.id} messages={el}/>
                 </Link>)}
             </div>

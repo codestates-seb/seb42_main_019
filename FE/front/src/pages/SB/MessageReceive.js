@@ -7,7 +7,7 @@ import classNames from 'classnames/bind';
 
 import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
-import MessageList1 from '../../components/JSB/message/MessageList1'
+import MessageList4 from '../../components/JSB/message/MessageList4'
 
 const MessageReceive=()=>{
     const cx = classNames.bind(style);
@@ -21,8 +21,8 @@ const MessageReceive=()=>{
     useEffect(() => {
         const getMessage = async () => {
             try {
-                const response = await axios.put(`/messages/messages/${messageId}`);
-                const messageData = response.data.data;
+                const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
+                const messageData = response.data.data[messageId];
                 setMessageReceive(messageData);
                 console.log('Message received successfully', messageData);
             } catch (error) {
@@ -34,22 +34,26 @@ const MessageReceive=()=>{
     }, []);
 
 
-    return(
-        <>
-        <Header2>받은 메시지</Header2>
-        <div className={cx('messageBoxV')}>
-            <p className={cx('mvtext')}>보낸 사람</p>
-            <MessageList1 profile={profile}/>
-            <p className={cx('mvtext')}>메시지 내용</p>
-            <div className={cx('viewContent')}>
-                <div key={messageId} className={cx('viewContent2')}>
-                {params.id.content}
+    if(messageReceive === null){
+        return <p>isLoading</p>
+    }else {
+        return(
+            <>
+            <Header2>받은 메시지</Header2>
+            <div className={cx('messageBoxV')}>
+                <p className={cx('mvtext')}>보낸 사람</p>
+                <MessageList4 messageReceive={messageReceive}/>
+                <p className={cx('mvtext')}>메시지 내용</p>
+                <div className={cx('viewContent')}>
+                    <div key={messageId} className={cx('viewContent2')}>
+                    {messageReceive.content}
+                    </div>
                 </div>
+                <Button>메시지 답장하기</Button>
             </div>
-            <Button>메시지 답장하기</Button>
-        </div>
-        </>
-    )
+            </>
+        )
+    }
 }
 
 export default MessageReceive;
