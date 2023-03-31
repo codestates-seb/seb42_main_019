@@ -8,7 +8,6 @@ import api from '../../api/api';
 function Rate({ ratedata, getRate }) {
     const cx = classNames.bind(styles);
     const parsedDate = new Date(ratedata.createdAt).toLocaleDateString('ko-KR');
-
     
     const [isOpen, setIsOpen] = useState(true);
     function isWidth(width, key) {
@@ -19,15 +18,36 @@ function Rate({ ratedata, getRate }) {
     }
 
     // 내가 남긴 후기 수정, 삭제 용
-    const userIdNum = localStorage.getItem('userId')
-    const user = localStorage.getItem('userName')
+    const userIdNum = Number(localStorage.getItem('userId'));
+    const user = localStorage.getItem('userName');
     const isUser = () => user === ratedata.senderName;
+    
+    const [editable, setEditable] = useState(false);
+    const [isContent, setContent] = useState('');
+
+    const patchRate = async() => {
+        const url = `/user/${userIdNum}/comment/${ratedata.commentId}`;
+        const content = {
+            content : `${isContent}`
+        }
+        try{
+            await api({
+                method:'patch',
+                url,
+                data : content
+            });
+            editHandler()
+            await getRate();
+        } catch (err) {
+            console.log(err);
+        };
+    };
 
     const delRate = async() => {
         const url = `/user/${userIdNum}/comment/${ratedata.commentId}`;
         try{
             await api({
-                method:'del',
+                method:'delete',
                 url
             });
             await getRate();
@@ -35,15 +55,20 @@ function Rate({ ratedata, getRate }) {
             console.log(err);
         };
     };
+    
     const delRatehandler = () => {
         const result = window.confirm("삭제하시겠습니까?");
         if(result) {
-            delRate()
+            delRate();
         }
     }
 
     function isopenHandler(){
-        return setIsOpen(!isOpen)
+        return setIsOpen(!isOpen);
+    }
+    
+    function editHandler () {
+        setEditable(!editable);
     }
 
     return (
@@ -55,15 +80,42 @@ function Rate({ ratedata, getRate }) {
                 {isUser() ?
                 (
                 <div className={cx('edit')}>
-                    <button><EditBtn /></button>
-                    <button onClick={delRatehandler}><XBtn /></button>
+                    {/* {editable ?
+                        <>
+                            <button onClick={patchRate}><EditBtn /></button>
+                            <button onClick={editHandler}><XBtn /></button>
+                        </>
+                        :
+                        <>
+                            <button onClick={editHandler}><EditBtn /></button>
+                            <button onClick={delRatehandler}><XBtn /></button>
+                            </>
+                        } */}
+                        <button onClick={delRatehandler}><XBtn /></button>
                 </div>
                 )
                 :
                 <span>{parsedDate}</span>
                 }
             </p>
-            <p>{ratedata.content}</p>
+            {editable ?
+                <input
+                    className={cx('input')}
+                    type={'text'}
+                    onChange={(e) => setContent(e.target.value)}
+                    defaultValue={ratedata.content}
+                    maxLength='40'
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter' && isContent !== '') {
+                            if (e.nativeEvent.isComposing === false) {
+                                patchRate();
+                            }
+                        }
+                    }}
+                ></input>
+                :
+                <p>{ratedata.content}</p>
+            }
             {isWidth(ratedata, 'content') ?
                 <button onClick={isopenHandler} className={cx('plus')}>
                     {isOpen ? '더보기 +' : '닫기'}

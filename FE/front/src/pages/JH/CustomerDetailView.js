@@ -13,6 +13,7 @@ const CustomerDetailView = () => {
 	// console.log(bookId.bookId)
 	const [bookData, setBookData] = useState([]);
 	const user = bookData.user;
+	const bookIdProfile = bookData.bookId;
 
 	useEffect(() => {
 		const fetchBookData = async () => {
@@ -39,7 +40,7 @@ const CustomerDetailView = () => {
 			<div className={styles.Main}>
 				<Header2>등록된 책</Header2>
 				<BookInfo book={bookData} />
-				<Link to={`/userRate/${user.userId}`}>
+				<Link to={`/userRate/${bookIdProfile}`}>
 					<div className={styles.profile}>
 						<MessageList1 profile={bookData.user}/>
 					</div>

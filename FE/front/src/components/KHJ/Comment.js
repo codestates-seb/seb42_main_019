@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {ReactComponent as EditBtn} from '../../assets/EditBtn.svg'
 import {ReactComponent as XBtn} from '../../assets/XBtn.svg'
 import axios from '../../api/api';

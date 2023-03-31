@@ -149,13 +149,14 @@ button.close{
     height: 62px;
     background-color: #eaeeea;
     font-size: 16px;
-    padding: 0 20px;
+    padding-left: 15px;
     box-sizing: border-box;
     border-radius: var(--box-round);
     border: 2px solid #eaeeea;
     margin-top: 6px;
     display: flex;
     align-items: center;
+    overflow-x: scroll;
 }
 .input:focus{
     border: 2px solid var(--green);
