@@ -1,0 +1,178 @@
+.Main {
+	position: relative;
+	max-width: 530px;
+}
+
+.Main > * {
+	text-align: center;
+}
+
+.Main input::placeholder {
+	color: #ddd;
+}
+
+.Main label {
+	display: flex;
+	margin-top: 35px;
+}
+
+.Input {
+	margin: 0 20px;
+}
+
+.Input input {
+	width: 430px;
+	text-align: left;
+	font-size: 18px;
+}
+
+.Email,
+.PassWord,
+.name {
+	height: 62px;
+	width: 490px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-top: 10px;
+	background-color: #fff;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.Input div:focus-within {
+	border: 2px solid var(--green);
+}
+
+.errorMessage {
+	text-align: left;
+	color: red;
+	font-size: 12px;
+	margin: 10px 0 -10px 10px;
+}
+
+.name {
+	display: flex;
+	align-items: center;
+}
+
+.name button {
+	height: 62px;
+	width: 62px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	background-color: var(--green);
+	color: #fff;
+	margin-top: 10px;
+}
+
+.Value {
+	height: 62px;
+	width: calc(100% - 40px);
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	background-color: #fff;
+	color: #ddd;
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 20px 0;
+	box-sizing: border-box;
+}
+
+.clicked {
+	color: var(--black);
+}
+
+.Reset {
+	width: 20px;
+	height: 20px;
+	background-color: #ddd;
+	color: #fff;
+	border-radius: 50%;
+}
+
+.passwordReset {
+	width: 20px;
+	height: 20px;
+	background-color: #ddd;
+	color: #fff;
+	border-radius: 50%;
+}
+
+/* fade in */
+
+@keyframes slide-fade-in-dropdown-animation {
+	0% {
+		transform: translateY(-100%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.slide-fade-in-dropdown {
+	overflow: hidden;
+}
+
+.slide-fade-in-dropdown > ul {
+	animation: slide-fade-in-dropdown-animation 0.4s ease;
+}
+
+/* fade out */
+
+@keyframes slide-fade-out-dropdown-animation {
+	0% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(-100%);
+	}
+}
+
+.slide-fade-out-dropdown {
+	overflow: hidden;
+}
+
+.slide-fade-out-dropdown > ul {
+	animation: slide-fade-out-dropdown-animation 0.4s ease;
+	animation-fill-mode: forwards;
+}
+
+.components-dropdown {
+	position: relative;
+	top: -5px;
+	height: 260px;
+}
+
+.components-dropdown > ul {
+	position: relative;
+	top: 0px;
+	margin-top: 0;
+	margin-bottom: 5px;
+	padding-left: 0;
+	list-style: none;
+	width: calc(100% - 40px);
+	height: 240px;
+	background-color: #fff;
+	border-radius: 0 0 10px 10px;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	margin: 0 20px;
+	overflow-y: scroll;
+}
+
+.components-dropdown > ul > li {
+	padding: 10px;
+}
+
+

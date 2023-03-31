@@ -1,0 +1,15 @@
+.map {
+    min-height: 640px;
+    margin-top: 50px;
+}
+
+a { text-decoration: none; color: black; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
+.clicked {
+    filter: grayscale(1);
+    color: var(--light-gray );
+}

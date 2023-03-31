@@ -1,0 +1,35 @@
+.rate{
+    max-width: 490px;
+    width: var(--flexible-box);
+    background: #fff;
+    margin: 0 20px 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: var(--box-round);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+.rate p{
+    margin-bottom: 15px;
+    text-align: left;
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+}
+.rate.open p{
+    white-space: nowrap;
+    height: auto;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+.plus{
+    font-size: 16px;
+    color: var(--green);
+}
+.goodbad{
+    position: relative;
+    top: 4px;
+    margin-left: 5px;
+}

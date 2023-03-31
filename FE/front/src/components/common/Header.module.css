@@ -1,0 +1,38 @@
+@import url('../../style/CommonStyle.css');
+
+
+.header {
+    display: flex;
+}
+
+.box{
+	
+	justify-content: space-between;
+	background-color: white;
+	margin-bottom: 10px;
+	font-size: var(--strong-font);
+	box-shadow: 5px 5px 10px #d9d9d9;
+	height: 55px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 530px;
+}
+
+.AppLogo {
+	width: 100px;
+	height: 35px;
+	margin: 10px 10px 10px 20px;
+}
+
+.loginText {
+	margin: 10px 20px 10px 10px;
+	font-size: var(--normal-font);
+}
+
+.loginText {
+	border: 0;
+    outline: 0;
+	background-color:transparent;
+}
+

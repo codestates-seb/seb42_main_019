@@ -1,0 +1,25 @@
+.mbsBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 150px;
+
+}
+
+.mbsImgBox {
+    margin: 100px;
+}
+
+.mbsimg {
+    width: 90px;
+    margin: 0px auto;
+    display: block;
+    cursor: pointer;
+
+}
+
+.mbsText {
+    font-size: var(--normal-size);
+    margin: 0 0 15px 25px;
+    font-weight: 700;
+}

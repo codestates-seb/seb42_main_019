@@ -1,0 +1,70 @@
+
+.notFooter {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.listboxMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.profileMessageBox {
+    display: flex;
+}
+
+.profileMessage {
+    width: 62px;
+    height: 62px;
+    border-radius: 10px;
+}
+
+.profileContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileName {
+    font-weight: 700;
+    margin-bottom: 10px;
+    width: 320px;
+    font-size: var(--strong-font);
+}
+
+.message {
+    display: flex;
+}
+
+.messageVote {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+}
+
+.voteUp
+{   margin-bottom: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--green);
+}
+
+.voteDown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--light-black);
+}
+
+.voteSpan {
+    margin-left: 3px;
+}

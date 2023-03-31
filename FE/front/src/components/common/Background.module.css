@@ -1,0 +1,23 @@
+@font-face {
+	font-family: 'KyoboHandwriting2021sjy';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KyoboHandwriting2021sjy.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.copylist {
+	font-family: 'KyoboHandwriting2021sjy';
+	font-size: 42px;
+	width: 620px;
+}
+
+.img {
+	position: fixed;
+	top: 40%;
+}
+@media screen and (max-width: 640px) {
+	.copylist {
+		display: none;
+	}
+}
