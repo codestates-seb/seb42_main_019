@@ -1,0 +1,31 @@
+.messageBoxV {
+    min-height: 640px;
+}
+
+.BookList {
+    margin-top: 20px;
+}
+
+.mvtext {
+    color: var(--black);
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.viewContent {
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border: 0px;
+    border-radius: 15px;
+    width: 490px;
+    height: 250px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.viewContent2 {
+    width: 450px;
+    height: auto;
+    padding: 20px;
+}

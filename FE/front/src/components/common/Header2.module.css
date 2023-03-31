@@ -1,0 +1,31 @@
+.box2 {
+    background-color: white;
+	margin-bottom: 10px;
+	font-size: var(--strong-font);
+	box-shadow: 5px 5px 10px  #D9D9D9;
+	height: 55px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 530px;
+    justify-content: center;
+}
+
+.AppBtnback {
+	padding-left: 5px;
+	width: 17px;
+	height: 25px;
+	margin: 10px 20px 10px 10px;
+}
+
+.loginText3 {
+	color: white;
+}
+
+.backBtn {
+	position: absolute;
+	left: 0px;
+    border: 0;
+    outline: 0;
+	background-color:transparent;
+}

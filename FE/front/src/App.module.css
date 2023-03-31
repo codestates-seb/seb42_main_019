@@ -1,0 +1,25 @@
+.App {
+	background-color: #ece9e1;
+	font-family: 'Noto Sans KR';
+	color: var(--black);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.body {
+	width: 530px;
+	min-height: 100vh;
+	background-color: #fbfaf8;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	position: relative;
+}
+
+@media (max-width: 640px) {
+	.body {
+		width: 530px;
+		max-width: 530px;
+		min-width: 530px;
+	}
+}

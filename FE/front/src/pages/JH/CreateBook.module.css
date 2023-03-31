@@ -1,0 +1,139 @@
+.Main {
+	position: relative;
+}
+
+.Main > * {
+	text-align: center;
+}
+
+.Main input {
+	height: 32px;
+	min-width: 440px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-top: 10px;
+	background-color: #fff;
+}
+
+.Main input::placeholder {
+	color: #ddd;
+}
+
+.Main input:focus-within {
+	border: 2px solid var(--green);
+}
+
+.Title > div {
+	display: inline-block;
+	margin-top: 10px;
+    position: relative;
+}
+
+.Title > div > input {
+	height: 32px;
+	min-width: 440px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-top: 10px;
+	background-color: #fff;
+}
+
+.search {
+	overflow-y: scroll;
+	background-color: #fff;
+	position: absolute;
+	top: 55px;
+	left: 0;
+	width: 100%;
+	box-shadow: 0 8px 8px rgba(51, 51, 51, 0.1);
+	border-radius: 0 0 10px 10px;
+	box-sizing: border-box;
+	height: 0;
+	padding-top: 0;
+	transition: height 0.5s;
+}
+
+.Main input:focus-within ~ .search {
+	border: 2px solid var(--green);
+	border-top: none;
+	height: 300px;
+	padding-top: 10px;
+}
+
+.search li {
+	padding: 10px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: left;
+	color: #666;
+}
+
+.search li:hover {
+	background-color: #eaeeea;
+	color: #333;
+}
+
+.displayNone {
+	display: none;
+}
+
+.Main label {
+	display: flex;
+	padding: 0 30px;
+	margin-top: 35px;
+}
+
+.Text textarea {
+	height: 250px;
+	min-width: 440px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-top: 10px;
+	resize: none;
+	background-color: #fff;
+}
+
+.Text textarea::placeholder {
+	color: #ddd;
+}
+
+.Text textarea:focus-within {
+	border: 2px solid var(--green);
+}
+
+.BookState {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 490px;    
+	margin: 35px 0 100px;
+}
+
+.BookState label {
+	margin-top: 0;
+}
+
+.Buttons > button {
+	width: 62px;
+	height: 62px;
+	background-color: #fff;
+	border: 1px solid var(--green);
+	border-radius: 10px;
+	color: var(--black);
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+.Buttons > button.active {
+	background-color: var(--green);
+	color: #fff;
+}
