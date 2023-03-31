@@ -1,0 +1,89 @@
+.Main {
+	position: relative;
+}
+
+.profile {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.Text {
+	margin: 0 20px;
+}
+
+.Text textarea {
+	height: 250px;
+	min-width: 460px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	margin-top: 10px;
+	resize: none;
+	background-color: #fff;
+}
+
+.Text textarea::placeholder {
+	color: #ddd;
+}
+
+.BookState {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 490px;
+	margin: 35px 20px;
+}
+
+.exchangeState {
+	width: 490px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 35px 20px 100px;
+}
+
+.BookState label {
+	margin-top: 0;
+}
+
+.Buttons > button {
+	width: 62px;
+	height: 62px;
+	background-color: #fff;
+	border: 1px solid var(--green);
+	border-radius: 10px;
+	color: var(--black);
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+.Buttons > button.active {
+	background-color: var(--green);
+	color: #fff;
+}
+
+.SallState {
+	height: 62px;
+	background-color: #fff;
+	color: var(--green);
+	font-size: 18px;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid var(--green);
+}
+
+.State {
+	width: 62px;
+	height: 62px;
+	background-color: var(--green);
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 15px;
+	border-radius: 10px;
+}

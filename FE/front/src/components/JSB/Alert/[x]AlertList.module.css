@@ -1,0 +1,40 @@
+.notFooter {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.listboxMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.alertBtn1 {
+    border: 1px solid var(--green);
+    border-radius: 15px;
+    padding: 20px;
+    color: var(--light-black);
+    margin-right: 20px;
+    width: 90px;
+}
+
+.alertMessage1 {
+    color: var(--black);
+    margin-left: 20px;
+    text-align: center;
+}
+
+.alertBtnText{
+    text-align: center;
+    color: var(--black);
+    font-size: var(--normal-font);
+}
+
