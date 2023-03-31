@@ -65,7 +65,7 @@ const SellerDetailView = () => {
 						{bookData.exchange ?? '교환 가능'}
 					</div>
 				</div>
-				<Link to={`/seller/detailView/edit/${user.userId}`}>
+				<Link to={`/seller/detailView/edit/${bookId.sellerId}`}>
 					<Button>수정하기</Button>
 				</Link>
 			</div>

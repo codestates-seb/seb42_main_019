@@ -2,6 +2,11 @@
 	position: relative;
 }
 
+.profile {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
 .Text {
 	margin: 0 20px;
 }
@@ -29,6 +34,14 @@
 	justify-content: space-between;
 	width: 490px;
 	margin: 35px 20px;
+}
+
+.exchangeState {
+	width: 490px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 35px 20px 100px;
 }
 
 .BookState label {

@@ -61,7 +61,7 @@ function App() {
 							element={<SellerDetailView />}
 						></Route>
 						<Route
-							path='/seller/detailView/edit'
+							path='/seller/detailView/edit/:editId'
 							element={<SellerDetailViewEdit />}
 						></Route>
 
