@@ -1,3 +1,9 @@
+kakao:
+  key: ${KAKAO_KEY}
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
 spring:
   profiles:
     include: common
@@ -20,48 +26,16 @@ spring:
         format_sql: true
         highlight_sql: true
         use_sql_comments: true
-  # mail:
-  #   host: smtp.gmail.com
-  #   port: 587
-  #   username: ${gmail_username}
-  #   password: ${gmail_password}
-  #   properties:
-  #     mail:
-  #       smtp:
-  #         starttls:
-  #           enable: true
-  #           required: true
-  #         auth: true
-  #         connectiontimeout: 5000
-  #         timeout: 5000
-  #         writetimeout: 5000
-  # security:
-  #   oauth2:
-  #     client:
-  #       registration:
-  #         google:
-  #           clientId: ${google_client_id}
-  #           clientSecret: ${google_client_secret}
-  #           scope:
-  #             - email
-  #             - profile
-  # thymeleaf:
-  #   prefix: classpath:/mail-templates/
-  #   suffix: .html
-  #   mode: HTML
-  #   encoding: UTF-8
-  #   check-template-location: true
-
 logging:
   level:
     org.hibernate.SQL: trace
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
-# jwt:
-#   secret: ${secret_key}
-#   access-token-expiration-minutes: 1800000
-#   refresh-token-expiration-minutes: 604800000
+jwt:
+  key: ${JWT_SECRET_KEY}
+  access-token-expiration-minutes: 1800000
+  refresh-token-expiration-minutes: 604800000
+mail:
+  address:
+    admin: ${MAIL_ADDRESS_ADMIN}
 
-# mail:
-#   address:
-#     admin: ${admin_mail}
