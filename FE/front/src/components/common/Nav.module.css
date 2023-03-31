@@ -50,4 +50,6 @@ span.num::after{
     width: 5px;
     height: 5px;
     border-radius: 50%;
+    top: 0px;
+    right: -10px;
 }
