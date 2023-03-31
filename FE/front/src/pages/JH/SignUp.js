@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Button from '../../components/common/Button';
 import Header2 from '../../components/common/Header2';
 import styles from './SignUp.module.css';
@@ -8,7 +8,7 @@ import api from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-	const [dropdownVisibility, setDropdownVisibility] = useState(false);
+	const [dropdownVisibility, setDropdownVisibility] = useState(true);
 	const [email, setEmail] = useState('');
 	const [password, setpassword] = useState('');
 	const [name, setName] = useState('');
@@ -19,9 +19,16 @@ const SignUp = () => {
 	const [region, setRegion] = useState('시 선택');
 	// const [isOn, setIsOn] = useState(false);
 
+	const isFirstRender = useRef(false);
+
 	useEffect(() => {
-		setRegion(region);
+		if(isFirstRender.current){
+			isFirstRender.current = false;
+			return;
+		}
+
 		setDropdownVisibility((dropdownVisibility) => !dropdownVisibility);
+		setRegion(region);
 		console.log('i fire once');
 	}, [region]);
 
