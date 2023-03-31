@@ -13,19 +13,21 @@ const SellerDetailView = () => {
 	const user = bookData.user;
 	console.log(bookId);
 
-	useEffect(() => {
-		const fetchBookData = async () => {
-			try {
-				const response = await api.get(`/books/${bookId.sellerId}`);
-				const { data } = response;
-				setBookData(data);
-				if(data) {
-					console.log(data);
-				}
-			} catch(error) {
-				console.error(error);
+
+	const fetchBookData = async () => {
+		try {
+			const response = await api.get(`/books/${bookId.sellerId}`);
+			const { data } = response;
+			setBookData(data);
+			if(data) {
+				console.log(data);
 			}
-		};
+		} catch(error) {
+			console.error(error);
+		}
+	};
+		
+	useEffect(() => {
 		fetchBookData();
 	},[]);
 

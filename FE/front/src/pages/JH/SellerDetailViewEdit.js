@@ -67,6 +67,8 @@ const SellerDetailViewEdit = () => {
 					<label>책 설명</label>
 					<textarea
 						type='text'
+						placeholder='책에 대해 설명해 주세요.
+						ex) 또 읽으려고 가지고 있었는데, 다른책이 더 읽고 싶어졌어요.'
 					>{bookData.description}</textarea>
 				</div>
 				<div className={styles.BookState}>
