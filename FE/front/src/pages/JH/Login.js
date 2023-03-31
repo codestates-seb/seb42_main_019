@@ -101,6 +101,7 @@ const Login = () => {
 			});
 			localStorage.setItem('accessToken', response.headers.authorization);
 			localStorage.setItem('userId', response.data[0].slice(8));
+			localStorage.setItem('userName', response.data[2].slice(6));
 
 			alert('로그인 성공');
 			navigate('/');

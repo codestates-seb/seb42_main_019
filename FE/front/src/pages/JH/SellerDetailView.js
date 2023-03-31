@@ -46,11 +46,9 @@ const SellerDetailView = () => {
 			<div className={styles.Main}>
 				<Header2>등록된 책</Header2>
 				<BookInfo book={bookData} />
-					<Link to={`/userRate/${user.userId}`}>
-						<div className={styles.profile}>
-							<MessageList1 profile={bookData.user}/>
-						</div>
-					</Link>
+					<div className={styles.profile}>
+						<MessageList1 profile={bookData.user}/>
+					</div>
 				<div className={styles.Text}>
 					<label>책 설명</label>
 					<div className={styles.TextIner}>
