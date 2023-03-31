@@ -57,11 +57,11 @@ const MyPage = () => {
                     </li>
                     <li className={cx('mpList')}>
                         <TbMessages size={32} />
-                            <Link to='./messageBox' className={cx('myPageBtn')} >보낸 메시지함</Link>
+                            <Link to='./sendMessageBox' className={cx('myPageBtn')} >보낸 메시지함</Link>
                     </li>
                     <li className={cx('mpList')}>
                         <TbMessages size={32} />
-                            <Link to='./messageBox' className={cx('myPageBtn')} >받은 메시지함</Link>
+                            <Link to='./receivedMessageBox' className={cx('myPageBtn')} >받은 메시지함</Link>
                     </li>
                 </ul>
                 <span className={cx('checkoutT')} onClick={DeleteProfile}>회원탈퇴</span>
