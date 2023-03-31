@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 function SendMessage ({item}){
     const cx = classNames.bind(style);
-    console.log(item)
+
     return(
         <>
             <div className={cx('all')} >
