@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Header2 from "../../components/common/Header2";
 import Nav from '../../components/common/Nav';
-import Rate from "../../components/KHJ/Rate";
+import Rate from "../../components/KHJ/MyRate";
 
 function MyRate() {
     const userId = localStorage.getItem('userId')
@@ -15,9 +15,6 @@ function MyRate() {
                 method:'get',
                 url
             })
-            console.log(response);
-            console.log(response.data);
-            console.log(response.data.data);
             setRatedata(response.data.data);
         } catch(err) {
             console.log(err);
