@@ -13,6 +13,7 @@ const MessageReceive=()=>{
     const cx = classNames.bind(style);
     const params = useParams();
     const messageId = params.id;
+    const profile= params.id
 
 
     const [messageReceive, setMessageReceive] = useState(null);
@@ -20,7 +21,7 @@ const MessageReceive=()=>{
     useEffect(() => {
         const getMessage = async () => {
             try {
-                const response = await axios.get(`/messages/messages/${messageId}`);
+                const response = await axios.put(`/messages/messages/${messageId}`);
                 const messageData = response.data.data;
                 setMessageReceive(messageData);
                 console.log('Message received successfully', messageData);
@@ -38,12 +39,12 @@ const MessageReceive=()=>{
         <Header2>받은 메시지</Header2>
         <div className={cx('messageBoxV')}>
             <p className={cx('mvtext')}>보낸 사람</p>
-            <MessageList1 />
+            <MessageList1 profile={profile}/>
             <p className={cx('mvtext')}>메시지 내용</p>
             <div className={cx('viewContent')}>
-                            <div key={messageReceive.messageId.id} className={cx('viewContent2')}>
-                            {messageReceive.content}
-                            </div>
+                <div key={messageId} className={cx('viewContent2')}>
+                {params.id.content}
+                </div>
             </div>
             <Button>메시지 답장하기</Button>
         </div>
