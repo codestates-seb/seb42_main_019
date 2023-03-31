@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import Nav from '../../components/common/Nav';
 import Header2 from '../../components/common/Header2';
 import MessageList3 from '../../components/JSB/message/MessageList3';
+import Pagenation from '../../components/common/Pagenation';
 
 
 const ReceivedMessages = () => {
@@ -30,7 +31,7 @@ const ReceivedMessages = () => {
  
     return(
         <>
-        <Header2>메세지</Header2>
+        <Header2>받은 메세지</Header2>
         
             <div className={cx('map')}>
             {messages.map((el)=> 
@@ -38,7 +39,7 @@ const ReceivedMessages = () => {
                 <MessageList3 key={el.id} messages={el}/>
                 </Link>)}
             </div>
-        
+                <Pagenation />
         <Nav />
         </>
     )

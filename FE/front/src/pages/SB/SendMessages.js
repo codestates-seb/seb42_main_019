@@ -7,6 +7,7 @@ import style from './ReceivedMessages.module.css';
 import Header2 from '../../components/common/Header2';
 import Nav from '../../components/common/Nav'
 import SendMessage from '../../components/JSB/message/SendMessage';
+import Pagenation from '../../components/common/Pagenation';
 
 const SendMessages = () =>{
     const [sendMessages, setSendMessages] = useState([]);
@@ -30,11 +31,12 @@ const SendMessages = () =>{
         <Header2>보낸 메세지</Header2>
         <div className={style.map}>
         {sendMessages.map((item)=>
-            <Link to={`/myPage/sendMessageBox/${item.messageId}`}>
-                <SendMessage key={item.id} item={item} />
+            <Link key={item.messageId} to={`/myPage/sendMessageBox/${item.messageId}`}>
+                <SendMessage item={item} />
             </Link>
             )}
         </div>
+        <Pagenation />
         <Nav />
     </div>
         );
