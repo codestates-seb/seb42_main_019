@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "../../api/api";
 
 import style from './Alert.module.css';
@@ -47,7 +47,6 @@ function Alert(){
         console.error(error);
         }
     }
-    console.log(messageData);
 
 
     return(
@@ -56,12 +55,18 @@ function Alert(){
             <ul className={cx('map')} >
             {messageData.length===0 ? <p>No Data</p> 
             :
-            messageData.map((message) => <MapAlertMini handleClick={handleClick} key = {message.id} message={message}/>)
+            messageData.map((message) => 
+            <Link to={`/myPage/messageBox/${message.id}`} key={message.id}>
+<MapAlertMini handleClick={handleClick} message={message}/>
+</Link>
+            )
             }
             </ul>
             <Nav />
         </>
     )
 }
+
+
 
 export default Alert;

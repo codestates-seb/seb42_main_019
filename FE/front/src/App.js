@@ -8,7 +8,7 @@ import Background from '../src/components/common/Background';
 import Login from '../src/pages/JH/Login';
 import BookSearch from '../src/pages/HJ/BookSearch';
 import SignUp from './pages/JH/SignUp';
-import MessageView from './pages/SB/MessageView';
+import MessageView from './pages/SB/MessageSend';
 import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
@@ -23,6 +23,8 @@ import SellerDetailViewEdit from './pages/JH/SellerDetailViewEdit';
 import SendMessages from './pages/SB/SendMessages';
 import ReceivedMessages from './pages/SB/ReceivedMessages';
 import PrivateRoutes from './States/PrivateRoutes';
+import MessageSend from './pages/SB/MessageSend';
+import MessageReceive from './pages/SB/MessageReceive';
 
 function App() {
 	return (
@@ -65,16 +67,20 @@ function App() {
 
 						<Route path='/myPage' element={<MyPage />}></Route>
 						<Route
-							path='/myPage/messageBox'
+							path='/myPage/receivedMessageBox'
 							element={<ReceivedMessages />}
 						></Route>
 						<Route
-							path='/myPage/messageBox1'
+							path='/myPage/sendMessageBox'
 							element={<SendMessages />}
 						></Route>
 						<Route
-							path='/myPage/messageBox/:id'
-							element={<MessageView />}
+							path='/myPage/sendMessageBox/:id'
+							element={<MessageSend />}
+						></Route>
+						<Route
+							path='/myPage/receiveMessageBox/:id'
+							element={<MessageReceive />}
 						></Route>
 						<Route
 							path='/myPage/messageBox/write'

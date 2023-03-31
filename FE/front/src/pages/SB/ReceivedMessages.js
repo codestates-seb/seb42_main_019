@@ -12,18 +12,13 @@ import MessageList3 from '../../components/JSB/message/MessageList3';
 
 const ReceivedMessages = () => {
     const cx = classNames.bind(style)
-	const [isOn, setIsOn] = useState(false);
     const [messages, setMessages] = useState([]);
-	const handleToggle = ()=>{
-		setIsOn(!isOn);
-		localStorage.setItem('isOn', JSON.stringify(setIsOn));
-	};
 
     useEffect(()=>{
         const fetchReceived = async () =>{
             try {
-                const response = await axios.get(`/messages/received/?pageNumber=1&size=6&sort=create_date_time,DESC`);
-                const data = response.data
+                const response = await axios.get(`/messages/received/?pageNumber=1&size=7&sort=create_date_time,DESC`);
+                const data = response.data.data
                 setMessages(data);
             }catch(error){
                 console.error('error is Here', error);
@@ -37,9 +32,9 @@ const ReceivedMessages = () => {
         <>
         <Header2>메세지</Header2>
         
-            <div onClick={handleToggle}  className={cx('map', { 'clicked': isOn })}>
+            <div className={cx('map')}>
             {messages.map((el)=> 
-                <Link to={`/myPage/messageBox/${el.id-1}`}>
+                <Link to={`/myPage/receiveMessageBox/${el.messageId}`}>
                 <MessageList3 key={el.id} messages={el}/>
                 </Link>)}
             </div>

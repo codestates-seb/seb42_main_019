@@ -13,10 +13,14 @@
     margin-left: 20px;
 }
 
+.box1 {
+    margin-right: 65px;
+}
+
 .name{
     display: flex;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: var(--strong-font);
 }
 
@@ -24,16 +28,17 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 440px;
+    width: 370px;
     text-align: left;
 
 }
 
 .date {
     position: absolute;
-    margin-bottom: 40px;
     color: var(--green);
-    margin-left: 390px;
+    margin-left: 340px;
+    width: 100px;
+    text-align: right;
 }
 
 .clicked {
