@@ -5,16 +5,13 @@ import { useState } from "react";
 import api from "../../api/api";
 import { useParams } from "react-router-dom";
 
-function ModalPopUp({ open, onevent, getRate }) {
+function ModalPopUp({ open, onevent, getRate, userId }) {
     const cx = classNames.bind(styles);
     const [isContent, setContent] = useState('');
 
     function modalToggle(){
         return onevent(!open);
     }
-
-    const params = useParams();
-    const userId = params.userid;
 
     const addComment = async() => {
         const url = `user/${userId}/comment`;
@@ -44,9 +41,10 @@ function ModalPopUp({ open, onevent, getRate }) {
                 <p className={cx('gray_font', 'exp')}>상대 유저에게 하고 싶은 말을 작성해주세요</p>
                 <input
                     className={cx('input')}
-                    placeholder='유저에게 후기를 남겨주세요.'
+                    placeholder='60자 이내로 작성해주세요.'
                     onChange={(e) => setContent(e.target.value)}
                     value={isContent}
+                    maxLength={60}
                 ></input>
                 <div className={cx('btn_wrap')}>
                     <button className={cx('modalBtn')}>취소하기</button>

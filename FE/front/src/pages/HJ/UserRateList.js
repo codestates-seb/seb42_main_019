@@ -12,10 +12,26 @@ import Rate from "../../components/KHJ/Rate";
 function UserRate() {
     const cx = classNames.bind(styles);
     const params = useParams();
-    const userId = params.userid;
+    const bookId = params.userid;
     const [ratedata, setRatedata] = useState([]);
     const [userdata, setUserdata] = useState([]);
     const [pageNum, setPageNum] = useState(1);
+    const [userId, setUserId] = useState(0);
+
+    const bookInfo = async () => {
+        const url = `/books/${bookId}`;
+        try {
+            const res = await api ({
+                method: 'get',
+                url
+            })
+            setUserdata(res.data.user);
+            setUserId(res.data.user.userId);
+            await getRate();
+        } catch (error) {
+            console.log(error);
+        };
+    };
 
     const getRate = async () => {
         try{
@@ -28,24 +44,11 @@ function UserRate() {
         } catch(err) {
             console.log(err);
         }
-    }
-    const bookInfo = async () => {
-        const url = `/books/${userId}`;
-        try {
-            const res = await api ({
-                method: 'get',
-                url
-            })
-            setUserdata(res.data.user)
-        } catch (error) {
-            console.log(error);
-        };
-    }
+    };
 
     useEffect(() => {
-        getRate();
         bookInfo();
-    }, [])
+    }, []);
 
     function isData() {
         if(ratedata.length === 0) return true;
@@ -73,7 +76,7 @@ function UserRate() {
                     </ul>
                 }
                 <div className={cx('wrap')}>
-                    <Modal getRate={getRate}>후기 작성하기</Modal>
+                    <Modal userId={userId} getRate={getRate}>후기 작성하기</Modal>
                 </div>
             </main>
             <Nav />

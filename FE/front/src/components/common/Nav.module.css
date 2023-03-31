@@ -29,3 +29,25 @@
 .on span{
     color: var(--green);
 }
+.alert{
+    position: relative;
+}
+span.num{
+    position: absolute;
+    top: -4px;
+    right: 20px;
+    /* background: red; */
+    color: var(--green);
+    font-weight: bold;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+span.num::after{
+    content: '';
+    position: absolute;
+    background: red;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}

@@ -32,3 +32,16 @@
 .edit > button{
     margin-left: 10px;
 }
+.input{
+    width: 100%;
+    height: 42px;
+    font-size: 16px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: #fff;
+    border: 2px solid var(--light-gray);
+}
+.input:focus{
+    border: 2px solid var(--green);
+}

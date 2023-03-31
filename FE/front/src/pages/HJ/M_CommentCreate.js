@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalPopUp from "../../components/KHJ/ModalPopCreate";
 
-function Modal({ children, getRate }) {
+function Modal({ children, getRate, userId }) {
     const [isModalOpen, setModalOpen] = useState(false);
     function modalToggleProps(boolean) {
         setModalOpen(boolean);
@@ -19,6 +19,7 @@ function Modal({ children, getRate }) {
                 onevent={modalToggleProps}
                 open={isModalOpen}
                 getRate={getRate}
+                userId={userId}
             />
         </>
     )
