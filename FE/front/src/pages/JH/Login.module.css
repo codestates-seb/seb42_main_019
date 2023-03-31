@@ -1,0 +1,72 @@
+.Main > * {
+	text-align: center;
+}
+
+.Contents {
+	height: 300px;
+	padding: 50px 0 10px;
+}
+
+.Contents img {
+	width: 250px;
+	height: 250px;
+}
+
+.LoginInput {
+	margin: 0 20px;
+}
+
+.Input {
+	height: 62px;
+	width: 490px;
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.1);
+	font-size: 18px;
+	padding: 15px;
+	background-color: #fff;
+	display: flex;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+}
+
+.Input:focus-within {
+	border: 2px solid var(--green);
+}
+
+.errorMessage {
+	text-align: left;
+	color: red;
+	font-size: 12px;
+	margin-top: -5px;
+	margin-bottom: 10px;
+}
+
+.Input input {
+	border: 0;
+	font-size: 18px;
+	width: 100%;
+	margin-left: 10px;
+}
+
+.Button button {
+	height: 62px;
+	width: 490px;
+	background-color: #2f5a2d;
+	color: #fff;
+	font-size: 18px;
+	border: 0;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(51, 51, 51, 0.2);
+	cursor: pointer;
+}
+
+.SignUp {
+	margin-top: 20px;
+	font-size: 18px;
+}
+
+.SignUp .Link {
+	color: #2f5a2d;
+	font-weight: bold;
+}

@@ -1,0 +1,38 @@
+.boxAll {
+    margin-top: 120px;
+}
+
+.box {
+	width: 530px;
+	/* height: 100vh;*/
+    margin-bottom: 90px;
+}
+
+.img {
+	width: 250px;
+	margin: 50px 150px 50px 150px;
+
+}
+
+.currentP {
+	display: flex;
+    padding-right: 340px;
+	margin-top: 50px;
+	margin-bottom: 20px;
+    color: var(--black);
+    justify-content: space-around;
+}
+
+.text1 {
+    display: flex;
+    padding-right: 330px;
+    line-height: 1px;
+    color: var(--light-black);
+    justify-content: space-around;
+}
+
+.homeSearchP{
+    display: flex;
+    margin-bottom: 30px;
+
+}

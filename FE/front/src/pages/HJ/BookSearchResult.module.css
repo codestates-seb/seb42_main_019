@@ -1,0 +1,12 @@
+.search{
+    margin-top: 20px;
+}
+.no-data{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 600px);
+}
+.main{
+    min-height: calc(100vh - 600px);
+}
