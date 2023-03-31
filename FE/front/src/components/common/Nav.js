@@ -6,8 +6,6 @@ import { ReactComponent as IconBookplus } from '../../assets/Bookplus.svg';
 import { ReactComponent as IconBooklist } from '../../assets/IconBooklist.svg';
 import { ReactComponent as IconMypage } from '../../assets/IconMypage.svg';
 import { Link, useLocation } from 'react-router-dom';
-import api from '../../api/api';
-import { useEffect, useState } from 'react';
 
 function Navigation() {
 	const cx = classNames.bind(styles);
@@ -21,28 +19,6 @@ function Navigation() {
 		return false;
 	}
 
-	const [isCount, setCount] = useState('')
-	const unRead = async() => {
-		const url = `/messages/unread`;
-		try{
-			const response = await api({
-				method: 'get',
-				url
-			})
-			setCount(response.data);
-		} catch (err) {
-			console.log(err);
-		}
-	}
-
-	function isCountOn () {
-		if(isCount === '') return false;
-		return true;
-	}
-
-	useEffect(() => {
-		unRead()
-	}, [])
 
 	return (
 		<>
@@ -58,7 +34,6 @@ function Navigation() {
 						<Link to='/alert'>
 							<IconAlert fill={findUrl('alert') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>알림</span>
-							<span className={cx('num')}>{isCountOn() && isCount}</span>
 						</Link>
 					</li>
 					<li className={cx('nav--li', {on : findUrl('createBook')})}>
