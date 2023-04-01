@@ -162,7 +162,7 @@ const SignUp = () => {
 				</div>
 				<div className={styles.errorMessage}>
 					{!passwordValid && password.length > 0 && (
-						<div>영문,숫자 조합 8~20자로 입력해주세요.</div>
+						<div>영문, 숫자 포함 8자 이상 입력해주세요.</div>
 					)}
 				</div>
 				<label>닉네임</label>

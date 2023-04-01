@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from '../../api/api';
 
 import style from './ReceivedMessages.module.css';
+import classNames from 'classnames';
+
 
 import Header2 from '../../components/common/Header2';
 import Nav from '../../components/common/Nav'
@@ -10,6 +12,7 @@ import SendMessage from '../../components/JSB/message/SendMessage';
 import Pagenation from '../../components/common/Pagenation';
 
 const SendMessages = () =>{
+    const cx = classNames.bind (style)
     const [sendMessages, setSendMessages] = useState([]);
 
     useEffect(() => {
@@ -29,10 +32,10 @@ const SendMessages = () =>{
     return (
     <div>
         <Header2>보낸 메세지</Header2>
-        <div className={style.map}>
-        {sendMessages.map((item)=>
-            <Link key={item.messageId} to={`/myPage/sendMessageBox/${item.messageId}`}>
-                <SendMessage item={item} />
+        <div className={cx('map')}>
+        {sendMessages.map((item, index)=>
+            <Link key={item.messageId} to={`/myPage/sendMessageBox/${index}`}>
+                <SendMessage key={item.id} item={item} />
             </Link>
             )}
         </div>
