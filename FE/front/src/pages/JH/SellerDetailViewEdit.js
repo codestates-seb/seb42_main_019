@@ -4,7 +4,7 @@ import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
 import MessageList1 from '../../components/JSB/message/MessageList1';
 import BookInfo from '../../components/KHJ/BookInfo';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import api from '../../api/api';
 
 const SellerDetailViewEdit = () => {
@@ -17,8 +17,16 @@ const SellerDetailViewEdit = () => {
 	const user = bookData.user;
 
 	const handleClick = (buttonName) => {
-		setConditions(buttonName);
-	};
+		let condition;
+		if (buttonName === '상') {
+		  condition = '상';
+		} else if (buttonName === '중') {
+		  condition = '중';
+		} else if (buttonName === '하') {
+		  condition = '하';
+		}
+		setConditions(condition);
+	  };
 
 	useEffect(() => {
 		const fetchBookData = async () => {
@@ -38,14 +46,17 @@ const SellerDetailViewEdit = () => {
 
 	console.log(bookId);
 
+	const navigate = useNavigate();
+
 	const handleSubmit = async () => {
 		try {
 		  const response = await api.patch(`/books/${bookId.editId}`, {
 			description: description,
-			condition: conditions,
+			conditions: conditions,
 			exchange: exchange,
 		  });
 		  console.log(response.data);
+		  navigate(`/books/${bookId.sellerId}`);
 		} catch (error) {
 		  console.error(error);
 		}
@@ -67,26 +78,29 @@ const SellerDetailViewEdit = () => {
 					<label>책 설명</label>
 					<textarea
 						type='text'
-						placeholder='책에 대해 설명해 주세요.
-						ex) 또 읽으려고 가지고 있었는데, 다른책이 더 읽고 싶어졌어요.'
-					>{bookData.description}</textarea>
+						defaultValue={bookData.description}
+						onChange={(e) => setDescription(e.target.value)}
+					></textarea>
 				</div>
 				<div className={styles.BookState}>
 					<label>책 상태</label>
 					<div className={styles.Buttons}>
 						<button
+							active={bookData.conditions === 'new'}
 							onClick={() => handleClick('상')}
 							className={conditions === '상' ? `${styles['active']}` : ''}
 						>
 							상
 						</button>
 						<button
+							active={bookData.conditions === 'good'}
 							onClick={() => handleClick('중')}
 							className={conditions === '중' ? `${styles['active']}` : ''}
 						>
 							중
 						</button>
 						<button
+							active={bookData.conditions === 'poor'}
 							onClick={() => handleClick('하')}
 							className={conditions === '하' ? `${styles['active']}` : ''}
 						>
