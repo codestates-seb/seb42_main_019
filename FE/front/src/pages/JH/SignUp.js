@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/common/Button';
 import Header2 from '../../components/common/Header2';
 import styles from './SignUp.module.css';
@@ -19,14 +19,7 @@ const SignUp = () => {
 	const [region, setRegion] = useState('시 선택');
 	// const [isOn, setIsOn] = useState(false);
 
-	const isFirstRender = useRef(false);
-
 	useEffect(() => {
-		if(isFirstRender.current){
-			isFirstRender.current = false;
-			return;
-		}
-
 		setDropdownVisibility((dropdownVisibility) => !dropdownVisibility);
 		setRegion(region);
 		console.log('i fire once');
@@ -169,7 +162,7 @@ const SignUp = () => {
 				</div>
 				<div className={styles.errorMessage}>
 					{!passwordValid && password.length > 0 && (
-						<div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+						<div>영문, 숫자 포함 8자 이상 입력해주세요.</div>
 					)}
 				</div>
 				<label>닉네임</label>

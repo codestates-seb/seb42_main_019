@@ -6,22 +6,21 @@ import style from './MessageRS.module.css'
 import classNames from 'classnames/bind';
 
 import Header2 from '../../components/common/Header2';
-import MessageList1 from '../../components/JSB/message/MessageList1';
 import Nav from '../../components/common/Nav'
+import MessageList5 from '../../components/JSB/message/MessageList5';
 
 const MessageSend=()=>{
     const cx = classNames.bind(style);
     const params = useParams();
     const messageId = params.id;
-    const profile = params.id;
 
-    const [messageSend, setMessageSend] = useState([]);
+    const [messageSend, setMessageSend] = useState(null);
 
     useEffect(() => {
         const getMessage = async () => {
             try {
-                const response = await axios.put(`/messages/messages/${messageId}`);
-                const messageData = response.data;
+                const response = await axios.get(`messages/sent/?pageNumber=1&size=10&sort=create_date_time,DESC`);
+                const messageData = response.data.data[messageId];
                 console.log(messageData)
                 setMessageSend(messageData);
                 console.log('Message received successfully', messageData);
@@ -35,23 +34,26 @@ const MessageSend=()=>{
 
 //파람스로 메세지 아이디 받아와서 그 정보로 유저정보 뽑아오고 메세지 내용뽑아와야 함.
     
-    console.log(messageSend)
-    return(
-        <>
-        <Header2>보낸 메시지</Header2>
-        <div className={cx('messageBoxV')}>
-        <p className={cx('mvtext')}>받는 사람</p>
-            <MessageList1 profile={profile} />
-            <p className={cx('mvtext')}>메시지 내용</p>
-            <div className={cx('viewContent')}>
-                <div key={messageId} className={cx('viewContent2')}>
-                {params.id.content}
+    if(messageSend === null){
+        return <p>isLoading</p>
+    }else {
+        return(
+            <>
+            <Header2>보낸 메시지</Header2>
+            <div className={cx('messageBoxV')}>
+            <p className={cx('mvtext')}>받는 사람</p>
+                <MessageList5 messageSend={messageSend} />
+                <p className={cx('mvtext')}>메시지 내용</p>
+                <div className={cx('viewContent')}>
+                    <div key={messageId} className={cx('viewContent2')}>
+                    {messageSend.content}
+                    </div>
                 </div>
             </div>
-        </div>
-        <Nav />
-        </>
-    )
+            <Nav />
+            </>
+        )
+    }
 }
 
 export default MessageSend;
