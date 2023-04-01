@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/common/Button';
 import Header2 from '../../components/common/Header2';
 import styles from './SignUp.module.css';
@@ -19,14 +19,7 @@ const SignUp = () => {
 	const [region, setRegion] = useState('시 선택');
 	// const [isOn, setIsOn] = useState(false);
 
-	const isFirstRender = useRef(false);
-
 	useEffect(() => {
-		if(isFirstRender.current){
-			isFirstRender.current = false;
-			return;
-		}
-
 		setDropdownVisibility((dropdownVisibility) => !dropdownVisibility);
 		setRegion(region);
 		console.log('i fire once');
