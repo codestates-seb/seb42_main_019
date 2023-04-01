@@ -25,6 +25,7 @@
 }
 
 .viewContent2 {
+    word-break: break-all;
     width: 450px;
     height: auto;
     padding: 20px;

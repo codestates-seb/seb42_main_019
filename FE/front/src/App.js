@@ -83,7 +83,7 @@ function App() {
 							element={<MessageReceive />}
 						></Route>
 						<Route
-							path='/myPage/messageBox/write'
+							path='/myPage/messageBox/write/:id'
 							element={<MessageWrite />}
 						></Route>
 
