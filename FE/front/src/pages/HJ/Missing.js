@@ -18,7 +18,7 @@ function ErrorPage() {
                         다음 기회에!
                         <br />
                     </h1>
-                    <del>구현이 덜되었습니다.</del>
+                    <del>구현이 덜 되었습니다.</del>
                 </div>
             <Nav />
         </div>

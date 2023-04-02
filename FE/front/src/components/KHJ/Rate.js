@@ -73,7 +73,7 @@ function Rate({ ratedata, getRate }) {
 
     return (
         <li className={cx('rate', {open : isOpen})} key={ratedata.id}>
-            <p className={cx('top')}>
+            <div className={cx('top')}>
                 <strong>
                     {ratedata.senderName}
                 </strong>
@@ -96,7 +96,7 @@ function Rate({ ratedata, getRate }) {
                 :
                 <span>{parsedDate}</span>
                 }
-            </p>
+            </div>
             {editable ?
                 <input
                     className={cx('input')}

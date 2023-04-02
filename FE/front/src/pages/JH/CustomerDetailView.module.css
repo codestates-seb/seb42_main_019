@@ -28,6 +28,7 @@
 	padding: 15px;
 	margin-top: 15px;
 	overflow-y: scroll;
+	white-space: pre-wrap;
 }
 
 .BookState {
@@ -59,7 +60,6 @@
 }
 
 .SallState {
-	height: 62px;
 	background-color: #fff;
 	color: var(--green);
 	font-size: 18px;

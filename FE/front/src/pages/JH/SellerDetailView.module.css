@@ -29,6 +29,7 @@
 	padding: 15px;
 	margin-top: 15px;
 	overflow-y: scroll;
+	white-space: pre-wrap;
 }
 
 .BookState {
