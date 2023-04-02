@@ -22,7 +22,6 @@ const SignUp = () => {
 	useEffect(() => {
 		setDropdownVisibility((dropdownVisibility) => !dropdownVisibility);
 		setRegion(region);
-		console.log('i fire once');
 	}, [region]);
 
 	const handleEmail = (event) => {
@@ -39,17 +38,20 @@ const SignUp = () => {
 	const handlePassword = (event) => {
 		setpassword(event.target.value);
 		const regex =
-			/^(?=.*[a-zA-z])(?=.*[0-9])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+			/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/;
+			// /^(?=.*[a-zA-z])(?=.*[0-9])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
 		if (regex.test(event.target.value)) {
 			setpasswordValid(true);
-		} else {
+		}else {
 			setpasswordValid(false);
 		}
 	};
 
 	const handlename = (event) => {
 		setName(event.target.value);
-		const regex = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+		const regex =
+		// /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,10}$/;
+		/^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{2,10}$/;
 		if (regex.test(event.target.value)) {
 			setNickValid(true);
 		} else {
@@ -97,7 +99,6 @@ const SignUp = () => {
 	const navigate = useNavigate();
 
 	const handleApi = () => {
-		console.log({ email, password, name, region });
 
 		const memberData = {
 			name: name,
@@ -105,20 +106,36 @@ const SignUp = () => {
 			region: region,
 			email: email,
 		};
-
-		api
-			.post(`/user`, memberData, {
-				validateStatus: false,
-			})
-			.then((response) => {
-				console.log(response);
+		const postSignUp = async() => {
+			try {
+				await api({
+					method: 'post',
+					url:'/user',
+					data: memberData
+				})
 				alert('회원가입이 완료되었습니다.');
 				navigate('/login');
-			})
-			.catch((error) => {
-				alert('정보를 확인해주세요.');
-				console.log(error.response);
-			});
+			} catch (err){
+				if(err.response.data.status === 500) alert('중복된 이메일 혹은 닉네임입니다')
+				else alert('정보를 확인해주세요.')
+				console.log(err)
+				console.log(err.response.data.status === 500)
+			}
+		};
+		postSignUp();
+
+		// api
+			// .post(`/user`, memberData, {
+			// 	validateStatus: false,
+			// })
+			// .then((response) => {
+			// 	alert('회원가입이 완료되었습니다.');
+			// 	navigate('/login');
+			// })
+			// .catch((error) => {
+			// 	alert('정보를 확인해주세요.');
+			// 	console.log(error.response);
+			// });
 	};
 
 	return (
@@ -162,7 +179,7 @@ const SignUp = () => {
 				</div>
 				<div className={styles.errorMessage}>
 					{!passwordValid && password.length > 0 && (
-						<div>영문, 숫자 포함 8자 이상 입력해주세요.</div>
+						<div>특수문자를 제외한 영문, 숫자 포함 8자 이상 입력해주세요.</div>
 					)}
 				</div>
 				<label>닉네임</label>
@@ -175,8 +192,8 @@ const SignUp = () => {
 					/>
 				</div>
 				<div className={styles.errorMessage}>
-					{!nickValid && name.length > 0 && (
-						<div>2자 이상 16자 이하로 입력해주세요.(영문 또는 한글)</div>
+					{!nickValid && (name.length > 0) && (
+						<div>2자 이상 10자 이하로 입력해주세요.(영문 또는 한글)</div>
 					)}
 				</div>
 				<label>사는 곳</label>

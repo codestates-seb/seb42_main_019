@@ -13,6 +13,7 @@ const CustomerDetailView = () => {
 	// console.log(bookId.bookId)
 	const [bookData, setBookData] = useState([]);
 	const user = bookData.user;
+	const bookIdProfile = bookData.bookId;
 
 	useEffect(() => {
 		const fetchBookData = async () => {
@@ -20,17 +21,13 @@ const CustomerDetailView = () => {
 				const response = await api.get(`/books/${bookId.bookId}`);
 				const { data } = response;
 				setBookData(data);
-				if(data) {
-					console.log(data);
-				}
+				console.log(response)
 			} catch(error) {
 				console.error(error);
 			}
 		};
 		fetchBookData();
 	},[]);
-
-	console.log(bookData);
 
 	if(bookData.length === 0){
 		return <div className={styles.loading}>로딩중...</div>
@@ -39,7 +36,7 @@ const CustomerDetailView = () => {
 			<div className={styles.Main}>
 				<Header2>등록된 책</Header2>
 				<BookInfo book={bookData} />
-				<Link to={`/userRate/${user.userId}`}>
+				<Link to={`/userRate/${bookIdProfile}`}>
 					<div className={styles.profile}>
 						<MessageList1 profile={bookData.user}/>
 					</div>

@@ -27,10 +27,9 @@ const MyPage = () => {
     const user = localStorage.getItem('userId')
     
     useEffect(()=>{
-        const fetchData = async()=>{
+        const fetchData = async() => {
             try{
                 const response = await axios.get(`/user/${user}`);
-                console.log(user);
                 setProfile(response.data);
             }catch(error){
                 console.error(error);
@@ -63,7 +62,9 @@ const MyPage = () => {
                             <Link to='./receivedMessageBox' className={cx('myPageBtn')} >받은 메시지함</Link>
                     </li>
                 </ul>
-                <span className={cx('checkoutT')} onClick={DeleteProfile}>회원탈퇴</span>
+                <Link to='/missing'>
+                    <span className={cx('checkoutT')} onClick={DeleteProfile}>회원탈퇴</span>
+                </Link>
                 <div className={cx('ADdiv')}>
                     <button className={cx('ADbtn')}>
                         <img className={cx('ADimg')} src={adimg} alt='adimg' />

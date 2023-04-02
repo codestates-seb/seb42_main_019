@@ -42,7 +42,8 @@ function Alert(){
 
     const handleClick = async (id) => {
         try {
-        await axios.put(`/messages/messages/${id}`)
+        const res = await axios.put(`/messages/messages/${id}`)
+        console.log(res);
         } catch (error) {
         console.error(error);
         }
@@ -53,7 +54,7 @@ function Alert(){
         <>
             <Header2>메세지 알림</Header2>
             <ul className={cx('map')} >
-            {messageData.length===0 ? <p>당신의 메세지는 0개!</p> 
+            {messageData.length===0 ? <p style={{textAlign:"center", lineHeight:"300px"}}>당신의 메세지는 0개!</p> 
             :
             messageData.map((message,index) => 
             <Link to={`/myPage/receiveMessageBox/${index}`} onClick={() => handleClick(message.messageId)} key={message.messageId}>
