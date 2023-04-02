@@ -1,5 +1,6 @@
 package izone.izoneProject.message.service;
 
+
 import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
 import izone.izoneProject.message.mapper.MessageMapper;
@@ -95,6 +96,11 @@ public class MessageService {
         return findReceiver;
     }
 
+    public Message findMessage(long messageId) {
+        return findVerifiedMessage(messageId);
+
+    }
+
     //TODO: readAt을 기본 null로 생성하여 count 조회
     // 생성 시, null로 된 message의 갯수를 조회하여 숫자로 조회
     // 하지만, readAt을 setReadAt하여 messageId를 통해 메세지 단일 조회 후, readAt이 갱신되도록 하였지만,
@@ -133,6 +139,13 @@ public class MessageService {
 
         messageRepository.deleteById(messageId);
         return messageRepository.findAllByUserId(user.getUserId());
+    }
+
+    public Message findVerifiedMessage(long messageId) {
+        Optional<Message> optionalMessage = messageRepository.findById(messageId);
+        Message findMessage = optionalMessage.orElseThrow(() ->
+                new RuntimeException("message not found"));
+        return findMessage;
     }
 }
 
