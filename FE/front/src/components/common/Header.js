@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './Header.module.css';
 
 import smallLogo from '../../assets/smallLogo.png';
@@ -17,7 +17,9 @@ function Header() {
 		<>
 			<div className={style.header}>
 				<div className={style.box}>
-					<img src={smallLogo} className={style.AppLogo} alt='logo' />
+					<Link to='/'>
+						<img src={smallLogo} className={style.AppLogo} alt='logo' />
+					</Link>
 					{loginState ? (<LogoutBtn />) : 
 					<button className={style.loginText} onClick={handleClick}>로그인</button>
 					}

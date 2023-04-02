@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "../../api/api";
 import { Link, useParams } from "react-router-dom";
 import BS from "../../components/KHJ/BS";
-import Loading from "./Loaging";
+import Loading from "./Loading";
 
 function BookSearch() {
 

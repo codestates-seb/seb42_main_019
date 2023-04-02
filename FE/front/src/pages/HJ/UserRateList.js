@@ -25,6 +25,7 @@ function UserRate() {
                 method: 'get',
                 url
             })
+            console.log(res)
             setUserdata(res.data.user);
             setUserId(res.data.user.userId);
             await getRate();

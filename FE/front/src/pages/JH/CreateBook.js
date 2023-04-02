@@ -29,9 +29,12 @@ const CreateBook = () => {
 	},[title])
 
 	const loadBook = async () => {
-		const response = await api.get(`/books/bookInfo?bookTitle=${title}`);
-		setKeyword(response.data);
-		console.log(response)
+		try{
+			const response = await api.get(`/books/bookInfo?bookTitle=${title}`);
+			setKeyword(response.data);
+		} catch(err){
+			console.log(err)
+		}
 	};
 
 	// const onChangeHandler = (Text) => {
@@ -56,19 +59,6 @@ const CreateBook = () => {
 
 	async function handleApi() {
 
-		console.log(
-			{ 	
-				thumbnail, 
-				authors, 
-				publisher, 
-				title, 
-				isbn, 
-				url, 
-				contents, 
-				description, 
-				conditions 
-			});
-
 		const createBookData = {
 			thumbnail: thumbnail,
 			authors: authors.split(',').map((author) => author.trim()),
@@ -88,11 +78,11 @@ const CreateBook = () => {
 				data: createBookData,
 			});
 
-			const token = response.headers.authorization; // extract token from headers
+			// const token = response.headers.authorization; // extract token from headers
 
-			if (token) {
-				localStorage.setItem('accessToken', token); // save token to local storage
-			}
+			// if (token) {
+			// 	localStorage.setItem('accessToken', token); // save token to local storage
+			// }
 
 			alert('책 등록 완료');
 			navigate('/myBookShelf');
