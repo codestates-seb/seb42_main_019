@@ -1,5 +1,6 @@
 package izone.izoneProject.message.service;
 
+
 import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
 import izone.izoneProject.message.mapper.MessageMapper;
@@ -94,6 +95,7 @@ public class MessageService {
 
         return findReceiver;
     }
+
 
     //TODO: readAt을 기본 null로 생성하여 count 조회
     // 생성 시, null로 된 message의 갯수를 조회하여 숫자로 조회

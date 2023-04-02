@@ -18,6 +18,7 @@ public interface MessageMapper {
     @Mapping(source = "user", target = "receiver")
     MessageResponseDto messageToResponseDto(Message message);
 
+
     @Mapping(source = "sender", target = "sender")
     @Mapping(source = "user", target = "receiver")
     List<MessageResponseDto> messageToResponseDto(List<Message> messages);
