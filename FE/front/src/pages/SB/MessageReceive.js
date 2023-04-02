@@ -44,7 +44,9 @@ const MessageReceive=()=>{
             <Header2>받은 메시지</Header2>
             <div className={cx('messageBoxV')}>
                 <p className={cx('mvtext')}>보낸 사람</p>
-                <MessageList4 messageReceive={messageReceive}/>
+                <Link to={`/userRateMsgR/${messageId}`}>
+                    <MessageList4 messageReceive={messageReceive}/>
+                </Link>
                 <p className={cx('mvtext')}>메시지 내용</p>
                 <div className={cx('viewContent')}>
                     <div key={messageId} className={cx('viewContent2')}>

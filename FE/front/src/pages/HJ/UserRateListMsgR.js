@@ -19,16 +19,14 @@ function UserRate() {
     const [userId, setUserId] = useState(0);
 
     const bookInfo = async () => {
-        const url = `/messages/sent/?pageNumber=1&size=10&sort=create_date_time,DESC`;
+        const url = `/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`;
         try {
             const res = await api ({
                 method: 'get',
                 url
             })
-            console.log(res.data.data[bookId]);
-            console.log(res.data.data[bookId]);
-            setUserdata(res.data.data[bookId].receiver);
-            setUserId(res.data.data[bookId].receiver.userId);
+            setUserdata(res.data.data[bookId].sender);
+            setUserId(res.data.data[bookId].sender.userId);
             await getRate();
         } catch (error) {
             console.log(error);

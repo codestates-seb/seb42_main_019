@@ -42,13 +42,15 @@ const MessageSend=()=>{
             <Header2>보낸 메시지</Header2>
             <div className={cx('messageBoxV')}>
             <p className={cx('mvtext')}>받는 사람</p>
+            <Link to={`/userRateMsg/${messageId}`}>
                 <MessageList5 messageSend={messageSend} />
-                <p className={cx('mvtext')}>메시지 내용</p>
-                <div className={cx('viewContent')}>
-                    <div key={messageId} className={cx('viewContent2')}>
-                    {messageSend.content}
-                    </div>
+            </Link>
+            <p className={cx('mvtext')}>메시지 내용</p>
+            <div className={cx('viewContent')}>
+                <div key={messageId} className={cx('viewContent2')}>
+                {messageSend.content}
                 </div>
+            </div>
             </div>
             <Nav />
             </>
