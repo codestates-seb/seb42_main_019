@@ -4,7 +4,7 @@ import {FiThumbsUp} from 'react-icons/fi';
 import api from '../../api/api';
 import { useEffect, useState } from 'react';
 
-function MessageList1({profile, bookInfo}) {
+function MessageList1({UpDownChk, profile, bookInfo}) {
 
 	const userId = profile.userId;
 
@@ -62,11 +62,15 @@ function MessageList1({profile, bookInfo}) {
 						</div>
 						{/* Vote */}
 						<div className={style.messageVote}>
-							<div className={style.voteUp} onClick={voteUp}>
+							<div className={style.voteUp} onClick={() => {
+								UpDownChk(voteUp)
+							}}>
 								<FiThumbsUp className={style.voteUp} size="20" color="#2f5a2d"/>
 								<span className={style.voteSpan}>{profile.likeCount}</span>
 							</div>
-							<div className={style.voteDown} onClick={voteDown}>
+							<div className={style.voteDown} onClick={() => {
+								UpDownChk(voteDown)
+							}}>
 								<FiThumbsDown className={style.voteDown} size="20" color="#999999"/>
 								<span className={style.voteSpan}>{profile.dislikeCount}</span>
 							</div>

@@ -19,6 +19,28 @@ function Navigation() {
 		return false;
 	}
 
+	// const [isCount, setCount] = useState('')
+	// const unRead = async() => {
+	// 	const url = `/messages/unread`;
+	// 	try{
+	// 		const response = await api({
+	// 			method: 'get',
+	// 			url
+	// 		})
+	// 		setCount(response.data);
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 	}
+	// }
+
+	// function isCountOn () {
+	// 	if(isCount === '') return false;
+	// 	return true;
+	// }
+
+	// useEffect(() => {
+	// 	unRead()
+	// }, [])
 
 	return (
 		<>
@@ -34,6 +56,7 @@ function Navigation() {
 						<Link to='/alert'>
 							<IconAlert fill={findUrl('alert') ? '#2F5A2D' : '#D9D9D9'} />
 							<span>알림</span>
+							{/* {isCountOn() && <span className={cx('num')}>{isCount}</span>} */}
 						</Link>
 					</li>
 					<li className={cx('nav--li', {on : findUrl('createBook')})}>
