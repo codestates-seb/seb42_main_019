@@ -2,6 +2,7 @@ package izone.izoneProject.message.mapper;
 
 import izone.izoneProject.message.dto.MessagePostDto;
 import izone.izoneProject.message.dto.MessageResponseDto;
+import izone.izoneProject.message.dto.OneMessageResponseDto;
 import izone.izoneProject.message.entity.Message;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,6 +18,10 @@ public interface MessageMapper {
     @Mapping(source = "sender", target = "sender")
     @Mapping(source = "user", target = "receiver")
     MessageResponseDto messageToResponseDto(Message message);
+
+    @Mapping(source = "sender", target = "sender")
+    OneMessageResponseDto oneMessageToResponseDto(Message oneMessage);
+
 
     @Mapping(source = "sender", target = "sender")
     @Mapping(source = "user", target = "receiver")
