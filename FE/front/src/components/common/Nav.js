@@ -39,7 +39,7 @@ function Navigation() {
 		if(isCount === '' || Number(isCount) === 0) return false;
 		return true;
 	}
-
+	
 	useEffect(() => {
 		if(localStorage.getItem('userId')) unRead()
 	}, [])
