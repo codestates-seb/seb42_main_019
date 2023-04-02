@@ -1,9 +1,9 @@
 package izone.izoneProject.message.service;
 
-import izone.izoneProject.book.entity.Book;
+import izone.izoneProject.common.exception.BusinessLogicException;
+import izone.izoneProject.common.exception.ExceptionCode;
 import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
-//import izone.izoneProject.message.repository.MessageReadRepository;
 import izone.izoneProject.message.mapper.MessageMapper;
 import izone.izoneProject.message.repository.MessageRepository;
 import izone.izoneProject.user.entity.User;
@@ -26,9 +26,7 @@ import java.util.Optional;
 @Transactional
 public class MessageService {
     private final MessageRepository messageRepository;
-
-//    private final MessageReadRepository messageReadRepository;
-    private final UserService           userService;
+    private final UserService userService;
     private final MessageMapper mapper;
     private final UserRepository userRepository;
 
@@ -99,6 +97,11 @@ public class MessageService {
         return findReceiver;
     }
 
+    public Message findMessage(long messageId) {
+        return findVerifiedMessage(messageId);
+
+    }
+
     //TODO: readAt을 기본 null로 생성하여 count 조회
     // 생성 시, null로 된 message의 갯수를 조회하여 숫자로 조회
     // 하지만, readAt을 setReadAt하여 messageId를 통해 메세지 단일 조회 후, readAt이 갱신되도록 하였지만,
@@ -117,8 +120,12 @@ public class MessageService {
         return mapper.messageToResponseDto(message);
     }
 
-    public long countUnreadMessages() {
-        return messageRepository.countByReadAtIsNull();
+    public int countUnreadMessages() {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Optional<User> optionalUser = userRepository.findByEmail(principal);
+        User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
+
+        return messageRepository.countByReadAtIsNull(user.getUserId());
     }
 
     //TODO: list.remove(messageId)
@@ -133,6 +140,13 @@ public class MessageService {
 
         messageRepository.deleteById(messageId);
         return messageRepository.findAllByUserId(user.getUserId());
+    }
+
+    public Message findVerifiedMessage(long messageId) {
+        Optional<Message> optionalMessage = messageRepository.findById(messageId);
+        Message findMessage = optionalMessage.orElseThrow(() ->
+                new RuntimeException("message not found"));
+        return findMessage;
     }
 }
 
