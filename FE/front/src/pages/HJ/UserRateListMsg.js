@@ -25,8 +25,6 @@ function UserRate() {
                 method: 'get',
                 url
             })
-            console.log(res.data.data[bookId]);
-            console.log(res.data.data[bookId]);
             setUserdata(res.data.data[bookId].receiver);
             setUserId(res.data.data[bookId].receiver.userId);
             await getRate();
