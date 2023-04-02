@@ -31,6 +31,7 @@ function Alert(){
         };
         fetchData()
         
+        console.log("messageData",messageData)
         const intervalId = setInterval(fetchData, 60000);
         
         return () => {
@@ -42,7 +43,6 @@ function Alert(){
     const handleClick = async (id) => {
         try {
         await axios.put(`/messages/messages/${id}`)
-        
         } catch (error) {
         console.error(error);
         }
@@ -57,7 +57,7 @@ function Alert(){
             :
             messageData.map((message,index) => 
             <Link to={`/myPage/receiveMessageBox/${index}`} onClick={() => handleClick(message.messageId)} key={message.messageId}>
-                <MapAlertMini message={message}/>
+                {!message.readAt && <MapAlertMini message={message}/>}
             </Link>
             )
             }

@@ -28,6 +28,16 @@ const ReceivedMessages = () => {
         fetchReceived();
     }, []);
 
+    const handleDeleteReceivedMessage = async(messageId)=>{
+        try{
+            const response = await axios.delete(`/messages/${messageId}`);
+            console.log("response.data", response.data);
+            window.location.reload();
+        }catch(error){
+            console.log(error)
+        }
+    }
+
  
     return(
         <>
@@ -36,7 +46,7 @@ const ReceivedMessages = () => {
             <div className={cx('map')}>
             {messages.map((el,index)=> 
                 <Link to={`/myPage/receiveMessageBox/${index}`}>
-                <MessageList3 key={el.id} messages={el}/>
+                <MessageList3 handleDeleteReceivedMessage={()=>handleDeleteReceivedMessage(el.messageId)} key={el.id} messages={el}/>
                 </Link>)}
             </div>
                 <Pagenation />

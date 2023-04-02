@@ -29,7 +29,7 @@ const MyBookShelf = () => {
                 const response = await axios.get(`/books`);
                 const bookData = response.data;
                 const filteredData = bookData.filter((book) => book.exchanged !== '교환 완료')
-                setBook(filteredData);
+                setBook([...filteredData]);
                 
                 console.log('Books Here', filteredData);
                 console.log("book", book)
@@ -41,15 +41,15 @@ const MyBookShelf = () => {
     }, []);
 
 
-    const handleDeleteBook = (bookId) => {
-        axios.delete(`/books/${bookId}`)
-        .then (response => {
-            const updatedBooks = books.filter((book) => book.id !== bookId);
-            setBooks(updatedBooks); 
-        })
-        .catch(error=>{
+    const handleDeleteBook = async (bookId) => {
+        try{
+            const response = await axios.delete(`/books/${bookId}`);
+            console.log("response.data",response.data);
+            window.location.reload()
+        }catch(error){
             console.log(error);
-        })
+        }
+
         }
 
 
@@ -66,7 +66,7 @@ const MyBookShelf = () => {
                 <div className={cx('map')}>
                     {book.map((book)=>
                         <Link to ={`/seller/detailView/${book.bookId}`} key={book.bookId}>
-                            <BSlist handleClick2={()=>handleDeleteBook(book.id)} key={book.id} book={book} />
+                            <BSlist handleClick2={()=>handleDeleteBook(book.bookId)} key={book.id} book={book} />
                         </Link>
                     )}
                 </div>

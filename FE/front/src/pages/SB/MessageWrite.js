@@ -7,7 +7,6 @@ import classNames from 'classnames/bind';
 
 import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
-import MessageList6 from '../../components/JSB/message/MessageList6';
 
 function MessageWrite() {
     const cx = classNames.bind(style)
@@ -60,8 +59,9 @@ function MessageWrite() {
             <p className={cx('mvtext')}>메세지 쓰기</p>
                 <div className={cx('viewContents')}>
                 <div className={cx('viewContents2')}>
-                <input className={cx('messageSubmit')}
+                <textarea className={cx('messageSubmit')}
                     name="content"
+                    placeholder='여기 메세지를 입력해주세요'
                     value={formData.content}
                     onChange={handleChange}
                     required
