@@ -31,8 +31,6 @@ const MyBookShelf = () => {
                 const filteredData = bookData.filter((book) => book.exchanged !== '교환 완료')
                 setBook([...filteredData]);
                 
-                console.log('Books Here', filteredData);
-                console.log("book", book)
             }catch(error){
                 console.error('error is Here', error);
             }

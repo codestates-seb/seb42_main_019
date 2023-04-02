@@ -22,11 +22,7 @@ const MessageReceive=()=>{
             try {
                 const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
                 const messageData = response.data.data[messageId];
-                console.log(messageId)
-                console.log(messageData)
-                console.log(response.data.data)
                 setMessageReceive(messageData);
-                console.log('Message received successfully', messageData);
             } catch (error) {
                 console.error('Error getting message', error);
             }
