@@ -25,7 +25,6 @@ const ReceivedMessages = () => {
                 const page = response.data.pageInfo.totalPages
                 setTotalPage(page);
                 setMessages(data);
-                console.log(response)
             }catch(error){
                 console.error('error is Here', error);
             }

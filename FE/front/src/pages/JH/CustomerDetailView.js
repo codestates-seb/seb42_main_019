@@ -6,11 +6,10 @@ import MessageList1 from '../../components/JSB/message/MessageList1';
 import BookInfo from '../../components/KHJ/BookInfo';
 import { Link, useParams } from 'react-router-dom';
 import api from '../../api/api';
+import Loading from '../HJ/Loading';
 
 const CustomerDetailView = () => {
 	const bookId = useParams();
-	// console.log(bookId)
-	// console.log(bookId.bookId)
 	const [bookData, setBookData] = useState([]);
 	const user = bookData.user;
 	const bookIdProfile = bookData.bookId;
@@ -30,7 +29,7 @@ const CustomerDetailView = () => {
 	},[]);
 
 	if(bookData.length === 0){
-		return <div className={styles.loading}>로딩중...</div>
+		return <Loading />
 	} else {
 		return (
 			<div className={styles.Main}>

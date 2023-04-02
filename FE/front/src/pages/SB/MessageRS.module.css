@@ -22,6 +22,7 @@
     height: 250px;
     margin-bottom: 10px;
     margin-left: 20px;
+    white-space: pre-wrap;
 }
 
 .viewContent2 {
@@ -29,4 +30,5 @@
     width: 450px;
     height: auto;
     padding: 20px;
+    white-space: pre-wrap;
 }

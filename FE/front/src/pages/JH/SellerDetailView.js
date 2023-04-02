@@ -18,7 +18,6 @@ const SellerDetailView = () => {
 		try {
 			const response = await api.get(`/books/${bookId.sellerId}`);
 			const { data } = response;
-			// const 
 			setBookData(data);
 		} catch(error) {
 			console.error(error);

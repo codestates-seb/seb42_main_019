@@ -50,7 +50,6 @@ function MessageWrite() {
             console.error('Error sending message', error);
         }
     };
-    console.log(profile)
     return (
         <div>
             <Header2>메세지 전송</Header2>

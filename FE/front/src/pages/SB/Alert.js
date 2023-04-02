@@ -31,7 +31,6 @@ function Alert(){
         };
         fetchData()
         
-        console.log("messageData",messageData)
         const intervalId = setInterval(fetchData, 60000);
         
         return () => {
@@ -42,13 +41,11 @@ function Alert(){
 
     const handleClick = async (id) => {
         try {
-        const res = await axios.put(`/messages/messages/${id}`)
-        console.log(res);
+            await axios.put(`/messages/messages/${id}`)
         } catch (error) {
-        console.error(error);
+            console.error(error);
         }
     }
-    console.log(messageData)
 
     return(
         <>
