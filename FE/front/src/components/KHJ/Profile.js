@@ -4,7 +4,7 @@ import {FiThumbsUp} from 'react-icons/fi';
 import api from '../../api/api';
 import { useEffect, useState } from 'react';
 
-function MessageList1({UpDownChk, profile, bookInfo}) {
+function MessageList1({profile, bookInfo}) {
 
 	const userId = profile.userId;
 
@@ -46,6 +46,14 @@ function MessageList1({UpDownChk, profile, bookInfo}) {
 		}
 	};
 
+	function UpDownChk(call){
+		if(!localStorage.userId) {
+			return alert('르그인을 해주세요')
+		} else if(Number(localStorage.getItem('userId')) === userId) {
+			alert('본인에게 남길 수 없습니다!')
+			return
+		} else { return call() }
+	}
 	return (
 		<>
 			<div className={style.box1}>
