@@ -27,6 +27,7 @@ import ReceivedMessages from './pages/SB/ReceivedMessages';
 import PrivateRoutes from './States/PrivateRoutes';
 import MessageSend from './pages/SB/MessageSend';
 import MessageReceive from './pages/SB/MessageReceive';
+import TradeMessage from './pages/SB/TradeMessage';
 
 function App() {
 	return (
@@ -96,6 +97,11 @@ function App() {
 							path='/myPage/messageBox/write/:id'
 							element={<MessageWrite />}
 						></Route>
+						<Route
+							path='/myPage/messageBox/tradeMessage/:id'
+							element={<TradeMessage />}
+						></Route>
+						
 
 						<Route path='/alert' element={<Alert />}></Route>
             

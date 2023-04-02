@@ -8,6 +8,7 @@ import classNames from 'classnames/bind';
 import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
 import MessageList4 from '../../components/JSB/message/MessageList4'
+import Loading from '../HJ/Loading';
 
 const MessageReceive=()=>{
     const cx = classNames.bind(style);
@@ -33,7 +34,7 @@ const MessageReceive=()=>{
 
 
     if(messageReceive === null){
-        return <p>isLoading</p>
+        return <Loading />
     }else {
         return(
             <>
