@@ -59,7 +59,7 @@ function MessageWrite() {
                 <div className={cx('viewContents2')}>
                 <textarea className={cx('messageSubmit')}
                     name="content"
-                    placeholder='여기 메세지를 입력해주세요'
+                    placeholder='여기 메세지를 입력해주세요 (개행은 적용되지 않습니다!)'
                     value={formData.content}
                     onChange={handleChange}
                     required
