@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "../../api/api";
 import { Link, useParams } from "react-router-dom";
 import BS from "../../components/KHJ/BS";
+import Loading from "./Loaging";
 
 function BookSearch() {
 
@@ -36,7 +37,7 @@ function BookSearch() {
 
 
     if(bookData === null){
-        return <p>lodaging</p>
+        return <Loading />
     } else{
         return(
             <>

@@ -60,12 +60,17 @@ function UserRate() {
         return false;
     }
 
+    function isOwn () {
+        if(Number(localStorage.getItem('userId')) === userdata.userId) return true;
+        return false;
+    }
+
     return (
         <>
             <Header2>이 유저에게 남긴 후기</Header2>
             <main>
                 {isUserData() ?
-                    <p>로딩중입니다!...</p>
+                    <p style={{textAlign:'center', lineHeight:'200px'}}>로딩중입니다!...</p>
                     : <Profile profile={userdata} bookInfo={bookInfo}/>
                 }
                 {isData() ?
@@ -76,7 +81,7 @@ function UserRate() {
                     </ul>
                 }
                 <div className={cx('wrap')}>
-                    <Modal userId={userId} getRate={getRate}>후기 작성하기</Modal>
+                    {!isOwn() && <Modal userId={userId} getRate={getRate}>후기 작성하기</Modal>}
                 </div>
             </main>
             <Nav />
