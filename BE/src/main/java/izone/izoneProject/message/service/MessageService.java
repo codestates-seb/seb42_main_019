@@ -96,10 +96,6 @@ public class MessageService {
         return findReceiver;
     }
 
-    public Message findMessage(long messageId) {
-        return findVerifiedMessage(messageId);
-
-    }
 
     //TODO: readAt을 기본 null로 생성하여 count 조회
     // 생성 시, null로 된 message의 갯수를 조회하여 숫자로 조회
@@ -139,13 +135,6 @@ public class MessageService {
 
         messageRepository.deleteById(messageId);
         return messageRepository.findAllByUserId(user.getUserId());
-    }
-
-    public Message findVerifiedMessage(long messageId) {
-        Optional<Message> optionalMessage = messageRepository.findById(messageId);
-        Message findMessage = optionalMessage.orElseThrow(() ->
-                new RuntimeException("message not found"));
-        return findMessage;
     }
 }
 

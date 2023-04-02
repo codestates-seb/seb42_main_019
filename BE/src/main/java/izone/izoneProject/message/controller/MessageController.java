@@ -46,6 +46,13 @@ public class MessageController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @GetMapping("/messages/{message-id}")
+    public ResponseEntity<?> getOneMessage(@PathVariable("message-id") long messageId) {
+        MessageResponseDto responseDto = messageService.markAsRead(messageId);
+
+        return ResponseEntity.ok(responseDto);
+    }
+
     @GetMapping("/messages/unread")
     public ResponseEntity<?> unreadCount() {
         long count = messageService.countUnreadMessages();
@@ -80,13 +87,13 @@ public class MessageController {
         return ResponseEntity.ok(count);
     }
 
-    //TODO:Get one Message
-    @GetMapping("/{message-id}")
-    public ResponseEntity getOneMessage(@PathVariable("message-id") long messageId) {
-        Message oneMessage = messageService.findMessage(messageId);
-
-        return new ResponseEntity<>(mapper.oneMessageToResponseDto(oneMessage),HttpStatus.OK);
-    }
+//    //TODO:Get one Message
+//    @GetMapping("/{message-id}")
+//    public ResponseEntity getOneMessage(@PathVariable("message-id") long messageId) {
+//        Message oneMessage = messageService.findMessage(messageId);
+//
+//        return new ResponseEntity<>(mapper.oneMessageToResponseDto(oneMessage),HttpStatus.OK);
+//    }
 
 
     @DeleteMapping("/{message-id}")
