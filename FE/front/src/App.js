@@ -36,10 +36,6 @@ function App() {
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/signUp' element={<SignUp />}></Route>
           
-					<Route
-						path='/userRate/:userid'
-						element={<UserRateList
-					/>}></Route>
 					
 					<Route
 						path='/customer/detailView/:bookId'
@@ -53,6 +49,14 @@ function App() {
 					<Route path='/missing' element={<Missing />}></Route>
 
 					<Route element={<PrivateRoutes />}>
+						<Route
+							path='/userRate/:userid'
+							element={<UserRateList
+						/>}></Route>
+						<Route
+							path='/userRateMsg/:messagesId'
+							element={<UserRateList
+						/>}></Route>
 
 						<Route path='/createBook' element={<CreateBook />}></Route>
 
