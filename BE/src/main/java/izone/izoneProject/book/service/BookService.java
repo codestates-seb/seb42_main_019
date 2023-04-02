@@ -46,8 +46,8 @@ public class BookService {
 
         Optional.ofNullable(book.getDescription())
                 .ifPresent(foundBook::setDescription);
-        Optional.ofNullable(book.getCondition())
-                .ifPresent(foundBook::setCondition);
+        Optional.ofNullable(book.getConditions())
+                .ifPresent(foundBook::setConditions);
         Optional.ofNullable(book.getExchange())
                 .ifPresent(foundBook::setExchange);
 
@@ -91,6 +91,14 @@ public class BookService {
         User user = optionalUser.orElseThrow(()->new RuntimeException("permission denied"));
 
         return bookRepository.findByUser(user);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Book> findBookListByUser(long userId) {
+        User user = userService.verifyUser(userId);
+        List<Book> books = bookRepository.findByUser(user);
+
+        return books;
     }
 
     public void deleteBook(long bookId) {

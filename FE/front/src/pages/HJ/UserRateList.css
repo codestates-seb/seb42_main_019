@@ -1,0 +1,47 @@
+.wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 20px 0;
+    padding-bottom: 140px;
+}
+.wrap > button{
+    text-align: center;
+    font-size: 16px;
+    width: 100%;
+    height: 80px;
+    background: var(--beige);
+    border-radius: var(--box-round);
+    color: var(--black);
+    box-shadow: var(--box-shadow);
+    opacity: 0.7;
+}
+.wrap > button:hover{
+    background: #eaeeea;
+    color: var(--green);
+    font-weight: bold;
+    opacity: 1;
+}
+.list{
+    margin: 32px 0;
+}
+.edit{
+    display: flex;
+    align-items: center;
+}
+.edit > button{
+    margin-left: 10px;
+}
+.input{
+    width: 100%;
+    height: 42px;
+    font-size: 16px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: #fff;
+    border: 2px solid var(--light-gray);
+}
+.input:focus{
+    border: 2px solid var(--green);
+}

@@ -30,22 +30,20 @@ public class BookCommentController {
     @PostMapping("/{book-id}/comment")
     public ResponseEntity postBookComment(@PathVariable("book-id") @Positive long bookId,
                                           @RequestBody @Valid BookCommentDto.Post post) {
-        BookComment bookComment = bookCommentMapper.postToBookComment(post); //content
+        BookComment bookComment = bookCommentMapper.postToBookComment(post);
         BookComment createdComment = bookCommentService.createBookComment(bookId, bookComment);
 
         return new ResponseEntity<>(bookCommentMapper.commentToResponse(createdComment), HttpStatus.CREATED);
     }
 
     //코멘트 수정
-    @PatchMapping("/{book-id}/comment/{comment-id}")
-    public ResponseEntity patchBookComment(@PathVariable("book-id") @Positive long bookId,
-                                           @PathVariable("comment-id") @Positive long commentId,
+    @PatchMapping("/comment/{comment-id}")
+    public ResponseEntity patchBookComment(@PathVariable("comment-id") @Positive long commentId,
                                            @RequestBody BookCommentDto.Patch patch) {
 
-        BookComment bookComment = bookCommentMapper.patchToBookComment(patch); //content
-//        BookComment editBookComment = bookCommentService.editBookComment(bookId, commentId, bookComment);
-        bookComment.setBookCommentId(commentId); //content, bookcoId
-        BookComment editBookComment = bookCommentService.editBookComment(bookId, bookComment); //bookcomment null, id, content
+        BookComment bookComment = bookCommentMapper.patchToBookComment(patch);
+        bookComment.setBookCommentId(commentId);
+        BookComment editBookComment = bookCommentService.editBookComment(bookComment);
 
 
         return new ResponseEntity<>(bookCommentMapper.commentToResponse(editBookComment), HttpStatus.OK);
@@ -55,7 +53,7 @@ public class BookCommentController {
     public ResponseEntity deleteBookComment(@PathVariable("book-id") @Positive long bookId,
                                             @PathVariable("comment-id") @Positive long commentId) {
 
-        bookCommentService.deleteComment(/*bookId, */commentId);
+        bookCommentService.deleteComment(commentId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

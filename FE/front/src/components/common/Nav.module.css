@@ -1,0 +1,55 @@
+.nav{
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    width: 530px;
+    max-width: 530px;
+    height: 70px;
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -5px 10px 0px rgba(0,0,0,0.08);
+}
+.nav--li{
+    width: 78px;
+    height: 52px;
+    text-align: center;
+}
+.nav--li a{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.nav--li span{
+    display: block;
+    color: var(--light-black);
+}
+.on span{
+    color: var(--green);
+}
+.alert{
+    position: relative;
+}
+span.num{
+    position: absolute;
+    top: -4px;
+    right: 20px;
+    /* background: red; */
+    color: var(--green);
+    font-weight: bold;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+span.num::after{
+    content: '';
+    position: absolute;
+    background: red;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    top: 0px;
+    right: -10px;
+}

@@ -1,7 +1,6 @@
 package izone.izoneProject.message.service;
 
-import izone.izoneProject.common.exception.BusinessLogicException;
-import izone.izoneProject.common.exception.ExceptionCode;
+
 import izone.izoneProject.message.dto.MessageResponseDto;
 import izone.izoneProject.message.entity.Message;
 import izone.izoneProject.message.mapper.MessageMapper;

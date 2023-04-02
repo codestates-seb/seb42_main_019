@@ -1,0 +1,40 @@
+running: dev
+domain: http://ec2-15-164-49-209.ap-northeast-2.compute.amazonaws.com:8080
+S3domain: http://izones3.s3-website.ap-northeast-2.amazonaws.com:80
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${datasource_url}/izone?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ${datasource_username}
+    password: ${datasource_password}
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: trace
+
+jwt:
+  secret: ${jwt_secret_key}
+  access-token-expiration-minutes: 60
+  refresh-token-expiration-minutes: 70
+
+mail:
+  address:
+    admin: ${admin_mail}
+
+kakao:
+  key: ${KAKAO_KEY}
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+

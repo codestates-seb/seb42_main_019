@@ -1,0 +1,47 @@
+
+
+.all {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 2px 10px 2px  #D9D9D9 ;
+    border-radius: 15px;
+    width: 490px;
+    height: 91px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.box1 {
+    margin-right: 65px;
+}
+
+.name{
+    display: flex;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: var(--strong-font);
+}
+
+.content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 370px;
+    text-align: left;
+
+}
+
+.date {
+    position: absolute;
+    color: var(--green);
+    margin-left: 340px;
+    width: 100px;
+    text-align: right;
+}
+
+.clicked {
+    filter: grayscale(1);
+    color: var(--light-gray );
+}

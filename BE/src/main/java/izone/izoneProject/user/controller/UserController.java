@@ -76,15 +76,14 @@ public class UserController {
         return new ResponseEntity<>(mapper.commentsToResponse(userComments), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{user-id}/comment/{comment-id}")
-    public ResponseEntity patchComment(@PathVariable("user-id") @Positive long userId,
-                                           @PathVariable("comment-id") @Positive long commentId,
-                                           @RequestBody @Valid UserCommentDto.Patch patch) {
+    @PatchMapping("/comment/{comment-id}")
+    public ResponseEntity patchComment(@PathVariable("comment-id") @Positive long commentId,
+                                       @RequestBody @Valid UserCommentDto.Patch patch) {
         UserComment userComment = mapper.patchToComment(patch);
         userComment.setCommentId(commentId);
-        List<UserComment> userComments = userService.editComment(userComment, userId);
+        UserComment userComments = userService.editComment(userComment);
 
-        return new ResponseEntity<>(mapper.commentsToResponse(userComments), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.commentToResponse(userComments), HttpStatus.OK);
     }
 
     @GetMapping("/{user-id}/comment")

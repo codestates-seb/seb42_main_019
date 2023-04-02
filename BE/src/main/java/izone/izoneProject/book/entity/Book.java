@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "BOOK")
+@Table(name = "BOOKS")
 public class Book extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,13 +48,14 @@ public class Book extends Auditable {
     private String thumbnail;
 
     @Column(name = "CONTENTS")
+    @Size(max = 1000000)
     private String contents;
 
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CONDITION")
-    private String condition;
+    @Column(name = "CONDITIONS")
+    private String conditions;
 
     @Column(name = "EXCHANGE")
     private String exchange;
@@ -71,7 +72,7 @@ public class Book extends Auditable {
     @Column(columnDefinition = "integer default 0")
     private int dislikeCount;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<BookComment> bookCommentList = new ArrayList<>();
 
     public void setLikeCount(int likeCount) {

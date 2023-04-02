@@ -9,6 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 public class BookPatchDto {
     private String description;
-    private String condition;
+    private String conditions;
     private String exchange;
 }
