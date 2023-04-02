@@ -59,7 +59,7 @@ const CustomerDetailView = () => {
 						{bookData.exchange ?? '교환 가능'}
 					</div>
 				</div>
-				<Link to={`/myPage/messageBox/write/${user.userId}`}>
+				<Link to={`/myPage/messageBox/tradeMessage/${bookIdProfile}`}>
 					<Button>교환 신청하기</Button>
 				</Link>
 			</div>
