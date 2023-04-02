@@ -26,7 +26,7 @@ function Rate({ ratedata, getRate }) {
     const [isContent, setContent] = useState('');
 
     const patchRate = async() => {
-        const url = `/user/${userIdNum}/comment/${ratedata.commentId}`;
+        const url = `/user/comment/${ratedata.commentId}`;
         const content = {
             content : `${isContent}`
         }
@@ -80,7 +80,7 @@ function Rate({ ratedata, getRate }) {
                 {isUser() ?
                 (
                 <div className={cx('edit')}>
-                    {/* {editable ?
+                    {editable ?
                         <>
                             <button onClick={patchRate}><EditBtn /></button>
                             <button onClick={editHandler}><XBtn /></button>
@@ -89,9 +89,8 @@ function Rate({ ratedata, getRate }) {
                         <>
                             <button onClick={editHandler}><EditBtn /></button>
                             <button onClick={delRatehandler}><XBtn /></button>
-                            </>
-                        } */}
-                        <button onClick={delRatehandler}><XBtn /></button>
+                        </>
+                    }
                 </div>
                 )
                 :

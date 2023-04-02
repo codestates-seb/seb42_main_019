@@ -64,7 +64,7 @@ function UserRate() {
         if(Number(localStorage.getItem('userId')) === userdata.userId) return true;
         return false;
     }
-
+    console.log(ratedata)
     return (
         <>
             <Header2>이 유저에게 남긴 후기</Header2>
