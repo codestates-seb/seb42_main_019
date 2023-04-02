@@ -1,5 +1,10 @@
 .map {
     min-height: 640px;
+    padding-bottom: 120px;
+}
+
+.map ul li{
+    cursor: pointer;
 }
 
 .notFooter {
@@ -20,8 +25,4 @@
     height: 60px;
     background-color: var(--green);
     color: var(--light-gray);
-}
-
-.map  {
-    cursor: pointer;
 }
