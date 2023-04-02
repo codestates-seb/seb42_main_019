@@ -11,7 +11,6 @@ const SellerDetailView = () => {
 	const bookId = useParams();
 	const [bookData, setBookData] = useState([]);
 	const user = bookData.user;
-	const bookIdProfile = bookData.bookId;
 	console.log(bookId);
 
 
@@ -40,7 +39,7 @@ const SellerDetailView = () => {
 	// }
 
 	console.log(bookData);
-	console.log(bookData.user);
+	console.log(user);
 
 	if(bookData.length === 0){
 		return <div>로딩중..</div>
@@ -49,11 +48,9 @@ const SellerDetailView = () => {
 			<div className={styles.Main}>
 				<Header2>등록된 책</Header2>
 				<BookInfo book={bookData} />
-				<Link to={`/userRate/${bookIdProfile}`}>
 					<div className={styles.profile}>
 						<MessageList1 profile={user}/>
 					</div>
-				</Link>
 				<div className={styles.Text}>
 					<label>책 설명</label>
 					<div className={styles.TextIner}>

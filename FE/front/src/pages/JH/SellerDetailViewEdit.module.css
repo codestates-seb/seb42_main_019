@@ -87,3 +87,8 @@
 	padding: 15px;
 	border-radius: 10px;
 }
+
+.SallState select {
+	border: none;
+	font-size: 18px;
+}
