@@ -51,7 +51,7 @@ const MessageReceive=()=>{
                     {messageReceive.content}
                     </div>
                 </div>
-                <Link to={`/myPage/messageBox/write/${messageReceive.messageId}`}>
+                <Link to={`/myPage/messageBox/write/${messageId}`}>
                 <Button>메시지 답장하기</Button>
                 </Link>
             </div>

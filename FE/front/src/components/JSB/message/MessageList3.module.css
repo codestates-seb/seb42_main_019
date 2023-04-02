@@ -11,6 +11,7 @@
     height: 91px;
     margin-bottom: 10px;
     margin-left: 20px;
+    position: relative;
 }
 
 .box1 {
@@ -24,6 +25,11 @@
     font-size: var(--strong-font);
 }
 
+.xicon {
+    width: 10px;
+
+}
+
 .content {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -33,12 +39,19 @@
 
 }
 
+.xIconbox{
+    top: 15px;
+    right: 15px;
+    position: absolute;
+}
+
 .date {
     position: absolute;
     color: var(--green);
-    margin-left: 340px;
+    right: 15px;
     width: 100px;
     text-align: right;
+    top : 40px;
 }
 
 .clicked {
