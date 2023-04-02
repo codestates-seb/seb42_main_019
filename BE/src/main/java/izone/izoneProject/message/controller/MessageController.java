@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,6 +78,14 @@ public class MessageController {
         long count = messageService.countUnreadMessages();
 
         return ResponseEntity.ok(count);
+    }
+
+    //TODO:Get one Message
+    @GetMapping("/{message-id}")
+    public ResponseEntity getOneMessage(@PathVariable("message-id") long messageId) {
+        Message oneMessage = messageService.findMessage(messageId);
+
+        return new ResponseEntity<>(mapper.oneMessageToResponseDto(oneMessage),HttpStatus.OK);
     }
 
 
