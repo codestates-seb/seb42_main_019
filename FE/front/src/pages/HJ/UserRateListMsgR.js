@@ -12,21 +12,21 @@ import Rate from "../../components/KHJ/Rate";
 function UserRate() {
     const cx = classNames.bind(styles);
     const params = useParams();
-    const bookId = params.userid;
+    const bookId = params.messagesId;
     const [ratedata, setRatedata] = useState([]);
     const [userdata, setUserdata] = useState([]);
     const [pageNum, setPageNum] = useState(1);
     const [userId, setUserId] = useState(0);
 
     const bookInfo = async () => {
-        const url = `/books/${bookId}`;
+        const url = `/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`;
         try {
             const res = await api ({
                 method: 'get',
                 url
             })
-            setUserdata(res.data.user);
-            setUserId(res.data.user.userId);
+            setUserdata(res.data.data[bookId].sender);
+            setUserId(res.data.data[bookId].sender.userId);
             await getRate();
         } catch (error) {
             console.log(error);

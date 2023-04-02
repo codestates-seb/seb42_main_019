@@ -26,7 +26,6 @@ function MessageWrite() {
                 const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
                 const profileData = response.data.data[receiverId];
                 setProfile(profileData);
-                console.log('Profile is Here!', profileData)
             }catch (error){
                 console.error('Error getting profile', error);
             }

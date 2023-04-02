@@ -36,7 +36,6 @@ const ReceivedMessages = () => {
     const handleDeleteReceivedMessage = async(messageId)=>{
         try{
             const response = await axios.delete(`/messages/${messageId}`);
-            console.log("response.data", response.data);
             window.location.reload();
         }catch(error){
             console.log(error)

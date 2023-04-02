@@ -21,7 +21,6 @@ const SendMessages = () =>{
         const response = await axios.get(`/messages/sent/?pageNumber=1&size=7&sort=create_date_time,DESC`);
         const messagesData = response.data.data;
         setSendMessages(messagesData);
-        console.log('Messages received successfully', messagesData);
         } catch (error) {
         console.error('Error getting messages', error);
         }
