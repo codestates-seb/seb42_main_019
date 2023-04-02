@@ -41,6 +41,7 @@ const SellerDetailViewEdit = () => {
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
+		navigate(`/missing`)
 		try {
 		  const response = await api.patch(`/books/${bookId.editId}`, {
 			description: description,
@@ -48,7 +49,7 @@ const SellerDetailViewEdit = () => {
 			exchange: exchange,
 		  });
 		  console.log(response.data);
-		  navigate(`/seller/detailView/${bookId.sellerId}`)
+		//   navigate(`/seller/detailView/${bookId.sellerId}`)
 		} catch (error) {
 		  console.error(error);
 		}
