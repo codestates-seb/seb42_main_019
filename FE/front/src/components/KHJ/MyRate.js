@@ -23,7 +23,7 @@ function Rate({ ratedata, getRate }) {
         <li className={cx('rate', {open : isOpen})} key={ratedata.id}>
             <p className={cx('top')}>
                 <strong>
-                    {ratedata.recipientName}
+                    {ratedata.senderName}
                 </strong>
             <span>{parsedDate}</span>
             </p>

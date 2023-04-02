@@ -27,7 +27,15 @@
 .viewContents2 {
     word-break: break-all;
     width: 450px;
-    height: auto;
+    height: 240px;
     padding: 20px;
+}
+
+.messageSubmit {
+    width: 450px;
+    height: 205px;
+    background-color: transparent;
+    border: 0px;
+    resize: none;
 }
 

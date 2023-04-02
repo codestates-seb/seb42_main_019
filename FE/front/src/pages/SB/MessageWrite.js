@@ -7,7 +7,6 @@ import classNames from 'classnames/bind';
 
 import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
-import MessageList6 from '../../components/JSB/message/MessageList6';
 
 function MessageWrite() {
     const cx = classNames.bind(style)
@@ -27,7 +26,6 @@ function MessageWrite() {
                 const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
                 const profileData = response.data.data[receiverId];
                 setProfile(profileData);
-                console.log('Profile is Here!', profileData)
             }catch (error){
                 console.error('Error getting profile', error);
             }
@@ -60,8 +58,9 @@ function MessageWrite() {
             <p className={cx('mvtext')}>메세지 쓰기</p>
                 <div className={cx('viewContents')}>
                 <div className={cx('viewContents2')}>
-                <input className={cx('messageSubmit')}
+                <textarea className={cx('messageSubmit')}
                     name="content"
+                    placeholder='여기 메세지를 입력해주세요'
                     value={formData.content}
                     onChange={handleChange}
                     required

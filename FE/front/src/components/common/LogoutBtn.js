@@ -14,6 +14,7 @@ function LogoutBtn() {
       localStorage.removeItem('userId');
       localStorage.removeItem('accessToken');
       localStorage.removeItem('userName');
+      window.location.reload();
       navigate('/')
   }
 

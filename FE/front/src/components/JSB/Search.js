@@ -18,7 +18,7 @@ const HomeSearch = function ({ searchBook }) {
           className={style.listboxMessage}
           type="text"
           placeholder="지금 당신이 읽고 싶은 책은 바로!..."
-          onChange={(e) => {e.preventDefault();}}
+          onChange={(e) => {e.preventDefault()}}
 		      onKeyUp={(e) => {
               handleSearch(e);
             }

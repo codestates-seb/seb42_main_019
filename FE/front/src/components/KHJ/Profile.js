@@ -46,6 +46,14 @@ function MessageList1({profile, bookInfo}) {
 		}
 	};
 
+	function UpDownChk(call){
+		if(!localStorage.userId) {
+			return alert('르그인을 해주세요')
+		} else if(Number(localStorage.getItem('userId')) === userId) {
+			alert('본인에게 남길 수 없습니다!')
+			return
+		} else { return call() }
+	}
 	return (
 		<>
 			<div className={style.box1}>
@@ -62,11 +70,15 @@ function MessageList1({profile, bookInfo}) {
 						</div>
 						{/* Vote */}
 						<div className={style.messageVote}>
-							<div className={style.voteUp} onClick={voteUp}>
+							<div className={style.voteUp} onClick={() => {
+								UpDownChk(voteUp)
+							}}>
 								<FiThumbsUp className={style.voteUp} size="20" color="#2f5a2d"/>
 								<span className={style.voteSpan}>{profile.likeCount}</span>
 							</div>
-							<div className={style.voteDown} onClick={voteDown}>
+							<div className={style.voteDown} onClick={() => {
+								UpDownChk(voteDown)
+							}}>
 								<FiThumbsDown className={style.voteDown} size="20" color="#999999"/>
 								<span className={style.voteSpan}>{profile.dislikeCount}</span>
 							</div>

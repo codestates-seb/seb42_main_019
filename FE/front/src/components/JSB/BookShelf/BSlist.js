@@ -32,7 +32,7 @@ const BSlist = function ({book, handleClick2}) {
 	return (
 		<>
 				
-					<div className={style.box1}>
+			<div className={style.box1}>
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.bookimg1}>
@@ -47,7 +47,8 @@ const BSlist = function ({book, handleClick2}) {
 								{getDate()}
 							</p>
 						</div>
-						<button onClick={handleClick2} className={style.xIconbox}>
+						<button onClick={(e)=>{handleClick2(); e.preventDefault();
+						}} className={style.xIconbox}>
                         <img className={style.xicon} src={xIcon} alt='xicon' />
                         </button>
 						<div className={style.grade}>{book.conditions}</div>

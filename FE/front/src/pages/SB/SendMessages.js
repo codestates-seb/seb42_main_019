@@ -21,7 +21,6 @@ const SendMessages = () =>{
         const response = await axios.get(`/messages/sent/?pageNumber=1&size=7&sort=create_date_time,DESC`);
         const messagesData = response.data.data;
         setSendMessages(messagesData);
-        console.log('Messages received successfully', messagesData);
         } catch (error) {
         console.error('Error getting messages', error);
         }
@@ -29,13 +28,26 @@ const SendMessages = () =>{
 
     getMessages();
     }, []);
+
+
+    const handleDeleteSendMessage = async(messageId)=>{
+        try{
+            const response = await axios.delete(`/messages/${messageId}`);
+            console.log("response.data", response.data);
+            window.location.reload();
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+
     return (
     <div>
         <Header2>보낸 메세지</Header2>
         <div className={cx('map')}>
         {sendMessages.map((item, index)=>
             <Link key={item.messageId} to={`/myPage/sendMessageBox/${index}`}>
-                <SendMessage key={item.id} item={item} />
+                <SendMessage handleDeleteSendMessage={()=>handleDeleteSendMessage(item.messageId)} key={item.id} item={item} />
             </Link>
             )}
         </div>
