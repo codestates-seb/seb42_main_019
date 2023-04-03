@@ -49,7 +49,7 @@ const SellerDetailView = () => {
 				<Header2>등록된 책</Header2>
 				<BookInfo book={bookData} />
 					<div className={styles.profile}>
-						<MessageList1 profile={bookData.user}/>
+						<MessageList1 profile={user}/>
 					</div>
 				<div className={styles.Text}>
 					<label>책 설명</label>

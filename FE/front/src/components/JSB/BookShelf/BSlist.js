@@ -7,30 +7,32 @@ const BSlist = function ({book, handleClick2}) {
 	const dateText = new Date(book.createdAt);
 	
 	function getDate() {
-	  const betweenTime = Math.round(Math.round(date.getTime() - dateText.getTime())/1000/60);
-	  if (betweenTime < 1) return '방금전';
-	  if (betweenTime < 60) {
+		const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+		
+		const betweenTime = Math.round(Math.round(date.getTime() -( dateText.getTime()- KR_TIME_DIFF))/1000/60);
+		if (betweenTime < 1) return '방금전';
+		if (betweenTime < 60) {
 		return `${betweenTime}분전`;
-	  }
-	  const betweenTimeHour = Math.round(betweenTime / 60);
-	  if (betweenTimeHour < 24) {
+		}
+		const betweenTimeHour = Math.round(betweenTime / 60);
+		if (betweenTimeHour < 24) {
 		return `${betweenTimeHour}시간전`;
-	  }
-	  const betweenTimeDay = Math.round(betweenTime / 60 / 24);
-	  if (betweenTimeDay < 365) {
+		}
+		const betweenTimeDay = Math.round(betweenTime / 60 / 24);
+		if (betweenTimeDay < 365) {
 		return `${betweenTimeDay}일전`;
-	  }
-	  const betweenTimeMonth = Math.round(betweenTime / 60 / 24/ 30);
-	  if (betweenTimeMonth < 12) {
+		}
+		const betweenTimeMonth = Math.round(betweenTime / 60 / 24/ 30);
+		if (betweenTimeMonth < 12) {
 		return `${betweenTimeMonth}개월 전`;
-	  }
-	  return `${Math.round(betweenTimeDay / 365)}년전`;
+		}
+	return `${Math.round(betweenTimeDay / 365)}년전`;
 	}
 
 	return (
 		<>
 				
-					<div className={style.box1}>
+			<div className={style.box1}>
 				<div className={style.notFooter}>
 					<div className={style.listboxMessage}>
 						<div className={style.bookimg1}>
@@ -45,7 +47,8 @@ const BSlist = function ({book, handleClick2}) {
 								{getDate()}
 							</p>
 						</div>
-						<button onClick={handleClick2} className={style.xIconbox}>
+						<button onClick={(e)=>{handleClick2(); e.preventDefault();
+						}} className={style.xIconbox}>
                         <img className={style.xicon} src={xIcon} alt='xicon' />
                         </button>
 						<div className={style.grade}>{book.conditions}</div>

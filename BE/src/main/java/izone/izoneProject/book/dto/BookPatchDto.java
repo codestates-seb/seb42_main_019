@@ -10,5 +10,5 @@ import lombok.*;
 public class BookPatchDto {
     private String description;
     private String conditions;
-    private String exchange;
+    private int exchange;
 }

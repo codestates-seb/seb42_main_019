@@ -32,7 +32,6 @@ const MyPage = () => {
                 const response = await axios.get(`/user/${user}`);
                 console.log(user);
                 setProfile(response.data);
-                console.log(profile)
             }catch(error){
                 console.error(error);
             }

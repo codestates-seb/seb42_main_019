@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from '../../api/api';
 
@@ -13,7 +13,6 @@ const MessageReceive=()=>{
     const cx = classNames.bind(style);
     const params = useParams();
     const messageId = params.id;
-    const profile= params.id
 
 
     const [messageReceive, setMessageReceive] = useState(null);
@@ -24,7 +23,6 @@ const MessageReceive=()=>{
                 const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
                 const messageData = response.data.data[messageId];
                 setMessageReceive(messageData);
-                console.log('Message received successfully', messageData);
             } catch (error) {
                 console.error('Error getting message', error);
             }
@@ -42,14 +40,18 @@ const MessageReceive=()=>{
             <Header2>받은 메시지</Header2>
             <div className={cx('messageBoxV')}>
                 <p className={cx('mvtext')}>보낸 사람</p>
-                <MessageList4 messageReceive={messageReceive}/>
+                <Link to={`/userRateMsgR/${messageId}`}>
+                    <MessageList4 messageReceive={messageReceive}/>
+                </Link>
                 <p className={cx('mvtext')}>메시지 내용</p>
                 <div className={cx('viewContent')}>
                     <div key={messageId} className={cx('viewContent2')}>
                     {messageReceive.content}
                     </div>
                 </div>
+                <Link to={`/myPage/messageBox/write/${messageId}`}>
                 <Button>메시지 답장하기</Button>
+                </Link>
             </div>
             </>
         )

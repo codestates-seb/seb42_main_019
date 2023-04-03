@@ -13,6 +13,8 @@ import CreateBook from './pages/JH/CreateBook';
 import CustomerDetailView from './pages/JH/CustomerDetailView';
 import BookSearchResult from './pages/HJ/BookSearchResult';
 import UserRateList from './pages/HJ/UserRateList';
+import UserRateListMsg from './pages/HJ/UserRateListMsg';
+import UserRateListMsgR from './pages/HJ/UserRateListMsgR';
 import MyRateList from './pages/HJ/MyRateList';
 import MyBookShelf from './pages/SB/MyBookShelf';
 import ErrorPage from './pages/HJ/404';
@@ -36,10 +38,6 @@ function App() {
 					<Route path='/login' element={<Login />}></Route>
 					<Route path='/signUp' element={<SignUp />}></Route>
           
-					<Route
-						path='/userRate/:userid'
-						element={<UserRateList
-					/>}></Route>
 					
 					<Route
 						path='/customer/detailView/:bookId'
@@ -53,6 +51,18 @@ function App() {
 					<Route path='/missing' element={<Missing />}></Route>
 
 					<Route element={<PrivateRoutes />}>
+						<Route
+							path='/userRate/:userid'
+							element={<UserRateList
+						/>}></Route>
+						<Route
+							path='/userRateMsg/:messagesId'
+							element={<UserRateListMsg
+						/>}></Route>
+						<Route
+							path='/userRateMsgR/:messagesId'
+							element={<UserRateListMsgR
+						/>}></Route>
 
 						<Route path='/createBook' element={<CreateBook />}></Route>
 
@@ -83,7 +93,7 @@ function App() {
 							element={<MessageReceive />}
 						></Route>
 						<Route
-							path='/myPage/messageBox/write'
+							path='/myPage/messageBox/write/:id'
 							element={<MessageWrite />}
 						></Route>
 
