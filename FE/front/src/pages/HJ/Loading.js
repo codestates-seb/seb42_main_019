@@ -9,7 +9,7 @@ function Loading() {
         <div className={cx('wrap')}>
             <Header2 />
                 <div className={cx('error', 'loading_page')}>
-                    <div class={cx("loading")}>
+                    <div className={cx("loading")}>
                         <span></span>
                         <span></span>
                         <span></span>

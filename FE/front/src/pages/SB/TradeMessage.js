@@ -8,7 +8,7 @@ import classNames from 'classnames/bind';
 import Header2 from '../../components/common/Header2';
 import Button from '../../components/common/Button';
 
-function MessageWrite() {
+function TradeMessage() {
     const cx = classNames.bind(style)
     const params = useParams();
     const receiverId = params.id
@@ -23,9 +23,10 @@ function MessageWrite() {
     useEffect(()=>{
         const getProfile = async()=>{
             try{
-                const response = await axios.get(`/messages/received/?pageNumber=1&size=10&sort=create_date_time,DESC`);
-                const profileData = response.data.data[receiverId];
-                setProfile(profileData);
+                const response = await axios.get(`/books/${receiverId}`);
+                const res = response.data.user.userId
+                setProfile(res)
+                
             }catch (error){
                 console.error('Error getting profile', error);
             }
@@ -43,13 +44,14 @@ function MessageWrite() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post(`/messages/${profile.sender.userId}`, formData);
+            await axios.post(`/messages/${profile}`, formData);
             console.log('Message sent successfully!');
             history('/myPage/receivedMessageBox');
         } catch (error) {
             console.error('Error sending message', error);
         }
     };
+
     return (
         <div>
             <Header2>메세지 전송</Header2>
@@ -59,7 +61,7 @@ function MessageWrite() {
                 <div className={cx('viewContents2')}>
                 <textarea className={cx('messageSubmit')}
                     name="content"
-                    placeholder='여기 메세지를 입력해주세요 (개행은 적용되지 않습니다!)'
+                    placeholder='여기 메세지를 입력해주세요'
                     value={formData.content}
                     onChange={handleChange}
                     required
@@ -75,4 +77,4 @@ function MessageWrite() {
     );
 }
 
-export default MessageWrite;
+export default TradeMessage;

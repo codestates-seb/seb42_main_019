@@ -6,12 +6,12 @@ import MessageList1 from '../../components/JSB/message/MessageList1';
 import BookInfo from '../../components/KHJ/BookInfo';
 import { Link, useParams } from 'react-router-dom';
 import api from '../../api/api';
+import Loading from '../HJ/Loading'
 
 const SellerDetailView = () => {
 	const bookId = useParams();
 	const [bookData, setBookData] = useState([]);
 	const user = bookData.user;
-	console.log(bookId);
 
 
 	const fetchBookData = async () => {
@@ -19,9 +19,7 @@ const SellerDetailView = () => {
 			const response = await api.get(`/books/${bookId.sellerId}`);
 			const { data } = response;
 			setBookData(data);
-			if(data) {
-				console.log(data);
-			}
+			console.log(bookData);
 		} catch(error) {
 			console.error(error);
 		}
@@ -38,11 +36,8 @@ const SellerDetailView = () => {
 	// 	console.log(response);
 	// }
 
-	console.log(bookData);
-	console.log(user);
-
 	if(bookData.length === 0){
-		return <div>로딩중..</div>
+		return <Loading />
 	} else {
 		return (
 			<div className={styles.Main}>
@@ -64,10 +59,11 @@ const SellerDetailView = () => {
 				<div className={styles.exchangeState}>
 					<label>거래 상태</label>
 					<div className={styles.SallState}>
-						{bookData.exchange ?? '교환 가능'}
+						{bookData.exchange === 0 ? '교환 가능' : '교환 완료'}
 					</div>
 				</div>
 				<Link to={`/seller/detailView/edit/${bookId.sellerId}`}>
+				{/* <Link to={`/missing`}> */}
 					<Button>수정하기</Button>
 				</Link>
 			</div>

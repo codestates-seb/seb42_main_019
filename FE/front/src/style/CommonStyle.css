@@ -71,3 +71,7 @@ button, input{
 main{
 	width: 530px;
 }
+
+textarea{
+	font-size: var(--normal-font);
+}

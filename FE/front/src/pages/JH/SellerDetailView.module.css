@@ -29,6 +29,7 @@
 	padding: 15px;
 	margin-top: 15px;
 	overflow-y: scroll;
+	white-space: pre-wrap;
 }
 
 .BookState {
@@ -49,7 +50,6 @@
 
 .State {
 	width: 62px;
-	height: 62px;
 	background-color: var(--green);
 	color: #fff;
 	font-size: 18px;

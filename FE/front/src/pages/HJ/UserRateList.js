@@ -24,7 +24,7 @@ function UserRate() {
             const res = await api ({
                 method: 'get',
                 url
-            })
+            });
             setUserdata(res.data.user);
             setUserId(res.data.user.userId);
             await getRate();

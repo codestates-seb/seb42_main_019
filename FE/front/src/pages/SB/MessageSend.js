@@ -8,6 +8,7 @@ import classNames from 'classnames/bind';
 import Header2 from '../../components/common/Header2';
 import Nav from '../../components/common/Nav'
 import MessageList5 from '../../components/JSB/message/MessageList5';
+import Loading from '../HJ/Loading';
 
 const MessageSend=()=>{
     const cx = classNames.bind(style);
@@ -33,7 +34,7 @@ const MessageSend=()=>{
 //파람스로 메세지 아이디 받아와서 그 정보로 유저정보 뽑아오고 메세지 내용뽑아와야 함.
     
     if(messageSend === null){
-        return <p>isLoading</p>
+        return <Loading />
     }else {
         return(
             <>

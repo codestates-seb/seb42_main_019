@@ -31,7 +31,6 @@ function Alert(){
         };
         fetchData()
         
-        console.log("messageData",messageData)
         const intervalId = setInterval(fetchData, 60000);
         
         return () => {
@@ -42,18 +41,17 @@ function Alert(){
 
     const handleClick = async (id) => {
         try {
-        await axios.put(`/messages/messages/${id}`)
+            await axios.put(`/messages/messages/${id}`)
         } catch (error) {
-        console.error(error);
+            console.error(error);
         }
     }
-    console.log(messageData)
 
     return(
         <>
             <Header2>메세지 알림</Header2>
             <ul className={cx('map')} >
-            {messageData.length===0 ? <p>당신의 메세지는 0개!</p> 
+            {messageData.length===0 ? <p style={{textAlign:"center", lineHeight:"300px"}}>당신의 메세지는 0개!</p> 
             :
             messageData.map((message,index) => 
             <Link to={`/myPage/receiveMessageBox/${index}`} onClick={() => handleClick(message.messageId)} key={message.messageId}>

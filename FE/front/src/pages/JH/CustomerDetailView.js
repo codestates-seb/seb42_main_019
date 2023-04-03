@@ -6,13 +6,13 @@ import MessageList1 from '../../components/JSB/message/MessageList1';
 import BookInfo from '../../components/KHJ/BookInfo';
 import { Link, useParams } from 'react-router-dom';
 import api from '../../api/api';
+import Loading from '../HJ/Loading';
 
 const CustomerDetailView = () => {
 	const bookId = useParams();
-	// console.log(bookId)
-	// console.log(bookId.bookId)
 	const [bookData, setBookData] = useState([]);
 	const user = bookData.user;
+	const bookIdProfile = bookData.bookId;
 
 	useEffect(() => {
 		const fetchBookData = async () => {
@@ -20,9 +20,7 @@ const CustomerDetailView = () => {
 				const response = await api.get(`/books/${bookId.bookId}`);
 				const { data } = response;
 				setBookData(data);
-				if(data) {
-					console.log(data);
-				}
+				console.log(response)
 			} catch(error) {
 				console.error(error);
 			}
@@ -30,16 +28,14 @@ const CustomerDetailView = () => {
 		fetchBookData();
 	},[]);
 
-	console.log(bookData);
-
 	if(bookData.length === 0){
-		return <div className={styles.loading}>로딩중...</div>
+		return <Loading />
 	} else {
 		return (
 			<div className={styles.Main}>
 				<Header2>등록된 책</Header2>
 				<BookInfo book={bookData} />
-				<Link to={`/userRate/${user.userId}`}>
+				<Link to={`/userRate/${bookIdProfile}`}>
 					<div className={styles.profile}>
 						<MessageList1 profile={bookData.user}/>
 					</div>
@@ -59,10 +55,10 @@ const CustomerDetailView = () => {
 				<div className={styles.exchangeState}>
 					<label>거래 상태</label>
 					<div className={styles.SallState}>
-						{bookData.exchange ?? '교환 가능'}
+					{bookData.exchange === 0 ? '교환 가능' : bookData.exchange}
 					</div>
 				</div>
-				<Link to={`/myPage/messageBox/write/${user.userId}`}>
+				<Link to={`/myPage/messageBox/tradeMessage/${bookIdProfile}`}>
 					<Button>교환 신청하기</Button>
 				</Link>
 			</div>
