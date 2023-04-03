@@ -10,7 +10,7 @@ import api from '../../api/api';
 const SellerDetailViewEdit = () => {
 	const [conditions, setConditions] = useState('');
 	const [description, setDescription] = useState('');
-	const [exchange, setExchange] = useState(null);
+	const [exchange, setExchange] = useState();
   
 	const bookId = useParams();
 	const [bookData, setBookData] = useState([]);
@@ -25,6 +25,10 @@ const SellerDetailViewEdit = () => {
 		  const response = await api.get(`/books/${bookId.editId}`);
 		  const { data } = response;
 		  setBookData(data);
+		  setConditions(data.conditions);
+		  setDescription(data.description);
+		  setExchange(data.exchange);
+		  console.log(bookData);
 		  if (data) {
 			console.log(data);
 		  }
@@ -34,22 +38,19 @@ const SellerDetailViewEdit = () => {
 	  };
 	  fetchBookData();
 	}, []);
-  
-
-	console.log(bookData);
 
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
-		navigate(`/missing`)
+		navigate(`/missing`);
 		try {
-		  const response = await api.patch(`/books/${bookId.editId}`, {
+		  const response = await api.patch(`/books/${bookId.sellerId}`, {
 			description: description,
 			conditions: conditions,
 			exchange: exchange,
 		  });
 		  console.log(response.data);
-		//   navigate(`/seller/detailView/${bookId.sellerId}`)
+		  navigate(`/seller/detailView/${bookId.sellerId}`)
 		} catch (error) {
 		  console.error(error);
 		}
@@ -77,18 +78,21 @@ if(bookData.length === 0){
 					<label>책 상태</label>
 					<div className={styles.Buttons}>
 						<button
+							defaultValue={bookData.conditions === '상'}
 							onClick={() => handleClick('상')}
 							className={conditions === '상' ? `${styles['active']}` : ''}
 						>
 							상
 						</button>
 						<button
+							defaultValue={bookData.conditions === '중'}
 							onClick={() => handleClick('중')}
 							className={conditions === '중' ? `${styles['active']}` : ''}
 						>
 							중
 						</button>
 						<button
+							defaultValue={bookData.conditions === '하'}
 							onClick={() => handleClick('하')}
 							className={conditions === '하' ? `${styles['active']}` : ''}
 						>
@@ -103,15 +107,14 @@ if(bookData.length === 0){
 					<label>거래 상태</label>
 					<div className={styles.SallState}>
 						<select 
-							value={exchange || bookData.exchange}
 							onChange={(e) => setExchange(e.target.value)}
 						>
-							<option value={1}>교환 가능</option>
-							<option value={2}>교환 완료</option>
+							<option value={0}>교환 가능</option>
+							<option value={1}>교환 완료</option>
 						</select>
 					</div>
 				</div>
-				<Button onClick={handleSubmit}>책 등록하기</Button>
+				<Button onClick={handleSubmit}>수정완료</Button>
 			</div>
 		);
 	}

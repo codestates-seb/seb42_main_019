@@ -1,6 +1,7 @@
 .Main {
 	position: relative;
 	max-width: 530px;
+	padding-bottom: 300px;
 }
 
 .Main > * {

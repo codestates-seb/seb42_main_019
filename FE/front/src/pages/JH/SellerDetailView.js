@@ -19,6 +19,7 @@ const SellerDetailView = () => {
 			const response = await api.get(`/books/${bookId.sellerId}`);
 			const { data } = response;
 			setBookData(data);
+			console.log(bookData);
 		} catch(error) {
 			console.error(error);
 		}
@@ -58,11 +59,11 @@ const SellerDetailView = () => {
 				<div className={styles.exchangeState}>
 					<label>거래 상태</label>
 					<div className={styles.SallState}>
-						{bookData.exchange ?? '교환 가능'}
+						{bookData.exchange === 0 ? '교환 가능' : '교환 완료'}
 					</div>
 				</div>
-				{/* <Link to={`/seller/detailView/edit/${bookId.sellerId}`}> */}
-				<Link to={`/missing`}>
+				<Link to={`/seller/detailView/edit/${bookId.sellerId}`}>
+				{/* <Link to={`/missing`}> */}
 					<Button>수정하기</Button>
 				</Link>
 			</div>
