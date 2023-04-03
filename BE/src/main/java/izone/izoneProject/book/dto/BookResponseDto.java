@@ -22,7 +22,7 @@ public class BookResponseDto {
     private String contents;
     private String description;
     private String conditions;
-    private String exchange;
+    private int exchange;
     private int totalLikeCount;
     private int totalDislikeCount;
     private List<BookComment> bookCommentList;

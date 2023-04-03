@@ -57,7 +57,7 @@ public class Book extends Auditable {
     @Column(name = "CONDITIONS")
     private String conditions;
 
-    @Column(name = "EXCHANGE")
+    @Column(name = "EXCHANGE", columnDefinition = "integer default 0")
     private String exchange;
 
     @Column(columnDefinition = "integer default 0")
