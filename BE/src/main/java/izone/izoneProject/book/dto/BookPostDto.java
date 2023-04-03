@@ -25,6 +25,6 @@ public class BookPostDto {
     @NotEmpty
     private String conditions;
 
-    private String exchange;
+    private int exchange;
 
 }
