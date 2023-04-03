@@ -42,19 +42,19 @@ const SellerDetailViewEdit = () => {
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
-		navigate(`/missing`);
 		try {
-		  const response = await api.patch(`/books/${bookId.sellerId}`, {
-			description: description,
-			conditions: conditions,
-			exchange: exchange,
+  console.log('id',bookId.editId);
+		  const response = await api.patch(`/books/${bookId.editId}`, {
+		   description: description,
+		   conditions: conditions,
+		   exchange: exchange,
 		  });
 		  console.log(response.data);
-		  navigate(`/seller/detailView/${bookId.sellerId}`)
+		  navigate(`/seller/detailView/${bookId.editId}`)
 		} catch (error) {
 		  console.error(error);
 		}
-	  };
+	   };
 
 if(bookData.length === 0){
 	return <div className={styles.loading}>로딩중...</div>
