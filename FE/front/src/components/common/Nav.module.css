@@ -16,6 +16,8 @@
     width: 78px;
     height: 52px;
     text-align: center;
+    white-space: nowrap;
+    word-break: keep-all;
 }
 .nav--li a{
     width: 100%;

@@ -22,5 +22,12 @@
 		width: 530px;
 		max-width: 530px;
 		min-width: 530px;
+		box-shadow: none;
+	}
+	.App{
+		display: block;
+	}
+	html{
+		background: #fbfaf8;
 	}
 }
