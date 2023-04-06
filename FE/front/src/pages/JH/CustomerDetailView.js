@@ -55,7 +55,7 @@ const CustomerDetailView = () => {
 				<div className={styles.exchangeState}>
 					<label>거래 상태</label>
 					<div className={styles.SallState}>
-					{bookData.exchange === 0 ? '교환 가능' : bookData.exchange}
+					{bookData.exchange === 0 ? '교환 가능' : '교환 완료'}
 					</div>
 				</div>
 				<Link to={`/myPage/messageBox/tradeMessage/${bookIdProfile}`}>
