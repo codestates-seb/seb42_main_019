@@ -29,13 +29,13 @@
 | :---: | :---: | :---: |
 | <img alt="조수빈" src="https://lunadein2022.github.io/assets/img/me.png" height="100" width="100"> | <img alt="임지현" src="https://avatars.githubusercontent.com/u/89282099?v=4" height="100" width="100"> | <img alt="김현지" src="https://avatars.githubusercontent.com/u/104138036?v=4" height="100" width="100"> |
 | [@lunadein2022](https://github.com/lunadein2022) |    [@journey0321](https://github.com/journey0321) | [@ASOpaper](https://github.com/ASOpaper) | 
-|<p align="left">- 메인 페이지<br/>- 마이 페이지<br/>- 메세지 알림<br/>- 메세지 전송, 조회, 삭제<br/>- 내 책장 조회, 삭제<br/>- 책<br/>- S3 배포 적용<br/> (S3, Route53)</p>|<p align="left">- 디자인 담당 <br/>- 유저 플로우 작성 <br/>- 룸 페이지 <br/>- 룸 종료 페이지 <br/>- 룸 생성 모달 <br/>- 루빗 생성 모달 <br/>- 기타 반응형 작업 </p>|<p align="left">- 회원 CRUD<br/>- 구글 로그인<br/>- 이메일 중복체크<br/>- 유효 e-mail 체크<br/>- ID/비밀번호 찾기<br/>- 토큰을 이용한 인증<br/>- AWS(EC2,RDS)<br/> 배포환경 구축</p>|
+|<p align="left">- 메인 페이지<br/>- 마이 페이지<br/>- 메세지 알림<br/>- 메세지 전송, 조회, 삭제<br/>- 내 책장 조회, 삭제<br/>- 책<br/>- S3 배포 적용<br/> (S3, Route53)</p>|<p align="left">-작성예정-</p>|<p align="left">-작성예정-</p>|
 
 | 안병옥<br>(BE, 부팀장) | 김미진<br>(BE) | 박의진<br>(BE) | 이혜인<br>(BE) |
 | :---: | :---: | :---: | :---: | 
 | <img alt="안병옥" src="https://cdn.discordapp.com/attachments/1080032497959706719/1093090235748982794/image.png" height="100" width="100"> | <img alt="김미진" src="https://cdn.discordapp.com/attachments/1080032497959706719/1093095464947154995/image.png" height="100" width="100"> | <img alt="박의진" src="https://cdn.discordapp.com/attachments/1080032497959706719/1093094998305673276/image.png" height="100" width="100"> | <img alt="이혜인" src="https://cdn.discordapp.com/attachments/1080032497959706723/1093105138014621776/IMG_4129.jpeg" height="100" width="100"> |
 | [@boahn](https://github.com/boahn) | [@BO0461](https://github.com/BO0461) | [@snowqhdl](https://github.com/snowqhdl) | [@zoeee6](https://github.com/zoeee6) |
-|<p align="left">- Kakao API로 책검색 구현 <br/>- Book CRUD <br/> Message readAt 구현 <br/>- AWS(EC2, RDS) 배포 환경 구성<br/>API문서 작성(User, Book, UserComment, BookComment) <br/>- hotfix 커뮤니케이션 </p>|<p align="left">- user crud(sign-up,user withdrawal,user inquiry,user modifying)<br/>-user comment crud<br/>-spring security(Authentication, Authorization, JWT)<br/>-AWS deployment</p>|<p align="left">- user crud(sign-up,user withdrawal,user inquiry,user modifying)<br/>-user comment crud<br/>-spring security(Authentication, Authorization, JWT)<br/>-AWS deployment</p>|<p align="left">- Spring Boot JPA사용 CRUD구현<br/>- 폴링 방식을 이용한 쪽지 구현<br/>- ostman을 활용한 api 문서 작성<br/>- AWS관리</p>|
+|<p align="left">- Kakao API로 책검색 구현 <br/>- Book CRUD <br/> Message readAt 구현 <br/>- AWS(EC2, RDS) 배포 환경 구성<br/>API문서 작성(User, Book, UserComment, BookComment) <br/>- hotfix 커뮤니케이션 </p>|<p align="left">-작성예정-</p>|<p align="left">- user crud(sign-up,user withdrawal,user inquiry,user modifying)<br/>-user comment crud<br/>-spring security(Authentication, Authorization, JWT)<br/>-AWS deployment</p>|<p align="left">- Spring Boot JPA사용 CRUD구현<br/>- 폴링 방식을 이용한 쪽지 구현<br/>- ostman을 활용한 api 문서 작성<br/>- AWS관리</p>|
 
 
 ### 커뮤니케이션 방식
