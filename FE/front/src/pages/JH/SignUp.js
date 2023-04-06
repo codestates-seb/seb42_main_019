@@ -8,7 +8,7 @@ import api from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-	const [dropdownVisibility, setDropdownVisibility] = useState(true);
+	const [dropdownVisibility, setDropdownVisibility] = useState(false);
 	const [email, setEmail] = useState('');
 	const [password, setpassword] = useState('');
 	const [name, setName] = useState('');
@@ -20,8 +20,7 @@ const SignUp = () => {
 	// const [isOn, setIsOn] = useState(false);
 
 	useEffect(() => {
-		setDropdownVisibility((dropdownVisibility) => !dropdownVisibility);
-		setRegion(region);
+		setDropdownVisibility(false);
 	}, [region]);
 
 	const handleEmail = (event) => {
