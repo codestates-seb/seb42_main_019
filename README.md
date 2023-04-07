@@ -29,7 +29,7 @@
 | :---: | :---: | :---: |
 | <img alt="조수빈" src="https://lunadein2022.github.io/assets/img/me.png" height="100" width="100"> | <img alt="임지현" src="https://avatars.githubusercontent.com/u/89282099?v=4" height="100" width="100"> | <img alt="김현지" src="https://avatars.githubusercontent.com/u/104138036?v=4" height="100" width="100"> |
 | [@lunadein2022](https://github.com/lunadein2022) |    [@journey0321](https://github.com/journey0321) | [@ASOpaper](https://github.com/ASOpaper) | 
-|<p align="left">- 메인 페이지<br/>- 마이 페이지<br/>- 메세지 알림<br/>- 메세지 전송, 조회, 삭제<br/>- 내 책장 조회, 삭제<br/>- S3 배포 적용<br/> (S3, Route53)</p>|<p align="left">-로그인 페이지<br/>-회원가입 페이지<br/>-책 등록, 수정<br/>-책 자동완성 검색<br/>-책 상세 페이지</p>|<p align="left">-작성예정-</p>|
+|<p align="left">- 메인 페이지<br/>- 마이 페이지<br/>- 메세지 알림 조회, 삭제<br/>- 메세지 전송, 조회, 삭제<br/>- 내 책장 조회, 삭제<br/>- S3 배포 적용</p>|<p align="left">-로그인 페이지<br/>-회원가입 페이지<br/>-책 등록, 수정<br/>-책 자동완성 검색<br/>-책 상세 페이지</p>|<p align="left">- 책검색 기능<br/>- 검색결과 페이지<br/>- 등록된 책 정보페이지<br/>- 책,유저 후기 CRUD<br/>- 로딩, 에러 페이지<br/>- 네비게이션바 구현</p>|
 
 | 안병옥<br>(BE, 부팀장) | 김미진<br>(BE) | 박의진<br>(BE) | 이혜인<br>(BE) |
 | :---: | :---: | :---: | :---: | 
