@@ -35,7 +35,7 @@
 | :---: | :---: | :---: | :---: | 
 | <img alt="안병옥" src="https://cdn.discordapp.com/attachments/1080032497959706719/1093090235748982794/image.png" height="100" width="100"> | <img alt="김미진" src="https://cdn.discordapp.com/attachments/1080032497959706719/1093095464947154995/image.png" height="100" width="100"> | <img alt="박의진" src="https://cdn.discordapp.com/attachments/1080032497959706719/1093094998305673276/image.png" height="100" width="100"> | <img alt="이혜인" src="https://cdn.discordapp.com/attachments/1080032497959706723/1093105138014621776/IMG_4129.jpeg" height="100" width="100"> |
 | [@boahn](https://github.com/boahn) | [@BO0461](https://github.com/BO0461) | [@snowqhdl](https://github.com/snowqhdl) | [@zoeee6](https://github.com/zoeee6) |
-|<p align="left">- Kakao API로 책검색 구현 <br/>- Book CRUD <br/> Message readAt 구현 <br/>- AWS(EC2, RDS) 배포 환경 구성<br/>API문서 작성(User, Book, UserComment, BookComment) <br/>- hotfix 커뮤니케이션 </p>|<p align="left">-작성예정-</p>|<p align="left">- user crud(sign-up,user withdrawal,user inquiry,user modifying)<br/>-user comment crud<br/>-spring security(Authentication, Authorization, JWT)<br/>-AWS deployment</p>|<p align="left">- Spring Boot JPA사용 CRUD구현<br/>- 폴링 방식을 이용한 쪽지 구현<br/>- ostman을 활용한 api 문서 작성<br/>- AWS관리</p>|
+|<p align="left">- Kakao API로 책검색 구현 <br/>- Book CRUD <br/> Message readAt 구현 <br/>- AWS(EC2, RDS) 배포 환경 구성<br/>API문서 작성(User, Book, UserComment, BookComment) <br/>- hotfix 커뮤니케이션 </p>|<p align="left">-Book Comment Create<br/>-Book Comment Read<br/>-Book Comment Update<br/>Book Comment Delete</p>|<p align="left">- user crud(sign-up,user withdrawal,user inquiry,user modifying)<br/>-user comment crud<br/>-spring security(Authentication, Authorization, JWT)<br/>-AWS deployment</p>|<p align="left">- Spring Boot JPA사용 CRUD구현<br/>- 폴링 방식을 이용한 쪽지 구현<br/>- ostman을 활용한 api 문서 작성<br/>- AWS관리</p>|
 
 
 ### 커뮤니케이션 방식
@@ -98,7 +98,7 @@
 - `release` : 서비스 운영 브랜치입니다.
 - `dev` : 개발 환경 브랜치입니다. 개별적으로 작업했던 내용을 합치고 검토합니다.
 - `feat/fe(or be)/...` : 프론트(백엔드) 세부 브랜치입니다.
-- 
+
 ### Commit & Pull-Request Message
 | "feat: ~ " | 새로운 기능 추가 |
 | :---: | :--- |
