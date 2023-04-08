@@ -22,7 +22,6 @@ function Pagenation({ pageInfo, currentPage, onPageChange }) {
             pageNumbers.push(i);
         }
     }
-    console.log(pageNumbers)
     
     const pages = [];
     
@@ -32,7 +31,6 @@ function Pagenation({ pageInfo, currentPage, onPageChange }) {
         }
         pages.push(page);
     });
-    console.log(pages)
     
     return (
         <nav>
