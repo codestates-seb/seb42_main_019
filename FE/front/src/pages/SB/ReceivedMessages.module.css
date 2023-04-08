@@ -1,6 +1,5 @@
 .map {
     min-height: 640px;
-    margin-top: 50px;
 }
 
 a { text-decoration: none; color: black; }
@@ -12,4 +11,8 @@ a:hover, a:active { text-decoration: none; }
 .clicked {
     filter: grayscale(1);
     color: var(--light-gray );
+}
+
+.main{
+    padding-bottom: 100px;
 }

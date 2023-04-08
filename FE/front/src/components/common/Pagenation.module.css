@@ -1,18 +1,16 @@
-.pagenation_nav{
+.nav{
+    margin-top: 32px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
-
-.pagenation_nav span{
-    display: flex;
+.li{
+    font-size: 16px;
     margin-right: 5px;
 }
-.pagenation_nav button{
-    width: 32px; height: 32px;
-    color: #fff;
-    background: #d9d9d9;
-    margin-top: 50px;
-    margin-right: 5px;
-    border-radius: 10px;
+.li button{
+    font-size: 16px;
+}
+.li:last-child{
+    margin-right: 0;
 }

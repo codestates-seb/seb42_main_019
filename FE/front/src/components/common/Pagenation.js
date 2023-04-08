@@ -1,14 +1,14 @@
+import classNames from 'classnames/bind';
 import { useState } from 'react';
 import styles from './Pagenation.module.css'
 
-function Pagenation({ pageInfo, onPageChange }) {
+function Pagenation({ pageInfo, currentPage, onPageChange }) {
     const { pageNumber, totalPages } = pageInfo;
-    const [currentPage, setCurrentPage] = useState(pageNumber);
+    const cx = classNames.bind(styles);
 
     const handleClick = (page) => {
-        setCurrentPage(page);
         onPageChange(page);
-        };
+    };
     
     let pageNumbers = [];
     const pageRange = 2;
@@ -22,6 +22,7 @@ function Pagenation({ pageInfo, onPageChange }) {
             pageNumbers.push(i);
         }
     }
+    console.log(pageNumbers)
     
     const pages = [];
     
@@ -31,12 +32,13 @@ function Pagenation({ pageInfo, onPageChange }) {
         }
         pages.push(page);
     });
+    console.log(pages)
     
     return (
         <nav>
-            <ul>
+            <ul className={cx('nav')}>
                 {pages.map((page, index) => (
-                <li key={index}>
+                <li className={cx('li')} key={index}>
                     {page === -1 ? (
                     <span>...</span>
                     ) : (
