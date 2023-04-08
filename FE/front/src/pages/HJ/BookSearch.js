@@ -26,6 +26,7 @@ function BookSearch() {
             })
             const book = res.data;
             setBookdata(book);
+            console.log(res)
         } catch (error) {
             console.log(error);
         };
@@ -51,7 +52,6 @@ function BookSearch() {
                             <BS bookData={el}/>
                         </Link>
                     )}
-                    <Pagenation />
                 </main>
                 <Footer />
                 <Nav />

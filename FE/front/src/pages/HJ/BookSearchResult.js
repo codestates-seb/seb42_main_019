@@ -54,7 +54,6 @@ function BookSearchResult() {
                     </Link>
                     )
                 }
-                <Pagenation />
             </main>
             <Footer />
             <Nav />

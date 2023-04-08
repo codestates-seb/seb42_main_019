@@ -1,77 +1,57 @@
+import { useState } from 'react';
 import styles from './Pagenation.module.css'
 
-function Pagenation({pageCounts, setPageCount, totalPage}) {
+function Pagenation({ pageInfo, onPageChange }) {
+    const { pageNumber, totalPages } = pageInfo;
+    const [currentPage, setCurrentPage] = useState(pageNumber);
 
-    // const pageCount = Number(pageCounts)
-
-    // function getPageNumber(){
-    //     if(pageCount === 1 || pageCount === 2){
-    //         return (
-    //             <>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={1}>1</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={2}>2</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={3}>3</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={4}>4</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={5}>5</button>
-    //             </>
-    //         )
-    //     }
-        
-    //     if(pageCount<totalPage-1){
-    //         return(
-    //             <>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount-2}>{pageCount-2}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount-1}>{pageCount-1}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount}>{pageCount}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount+1}>{pageCount+1}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount+2}>{pageCount+2}</button>
-    //             </>
-    //         )
-    //     }
-
-    //     if(pageCount===totalPage){
-    //         return(
-    //             <>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount-4}>{pageCount-4}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount-3}>{pageCount-3}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount-2}>{pageCount-2}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount+1}>{pageCount-1}</button>
-    //                 <button onClick={(e) => {pageClick(e)}} data-page={pageCount}>{pageCount}</button>
-    //             </>
-    //         )
-    //     }
-
-    //     if(pageCount===totalPage-1){
-    //         return(
-    //             <>
-    //             <button onClick={(e) => {pageClick(e)}} data-page={pageCount-3}>{pageCount-3}</button>
-    //             <button onClick={(e) => {pageClick(e)}} data-page={pageCount-2}>{pageCount-2}</button>
-    //             <button onClick={(e) => {pageClick(e)}} data-page={pageCount-1}>{pageCount-1}</button>
-    //             <button onClick={(e) => {pageClick(e)}} data-page={pageCount}>{pageCount}</button>
-    //             <button onClick={(e) => {pageClick(e)}} data-page={pageCount+1}>{pageCount+1}</button>
-    //         </>
-    //         )
-    //     }
-    // }
+    const handleClick = (page) => {
+        setCurrentPage(page);
+        onPageChange(page);
+        };
     
-
-
-
-    // console.log("pageCount", pageCount)
-
-    // function pageClick(e){
-    //     if(pageCount<totalPage){
-    //         setPageCount(e.target.dataset.page)
-    //     }
-    // }
-
-    // return (
-    //     <div className={styles.pagenation_nav}>
-    //         {getPageNumber()}
-    //         <span>...</span>
-    //         <button onClick={(e)=>{pageClick(e)}} data-page={totalPage}>{totalPage}</button>
-    //     </div>
-    // );
+    let pageNumbers = [];
+    const pageRange = 2;
+    
+    for (let i = 1; i <= totalPages; i++) {
+        if (
+            i === 1 ||
+            i === totalPages ||
+            (i >= currentPage - pageRange && i <= currentPage + pageRange)
+        ) {
+            pageNumbers.push(i);
+        }
+    }
+    
+    const pages = [];
+    
+    pageNumbers.forEach((page, index) => {
+        if (index !== 0 && pageNumbers[index - 1] !== page - 1) {
+            pages.push(-1);
+        }
+        pages.push(page);
+    });
+    
+    return (
+        <nav>
+            <ul>
+                {pages.map((page, index) => (
+                <li key={index}>
+                    {page === -1 ? (
+                    <span>...</span>
+                    ) : (
+                    <button
+                        onClick={() => handleClick(page)}
+                        disabled={currentPage === page}
+                    >
+                        {page}
+                    </button>
+                    )}
+                </li>
+                ))}
+            </ul>
+        </nav>
+    );
 }
 
 export default Pagenation;

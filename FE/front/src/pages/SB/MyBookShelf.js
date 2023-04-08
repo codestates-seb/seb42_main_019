@@ -69,7 +69,6 @@ const MyBookShelf = () => {
                     )}
                 </div>
             </div>
-            <Pagenation />
         </div>
         <Nav />
         </>
